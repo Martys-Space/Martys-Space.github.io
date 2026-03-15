@@ -25,23 +25,69 @@ async function proxyFetch(url) {
 }
 
 // ---- STATE ----
+const PROGRESS_BAR_DEFAULTS = { hm: false, implementations: false, floors: true, affection: true, achievements: true };
+
 let state = {
-  hollowMissions:     {},
-  floors:             {},
-  affection:          {},
-  achievements:       {},
-  steamConfig:        { apiKey: '', steamId: '' },
-  steamHintDismissed: false
+  hollowMissions:        {},
+  floors:                {},
+  affection:             {},
+  achievements:          {},
+  implementations:       {},
+  steamConfig:           { apiKey: '', steamId: '' },
+  steamHintDismissed:    false,
+  progressBars:          { ...PROGRESS_BAR_DEFAULTS },
+  showChildImplIds:      false
 };
+
+// ---- IMPLEMENTATIONS UI STATE (not persisted) ----
+let implFilterType = 'all';
+let implHideCompleted = false;
+let implSearch = '';
+const implCollapsed = {};
 
 function isSteamConfigured() {
   return !!(state.steamConfig.apiKey && state.steamConfig.steamId);
 }
 
+// ---- IMPLEMENTATIONS HELPERS ----
+function implParentId(id) {
+  const lastDot = id.lastIndexOf('.');
+  return lastDot === -1 ? null : id.slice(0, lastDot);
+}
+
+function implDepth(id) {
+  return id.split('.').length - 1;
+}
+
+function implSortKey(id) {
+  return id.split('.').map(n => parseInt(n).toString().padStart(6, '0')).join('.');
+}
+
+function implStatus(id) {
+  return state.implementations[id] || null; // null | "testing" | "implemented"
+}
+
+function implIsAvailable(id) {
+  const parentId = implParentId(id);
+  if (parentId === null) return true;
+  const ps = implStatus(parentId);
+  return ps === 'implement' || ps === 'implemented';
+}
+
+const totalImpls     = () => IMPLEMENTATIONS_DATA.length;
+const completedImpls = () => IMPLEMENTATIONS_DATA.filter(i => implStatus(i.id) === 'implemented').length;
+const DONT_CHEAT_TOTAL = () => CHARACTERS_DATA.filter(c => !c.excludeDontCheat).length;
+const dontCheatCount   = () => CHARACTERS_DATA.filter(c => !c.excludeDontCheat && (state.affection[c.id] || 0) >= 5).length;
+
 function loadState() {
   try {
     const saved = localStorage.getItem(LS_KEY);
-    if (saved) state = Object.assign(state, JSON.parse(saved));
+    if (saved) {
+      const parsed = JSON.parse(saved);
+      state = Object.assign(state, parsed);
+      // Deep merge progressBars so new keys always get their defaults
+      state.progressBars = Object.assign({ ...PROGRESS_BAR_DEFAULTS }, parsed.progressBars || {});
+    }
   } catch (e) { console.error('Failed to load state', e); }
 }
 
@@ -75,10 +121,11 @@ const completedAchs    = () => Object.values(state.achievements).filter(Boolean)
 
 // ---- OVERVIEW ----
 function updateOverview() {
-  setOvStat('ov-hm',  completedMissions(), totalMissions());
-  setOvStat('ov-fl',  completedFloors(),   totalFloors());
-  setOvStat('ov-aff', maxAffectionCount(), CHARACTERS_DATA.length);
-  setOvStat('ov-ach', completedAchs(),     ACHIEVEMENTS_DATA.length);
+  setOvStat('ov-hm',   completedMissions(), totalMissions());
+  setOvStat('ov-fl',   completedFloors(),   totalFloors());
+  setOvStat('ov-aff',  maxAffectionCount(), CHARACTERS_DATA.length);
+  setOvStat('ov-ach',  completedAchs(),     ACHIEVEMENTS_DATA.length);
+  setOvStat('ov-impl', completedImpls(),    totalImpls());
 }
 
 function setOvStat(id, done, total) {
@@ -90,6 +137,33 @@ function setOvStat(id, done, total) {
   const fill = el.querySelector('.progress-mini-fill');
   fill.style.width = pct + '%';
   fill.classList.toggle('complete', done === total);
+}
+
+function updateHMProgress() {
+  const done = completedMissions(), total = totalMissions();
+  const fill  = document.getElementById('hm-progress-fill');
+  const label = document.getElementById('hm-progress-label');
+  if (fill)  { fill.style.width = total > 0 ? (done / total * 100) + '%' : '0%'; fill.classList.toggle('green', done === total); }
+  if (label) label.textContent = `${done} / ${total}`;
+}
+
+function applyProgressBarVisibility() {
+  const pb = state.progressBars;
+  [
+    { key: 'hm',              id: 'hm-progress-wrap' },
+    { key: 'implementations', id: 'impl-progress-wrap' },
+    { key: 'floors',          id: 'floor-progress-wrap' },
+    { key: 'affection',       id: 'aff-progress-wrap' },
+    { key: 'achievements',    id: 'ach-progress-wrap' },
+  ].forEach(({ key, id }) => {
+    const el = document.getElementById(id);
+    if (el) el.style.display = pb[key] ? '' : 'none';
+  });
+}
+
+function applyChildImplIdVisibility() {
+  const list = document.getElementById('impl-list');
+  if (list) list.classList.toggle('hide-child-ids', !state.showChildImplIds);
 }
 
 // ---- TABS ----
@@ -140,6 +214,7 @@ function renderHollowMissions() {
     block.appendChild(missionsDiv);
     container.appendChild(block);
   });
+  updateHMProgress();
 }
 
 function createMissionRow(m) {
@@ -155,7 +230,7 @@ function createMissionRow(m) {
   if (m.type === 'uhq')         typeTag = '<span class="type-tag tag-uhq">ULTRA HARD</span>';
 
   row.innerHTML = `
-    <input type="checkbox" class="mission-checkbox" ${done ? 'checked' : ''}>
+    <button class="impl-circle ${done ? 'impl-circle-done' : 'impl-circle-empty'}" title="${done ? 'Mark as incomplete' : 'Mark as complete'}">✓</button>
     <span class="rank-badge rank-${m.rank}">${m.rank}</span>
     <div class="mission-info">
       <div class="mission-name">${typeTag}${m.name}</div>
@@ -163,12 +238,18 @@ function createMissionRow(m) {
     </div>
     <div class="mission-num">#${m.num}</div>`;
 
-  const cb = row.querySelector('.mission-checkbox');
-  cb.addEventListener('change', () => {
-    state.hollowMissions[m.id] = cb.checked;
-    row.classList.toggle('completed', cb.checked);
+  const circleBtn = row.querySelector('.impl-circle');
+  circleBtn.addEventListener('click', e => {
+    e.stopPropagation();
+    const newDone = !state.hollowMissions[m.id];
+    state.hollowMissions[m.id] = newDone;
+    row.classList.toggle('completed', newDone);
+    circleBtn.className = `impl-circle ${newDone ? 'impl-circle-done' : 'impl-circle-empty'}`;
+    circleBtn.title = newDone ? 'Mark as incomplete' : 'Mark as complete';
     saveState();
     updateOverview();
+    updateHMProgress();
+    updateAchInlineTrackers();
     refreshAreaHeader(m);
   });
   return row;
@@ -201,6 +282,11 @@ function initHMControls() {
       row.style.display = (!q || name.includes(q) || map.includes(q)) ? '' : 'none';
     });
   });
+  document.getElementById('hm-hide-completed').addEventListener('click', function() {
+    const areas = document.getElementById('hm-areas');
+    const hidden = areas.classList.toggle('hm-hide-completed');
+    this.textContent = hidden ? 'Show Completed' : 'Hide Completed';
+  });
 }
 
 // ============================================================
@@ -215,21 +301,25 @@ function renderFloorTracker() {
     const card = document.createElement('div');
     card.className = 'floor-card' + (done ? ' has-bonus' : '');
     card.innerHTML = `
-      <input type="checkbox" class="floor-card-check" ${done ? 'checked' : ''}>
+      <button class="impl-circle ${done ? 'impl-circle-done' : 'impl-circle-empty'}" title="${done ? 'Remove bonus' : 'Mark bonus received'}">✓</button>
       <div class="floor-card-info">
         <div class="floor-num">FLOOR ${f.floor}</div>
         <div class="floor-boss">${f.boss}</div>
       </div>`;
 
-    const cb = card.querySelector('.floor-card-check');
-    cb.addEventListener('change', () => {
-      state.floors[f.floor] = cb.checked;
-      card.classList.toggle('has-bonus', cb.checked);
+    const circleBtn = card.querySelector('.impl-circle');
+    circleBtn.addEventListener('click', e => {
+      e.stopPropagation();
+      const newDone = !state.floors[f.floor];
+      state.floors[f.floor] = newDone;
+      card.classList.toggle('has-bonus', newDone);
+      circleBtn.className = `impl-circle ${newDone ? 'impl-circle-done' : 'impl-circle-empty'}`;
+      circleBtn.title = newDone ? 'Remove bonus' : 'Mark bonus received';
       saveState();
       updateOverview();
       updateFloorProgress();
     });
-    card.addEventListener('click', e => { if (e.target !== cb) cb.click(); });
+    card.addEventListener('click', e => { if (!e.target.closest('.impl-circle')) circleBtn.click(); });
     grid.appendChild(card);
   });
 
@@ -247,7 +337,7 @@ function updateFloorProgress() {
 // ============================================================
 // TAB 3 — AFFECTION
 // ============================================================
-const INITIALS = { asuna:'A', yui:'Y', silica:'S', philia:'P', sinon:'Si', lisbeth:'Li', strea:'St', leafa:'Le' };
+const INITIALS = { asuna:'A', yui:'Y', silica:'S', philia:'P', sinon:'Si', lisbeth:'Li', strea:'St', leafa:'Le', argo:'Ar' };
 
 function renderAffection() {
   const grid = document.getElementById('affection-grid');
@@ -257,7 +347,7 @@ function renderAffection() {
     const rank  = state.affection[char.id] || 0;
     const maxed = rank >= 5;
     const card  = document.createElement('div');
-    card.className = 'char-card' + (maxed ? ' maxed' : '');
+    card.className = 'char-card' + (maxed ? ' maxed' : (rank > 0 ? ' has-stars' : ''));
     card.id = 'char-card-' + char.id;
 
     const achHtml = char.achievement
@@ -266,13 +356,18 @@ function renderAffection() {
          </span>`
       : '';
 
+    const excludeNote = char.excludeDontCheat
+      ? `<span class="char-exclude-note">Not required for Don't cheat, daddy</span>`
+      : '';
+
     card.innerHTML = `
       <div class="char-avatar avatar-${char.id}">${INITIALS[char.id] || char.name[0]}</div>
       <div class="char-name">${char.name}</div>
       <div class="star-row" data-char="${char.id}">
         ${[1,2,3,4,5].map(i => `<button class="star-btn${rank >= i ? ' filled' : ''}" data-star="${i}">★</button>`).join('')}
       </div>
-      ${achHtml}`;
+      ${achHtml}
+      ${excludeNote}`;
 
     card.querySelector('.star-row').addEventListener('click', e => {
       const btn = e.target.closest('.star-btn');
@@ -295,11 +390,14 @@ function updateAffectionCard(charId) {
   const card = document.getElementById('char-card-' + charId);
   if (!card) return;
   const rank = state.affection[charId] || 0;
-  card.classList.toggle('maxed', rank >= 5);
+  card.classList.remove('maxed', 'has-stars');
+  if (rank >= 5) card.classList.add('maxed');
+  else if (rank > 0) card.classList.add('has-stars');
   card.querySelectorAll('.star-btn').forEach(btn => {
     btn.classList.toggle('filled', parseInt(btn.dataset.star) <= rank);
   });
   syncAffectionBar();
+  updateAchInlineTrackers();
 }
 
 function syncAffectionBar() {
@@ -419,6 +517,31 @@ function setStatus(msg, type) {
   el.className   = 'sync-status' + (type ? ' ' + type : '');
 }
 
+function updateAchInlineTrackers() {
+  const senior = document.getElementById('ach-tracker-senior');
+  if (senior) {
+    const v = Math.min(completedImpls(), 100);
+    senior.querySelector('.ach-inline-val').textContent = `${v} / 100`;
+    senior.querySelector('.ach-tracker-fill').style.width = v + '%';
+    senior.classList.toggle('complete', v >= 100);
+  }
+  const debug = document.getElementById('ach-tracker-debug');
+  if (debug) {
+    const v = Math.min(completedMissions(), 100);
+    debug.querySelector('.ach-inline-val').textContent = `${v} / 100`;
+    debug.querySelector('.ach-tracker-fill').style.width = v + '%';
+    debug.classList.toggle('complete', v >= 100);
+  }
+  const dcd = document.getElementById('ach-tracker-dcd');
+  if (dcd) {
+    const v = dontCheatCount(), t = DONT_CHEAT_TOTAL();
+    dcd.querySelector('.ach-inline-val').textContent = `${v} / ${t}`;
+    dcd.querySelector('.ach-tracker-fill').style.width = t > 0 ? (v / t * 100) + '%' : '0%';
+    dcd.classList.toggle('complete', t > 0 && v >= t);
+  }
+}
+
+
 function renderAchievements() {
   const list  = document.getElementById('achievements-list');
   list.innerHTML = '';
@@ -431,35 +554,363 @@ function renderAchievements() {
 
   ACHIEVEMENTS_DATA.forEach(ach => {
     const unlocked = !!state.achievements[ach.key];
+    let inlineTracker = '';
+    if (ach.key === 'senior_test_player') {
+      const v = Math.min(completedImpls(), 100);
+      inlineTracker = `<div class="ach-inline-tracker${v >= 100 ? ' complete' : ''}" id="ach-tracker-senior">
+        <span class="ach-inline-label">Implementations</span>
+        <div class="ach-tracker-bar ach-tracker-bar-inline"><div class="ach-tracker-fill" style="width:${v}%"></div></div>
+        <span class="ach-inline-val">${v} / 100</span>
+      </div>`;
+    } else if (ach.key === 'complete_debug') {
+      const v = Math.min(completedMissions(), 100);
+      inlineTracker = `<div class="ach-inline-tracker${v >= 100 ? ' complete' : ''}" id="ach-tracker-debug">
+        <span class="ach-inline-label">Missions</span>
+        <div class="ach-tracker-bar ach-tracker-bar-inline"><div class="ach-tracker-fill" style="width:${v}%"></div></div>
+        <span class="ach-inline-val">${v} / 100</span>
+      </div>`;
+    } else if (ach.key === 'dont_cheat_daddy') {
+      const v = dontCheatCount(), t = DONT_CHEAT_TOTAL();
+      inlineTracker = `<div class="ach-inline-tracker${t > 0 && v >= t ? ' complete' : ''}" id="ach-tracker-dcd">
+        <span class="ach-inline-label">Max affection</span>
+        <div class="ach-tracker-bar ach-tracker-bar-inline"><div class="ach-tracker-fill green" style="width:${t > 0 ? (v/t*100) : 0}%"></div></div>
+        <span class="ach-inline-val">${v} / ${t}</span>
+      </div>`;
+    }
+
     const row = document.createElement('div');
     row.className = 'ach-row' + (unlocked ? ' unlocked' : '');
     row.innerHTML = `
-      <input type="checkbox" class="ach-check" ${unlocked ? 'checked' : ''}>
-      <div class="ach-icon">${unlocked ? '✅' : '🔒'}</div>
+      <button class="impl-circle ${unlocked ? 'impl-circle-done' : 'impl-circle-empty'}" title="${unlocked ? 'Mark as locked' : 'Mark as unlocked'}">✓</button>
       <div class="ach-info">
         <div class="ach-name">${ach.name}</div>
-        <div class="ach-desc">${ach.description}</div>
+        <div class="ach-desc-row">
+          <span class="ach-desc">${ach.description}</span>
+          ${inlineTracker}
+        </div>
       </div>`;
 
-    const cb = row.querySelector('.ach-check');
-    cb.addEventListener('change', () => {
-      state.achievements[ach.key] = cb.checked;
-      row.classList.toggle('unlocked', cb.checked);
-      row.querySelector('.ach-icon').textContent = cb.checked ? '✅' : '🔒';
+    const circleBtn = row.querySelector('.impl-circle');
+    circleBtn.addEventListener('click', e => {
+      e.stopPropagation();
+      const newUnlocked = !state.achievements[ach.key];
+      state.achievements[ach.key] = newUnlocked;
+      row.classList.toggle('unlocked', newUnlocked);
+      circleBtn.className = `impl-circle ${newUnlocked ? 'impl-circle-done' : 'impl-circle-empty'}`;
+      circleBtn.title = newUnlocked ? 'Mark as locked' : 'Mark as unlocked';
       saveState();
       updateOverview();
-      // Refresh progress bar without re-rendering the whole list
       const d = completedAchs();
       if (fill)  fill.style.width = (d / total * 100) + '%';
       if (label) label.textContent = `${d} / ${total} achievements`;
     });
-    row.addEventListener('click', e => { if (e.target !== cb) cb.click(); });
+    row.addEventListener('click', e => { if (!e.target.closest('.impl-circle')) circleBtn.click(); });
     list.appendChild(row);
   });
 }
 
 // ============================================================
-// TAB 5 — SETTINGS
+// TAB 5 — IMPLEMENTATIONS
+// ============================================================
+const REWARD_TYPE_COLORS = {
+  'System':           { bg: 'rgba(0,212,255,0.12)',   border: 'rgba(0,212,255,0.4)',   text: '#00d4ff' },
+  'Battle Skill':     { bg: 'rgba(255,136,0,0.12)',   border: 'rgba(255,136,0,0.4)',   text: '#ff8800' },
+  'Sword Skill':      { bg: 'rgba(255,68,68,0.12)',   border: 'rgba(255,68,68,0.4)',   text: '#ff4444' },
+  'Rapier':           { bg: 'rgba(255,170,200,0.12)', border: 'rgba(255,170,200,0.4)', text: '#ffaac8' },
+  'Two-Handed Sword': { bg: 'rgba(180,60,60,0.15)',   border: 'rgba(180,60,60,0.5)',   text: '#e06060' },
+  'Two-Handed Axe':   { bg: 'rgba(160,90,40,0.15)',   border: 'rgba(160,90,40,0.5)',   text: '#c87830' },
+  'One-Handed Sword': { bg: 'rgba(100,160,255,0.12)', border: 'rgba(100,160,255,0.4)', text: '#64a0ff' },
+  'One-Handed Club':  { bg: 'rgba(140,100,60,0.15)',  border: 'rgba(140,100,60,0.5)',  text: '#b08040' },
+  'Gloves':           { bg: 'rgba(120,200,120,0.12)', border: 'rgba(120,200,120,0.4)', text: '#78c878' },
+  'Armor':            { bg: 'rgba(150,150,200,0.12)', border: 'rgba(150,150,200,0.4)', text: '#9696c8' },
+  'Boots':            { bg: 'rgba(100,180,140,0.12)', border: 'rgba(100,180,140,0.4)', text: '#64b48c' },
+  'Ring':             { bg: 'rgba(255,215,0,0.12)',   border: 'rgba(255,215,0,0.4)',   text: '#ffd700' },
+  'Necklace':         { bg: 'rgba(220,180,255,0.12)', border: 'rgba(220,180,255,0.4)', text: '#dcb4ff' },
+  'Charm':            { bg: 'rgba(255,180,220,0.12)', border: 'rgba(255,180,220,0.4)', text: '#ffb4dc' },
+  'Scimitar':         { bg: 'rgba(200,160,60,0.12)',  border: 'rgba(200,160,60,0.4)',  text: '#c8a03c' },
+  'Dagger':           { bg: 'rgba(180,220,100,0.12)', border: 'rgba(180,220,100,0.4)', text: '#b4dc64' },
+  'Spear':            { bg: 'rgba(80,180,200,0.12)',  border: 'rgba(80,180,200,0.4)',  text: '#50b4c8' },
+  'Katana':           { bg: 'rgba(200,80,100,0.12)',  border: 'rgba(200,80,100,0.4)',  text: '#c85064' },
+};
+
+function renderImplementations() {
+  const list  = document.getElementById('impl-list');
+  const fill  = document.getElementById('impl-progress-fill');
+  const label = document.getElementById('impl-progress-label');
+  if (!list) return;
+
+  const done  = completedImpls(), total = totalImpls();
+  if (fill)  fill.style.width = total > 0 ? (done / total * 100) + '%' : '0%';
+  if (label) label.textContent = `${done} / ${total}`;
+
+  const sorted = [...IMPLEMENTATIONS_DATA].sort((a, b) =>
+    implSortKey(a.id) < implSortKey(b.id) ? -1 : 1
+  );
+
+  // Type filter: matching items + all their ancestors
+  let typeVisible = null;
+  if (implFilterType !== 'all') {
+    const matchIds = new Set(sorted.filter(i => i.rewardType === implFilterType).map(i => i.id));
+    typeVisible = new Set(matchIds);
+    matchIds.forEach(id => {
+      let curr = implParentId(id);
+      while (curr) { typeVisible.add(curr); curr = implParentId(curr); }
+    });
+  }
+
+  // Search filter: matching items + all their ancestors
+  const searchQ = implSearch.toLowerCase().trim();
+  let searchVisible = null;
+  if (searchQ) {
+    const matchIds = new Set(sorted.filter(i =>
+      i.name.toLowerCase().includes(searchQ) || i.id.includes(searchQ)
+    ).map(i => i.id));
+    searchVisible = new Set(matchIds);
+    matchIds.forEach(id => {
+      let curr = implParentId(id);
+      while (curr) { searchVisible.add(curr); curr = implParentId(curr); }
+    });
+  }
+
+  // Group by root ID
+  const groups = new Map();
+  sorted.forEach(impl => {
+    const root = impl.id.split('.')[0];
+    if (!groups.has(root)) groups.set(root, []);
+    groups.get(root).push(impl);
+  });
+
+  list.innerHTML = '';
+  groups.forEach((items, rootId) => {
+    const visibleItems = items.filter(impl => {
+      if (typeVisible   && !typeVisible.has(impl.id))   return false;
+      if (searchVisible && !searchVisible.has(impl.id)) return false;
+      if (implHideCompleted && implStatus(impl.id) === 'implemented') return false;
+      return true;
+    });
+    if (!visibleItems.length) return;
+
+    const isCollapsed = !!implCollapsed[rootId];
+
+    const group = document.createElement('div');
+    group.className = `impl-group${isCollapsed ? ' collapsed' : ''}`;
+    group.dataset.group = rootId;
+
+    const rootItem = IMPLEMENTATIONS_DATA.find(i => i.id === rootId);
+    const header = document.createElement('div');
+    header.className = 'impl-group-header';
+    header.innerHTML = `<span class="impl-group-label"><span class="impl-group-label-id">${rootId}</span><span class="impl-group-label-name">${rootItem ? rootItem.name : ''}</span></span><span class="impl-group-chevron">▼</span>`;
+    header.addEventListener('click', () => {
+      implCollapsed[rootId] = !implCollapsed[rootId];
+      renderImplementations();
+    });
+
+    const body = document.createElement('div');
+    body.className = 'impl-group-body';
+
+    visibleItems.forEach(impl => {
+      const status    = implStatus(impl.id);
+      const available = implIsAvailable(impl.id);
+      const depth     = implDepth(impl.id);
+      const locked    = !available && status !== 'checking' && status !== 'implement' && status !== 'implemented';
+
+      const row = document.createElement('div');
+      row.className = `impl-row impl-depth-${Math.min(depth, 4)} impl-status-${locked ? 'locked' : (status || 'available')}`;
+      row.dataset.id = impl.id;
+
+      const color = REWARD_TYPE_COLORS[impl.rewardType] || REWARD_TYPE_COLORS['System'];
+      const target = impl.rewardTarget !== null ? impl.rewardTarget.toLocaleString() : '1';
+      const rewardCurrent = (status === 'implement' || status === 'implemented') ? target : '0';
+      const rewardLabel = `${impl.rewardType} <span class="impl-target">${rewardCurrent} / ${target}</span>`;
+      const hpBadge = impl.hollowPointCost !== null
+        ? `<span class="impl-hp-cost">Hollow Points ${impl.hollowPointCost.toLocaleString()}</span>`
+        : '';
+
+      let circleBtn;
+      if (locked) {
+        circleBtn = '<span class="impl-circle impl-circle-locked">🔒</span>';
+      } else if (status === 'implemented') {
+        circleBtn = `<button class="impl-circle impl-circle-done" data-action="undo" data-id="${impl.id}" title="Undo">✓</button>`;
+      } else {
+        circleBtn = `<button class="impl-circle impl-circle-empty" data-action="complete" data-id="${impl.id}" title="Mark as Implemented">✓</button>`;
+      }
+
+      let rightBtn = '';
+      if (!locked) {
+        if (status === 'implemented') {
+          rightBtn = `<button class="impl-btn impl-btn-done" data-action="cycle" data-id="${impl.id}">Implemented</button>`;
+        } else if (status === 'implement') {
+          rightBtn = `<button class="impl-btn impl-btn-implement" data-action="cycle" data-id="${impl.id}">Implement</button>`;
+        } else if (status === 'checking') {
+          rightBtn = `<button class="impl-btn impl-btn-checking" data-action="cycle" data-id="${impl.id}">Checking</button>`;
+        } else {
+          rightBtn = `<button class="impl-btn impl-btn-activate" data-action="cycle" data-id="${impl.id}">Start</button>`;
+        }
+      }
+
+      row.innerHTML = `
+        <div class="impl-main">
+          ${circleBtn}
+          <div class="impl-info">
+            <div class="impl-name-row">
+              <span class="impl-id${depth > 0 ? ' impl-id-child' : ''}">${impl.id}</span>
+              <span class="impl-name">${impl.name}</span>
+            </div>
+            <div class="impl-badges">
+              <span class="impl-reward-badge" style="background:${color.bg};border-color:${color.border};color:${color.text}">${rewardLabel}</span>
+              ${hpBadge}
+            </div>
+          </div>
+          <div class="impl-actions">
+            ${rightBtn}
+            <button class="impl-expand-btn" data-id="${impl.id}" title="Details">▼</button>
+          </div>
+        </div>
+        <div class="impl-details" id="impl-details-${impl.id.replace(/\./g, '-')}">
+          <div class="impl-details-grid">
+            <div class="impl-detail-block">
+              <span class="impl-detail-label">TESTING INFO</span>
+              <span class="impl-detail-value">${impl.testingInfo}</span>
+            </div>
+            <div class="impl-detail-block">
+              <span class="impl-detail-label">OBJECTIVE</span>
+              <span class="impl-detail-value">${impl.objective}</span>
+            </div>
+            ${impl.restrictions && impl.restrictions !== 'None' ? `
+            <div class="impl-detail-block">
+              <span class="impl-detail-label">RESTRICTIONS</span>
+              <span class="impl-detail-value">${impl.restrictions}</span>
+            </div>` : ''}
+            ${impl.targetMissions ? `
+            <div class="impl-detail-block">
+              <span class="impl-detail-label">TARGET MISSIONS</span>
+              <span class="impl-detail-value">${impl.targetMissions}</span>
+            </div>` : ''}
+            ${impl.notes ? `
+            <div class="impl-detail-block">
+              <span class="impl-detail-label">NOTES</span>
+              <span class="impl-detail-value impl-notes">${impl.notes}</span>
+            </div>` : ''}
+          </div>
+        </div>`;
+
+      row.querySelectorAll('[data-action]').forEach(btn => {
+        btn.addEventListener('click', e => {
+          e.stopPropagation();
+          const id     = btn.dataset.id;
+          const action = btn.dataset.action;
+          if (action === 'complete') {
+            state.implementations[id] = 'implemented';
+          } else if (action === 'cycle') {
+            const current = implStatus(id);
+            if (!current) {
+              Object.keys(state.implementations).forEach(k => {
+                if (state.implementations[k] === 'checking') state.implementations[k] = null;
+              });
+              state.implementations[id] = 'checking';
+            } else if (current === 'checking') {
+              state.implementations[id] = 'implement';
+            } else if (current === 'implement') {
+              state.implementations[id] = 'implemented';
+            } else if (current === 'implemented') {
+              state.implementations[id] = null;
+              lockDescendantsIfNeeded(id);
+            }
+          } else if (action === 'undo') {
+            state.implementations[id] = null;
+            lockDescendantsIfNeeded(id);
+          }
+          saveState();
+          updateOverview();
+          updateAchInlineTrackers();
+          renderImplementations();
+        });
+      });
+
+      const expandBtn = row.querySelector('.impl-expand-btn');
+      const mainDiv   = row.querySelector('.impl-main');
+      const detailsEl = row.querySelector('.impl-details');
+      const toggleDetails = e => {
+        if (e.target.closest('[data-action]')) return;
+        const open = detailsEl.classList.toggle('open');
+        expandBtn.textContent = open ? '▲' : '▼';
+      };
+      expandBtn.addEventListener('click', toggleDetails);
+      mainDiv.addEventListener('click', toggleDetails);
+
+      body.appendChild(row);
+    });
+
+    group.appendChild(header);
+    group.appendChild(body);
+    list.appendChild(group);
+  });
+  applyChildImplIdVisibility();
+}
+
+function initImplControls() {
+  const panel = document.getElementById('panel-implementations');
+  if (!panel || document.getElementById('impl-filter-bar')) return;
+
+  const types = [...new Set(IMPLEMENTATIONS_DATA.map(i => i.rewardType))].sort();
+
+  const bar = document.createElement('div');
+  bar.id = 'impl-filter-bar';
+  bar.innerHTML = `
+    <div class="flex-row mt-8" style="margin-bottom:8px;flex-wrap:wrap;gap:8px;">
+      <input id="impl-search" type="text" placeholder="Search implementations…"
+        style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);color:var(--text);font-size:13px;padding:6px 10px;outline:none;flex:1;min-width:160px;">
+      <button id="impl-expand-all" class="btn btn-small">Expand All</button>
+      <button id="impl-collapse-all" class="btn btn-small">Collapse All</button>
+      <button id="impl-hide-completed-btn" class="btn btn-small">Hide Completed</button>
+    </div>
+    <div class="flex-row" style="margin-bottom:12px;flex-wrap:wrap;gap:8px;">
+      <select id="impl-filter-type" style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);color:var(--text);font-size:13px;padding:6px 10px;outline:none;cursor:pointer;">
+        <option value="all">All Reward Types</option>
+        ${types.map(t => `<option value="${t}">${t}</option>`).join('')}
+      </select>
+    </div>`;
+
+  const implList = panel.querySelector('#impl-list');
+  panel.insertBefore(bar, implList);
+
+  document.getElementById('impl-search').addEventListener('input', e => {
+    implSearch = e.target.value;
+    renderImplementations();
+  });
+  document.getElementById('impl-expand-all').addEventListener('click', () => {
+    IMPLEMENTATIONS_DATA.filter(i => implDepth(i.id) === 0).forEach(i => { delete implCollapsed[i.id]; });
+    renderImplementations();
+  });
+  document.getElementById('impl-collapse-all').addEventListener('click', () => {
+    IMPLEMENTATIONS_DATA.filter(i => implDepth(i.id) === 0).forEach(i => { implCollapsed[i.id] = true; });
+    renderImplementations();
+  });
+  document.getElementById('impl-hide-completed-btn').addEventListener('click', function() {
+    implHideCompleted = !implHideCompleted;
+    this.textContent = implHideCompleted ? 'Show Completed' : 'Hide Completed';
+    renderImplementations();
+  });
+  document.getElementById('impl-filter-type').addEventListener('change', e => {
+    implFilterType = e.target.value;
+    renderImplementations();
+  });
+}
+
+function lockDescendantsIfNeeded(parentId) {
+  IMPLEMENTATIONS_DATA.forEach(impl => {
+    if (implParentId(impl.id) === parentId) {
+      const s = implStatus(impl.id);
+      if (s === 'checking' || s === 'implement' || s === 'implemented') {
+        state.implementations[impl.id] = null;
+        lockDescendantsIfNeeded(impl.id);
+      }
+    }
+  });
+}
+
+// ============================================================
+// TAB 6 — SETTINGS
 // ============================================================
 function renderSettingsTab() {
   const panel = document.getElementById('panel-settings');
@@ -469,11 +920,12 @@ function renderSettingsTab() {
       <div class="settings-section">
         <h2 class="settings-section-title">About</h2>
         <div class="about-card">
-          <p><strong style="color:var(--accent)">SAO: Hollow Fragment Tracker</strong> is a fan-made progress tracker for
+          <p><strong style="color:var(--accent)">SAO Re: Hollow Fragment Tracker</strong> is a fan-made progress tracker for
           <strong>Sword Art Online Re: Hollow Fragment</strong> on Steam.</p>
           <p style="margin-top:10px;">Track your progress across:</p>
           <ul class="about-list">
             <li><strong>Hollow Missions</strong> — all missions organised by area, rank, and type</li>
+            <li><strong>Implementations</strong> — track the implementation chain through four statuses: Start → Checking → Implement → Implemented. Use the <strong>right button</strong> to step through statuses, or the <strong>left circle</strong> to quick-complete in one click. Click anywhere on any row — locked or unlocked — to expand its detailed testing info.</li>
             <li><strong>Floor Tracker</strong> — Last Attacking Bonus for floors 76–100</li>
             <li><strong>Affection</strong> — character relationship levels (1–5 stars)</li>
             <li><strong>Achievements</strong> — all 54 Steam achievements, with optional Steam sync</li>
@@ -488,6 +940,36 @@ function renderSettingsTab() {
       </div>
 
       <div class="settings-section">
+        <h2 class="settings-section-title">Progress Bars</h2>
+        <p class="text-dim" style="font-size:12px; margin-bottom:12px;">
+          Show or hide the progress bar at the top of each tab.
+        </p>
+        <div id="pb-toggle-list" class="reset-trackers">
+          ${[
+            { key: 'hm',              label: 'Hollow Missions'  },
+            { key: 'implementations', label: 'Implementations'  },
+            { key: 'floors',          label: 'Floor Tracker'    },
+            { key: 'affection',       label: 'Affection'        },
+            { key: 'achievements',    label: 'Achievements'     },
+          ].map(({ key, label }) => `
+            <label class="reset-tracker-item">
+              <input type="checkbox" class="pb-toggle" data-key="${key}"${state.progressBars[key] ? ' checked' : ''} style="accent-color:var(--accent)">
+              <span>${label}</span>
+            </label>`).join('')}
+        </div>
+      </div>
+
+      <div class="settings-section">
+        <h2 class="settings-section-title">Display Options</h2>
+        <div class="reset-trackers">
+          <label class="reset-tracker-item">
+            <input type="checkbox" id="toggle-child-impl-ids"${state.showChildImplIds ? ' checked' : ''} style="accent-color:var(--accent)">
+            <span>Show IDs on child implementations</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="settings-section">
         <h2 class="settings-section-title">Reset Tracking</h2>
         <div class="reset-card">
           <p class="text-dim" style="font-size:12px; margin-bottom:12px;">
@@ -498,6 +980,7 @@ function renderSettingsTab() {
             <label class="reset-tracker-item"><input type="checkbox" id="reset-floors"> Floor Tracker</label>
             <label class="reset-tracker-item"><input type="checkbox" id="reset-affection"> Affection</label>
             <label class="reset-tracker-item"><input type="checkbox" id="reset-achievements"> Achievements</label>
+            <label class="reset-tracker-item"><input type="checkbox" id="reset-implementations"> Implementations</label>
           </div>
           <div class="reset-actions">
             <button id="reset-selected-btn" class="btn btn-danger">Reset Selected</button>
@@ -511,6 +994,25 @@ function renderSettingsTab() {
 
   renderSteamConfigArea();
   initResetSection();
+  initProgressBarToggles();
+}
+
+function initProgressBarToggles() {
+  document.querySelectorAll('.pb-toggle').forEach(cb => {
+    cb.addEventListener('change', () => {
+      state.progressBars[cb.dataset.key] = cb.checked;
+      saveState();
+      applyProgressBarVisibility();
+    });
+  });
+  const childIdToggle = document.getElementById('toggle-child-impl-ids');
+  if (childIdToggle) {
+    childIdToggle.addEventListener('change', () => {
+      state.showChildImplIds = childIdToggle.checked;
+      saveState();
+      applyChildImplIdVisibility();
+    });
+  }
 }
 
 function renderSteamConfigArea() {
@@ -588,10 +1090,11 @@ function initResetSection() {
   if (!btn) return;
   btn.addEventListener('click', () => {
     const trackers = [
-      { id: 'hollowMissions', label: 'Hollow Missions' },
-      { id: 'floors',         label: 'Floor Tracker'   },
-      { id: 'affection',      label: 'Affection'        },
-      { id: 'achievements',   label: 'Achievements'     },
+      { id: 'hollowMissions',  label: 'Hollow Missions'  },
+      { id: 'floors',          label: 'Floor Tracker'    },
+      { id: 'affection',       label: 'Affection'         },
+      { id: 'achievements',    label: 'Achievements'      },
+      { id: 'implementations', label: 'Implementations'   },
     ];
     const selected = trackers.filter(t => document.getElementById('reset-' + t.id)?.checked);
     const statusEl = document.getElementById('reset-status');
@@ -620,7 +1123,8 @@ function initResetSection() {
       if (selected.some(t => t.id === 'hollowMissions')) renderHollowMissions();
       if (selected.some(t => t.id === 'floors'))         renderFloorTracker();
       if (selected.some(t => t.id === 'affection'))      renderAffection();
-      if (selected.some(t => t.id === 'achievements'))   { renderAchievements(); renderAchievementsSteamArea(); }
+      if (selected.some(t => t.id === 'achievements'))    { renderAchievements(); renderAchievementsSteamArea(); }
+      if (selected.some(t => t.id === 'implementations')) renderImplementations();
       updateOverview();
       confirmArea.innerHTML = '';
       selected.forEach(t => { const el = document.getElementById('reset-' + t.id); if (el) el.checked = false; });
@@ -642,6 +1146,10 @@ document.addEventListener('DOMContentLoaded', () => {
   renderAffection();
   renderAchievementsSteamArea();
   renderAchievements();
+  renderImplementations();
+  initImplControls();
   renderSettingsTab();
   updateOverview();
+  applyProgressBarVisibility();
+  applyChildImplIdVisibility();
 });

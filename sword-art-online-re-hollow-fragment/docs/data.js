@@ -238,13 +238,14 @@ const FLOORS_DATA = [
 // ============================================================
 const CHARACTERS_DATA = [
   { id: 'asuna',    name: 'Asuna',    achievement: 'Flash' },
-  { id: 'yui',      name: 'Yui',      achievement: null },
+  { id: 'yui',      name: 'Yui',      achievement: null,             excludeDontCheat: true },
   { id: 'silica',   name: 'Silica',   achievement: 'Beast Tamer' },
   { id: 'philia',   name: 'Philia',   achievement: 'Treasure Hunter' },
   { id: 'sinon',    name: 'Sinon',    achievement: 'Sniper' },
   { id: 'lisbeth',  name: 'Lisbeth',  achievement: 'Master Macer' },
   { id: 'strea',    name: 'Strea',    achievement: null },
   { id: 'leafa',    name: 'Leafa',    achievement: 'Fairy' },
+  { id: 'argo',     name: 'Argo',     achievement: null,             excludeDontCheat: true },
 ];
 
 // ============================================================
@@ -302,7 +303,7 @@ const ACHIEVEMENTS_DATA = [
   { key: 'senior_test_player',  name: 'Senior test player',                        description: 'Complete 100 Implements' },
   { key: 'memories',            name: 'Memories',                                  description: 'Complete Gallery Lists' },
   { key: 'lisbeth_customer',    name: "Lisbeth Smith Shop's most loyal customer!",  description: 'Upgrade weapons 200 times' },
-  { key: 'complete_debug',      name: 'Complete debug',                            description: 'Complete Hollow Missions (128 required)' },
+  { key: 'complete_debug',      name: 'Complete debug',                            description: 'Complete Hollow Missions (100 required)' },
   { key: 'collect_all',         name: 'Collect all achievements',                  description: 'Unlock all achievements' },
   { key: 'not_for_fun',         name: 'This game is not for fun',                  description: 'Defeat 100 HNMs in multiplayer mode' },
 ];

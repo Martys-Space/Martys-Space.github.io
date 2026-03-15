@@ -8,12 +8,19 @@
 </head>
 <body>
 
+  <div id="sticky-header">
   <!-- ALWAYS-VISIBLE OVERVIEW BAR -->
   <div id="overview-bar">
-    <h1>SAO: Hollow Fragment</h1>
+    <h1>SAO Re: Hollow Fragment</h1>
 
     <div class="overview-stat" id="ov-hm">
       <span class="stat-label">Hollow Missions</span>
+      <span class="stat-value">0/0</span>
+      <div class="progress-mini"><div class="progress-mini-fill" style="width:0%"></div></div>
+    </div>
+
+    <div class="overview-stat" id="ov-impl">
+      <span class="stat-label">Implementations</span>
       <span class="stat-value">0/0</span>
       <div class="progress-mini"><div class="progress-mini-fill" style="width:0%"></div></div>
     </div>
@@ -40,23 +47,37 @@
   <!-- TAB BAR -->
   <div id="tab-bar">
     <button class="tab-btn active" data-tab="hm">Hollow Missions</button>
+    <button class="tab-btn" data-tab="implementations">Implementations</button>
     <button class="tab-btn" data-tab="floors">Floor Tracker</button>
     <button class="tab-btn" data-tab="affection">Affection</button>
     <button class="tab-btn" data-tab="achievements">Achievements</button>
     <button class="tab-btn" data-tab="settings">Settings</button>
   </div>
 
+  </div><!-- /#sticky-header -->
+
   <!-- TAB PANELS -->
   <div id="main-content">
 
     <!-- TAB 1: HOLLOW MISSIONS -->
     <div id="panel-hm" class="tab-panel active">
+      <div id="hm-progress-wrap" class="progress-bar-wrap">
+        <div class="progress-bar-label">
+          <span>Hollow Missions</span>
+          <span id="hm-progress-label">0 / 0</span>
+        </div>
+        <div class="progress-bar">
+          <div id="hm-progress-fill" class="progress-bar-fill" style="width:0%"></div>
+        </div>
+      </div>
+
       <div class="flex-row mt-8" style="margin-bottom:12px; flex-wrap:wrap; gap:8px;">
         <input id="hm-search" type="text" placeholder="Search missions…"
           style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);
                  color:var(--text);font-size:13px;padding:6px 10px;outline:none;flex:1;min-width:160px;">
         <button id="hm-expand-all" class="btn btn-small">Expand All</button>
         <button id="hm-collapse-all" class="btn btn-small">Collapse All</button>
+        <button id="hm-hide-completed" class="btn btn-small">Hide Completed</button>
       </div>
 
       <div class="legend">
@@ -71,9 +92,23 @@
       <div id="hm-areas"></div>
     </div>
 
-    <!-- TAB 2: FLOOR TRACKER -->
+    <!-- TAB 2: IMPLEMENTATIONS -->
+    <div id="panel-implementations" class="tab-panel">
+      <div id="impl-progress-wrap" class="progress-bar-wrap">
+        <div class="progress-bar-label">
+          <span>Implementations</span>
+          <span id="impl-progress-label">0 / 0</span>
+        </div>
+        <div class="progress-bar">
+          <div id="impl-progress-fill" class="progress-bar-fill" style="width:0%"></div>
+        </div>
+      </div>
+      <div id="impl-list"></div>
+    </div>
+
+    <!-- TAB 3: FLOOR TRACKER -->
     <div id="panel-floors" class="tab-panel">
-      <div class="progress-bar-wrap">
+      <div id="floor-progress-wrap" class="progress-bar-wrap">
         <div class="progress-bar-label">
           <span>Last Attacking Bonus — Floors 76–100</span>
           <span id="floor-progress-label">0 / 25</span>
@@ -89,9 +124,9 @@
       <div id="floor-grid" class="floor-grid"></div>
     </div>
 
-    <!-- TAB 3: AFFECTION -->
+    <!-- TAB 4: AFFECTION -->
     <div id="panel-affection" class="tab-panel">
-      <div class="progress-bar-wrap">
+      <div id="aff-progress-wrap" class="progress-bar-wrap">
         <div class="progress-bar-label">
           <span>Characters at Max Affection (Rank 5)</span>
           <span id="aff-max-label">0 / 8</span>
@@ -102,17 +137,17 @@
       </div>
       <p class="text-dim" style="font-size:12px; margin-bottom:4px;">
         Click the stars to set each character's affection rank (1–5).
-        Getting all 8 to rank 5 unlocks <strong style="color:var(--accent)">Don't cheat, daddy</strong>.
+        Getting all 8 to rank 5 unlocks <strong style="color:var(--accent)">Don't cheat, daddy</strong> achievement.
       </p>
       <div id="affection-grid" class="affection-grid"></div>
     </div>
 
-    <!-- TAB 4: ACHIEVEMENTS -->
+    <!-- TAB 5: ACHIEVEMENTS -->
     <div id="panel-achievements" class="tab-panel">
 
       <div id="steam-sync-area"></div>
 
-      <div class="progress-bar-wrap">
+      <div id="ach-progress-wrap" class="progress-bar-wrap">
         <div class="progress-bar-label">
           <span>Steam Achievements</span>
           <span id="ach-progress-label">0 / 54</span>
@@ -125,7 +160,7 @@
       <div id="achievements-list" class="achievements-list"></div>
     </div>
 
-    <!-- TAB 5: SETTINGS -->
+    <!-- TAB 6: SETTINGS -->
     <div id="panel-settings" class="tab-panel">
       <!-- filled by app.js -->
     </div>
@@ -133,6 +168,7 @@
   </div>
 
   <script src="data.js"></script>
+  <script src="implementations.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
