@@ -6,7 +6,6 @@
 
 const LS_KEY     = 'sao_tracker_v1';
 const CORS_PROXY = 'https://corsproxy.io/?';
-const IS_LOCAL   = ['localhost', '127.0.0.1', ''].includes(window.location.hostname);
 
 // ---- STATE ----
 let state = {
@@ -300,62 +299,33 @@ function renderSteamSettingsPanel() {
   const badge   = document.getElementById('steam-mode-badge');
   const content = document.getElementById('steam-settings-content');
 
-  if (IS_LOCAL) {
-    // ---- LOCAL SERVER MODE ----
-    badge.textContent = 'LOCAL';
-    badge.className   = 'mode-badge local';
-    content.innerHTML = `
-      <div class="settings-row">
-        <div class="settings-field">
-          <label>STEAM ID (64-bit)</label>
-          <input id="steam-id" type="text" placeholder="e.g. 76561198xxxxxxxxx" value="${state.steamConfig.steamId || ''}">
-        </div>
-        <button id="steam-sync-btn" class="btn">Sync from Steam</button>
+  badge.textContent = 'PUBLIC';
+  badge.className   = 'mode-badge public';
+  content.innerHTML = `
+    <div class="settings-row">
+      <div class="settings-field">
+        <label>STEAM API KEY</label>
+        <input id="steam-api-key" type="password"
+          placeholder="Get a free key at steamcommunity.com/dev/apikey"
+          value="${state.steamConfig.apiKey || ''}">
       </div>
-      <p style="font-size:11px;color:var(--text-dim);margin-top:8px;">
-        Running locally — API key is read from <code style="color:var(--accent)">config.json</code> and never sent to the browser.
-      </p>`;
-
-    // Pre-fill Steam ID from server config
-    fetch('/api/steam/config')
-      .then(r => r.json())
-      .then(cfg => {
-        const el = document.getElementById('steam-id');
-        if (el && cfg.steamId && !el.value) el.value = cfg.steamId;
-        if (!cfg.configured) setStatus('No API key found in config.json.', 'error');
-      })
-      .catch(() => {});
-
-  } else {
-    // ---- PUBLIC / GITHUB PAGES MODE ----
-    badge.textContent = 'PUBLIC';
-    badge.className   = 'mode-badge public';
-    content.innerHTML = `
-      <div class="settings-row">
-        <div class="settings-field">
-          <label>STEAM API KEY</label>
-          <input id="steam-api-key" type="password"
-            placeholder="Get a free key at steamcommunity.com/dev/apikey"
-            value="${state.steamConfig.apiKey || ''}">
-        </div>
-        <div class="settings-field">
-          <label>STEAM ID (64-bit)</label>
-          <input id="steam-id" type="text"
-            placeholder="e.g. 76561198xxxxxxxxx"
-            value="${state.steamConfig.steamId || ''}">
-        </div>
-        <button id="steam-sync-btn" class="btn">Sync from Steam</button>
+      <div class="settings-field">
+        <label>STEAM ID (64-bit)</label>
+        <input id="steam-id" type="text"
+          placeholder="e.g. 76561198xxxxxxxxx"
+          value="${state.steamConfig.steamId || ''}">
       </div>
-      <div class="privacy-note">
-        <strong style="color:var(--gold)">Privacy note:</strong>
-        Syncing sends your API key and Steam ID through
-        <a href="https://corsproxy.io" target="_blank" rel="noopener">corsproxy.io</a>
-        (a CORS proxy) to reach the Steam API from the browser.
-        Your Steam API key is <strong>read-only</strong> and cannot modify your account.
-        Credentials are only stored in your browser's localStorage — never on any server.
-        You can also track achievements manually without entering any credentials.
-      </div>`;
-  }
+      <button id="steam-sync-btn" class="btn">Sync from Steam</button>
+    </div>
+    <div class="privacy-note">
+      <strong style="color:var(--gold)">Privacy note:</strong>
+      Syncing sends your API key and Steam ID through
+      <a href="https://corsproxy.io" target="_blank" rel="noopener">corsproxy.io</a>
+      (a CORS proxy) to reach the Steam API from the browser.
+      Your Steam API key is <strong>read-only</strong> and cannot modify your account.
+      Credentials are only stored in your browser's localStorage — never on any server.
+      You can also track achievements manually without entering any credentials.
+    </div>`;
 
   // Attach sync button handler after DOM is ready
   requestAnimationFrame(() => attachSyncHandler());
@@ -374,7 +344,7 @@ async function handleSteamSync() {
   const apiKey    = apiKeyEl?.value.trim()  || '';
 
   if (!steamId) { setStatus('Please enter your Steam ID.', 'error'); return; }
-  if (!IS_LOCAL && !apiKey) { setStatus('Please enter your Steam API key.', 'error'); return; }
+  if (!apiKey) { setStatus('Please enter your Steam API key.', 'error'); return; }
 
   // Save credentials to localStorage (convenient for next visit)
   state.steamConfig = { apiKey, steamId };
@@ -421,14 +391,7 @@ async function handleSteamSync() {
 }
 
 async function fetchSteamData(apiKey, steamId) {
-  if (IS_LOCAL) {
-    // Use the local Node.js server proxy
-    const res = await fetch(`/api/steam/sync?steamId=${encodeURIComponent(steamId)}`);
-    if (!res.ok) throw new Error(`Server error: ${res.status}`);
-    return res.json();
-  }
-
-  // Browser: call Steam API via CORS proxy
+  // Call Steam API via CORS proxy
   const schemaUrl = `https://api.steampowered.com/ISteamUserStats/GetSchemaForGame/v2/?key=${apiKey}&appid=638650`;
   const playerUrl = `https://api.steampowered.com/ISteamUserStats/GetPlayerAchievements/v1/?key=${apiKey}&steamid=${steamId}&appid=638650`;
 
