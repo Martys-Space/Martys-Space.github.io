@@ -693,6 +693,274 @@ html, body {
 .privacy-note a { color: var(--accent); text-decoration: none; }
 .privacy-note a:hover { text-decoration: underline; }
 
+/* ---- STEAM SYNC BAR (achievements tab) ---- */
+.steam-sync-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 10px 14px;
+  margin-bottom: 4px;
+}
+
+.steam-sync-bar-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.steam-sync-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--accent);
+  white-space: nowrap;
+}
+
+.steam-sync-id {
+  font-size: 12px;
+  color: var(--text-dim);
+  font-family: monospace;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ---- STEAM HINT CARD (achievements tab, first visit) ---- */
+.steam-hint-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: rgba(0, 212, 255, 0.06);
+  border: 1px solid rgba(0, 212, 255, 0.25);
+  border-radius: var(--radius);
+  padding: 14px;
+  margin-bottom: 4px;
+  flex-wrap: wrap;
+}
+
+.steam-hint-icon {
+  font-size: 28px;
+  flex-shrink: 0;
+}
+
+.steam-hint-body {
+  flex: 1;
+  min-width: 160px;
+}
+
+.steam-hint-body strong {
+  display: block;
+  font-size: 13px;
+  color: var(--accent);
+  margin-bottom: 4px;
+}
+
+.steam-hint-body p {
+  font-size: 12px;
+  color: var(--text-dim);
+  line-height: 1.5;
+}
+
+/* ---- SETTINGS TAB ---- */
+.settings-sections {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.settings-section {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+}
+
+.settings-section-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 14px;
+  letter-spacing: 0.04em;
+}
+
+/* About */
+.about-card {
+  font-size: 13px;
+  color: var(--text);
+  line-height: 1.7;
+}
+
+.about-list {
+  list-style: none;
+  padding: 0;
+  margin: 8px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.about-list li {
+  padding-left: 16px;
+  position: relative;
+  color: var(--text-dim);
+  font-size: 12px;
+}
+
+.about-list li::before {
+  content: '▸';
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+}
+
+.about-list li strong {
+  color: var(--text);
+}
+
+.about-note {
+  margin-top: 12px;
+  font-size: 11px;
+  color: var(--text-dim);
+  padding: 8px 10px;
+  background: var(--bg3);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+}
+
+/* Steam configured state */
+.steam-configured-card {
+  background: var(--bg3);
+  border: 1px solid rgba(0, 255, 136, 0.2);
+  border-radius: var(--radius);
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.steam-configured-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.steam-status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 6px var(--green);
+}
+
+.steam-configured-fields {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.steam-configured-field {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.steam-configured-label {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--text-dim);
+  letter-spacing: 0.06em;
+}
+
+.steam-configured-value {
+  font-size: 13px;
+  color: var(--text);
+}
+
+/* Danger button */
+.btn-danger {
+  background: rgba(255, 68, 68, 0.2);
+  color: var(--red);
+  border: 1px solid rgba(255, 68, 68, 0.4);
+}
+
+.btn-danger:hover {
+  background: rgba(255, 68, 68, 0.35);
+  color: #fff;
+}
+
+/* Reset tracking */
+.reset-card {
+  font-size: 13px;
+}
+
+.reset-trackers {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.reset-tracker-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  color: var(--text);
+  font-size: 13px;
+  padding: 8px 10px;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  transition: border-color 0.2s;
+}
+
+.reset-tracker-item:hover {
+  border-color: var(--accent-dim);
+}
+
+.reset-tracker-item input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--red);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.reset-actions {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.reset-confirm {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 10px 12px;
+  background: rgba(255, 68, 68, 0.08);
+  border: 1px solid rgba(255, 68, 68, 0.3);
+  border-radius: var(--radius);
+  margin-top: 6px;
+}
+
+.reset-confirm-msg {
+  flex: 1;
+  font-size: 12px;
+  color: var(--text);
+  min-width: 160px;
+}
+
+.reset-confirm-btns {
+  display: flex;
+  gap: 8px;
+}
+
 /* Scrollbar */
 ::-webkit-scrollbar { width: 6px; height: 6px; }
 ::-webkit-scrollbar-track { background: var(--bg); }

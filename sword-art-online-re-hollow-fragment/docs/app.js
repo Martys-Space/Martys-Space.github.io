@@ -26,12 +26,17 @@ async function proxyFetch(url) {
 
 // ---- STATE ----
 let state = {
-  hollowMissions: {},
-  floors:         {},
-  affection:      {},
-  achievements:   {},
-  steamConfig:    { apiKey: '', steamId: '' }
+  hollowMissions:     {},
+  floors:             {},
+  affection:          {},
+  achievements:       {},
+  steamConfig:        { apiKey: '', steamId: '' },
+  steamHintDismissed: false
 };
+
+function isSteamConfigured() {
+  return !!(state.steamConfig.apiKey && state.steamConfig.steamId);
+}
 
 function loadState() {
   try {
@@ -312,65 +317,52 @@ function getAchKey(displayName) {
 // ============================================================
 // TAB 4 — ACHIEVEMENTS
 // ============================================================
-function renderSteamSettingsPanel() {
-  const badge   = document.getElementById('steam-mode-badge');
-  const content = document.getElementById('steam-settings-content');
+function renderAchievementsSteamArea() {
+  const area = document.getElementById('steam-sync-area');
+  if (!area) return;
 
-  badge.textContent = 'PUBLIC';
-  badge.className   = 'mode-badge public';
-  content.innerHTML = `
-    <div class="settings-row">
-      <div class="settings-field">
-        <label>STEAM API KEY — <a href="https://steamcommunity.com/dev/apikey" target="_blank" rel="noopener" style="color:var(--accent)">Get a free key here</a></label>
-        <input id="steam-api-key" type="password"
-          placeholder="Paste your Steam API key"
-          value="${state.steamConfig.apiKey || ''}">
+  if (isSteamConfigured()) {
+    area.innerHTML = `
+      <div class="steam-sync-bar">
+        <div class="steam-sync-bar-info">
+          <span class="steam-sync-label">Steam Sync</span>
+          <span class="steam-sync-id">${state.steamConfig.steamId}</span>
+        </div>
+        <button id="steam-sync-btn" class="btn btn-small">Sync from Steam</button>
       </div>
-      <div class="settings-field">
-        <label>STEAM ID (64-bit)</label>
-        <input id="steam-id" type="text"
-          placeholder="e.g. 76561198xxxxxxxxx"
-          value="${state.steamConfig.steamId || ''}">
-      </div>
-      <button id="steam-sync-btn" class="btn">Sync from Steam</button>
-    </div>
-    <div class="privacy-note">
-      <strong style="color:var(--gold)">Privacy note:</strong>
-      Syncing sends your API key and Steam ID through
-      <a href="https://corsproxy.io" target="_blank" rel="noopener">corsproxy.io</a>
-      (a CORS proxy) to reach the Steam API from the browser.
-      Your Steam API key is <strong>read-only</strong> and cannot modify your account.
-      Credentials are only stored in your browser's localStorage — never on any server.
-      You can also track achievements manually without entering any credentials.
-    </div>`;
-
-  // Attach sync button handler after DOM is ready
-  requestAnimationFrame(() => attachSyncHandler());
-}
-
-function attachSyncHandler() {
-  const btn = document.getElementById('steam-sync-btn');
-  if (!btn) return;
-  btn.addEventListener('click', handleSteamSync);
+      <div id="sync-status" class="sync-status"></div>`;
+    document.getElementById('steam-sync-btn').addEventListener('click', handleSteamSync);
+  } else if (!state.steamHintDismissed) {
+    area.innerHTML = `
+      <div class="steam-hint-card">
+        <div class="steam-hint-icon">🎮</div>
+        <div class="steam-hint-body">
+          <strong>Sync achievements from Steam</strong>
+          <p>Add your Steam API key in the <strong>Settings</strong> tab to automatically sync your achievements.</p>
+        </div>
+        <button id="steam-hint-dismiss" class="btn btn-small">Dismiss</button>
+      </div>`;
+    document.getElementById('steam-hint-dismiss').addEventListener('click', () => {
+      state.steamHintDismissed = true;
+      saveState();
+      renderAchievementsSteamArea();
+    });
+  } else {
+    area.innerHTML = '';
+  }
 }
 
 async function handleSteamSync() {
-  const steamIdEl = document.getElementById('steam-id');
-  const apiKeyEl  = document.getElementById('steam-api-key'); // null on local
-  const steamId   = steamIdEl?.value.trim() || '';
-  const apiKey    = apiKeyEl?.value.trim()  || '';
-
-  if (!steamId) { setStatus('Please enter your Steam ID.', 'error'); return; }
-  if (!apiKey) { setStatus('Please enter your Steam API key.', 'error'); return; }
-
-  // Save credentials to localStorage (convenient for next visit)
-  state.steamConfig = { apiKey, steamId };
-  saveState();
+  const { apiKey, steamId } = state.steamConfig;
+  if (!apiKey || !steamId) {
+    setStatus('Steam sync not configured. Go to Settings to add your credentials.', 'error');
+    return;
+  }
 
   setStatus('Syncing with Steam…', '');
 
   try {
-    const { schema, playerStats } = await fetchSteamData(apiKey, steamId);
+    const { schema, playerStats } = await fetchSteamData(state.steamConfig.apiKey, state.steamConfig.steamId);
 
     if (playerStats?.playerstats?.error) {
       throw new Error(playerStats.playerstats.error === 'Profile is not public'
@@ -467,6 +459,178 @@ function renderAchievements() {
 }
 
 // ============================================================
+// TAB 5 — SETTINGS
+// ============================================================
+function renderSettingsTab() {
+  const panel = document.getElementById('panel-settings');
+  panel.innerHTML = `
+    <div class="settings-sections">
+
+      <div class="settings-section">
+        <h2 class="settings-section-title">About</h2>
+        <div class="about-card">
+          <p><strong style="color:var(--accent)">SAO: Hollow Fragment Tracker</strong> is a fan-made progress tracker for
+          <strong>Sword Art Online Re: Hollow Fragment</strong> on Steam.</p>
+          <p style="margin-top:10px;">Track your progress across:</p>
+          <ul class="about-list">
+            <li><strong>Hollow Missions</strong> — all missions organised by area, rank, and type</li>
+            <li><strong>Floor Tracker</strong> — Last Attacking Bonus for floors 76–100</li>
+            <li><strong>Affection</strong> — character relationship levels (1–5 stars)</li>
+            <li><strong>Achievements</strong> — all 54 Steam achievements, with optional Steam sync</li>
+          </ul>
+          <p class="about-note">All progress is saved locally in your browser. Nothing is ever sent to any server.</p>
+        </div>
+      </div>
+
+      <div class="settings-section">
+        <h2 class="settings-section-title">Steam Sync</h2>
+        <div id="steam-config-area"></div>
+      </div>
+
+      <div class="settings-section">
+        <h2 class="settings-section-title">Reset Tracking</h2>
+        <div class="reset-card">
+          <p class="text-dim" style="font-size:12px; margin-bottom:12px;">
+            Select which trackers to reset. This permanently removes your saved progress for those categories.
+          </p>
+          <div class="reset-trackers">
+            <label class="reset-tracker-item"><input type="checkbox" id="reset-hollowMissions"> Hollow Missions</label>
+            <label class="reset-tracker-item"><input type="checkbox" id="reset-floors"> Floor Tracker</label>
+            <label class="reset-tracker-item"><input type="checkbox" id="reset-affection"> Affection</label>
+            <label class="reset-tracker-item"><input type="checkbox" id="reset-achievements"> Achievements</label>
+          </div>
+          <div class="reset-actions">
+            <button id="reset-selected-btn" class="btn btn-danger">Reset Selected</button>
+          </div>
+          <div id="reset-confirm-area"></div>
+          <div id="reset-status" class="sync-status" style="margin-top:8px;"></div>
+        </div>
+      </div>
+
+    </div>`;
+
+  renderSteamConfigArea();
+  initResetSection();
+}
+
+function renderSteamConfigArea() {
+  const area = document.getElementById('steam-config-area');
+  if (!area) return;
+
+  if (isSteamConfigured()) {
+    const masked = '●'.repeat(8) + state.steamConfig.apiKey.slice(-4);
+    area.innerHTML = `
+      <div class="steam-configured-card">
+        <div class="steam-configured-status">
+          <span class="steam-status-dot"></span>
+          <span style="color:var(--green); font-weight:700; font-size:13px;">Connected</span>
+        </div>
+        <div class="steam-configured-fields">
+          <div class="steam-configured-field">
+            <span class="steam-configured-label">STEAM ID</span>
+            <span class="steam-configured-value">${state.steamConfig.steamId}</span>
+          </div>
+          <div class="steam-configured-field">
+            <span class="steam-configured-label">API KEY</span>
+            <span class="steam-configured-value" style="font-family:monospace; letter-spacing:2px;">${masked}</span>
+          </div>
+        </div>
+        <button id="remove-steam-btn" class="btn btn-danger btn-small">Remove Steam Sync</button>
+      </div>
+      <div class="privacy-note" style="margin-top:10px;">
+        <strong style="color:var(--gold)">Privacy note:</strong>
+        Syncing routes your API key and Steam ID through a CORS proxy to reach the Steam API from the browser.
+        Your key is <strong>read-only</strong> and cannot modify your account.
+        Credentials are stored only in your browser's localStorage — never on any server.
+      </div>`;
+    document.getElementById('remove-steam-btn').addEventListener('click', () => {
+      state.steamConfig = { apiKey: '', steamId: '' };
+      saveState();
+      renderSteamConfigArea();
+      renderAchievementsSteamArea();
+    });
+  } else {
+    area.innerHTML = `
+      <div class="settings-row">
+        <div class="settings-field">
+          <label>STEAM API KEY — <a href="https://steamcommunity.com/dev/apikey" target="_blank" rel="noopener" style="color:var(--accent)">Get a free key here</a></label>
+          <input id="steam-api-key-input" type="password" placeholder="Paste your Steam API key">
+        </div>
+        <div class="settings-field">
+          <label>STEAM ID (64-bit)</label>
+          <input id="steam-id-input" type="text" placeholder="e.g. 76561198xxxxxxxxx">
+        </div>
+        <button id="save-steam-btn" class="btn">Save Steam Sync</button>
+      </div>
+      <div class="privacy-note" style="margin-top:10px;">
+        <strong style="color:var(--gold)">Privacy note:</strong>
+        Syncing routes your API key and Steam ID through a CORS proxy to reach the Steam API from the browser.
+        Your key is <strong>read-only</strong> and cannot modify your account.
+        Credentials are stored only in your browser's localStorage — never on any server.
+        You can also track achievements manually without adding Steam sync.
+      </div>`;
+    document.getElementById('save-steam-btn').addEventListener('click', () => {
+      const apiKey  = document.getElementById('steam-api-key-input').value.trim();
+      const steamId = document.getElementById('steam-id-input').value.trim();
+      if (!apiKey)  { alert('Please enter your Steam API key.'); return; }
+      if (!steamId) { alert('Please enter your Steam ID.'); return; }
+      state.steamConfig = { apiKey, steamId };
+      state.steamHintDismissed = true;
+      saveState();
+      renderSteamConfigArea();
+      renderAchievementsSteamArea();
+    });
+  }
+}
+
+function initResetSection() {
+  const btn = document.getElementById('reset-selected-btn');
+  if (!btn) return;
+  btn.addEventListener('click', () => {
+    const trackers = [
+      { id: 'hollowMissions', label: 'Hollow Missions' },
+      { id: 'floors',         label: 'Floor Tracker'   },
+      { id: 'affection',      label: 'Affection'        },
+      { id: 'achievements',   label: 'Achievements'     },
+    ];
+    const selected = trackers.filter(t => document.getElementById('reset-' + t.id)?.checked);
+    const statusEl = document.getElementById('reset-status');
+    if (!selected.length) {
+      statusEl.textContent = 'Select at least one tracker to reset.';
+      statusEl.className = 'sync-status error';
+      return;
+    }
+    statusEl.textContent = '';
+    const confirmArea = document.getElementById('reset-confirm-area');
+    const names = selected.map(t => t.label).join(', ');
+    confirmArea.innerHTML = `
+      <div class="reset-confirm">
+        <span class="reset-confirm-msg">Reset <strong>${names}</strong>? This cannot be undone.</span>
+        <div class="reset-confirm-btns">
+          <button id="reset-cancel-btn" class="btn btn-small">Cancel</button>
+          <button id="reset-confirm-btn" class="btn btn-danger btn-small">Confirm Reset</button>
+        </div>
+      </div>`;
+    document.getElementById('reset-cancel-btn').addEventListener('click', () => {
+      confirmArea.innerHTML = '';
+    });
+    document.getElementById('reset-confirm-btn').addEventListener('click', () => {
+      selected.forEach(t => { state[t.id] = {}; });
+      saveState();
+      if (selected.some(t => t.id === 'hollowMissions')) renderHollowMissions();
+      if (selected.some(t => t.id === 'floors'))         renderFloorTracker();
+      if (selected.some(t => t.id === 'affection'))      renderAffection();
+      if (selected.some(t => t.id === 'achievements'))   { renderAchievements(); renderAchievementsSteamArea(); }
+      updateOverview();
+      confirmArea.innerHTML = '';
+      selected.forEach(t => { const el = document.getElementById('reset-' + t.id); if (el) el.checked = false; });
+      statusEl.textContent = `Reset complete: ${names}.`;
+      statusEl.className = 'sync-status success';
+    });
+  });
+}
+
+// ============================================================
 // INIT
 // ============================================================
 document.addEventListener('DOMContentLoaded', () => {
@@ -476,7 +640,8 @@ document.addEventListener('DOMContentLoaded', () => {
   initHMControls();
   renderFloorTracker();
   renderAffection();
-  renderSteamSettingsPanel();
+  renderAchievementsSteamArea();
   renderAchievements();
+  renderSettingsTab();
   updateOverview();
 });
