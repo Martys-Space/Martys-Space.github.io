@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SAO Re: Hollow Fragment Tracker</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ALWAYS-VISIBLE OVERVIEW BAR -->
+  <div id="overview-bar">
+    <h1>SAO: Hollow Fragment</h1>
+
+    <div class="overview-stat" id="ov-hm">
+      <span class="stat-label">Hollow Missions</span>
+      <span class="stat-value">0/0</span>
+      <div class="progress-mini"><div class="progress-mini-fill" style="width:0%"></div></div>
+    </div>
+
+    <div class="overview-stat" id="ov-fl">
+      <span class="stat-label">LA Bonus</span>
+      <span class="stat-value">0/0</span>
+      <div class="progress-mini"><div class="progress-mini-fill" style="width:0%"></div></div>
+    </div>
+
+    <div class="overview-stat" id="ov-aff">
+      <span class="stat-label">Max Affection</span>
+      <span class="stat-value">0/0</span>
+      <div class="progress-mini"><div class="progress-mini-fill" style="width:0%"></div></div>
+    </div>
+
+    <div class="overview-stat" id="ov-ach">
+      <span class="stat-label">Achievements</span>
+      <span class="stat-value">0/0</span>
+      <div class="progress-mini"><div class="progress-mini-fill" style="width:0%"></div></div>
+    </div>
+  </div>
+
+  <!-- TAB BAR -->
+  <div id="tab-bar">
+    <button class="tab-btn active" data-tab="hm">Hollow Missions</button>
+    <button class="tab-btn" data-tab="floors">Floor Tracker</button>
+    <button class="tab-btn" data-tab="affection">Affection</button>
+    <button class="tab-btn" data-tab="achievements">Achievements</button>
+  </div>
+
+  <!-- TAB PANELS -->
+  <div id="main-content">
+
+    <!-- TAB 1: HOLLOW MISSIONS -->
+    <div id="panel-hm" class="tab-panel active">
+      <div class="flex-row mt-8" style="margin-bottom:12px; flex-wrap:wrap; gap:8px;">
+        <input id="hm-search" type="text" placeholder="Search missions…"
+          style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);
+                 color:var(--text);font-size:13px;padding:6px 10px;outline:none;flex:1;min-width:160px;">
+        <button id="hm-expand-all" class="btn btn-small">Expand All</button>
+        <button id="hm-collapse-all" class="btn btn-small">Collapse All</button>
+      </div>
+
+      <div class="legend">
+        <span class="legend-item"><span class="legend-swatch" style="background:var(--gold-bg);border:1px solid var(--gold)"></span> Area Boss</span>
+        <span class="legend-item"><span class="legend-swatch" style="background:var(--red-bg);border:1px solid var(--red)"></span> Grand Quest</span>
+        <span class="legend-item"><span class="legend-swatch" style="background:var(--bronze-bg);border:1px solid var(--bronze)"></span> Ultra Hard Quest</span>
+        <span class="legend-item"><span class="legend-swatch" style="background:rgba(170,170,204,0.2);border:1px solid var(--rank1)"></span> Rank 1</span>
+        <span class="legend-item"><span class="legend-swatch" style="background:rgba(68,136,255,0.2);border:1px solid var(--rank2)"></span> Rank 2</span>
+        <span class="legend-item"><span class="legend-swatch" style="background:rgba(255,136,0,0.2);border:1px solid var(--rank3)"></span> Rank 3</span>
+      </div>
+
+      <div id="hm-areas"></div>
+    </div>
+
+    <!-- TAB 2: FLOOR TRACKER -->
+    <div id="panel-floors" class="tab-panel">
+      <div class="progress-bar-wrap">
+        <div class="progress-bar-label">
+          <span>Last Attacking Bonus — Floors 76–100</span>
+          <span id="floor-progress-label">0 / 25</span>
+        </div>
+        <div class="progress-bar">
+          <div id="floor-progress-fill" class="progress-bar-fill" style="width:0%"></div>
+        </div>
+      </div>
+      <p class="text-dim" style="font-size:12px; margin-bottom:4px;">
+        Check a floor when you've received the Last Attacking Bonus for that floor's boss.
+        Getting all 25 unlocks the <strong style="color:var(--accent)">Beta Tester</strong> achievement.
+      </p>
+      <div id="floor-grid" class="floor-grid"></div>
+    </div>
+
+    <!-- TAB 3: AFFECTION -->
+    <div id="panel-affection" class="tab-panel">
+      <div class="progress-bar-wrap">
+        <div class="progress-bar-label">
+          <span>Characters at Max Affection (Rank 5)</span>
+          <span id="aff-max-label">0 / 8</span>
+        </div>
+        <div class="progress-bar">
+          <div id="aff-progress-fill" class="progress-bar-fill green" style="width:0%"></div>
+        </div>
+      </div>
+      <p class="text-dim" style="font-size:12px; margin-bottom:4px;">
+        Click the stars to set each character's affection rank (1–5).
+        Getting all 8 to rank 5 unlocks <strong style="color:var(--accent)">Don't cheat, daddy</strong>.
+      </p>
+      <div id="affection-grid" class="affection-grid"></div>
+    </div>
+
+    <!-- TAB 4: ACHIEVEMENTS -->
+    <div id="panel-achievements" class="tab-panel">
+
+      <!-- Steam Sync panel — content injected by app.js based on local vs. public -->
+      <div class="settings-panel" id="steam-settings-panel">
+        <h3>Steam Sync <span id="steam-mode-badge" class="mode-badge"></span></h3>
+        <div id="steam-settings-content"><!-- filled by app.js --></div>
+        <div id="sync-status" class="sync-status"></div>
+      </div>
+
+      <div class="progress-bar-wrap">
+        <div class="progress-bar-label">
+          <span>Steam Achievements</span>
+          <span id="ach-progress-label">0 / 54</span>
+        </div>
+        <div class="progress-bar">
+          <div id="ach-progress-fill" class="progress-bar-fill" style="width:0%"></div>
+        </div>
+      </div>
+
+      <div id="achievements-list" class="achievements-list"></div>
+    </div>
+
+  </div>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+{
+  "name": "sao-hollow-fragment-tracker",
+  "version": "1.0.0",
+  "description": "SAO Re: Hollow Fragment Game Tracker",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
