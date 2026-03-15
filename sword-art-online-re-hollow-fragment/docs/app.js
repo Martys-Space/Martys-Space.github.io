@@ -4,8 +4,25 @@
 // and locally via Node.js server (API key stays in config.json)
 // ============================================================
 
-const LS_KEY     = 'sao_tracker_v1';
-const CORS_PROXY = 'https://corsproxy.io/?';
+const LS_KEY = 'sao_tracker_v1';
+
+const CORS_PROXIES = [
+  url => `https://corsproxy.io/?${encodeURIComponent(url)}`,
+  url => `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`,
+  url => `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(url)}`,
+];
+
+async function proxyFetch(url) {
+  let lastErr;
+  for (const proxy of CORS_PROXIES) {
+    try {
+      const r = await fetch(proxy(url));
+      if (r.ok) return r;
+      lastErr = new Error(`Proxy returned ${r.status}`);
+    } catch (e) { lastErr = e; }
+  }
+  throw lastErr || new Error('All CORS proxies failed');
+}
 
 // ---- STATE ----
 let state = {
@@ -304,9 +321,9 @@ function renderSteamSettingsPanel() {
   content.innerHTML = `
     <div class="settings-row">
       <div class="settings-field">
-        <label>STEAM API KEY</label>
+        <label>STEAM API KEY — <a href="https://steamcommunity.com/dev/apikey" target="_blank" rel="noopener" style="color:var(--accent)">Get a free key here</a></label>
         <input id="steam-api-key" type="password"
-          placeholder="Get a free key at steamcommunity.com/dev/apikey"
+          placeholder="Paste your Steam API key"
           value="${state.steamConfig.apiKey || ''}">
       </div>
       <div class="settings-field">
@@ -396,14 +413,8 @@ async function fetchSteamData(apiKey, steamId) {
   const playerUrl = `https://api.steampowered.com/ISteamUserStats/GetPlayerAchievements/v1/?key=${apiKey}&steamid=${steamId}&appid=638650`;
 
   const [schema, playerStats] = await Promise.all([
-    fetch(CORS_PROXY + encodeURIComponent(schemaUrl)).then(r => {
-      if (!r.ok) throw new Error(`CORS proxy error ${r.status}`);
-      return r.json();
-    }),
-    fetch(CORS_PROXY + encodeURIComponent(playerUrl)).then(r => {
-      if (!r.ok) throw new Error(`CORS proxy error ${r.status}`);
-      return r.json();
-    })
+    proxyFetch(schemaUrl).then(r => r.json()),
+    proxyFetch(playerUrl).then(r => r.json()),
   ]);
 
   return { schema, playerStats };
