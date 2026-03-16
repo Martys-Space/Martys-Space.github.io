@@ -12,11 +12,11 @@
 // ============================================================
 
 const IMPLEMENTATIONS_DATA = [
-  {
+  { // 1 has been checked for typos //
     id: "1",
     name: "Sample – Ideal Standard for High-Ranking Players",
     rewardType: "System",
-    rewardTarget: null,
+    rewardTarget: 1,
     hollowPointCost: 0,
     testingInfo: "We are producing data samples on the prowess of high-ranking players. Testers are to play at the standard expected by Administration and quickly complete a Hollow Mission.",
     objective: "Complete a Hollow Mission",
@@ -40,7 +40,7 @@ const IMPLEMENTATIONS_DATA = [
     id: "1.1.1",
     name: "Assessment – Ideal Risk Control Skills",
     rewardType: "System",
-    rewardTarget: null,
+    rewardTarget: 1,
     hollowPointCost: 0,
     testingInfo: "We are performing an assessment of the risk-control abilities of testers. Complete the specified Hollow Mission without reaching the specified risk value.",
     objective: "Clear a Hollow Mission with 3 or less Risk",
@@ -52,7 +52,7 @@ const IMPLEMENTATIONS_DATA = [
     id: "1.2",
     name: "Mastery of Chaining Powerful Sword Skills",
     rewardType: "System",
-    rewardTarget: null,
+    rewardTarget: 1,
     hollowPointCost: 0,
     testingInfo: "We are gathering data on in-mission behavior by multiple participants. Perform chains of powerful sword skills, while maintaining a fundamentally cooperative stance.",
     objective: "Cooperate with partner and chain sword skills",
@@ -64,7 +64,7 @@ const IMPLEMENTATIONS_DATA = [
     id: "1.2.1",
     name: "Data Collection – Switch Viability",
     rewardType: "System",
-    rewardTarget: null,
+    rewardTarget: 1,
     hollowPointCost: 0,
     testingInfo: "We are continuing to calculate data on chained behavior. Complete/Perform a switch while in attacking stance to demonstrate its utility.",
     objective: "Use Switch to cover partner's skill lock",
@@ -76,7 +76,7 @@ const IMPLEMENTATIONS_DATA = [
     id: "1.2.2",
     name: "Improving Spirits and Optimizing Partners",
     rewardType: "System",
-    rewardTarget: null,
+    rewardTarget: 1,
     hollowPointCost: 0,
     testingInfo: "Following on from the chained behavior data, we require more evidence of behavior showing personal trust. Value your allies and demonstrate the substance of your trust.",
     objective: "Use the \"Good\" command",
@@ -84,7 +84,7 @@ const IMPLEMENTATIONS_DATA = [
     targetMissions: "Mission rank 1 or higher",
     notes: "Hollow Point reward."
   },
-  {
+  { // 2 has been checked for typos //
     id: "2",
     name: "Post-Implementation Check – Burst Attack",
     rewardType: "System",
@@ -144,7 +144,7 @@ const IMPLEMENTATIONS_DATA = [
     targetMissions: "Mission rank 2 or higher",
     notes: "Added to skill list as a new sword skill."
   },
-  {
+  { // 3 has been checked for typos //
     id: "3",
     name: "Utility Assessment – Exact Attacks",
     rewardType: "System",
@@ -180,7 +180,7 @@ const IMPLEMENTATIONS_DATA = [
     targetMissions: "Mission rank 2 or higher",
     notes: "Implemented as a rare drop from the 81st floor NM \"Blaze Demon\"."
   },
-  {
+  { // 5 has been checked for typos //
     id: "5",
     name: "Room for Development – Technical Stab System",
     rewardType: "System",
@@ -226,7 +226,7 @@ const IMPLEMENTATIONS_DATA = [
     objective: "Activate rear CRT effect a set number of times",
     restrictions: "Rear CRT +10 / ATK +20% / DEF -20%",
     targetMissions: "Mission rank 2 or higher",
-    notes: "Implemented as a rare drop from the 88th floor NM \"Scorblus\"."
+    notes: "Implemented as a rare drop from the 98th floor NM \"Scorbius\"."
   },
   {
     id: "5.1.1.1.1",
@@ -288,7 +288,7 @@ const IMPLEMENTATIONS_DATA = [
     targetMissions: "Mission rank 3 or higher",
     notes: "Implemented as a rare drop from the 82nd floor HNM \"Dynamic Blaster\"."
   },
-  {
+  { // 6 has been checked for typos //
     id: "6",
     name: "Assessment – Risk Reduction Methods",
     rewardType: "System",
@@ -355,16 +355,16 @@ const IMPLEMENTATIONS_DATA = [
     rewardTarget: 300,
     hollowPointCost: 1000,
     testingInfo: "A sword skill that decreases the user's risk while attacking a target has been implemented. Testers are to demonstrate its viability in actual battle.",
-    objective: "Perform specified number of sword skill trials",
+    objective: "Perform specified number of sword skill tests",
     restrictions: "2x risk recovery when not targeted / ACC -25%",
     targetMissions: "Mission rank 2 or higher",
     notes: "Added to skill list as a new sword skill."
   },
-  {
+  { // 7 has been checked for typos //
     id: "7",
     name: "Sacrifices for Powerful Effects",
     rewardType: "System",
-    rewardTarget: null,
+    rewardTarget: 5,
     hollowPointCost: 0,
     testingInfo: "We have insufficient data on the basic properties of the sacrifice effect. Gather data on this effect's viability by intentionally taking damage.",
     objective: "Complete specified number of Hollow Missions",
@@ -379,8 +379,8 @@ const IMPLEMENTATIONS_DATA = [
     rewardTarget: 200,
     hollowPointCost: 30,
     testingInfo: "We are performing experimental measurements of the effect based on past data. Testers are to gain a large buff while under an enhanced sacrifice effect for our research.",
-    objective: "Defeat specified number of Lv10+ enemies",
-    restrictions: "1800 Bleed / ATK +30%",
+    objective: "Defeat specified number of Lv110+ enemies",
+    restrictions: "1800 Bleed / ATK +50%",
     targetMissions: "Mission rank 1 or higher",
     notes: "Added to skill list as a new battle skill."
   },
@@ -388,7 +388,7 @@ const IMPLEMENTATIONS_DATA = [
     id: "7.1.1",
     name: "Fiendblade: Deathbringer",
     rewardType: "One-Handed Sword",
-    rewardTarget: null,
+    rewardTarget: 10,
     hollowPointCost: 100,
     testingInfo: "This weapon weakens its user in exchange for a powerful health-absorbing effect. Use this in actual battle and report data on its effects on gameplay.",
     objective: "Defeat specified number of NM monsters",
@@ -401,7 +401,7 @@ const IMPLEMENTATIONS_DATA = [
     name: "Theatrical Gloves",
     rewardType: "Gloves",
     rewardTarget: 300000,
-    hollowPointCost: 0,
+    hollowPointCost: 30,
     testingInfo: "This equipment boosts parameters in exchange for health. Experiment with its use, compare its properties against the health-absorbing effect, and test its suitability.",
     objective: "Inflict specified damage total against an NM",
     restrictions: "Max HP -35% / ACC +30",
@@ -422,13 +422,13 @@ const IMPLEMENTATIONS_DATA = [
   },
   {
     id: "7.2.1.1",
-    name: "Feilblade: Ruinous Doom",
+    name: "Fellblade: Ruinous Doom",
     rewardType: "Scimitar",
     rewardTarget: 15,
     hollowPointCost: 500,
     testingInfo: "We have implemented equipment that drains the health of surrounding players in exchange for a strong attack buff. Use this in actual battle and gather data.",
     objective: "Defeat NM-class monster",
-    restrictions: "Regen -3% / ATK +50% / HP absorb",
+    restrictions: "Regen -3% / ATK +50%",
     targetMissions: "Mission rank 2 or higher",
     notes: "Implemented as a rare drop from the 93rd floor HNM \"Elemental Lancer\"."
   },
@@ -444,7 +444,7 @@ const IMPLEMENTATIONS_DATA = [
     targetMissions: "Mission rank 3 or higher",
     notes: "Implemented as a rare drop from the 99th floor HNM \"Skeleton Brain\"."
   },
-  {
+  { // 8 has been checked for typos //
     id: "8",
     name: "Assessment – Ideal Values for Attack Speed/Count",
     rewardType: "System",
@@ -504,7 +504,7 @@ const IMPLEMENTATIONS_DATA = [
     targetMissions: "Mission rank 2 or higher",
     notes: "Added to skill list as a new sword skill."
   },
-  {
+  { // 10 has been checked for typos //
     id: "10",
     name: "Assessment – Uncapped Weapon Damage Values",
     rewardType: "System",
@@ -564,7 +564,7 @@ const IMPLEMENTATIONS_DATA = [
     targetMissions: "Mission rank 2 or higher",
     notes: "Added to skill list as a new sword skill."
   },
-  {
+  { // 11 has been checked for typos //
     id: "11",
     name: "Adjustment Plan – Favoring Attack over Defense",
     rewardType: "System",
@@ -624,7 +624,7 @@ const IMPLEMENTATIONS_DATA = [
     targetMissions: "Mission rank 1 or higher",
     notes: "Implemented as a rare drop from the 94th floor HNM \"Ark Knight\"."
   },
-  {
+  { // 13 has been checked for typos //
     id: "13",
     name: "Implementation Research – Risk-Focused Equipment",
     rewardType: "System",
@@ -696,7 +696,7 @@ const IMPLEMENTATIONS_DATA = [
     targetMissions: "Mission rank 1 or higher",
     notes: "Unlocks next level. Hollow Point reward."
   },
-  {
+  { // 16 has been checked for typos //
     id: "16.1",
     name: "Thessarian Meal",
     rewardType: "System",
@@ -792,8 +792,7 @@ const IMPLEMENTATIONS_DATA = [
     targetMissions: "Mission rank 3 or higher",
     notes: "Implemented as a rare drop from the 88th floor HNM \"Shining Ant Breaker\"."
   },
-
-  {
+  { // 19 has been checked for typos //
     id: "19",
     name: "Research – Buff Specifications",
     rewardType: "System",

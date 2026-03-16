@@ -69,9 +69,10 @@ function implStatus(id) {
 
 function implIsAvailable(id) {
   const parentId = implParentId(id);
-  if (parentId === null) return true;
-  const ps = implStatus(parentId);
-  return ps === 'implement' || ps === 'implemented';
+  if (parentId === null) return true; // top-level always available
+  const rootId = id.split('.')[0];
+  const rs = implStatus(rootId);
+  return rs === 'implement' || rs === 'implemented';
 }
 
 const totalImpls     = () => IMPLEMENTATIONS_DATA.length;
@@ -949,14 +950,12 @@ function initImplControls() {
   });
 }
 
-function lockDescendantsIfNeeded(parentId) {
+function lockDescendantsIfNeeded(id) {
+  // Only cascade when the root itself is un-done
+  if (implParentId(id) !== null) return;
   IMPLEMENTATIONS_DATA.forEach(impl => {
-    if (implParentId(impl.id) === parentId) {
-      const s = implStatus(impl.id);
-      if (s === 'checking' || s === 'implement' || s === 'implemented') {
-        state.implementations[impl.id] = null;
-        lockDescendantsIfNeeded(impl.id);
-      }
+    if (impl.id.startsWith(id + '.')) {
+      state.implementations[impl.id] = null;
     }
   });
 }
