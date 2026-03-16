@@ -97,22 +97,7 @@ function saveState() {
 }
 
 // ---- HELPERS ----
-function buildIndentMap() {
-  const map = {};
-  const allMissions = AREAS.flatMap(a => a.missions);
-  const byId = Object.fromEntries(allMissions.map(m => [m.id, m]));
-  function depth(id) {
-    if (map[id] !== undefined) return map[id];
-    const m = byId[id];
-    map[id] = (!m || !m.parentId) ? 0 : depth(m.parentId) + 1;
-    return map[id];
-  }
-  allMissions.forEach(m => depth(m.id));
-  return map;
-}
-const INDENT_MAP = buildIndentMap();
-
-const totalMissions    = () => AREAS.reduce((s, a) => s + a.missions.length, 0);
+const totalMissions    = () => HOLLOW_MISSIONS_DATA.length;
 const completedMissions= () => Object.values(state.hollowMissions).filter(Boolean).length;
 const totalFloors      = () => FLOORS_DATA.length;
 const completedFloors  = () => Object.values(state.floors).filter(Boolean).length;
@@ -181,29 +166,73 @@ function initTabs() {
 // ============================================================
 // TAB 1 — HOLLOW MISSIONS
 // ============================================================
+function sortHMMissions(missions) {
+  // Group chained missions (consecutive part sequences) into single units
+  const groups = [];
+  let i = 0;
+  while (i < missions.length) {
+    const m = missions[i];
+    if (m.part === 1) {
+      const chain = [m];
+      i++;
+      while (i < missions.length && missions[i].part != null && missions[i].part > 1) {
+        chain.push(missions[i]);
+        i++;
+      }
+      groups.push(chain);
+    } else {
+      groups.push([m]);
+      i++;
+    }
+  }
+
+  // Sort groups by rank of first mission; area_boss last within rank 2
+  function groupRank(g) {
+    const r = g[0].mission_rank;
+    return r ? parseInt(r.replace('Rank ', '')) : 1;
+  }
+
+  function typePriority(g) {
+    const t = g[0].type;
+    if (t === 'area_boss') return 2;
+    if (t === 'boss')      return 1;
+    return 0;
+  }
+
+  groups.sort((a, b) => {
+    const ra = groupRank(a), rb = groupRank(b);
+    if (ra !== rb) return ra - rb;
+    return typePriority(a) - typePriority(b);
+  });
+
+  return groups.flat();
+}
+
 function renderHollowMissions() {
   const container = document.getElementById('hm-areas');
   container.innerHTML = '';
 
-  AREAS.forEach(area => {
-    const areaDone  = area.missions.filter(m => state.hollowMissions[m.id]).length;
-    const areaTotal = area.missions.length;
+  HOLLOW_REGIONS.forEach(region => {
+    const missions   = sortHMMissions(HOLLOW_MISSIONS_DATA.filter(m => m.region === region.id));
+    const areaDone   = missions.filter(m => state.hollowMissions[m.id]).length;
+    const areaTotal  = missions.length;
 
-    const block  = document.createElement('div');
+    const block = document.createElement('div');
     block.className = 'area-block';
+    block.dataset.regionId = region.id;
 
     const header = document.createElement('div');
     header.className = 'section-header';
     header.innerHTML = `
-      <span class="section-title">${area.name}</span>
+      <span class="section-title">${region.name}</span>
       <span class="section-progress">
-        <span class="${areaDone === areaTotal ? 'done' : ''}">${areaDone}</span>/${areaTotal}
+        <span class="${areaDone === areaTotal && areaTotal > 0 ? 'done' : ''}">${areaDone}</span>/${areaTotal}
       </span>
       <span class="chevron">▼</span>`;
 
     const missionsDiv = document.createElement('div');
     missionsDiv.className = 'area-missions';
-    area.missions.forEach(m => missionsDiv.appendChild(createMissionRow(m)));
+    missions.forEach((m, idx) => missionsDiv.appendChild(createMissionRow(m, idx + 1)));
 
     header.addEventListener('click', () => {
       header.classList.toggle('open');
@@ -217,28 +246,45 @@ function renderHollowMissions() {
   updateHMProgress();
 }
 
-function createMissionRow(m) {
-  const done   = !!state.hollowMissions[m.id];
-  const indent = INDENT_MAP[m.id] || 0;
+function createMissionRow(m, num) {
+  const done = !!state.hollowMissions[m.id];
+  const rankNum = m.mission_rank ? m.mission_rank.replace('Rank ', '') : '1';
 
   const row = document.createElement('div');
-  row.className = `mission-row type-${m.type} indent-${indent}${done ? ' completed' : ''}`;
+  row.className = `mission-row${m.type ? ' type-' + m.type : ''}${done ? ' completed' : ''}`;
 
   let typeTag = '';
+  if (m.type === 'area_boss')   typeTag = '<span class="type-tag tag-area_boss">AREA BOSS</span>';
   if (m.type === 'boss')        typeTag = '<span class="type-tag tag-boss">BOSS</span>';
   if (m.type === 'grand_quest') typeTag = '<span class="type-tag tag-grand_quest">GRAND QUEST</span>';
-  if (m.type === 'uhq')         typeTag = '<span class="type-tag tag-uhq">ULTRA HARD</span>';
+  if (m.type === 'ultra_hard')  typeTag = '<span class="type-tag tag-ultra_hard">ULTRA HARD</span>';
+  const partTag = m.part ? `<span class="type-tag tag-part">Part ${m.part}</span>` : '';
+  const timeLimit = m.time_limit || 'No Limit';
 
   row.innerHTML = `
-    <button class="impl-circle ${done ? 'impl-circle-done' : 'impl-circle-empty'}" title="${done ? 'Mark as incomplete' : 'Mark as complete'}">✓</button>
-    <span class="rank-badge rank-${m.rank}">${m.rank}</span>
-    <div class="mission-info">
-      <div class="mission-name">${typeTag}${m.name}</div>
-      <div class="mission-meta"><span class="map-name">${m.map}</span> — ${m.objective}</div>
+    <div class="mission-row-main">
+      <button class="impl-circle ${done ? 'impl-circle-done' : 'impl-circle-empty'}" title="${done ? 'Mark as incomplete' : 'Mark as complete'}">✓</button>
+      <span class="rank-badge rank-${rankNum}">${rankNum}</span>
+      <div class="mission-info">
+        <div class="mission-name">${typeTag}${partTag}${m.name}</div>
+        <div class="mission-meta"><span class="map-name">${m.location}</span> — ${m.summary}</div>
+      </div>
+      <div class="mission-num">#${num}</div>
     </div>
-    <div class="mission-num">#${m.num}</div>`;
+    <div class="mission-detail-panel">
+      <div class="mdp-strategy">${m.strategy}</div>
+      <div class="mdp-stats">
+        <div class="mdp-stat"><span class="mdp-stat-label">GOAL</span><span class="mdp-stat-value">${m.goal}</span></div>
+        <div class="mdp-stat"><span class="mdp-stat-label">TARGET</span><span class="mdp-stat-value">${m.target}</span></div>
+        <div class="mdp-stat"><span class="mdp-stat-label">TIME LIMIT</span><span class="mdp-stat-value">${timeLimit}</span></div>
+        <div class="mdp-stat"><span class="mdp-stat-label">REC. LEVEL</span><span class="mdp-stat-value">${m.recommended_level || '—'}</span></div>
+      </div>
+    </div>`;
 
-  const circleBtn = row.querySelector('.impl-circle');
+  const circleBtn   = row.querySelector('.impl-circle');
+  const detailPanel = row.querySelector('.mission-detail-panel');
+  const mainRow     = row.querySelector('.mission-row-main');
+
   circleBtn.addEventListener('click', e => {
     e.stopPropagation();
     const newDone = !state.hollowMissions[m.id];
@@ -252,17 +298,23 @@ function createMissionRow(m) {
     updateAchInlineTrackers();
     refreshAreaHeader(m);
   });
+
+  mainRow.addEventListener('click', e => {
+    if (e.target.closest('.impl-circle')) return;
+    detailPanel.classList.toggle('open');
+  });
+
   return row;
 }
 
 function refreshAreaHeader(mission) {
-  const area = AREAS.find(a => a.missions.some(m => m.id === mission.id));
-  if (!area) return;
-  const done  = area.missions.filter(m => state.hollowMissions[m.id]).length;
-  const total = area.missions.length;
-  const idx   = AREAS.indexOf(area);
-  const sp    = document.querySelectorAll('.section-header')[idx]?.querySelector('.section-progress');
-  if (sp) sp.innerHTML = `<span class="${done === total ? 'done' : ''}">${done}</span>/${total}`;
+  const block = document.querySelector(`.area-block[data-region-id="${mission.region}"]`);
+  if (!block) return;
+  const missions = HOLLOW_MISSIONS_DATA.filter(m => m.region === mission.region);
+  const done  = missions.filter(m => state.hollowMissions[m.id]).length;
+  const total = missions.length;
+  const sp    = block.querySelector('.section-progress');
+  if (sp) sp.innerHTML = `<span class="${done === total && total > 0 ? 'done' : ''}">${done}</span>/${total}`;
 }
 
 function initHMControls() {
