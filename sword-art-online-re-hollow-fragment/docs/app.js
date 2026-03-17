@@ -36,16 +36,18 @@ let state = {
   steamConfig:           { apiKey: '', steamId: '' },
   steamHintDismissed:    false,
   progressBars:          { ...PROGRESS_BAR_DEFAULTS },
-  showChildImplIds:      false
+  showChildImplIds:      false,
+  hmExpanded:            {},
+  hmHideCompleted:       false,
+  implCollapsed:         {},
+  implHideCompleted:     false
 };
 
 // ---- IMPLEMENTATIONS UI STATE (not persisted) ----
 let implFilterType = 'all';
 let implFilterObjective = 'all';
 let implFilterFloor = 'all';
-let implHideCompleted = false;
 let implSearch = '';
-const implCollapsed = {};
 const implDetailsOpen = {};
 
 function isSteamConfigured() {
@@ -238,9 +240,17 @@ function renderHollowMissions() {
     missionsDiv.className = 'area-missions';
     missions.forEach((m, idx) => missionsDiv.appendChild(createMissionRow(m, idx + 1)));
 
+    // Restore expanded state
+    if (state.hmExpanded[region.id]) {
+      header.classList.add('open');
+      missionsDiv.classList.add('open');
+    }
+
     header.addEventListener('click', () => {
-      header.classList.toggle('open');
+      const isOpen = header.classList.toggle('open');
       missionsDiv.classList.toggle('open');
+      state.hmExpanded[region.id] = isOpen;
+      saveState();
     });
 
     block.appendChild(header);
@@ -323,12 +333,17 @@ function refreshAreaHeader(mission) {
 
 function initHMControls() {
   document.getElementById('hm-expand-all').addEventListener('click', () => {
+    HOLLOW_REGIONS.forEach(r => { state.hmExpanded[r.id] = true; });
+    saveState();
     document.querySelectorAll('.section-header').forEach(h => h.classList.add('open'));
     document.querySelectorAll('.area-missions').forEach(m => m.classList.add('open'));
   });
   document.getElementById('hm-collapse-all').addEventListener('click', () => {
+    state.hmExpanded = {};
+    saveState();
     document.querySelectorAll('.section-header').forEach(h => h.classList.remove('open'));
     document.querySelectorAll('.area-missions').forEach(m => m.classList.remove('open'));
+    document.querySelectorAll('.mission-detail-panel').forEach(p => p.classList.remove('open'));
   });
   document.getElementById('hm-search').addEventListener('input', e => {
     const q = e.target.value.toLowerCase().trim();
@@ -338,10 +353,17 @@ function initHMControls() {
       row.style.display = (!q || name.includes(q) || map.includes(q)) ? '' : 'none';
     });
   });
-  document.getElementById('hm-hide-completed').addEventListener('click', function() {
-    const areas = document.getElementById('hm-areas');
-    const hidden = areas.classList.toggle('hm-hide-completed');
-    this.textContent = hidden ? 'Show Completed' : 'Hide Completed';
+  const hmHideBtn = document.getElementById('hm-hide-completed');
+  const hmAreas   = document.getElementById('hm-areas');
+  if (state.hmHideCompleted) {
+    hmAreas.classList.add('hm-hide-completed');
+    hmHideBtn.textContent = 'Show Completed';
+  }
+  hmHideBtn.addEventListener('click', function() {
+    state.hmHideCompleted = !state.hmHideCompleted;
+    hmAreas.classList.toggle('hm-hide-completed', state.hmHideCompleted);
+    this.textContent = state.hmHideCompleted ? 'Show Completed' : 'Hide Completed';
+    saveState();
   });
 }
 
@@ -799,7 +821,7 @@ function renderImplementations() {
       if (objectiveVisible && !objectiveVisible.has(impl.id)) return false;
       if (floorVisible     && !floorVisible.has(impl.id))     return false;
       if (searchVisible    && !searchVisible.has(impl.id))    return false;
-      if (implHideCompleted && implStatus(impl.id) === 'implemented') return false;
+      if (state.implHideCompleted && implStatus(impl.id) === 'implemented') return false;
       return true;
     };
 
@@ -809,19 +831,19 @@ function renderImplementations() {
           // Show root only when not complete and there is at least one matching child
           return implStatus(impl.id) !== 'implemented' && items.some(childPassesFilters);
         }
-        if (implHideCompleted && implStatus(impl.id) === 'implemented') return false;
+        if (state.implHideCompleted && implStatus(impl.id) === 'implemented') return false;
         return true;
       }
       if (typeVisible      && !typeVisible.has(impl.id))      return false;
       if (objectiveVisible && !objectiveVisible.has(impl.id)) return false;
       if (floorVisible     && !floorVisible.has(impl.id))     return false;
       if (searchVisible    && !searchVisible.has(impl.id))    return false;
-      if (implHideCompleted && implStatus(impl.id) === 'implemented') return false;
+      if (state.implHideCompleted && implStatus(impl.id) === 'implemented') return false;
       return true;
     });
     if (!visibleItems.length) return;
 
-    const isCollapsed = !!implCollapsed[rootId];
+    const isCollapsed = !!state.implCollapsed[rootId];
 
     const group = document.createElement('div');
     group.className = `impl-group${isCollapsed ? ' collapsed' : ''}`;
@@ -832,7 +854,8 @@ function renderImplementations() {
     header.className = 'impl-group-header';
     header.innerHTML = `<span class="impl-group-label"><span class="impl-group-label-id">${rootId}</span><span class="impl-group-label-name">${rootItem ? rootItem.name : ''}</span></span><span class="impl-group-chevron">▼</span>`;
     header.addEventListener('click', () => {
-      implCollapsed[rootId] = !implCollapsed[rootId];
+      state.implCollapsed[rootId] = !state.implCollapsed[rootId];
+      saveState();
       renderImplementations();
     });
 
@@ -1029,16 +1052,22 @@ function initImplControls() {
     renderImplementations();
   });
   document.getElementById('impl-expand-all').addEventListener('click', () => {
-    IMPLEMENTATIONS_DATA.filter(i => implDepth(i.id) === 0).forEach(i => { delete implCollapsed[i.id]; });
+    IMPLEMENTATIONS_DATA.filter(i => implDepth(i.id) === 0).forEach(i => { delete state.implCollapsed[i.id]; });
+    saveState();
     renderImplementations();
   });
   document.getElementById('impl-collapse-all').addEventListener('click', () => {
-    IMPLEMENTATIONS_DATA.filter(i => implDepth(i.id) === 0).forEach(i => { implCollapsed[i.id] = true; });
+    IMPLEMENTATIONS_DATA.filter(i => implDepth(i.id) === 0).forEach(i => { state.implCollapsed[i.id] = true; });
+    Object.keys(implDetailsOpen).forEach(k => { delete implDetailsOpen[k]; });
+    saveState();
     renderImplementations();
   });
-  document.getElementById('impl-hide-completed-btn').addEventListener('click', function() {
-    implHideCompleted = !implHideCompleted;
-    this.textContent = implHideCompleted ? 'Show Completed' : 'Hide Completed';
+  const hideCompletedBtn = document.getElementById('impl-hide-completed-btn');
+  hideCompletedBtn.textContent = state.implHideCompleted ? 'Show Completed' : 'Hide Completed';
+  hideCompletedBtn.addEventListener('click', function() {
+    state.implHideCompleted = !state.implHideCompleted;
+    this.textContent = state.implHideCompleted ? 'Show Completed' : 'Hide Completed';
+    saveState();
     renderImplementations();
   });
   document.getElementById('impl-filter-type').addEventListener('change', e => {
