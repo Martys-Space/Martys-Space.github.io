@@ -447,6 +447,17 @@ const HOLLOW_MISSIONS_DATA = [
     target: "1x Alchemist Fool",
     time_limit: "30 min", recommended_level: 126,
   },
+  {
+    id: "BG-18", region: "Bastia_Gate_Floating_Ruins_Area", type: null,
+    name: "The Glory of the Streak",
+    location: "Ruined Tower - Underground Waste Channel",
+    mission_rank: "Rank 2",
+    strategy: "The spirit of a knight said to never have lost in a one-on-one battle has been spotted attacking any who travel outside alone. Defeat the knight and release him from his curse of glory-hunting!",
+    summary: "Defeat 1x Victorious.",
+    goal: "Defeat specified number of the target enemy",
+    target: "1x Victorious",
+    time_limit: "60 min", recommended_level: 137,
+  },
 
   // ─── Graceleaf Bay Area ───────────────────────────────────────────────────
   {
