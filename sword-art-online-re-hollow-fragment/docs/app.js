@@ -41,9 +41,12 @@ let state = {
 
 // ---- IMPLEMENTATIONS UI STATE (not persisted) ----
 let implFilterType = 'all';
+let implFilterObjective = 'all';
+let implFilterFloor = 'all';
 let implHideCompleted = false;
 let implSearch = '';
 const implCollapsed = {};
+const implDetailsOpen = {};
 
 function isSteamConfigured() {
   return !!(state.steamConfig.apiKey && state.steamConfig.steamId);
@@ -686,6 +689,48 @@ const REWARD_TYPE_COLORS = {
   'Katana':           { bg: 'rgba(200,80,100,0.12)',  border: 'rgba(200,80,100,0.4)',  text: '#c85064' },
 };
 
+// ---- IMPLEMENTATIONS FILTER DATA ----
+const IMPL_OBJECTIVE_CATEGORIES = {
+  'Burst Attacks':            ['1.1','2','2.1','2.1.1','2.1.1.1','9.1.1.1','13.1.1.1','14.1.1','15.1.1'],
+  'Exact Attacks':            ['3','3.1','8.1.1.1'],
+  'Auto-Attacks':             ['8','8.1','10.1','12.1.1'],
+  'Exact Step':               ['5','5.1','5.2','6.1','13','15.1.1.1.1','18.1.1.1','18.1.1.1.1'],
+  'Inflict Damage':           ['7.2','8.1','8.1.1','10','10.1.1','11.1.1','11.1.1.1','11.1.1.1.1','12.1.1','15.1.1.1','17.1.1.5.1','19.1.1.1','19.1.1.1.1'],
+  'Receive Damage':           ['9.1.1','11','11.1','12.2','12.2.1','16.2','16.3.1','16.3.1.1','16.3.1.1.1','17.1.1.2','17.1.1.3','17.1.1.4','19.1.1'],
+  'Sword Skills':             ['1.2','2.1.1.1.1','4','4.1','4.1.1','4.1.1.1','4.2','4.2.1','4.2.1.1','5.1.1.1.1','6.1.2.1.1','7.2.1','8.1.1.1.1','10.1.1.1.1','12.2.1.1.1','14.1.1.1','14.1.1.1.1','15.1','16.2.1','17.1.1.1.1','18.1'],
+  'Defeat Monster':           ['3.1.1','6','6.1.2','6.1.2.1','7.1','7.1.1','7.2.1.1','7.2.1.1.1','9.1','9.1.1.1.1','10.1.1.1','13.1.1','13.1.1.1.1','15'],
+  'Risk':                     ['1.1.1','6','6.1.1','6.1.2','9.1','13'],
+  'Complete Hollow Missions': ['1','1.1.1','6.1.1','7','12','12.2.1.1'],
+};
+
+// Maps floor number → array of implementation IDs obtainable on that floor
+const IMPL_FLOOR_NOTES = {
+  76: ['5.1.1','12.1','14.1'],
+  77: ['16.2','17.1'],
+  78: ['7.2'],
+  79: ['12.2.1','16.3.1'],
+  80: ['2.1.1','7.2.1','15.1.1'],
+  81: ['3.1.1','6.1.1','7.1.1'],
+  82: ['5.2.1.1.1','9.1.1','10.1'],
+  83: ['2.1.1','13.1.1','17.1.1'],
+  84: ['5.2.1','8.1.1','14.1.1'],
+  85: ['11.1.1','13.1.1.1.1','16.1'],
+  86: ['2.1.1','10.1.1.1','18.1.1.1'],
+  87: ['16.1.1','17.1.1.3','19.1.1'],
+  88: ['11.1.1.1','16.3.1.1.1'],
+  89: ['2.1.1','15.1.1.1','17.1.1.4'],
+  90: ['9.1.1.1','12.2.1.1'],
+  91: ['6.1.2.1','17.1.1.5'],
+  92: ['13.1.1.1','16.3.1.1'],
+  93: ['7.2.1.1','8.1.1.1'],
+  94: ['2.1.1.1','11.1.1.1.1'],
+  95: ['15.1.1.1.1','19.1.1.1'],
+  96: ['12.1.1','19.1.1.1.1'],
+  97: ['9.1.1.1.1','17.1.1.2'],
+  98: ['5.1.1.1','17.1.1.5.1'],
+  99: ['7.2.1.1.1','18.1.1.1.1'],
+};
+
 function renderImplementations() {
   const list  = document.getElementById('impl-list');
   const fill  = document.getElementById('impl-progress-fill');
@@ -700,15 +745,26 @@ function renderImplementations() {
     implSortKey(a.id) < implSortKey(b.id) ? -1 : 1
   );
 
-  // Type filter: matching items + all their ancestors
+  // Type filter: matching items only
   let typeVisible = null;
   if (implFilterType !== 'all') {
-    const matchIds = new Set(sorted.filter(i => i.rewardType === implFilterType).map(i => i.id));
-    typeVisible = new Set(matchIds);
-    matchIds.forEach(id => {
-      let curr = implParentId(id);
-      while (curr) { typeVisible.add(curr); curr = implParentId(curr); }
-    });
+    typeVisible = new Set(sorted.filter(i => i.rewardType === implFilterType).map(i => i.id));
+  }
+
+  // Objective filter: matching items only
+  let objectiveVisible = null;
+  if (implFilterObjective !== 'all') {
+    objectiveVisible = new Set(IMPL_OBJECTIVE_CATEGORIES[implFilterObjective] || []);
+  }
+
+  // Floor filter: matching items only
+  let floorVisible = null;
+  if (implFilterFloor !== 'all') {
+    if (implFilterFloor === 'only') {
+      floorVisible = new Set(Object.values(IMPL_FLOOR_NOTES).flat());
+    } else {
+      floorVisible = new Set(IMPL_FLOOR_NOTES[parseInt(implFilterFloor)] || []);
+    }
   }
 
   // Search filter: matching items + all their ancestors
@@ -735,9 +791,31 @@ function renderImplementations() {
 
   list.innerHTML = '';
   groups.forEach((items, rootId) => {
+    const anyFilterActive = typeVisible || objectiveVisible || floorVisible || searchVisible;
+
+    const childPassesFilters = impl => {
+      if (implDepth(impl.id) === 0) return false;
+      if (typeVisible      && !typeVisible.has(impl.id))      return false;
+      if (objectiveVisible && !objectiveVisible.has(impl.id)) return false;
+      if (floorVisible     && !floorVisible.has(impl.id))     return false;
+      if (searchVisible    && !searchVisible.has(impl.id))    return false;
+      if (implHideCompleted && implStatus(impl.id) === 'implemented') return false;
+      return true;
+    };
+
     const visibleItems = items.filter(impl => {
-      if (typeVisible   && !typeVisible.has(impl.id))   return false;
-      if (searchVisible && !searchVisible.has(impl.id)) return false;
+      if (implDepth(impl.id) === 0) {
+        if (anyFilterActive) {
+          // Show root only when not complete and there is at least one matching child
+          return implStatus(impl.id) !== 'implemented' && items.some(childPassesFilters);
+        }
+        if (implHideCompleted && implStatus(impl.id) === 'implemented') return false;
+        return true;
+      }
+      if (typeVisible      && !typeVisible.has(impl.id))      return false;
+      if (objectiveVisible && !objectiveVisible.has(impl.id)) return false;
+      if (floorVisible     && !floorVisible.has(impl.id))     return false;
+      if (searchVisible    && !searchVisible.has(impl.id))    return false;
       if (implHideCompleted && implStatus(impl.id) === 'implemented') return false;
       return true;
     });
@@ -883,10 +961,18 @@ function renderImplementations() {
       const expandBtn = row.querySelector('.impl-expand-btn');
       const mainDiv   = row.querySelector('.impl-main');
       const detailsEl = row.querySelector('.impl-details');
+
+      // Restore open state from before the re-render
+      if (implDetailsOpen[impl.id]) {
+        detailsEl.classList.add('open');
+        expandBtn.textContent = '▲';
+      }
+
       const toggleDetails = e => {
         if (e.target.closest('[data-action]')) return;
         const open = detailsEl.classList.toggle('open');
         expandBtn.textContent = open ? '▲' : '▼';
+        implDetailsOpen[impl.id] = open;
       };
       expandBtn.addEventListener('click', toggleDetails);
       mainDiv.addEventListener('click', toggleDetails);
@@ -906,6 +992,8 @@ function initImplControls() {
   if (!panel || document.getElementById('impl-filter-bar')) return;
 
   const types = [...new Set(IMPLEMENTATIONS_DATA.map(i => i.rewardType))].sort();
+  const objectives = Object.keys(IMPL_OBJECTIVE_CATEGORIES).sort();
+  const floors = Object.keys(IMPL_FLOOR_NOTES).map(Number).sort((a, b) => a - b);
 
   const bar = document.createElement('div');
   bar.id = 'impl-filter-bar';
@@ -921,6 +1009,15 @@ function initImplControls() {
       <select id="impl-filter-type" style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);color:var(--text);font-size:13px;padding:6px 10px;outline:none;cursor:pointer;">
         <option value="all">All Reward Types</option>
         ${types.map(t => `<option value="${t}">${t}</option>`).join('')}
+      </select>
+      <select id="impl-filter-objective" style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);color:var(--text);font-size:13px;padding:6px 10px;outline:none;cursor:pointer;">
+        <option value="all">All Objectives</option>
+        ${objectives.map(o => `<option value="${o}">${o}</option>`).join('')}
+      </select>
+      <select id="impl-filter-floor" style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);color:var(--text);font-size:13px;padding:6px 10px;outline:none;cursor:pointer;">
+        <option value="all">All Floor Unlocks</option>
+        <option value="only">Only Floor Unlocks</option>
+        ${floors.map(f => `<option value="${f}">Floor ${f}</option>`).join('')}
       </select>
     </div>`;
 
@@ -946,6 +1043,14 @@ function initImplControls() {
   });
   document.getElementById('impl-filter-type').addEventListener('change', e => {
     implFilterType = e.target.value;
+    renderImplementations();
+  });
+  document.getElementById('impl-filter-objective').addEventListener('change', e => {
+    implFilterObjective = e.target.value;
+    renderImplementations();
+  });
+  document.getElementById('impl-filter-floor').addEventListener('change', e => {
+    implFilterFloor = e.target.value;
     renderImplementations();
   });
 }

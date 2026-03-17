@@ -238,13 +238,13 @@ const FLOORS_DATA = [
 // ============================================================
 const CHARACTERS_DATA = [
   { id: 'asuna',    name: 'Asuna',    achievement: 'Flash' },
-  { id: 'yui',      name: 'Yui',      achievement: null,             excludeDontCheat: true },
   { id: 'silica',   name: 'Silica',   achievement: 'Beast Tamer' },
   { id: 'philia',   name: 'Philia',   achievement: 'Treasure Hunter' },
   { id: 'sinon',    name: 'Sinon',    achievement: 'Sniper' },
   { id: 'lisbeth',  name: 'Lisbeth',  achievement: 'Master Macer' },
-  { id: 'strea',    name: 'Strea',    achievement: null },
   { id: 'leafa',    name: 'Leafa',    achievement: 'Fairy' },
+  { id: 'strea',    name: 'Strea',    achievement: null },
+  { id: 'yui',      name: 'Yui',      achievement: null,             excludeDontCheat: true },
   { id: 'argo',     name: 'Argo',     achievement: null,             excludeDontCheat: true },
 ];
 

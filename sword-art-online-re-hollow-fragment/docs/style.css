@@ -150,9 +150,9 @@ html, body {
 
 /* ---- SECTION HEADER ---- */
 .section-header {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  justify-content: space-between;
   padding: 10px 14px;
   background: var(--bg3);
   border: 1px solid var(--border);
@@ -188,6 +188,7 @@ html, body {
 .section-progress .done { color: var(--green); }
 
 .chevron {
+  justify-self: end;
   color: var(--text-dim);
   font-size: 11px;
   transition: transform 0.2s;
@@ -1050,18 +1051,14 @@ html, body {
   border-color: var(--accent-dim);
 }
 
-/* Label — hidden when expanded, visible when collapsed */
+/* Label — always visible */
 .impl-group-label {
-  display: none;
+  display: flex;
   align-items: baseline;
   gap: 6px;
   flex: 1;
   min-width: 0;
   overflow: hidden;
-}
-
-.impl-group.collapsed .impl-group-label {
-  display: flex;
 }
 
 .impl-group-label-id {
