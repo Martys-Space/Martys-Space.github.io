@@ -26,6 +26,7 @@ async function proxyFetch(url) {
 
 // ---- STATE ----
 const PROGRESS_BAR_DEFAULTS = { hm: false, implementations: false, floors: true, affection: true, achievements: true };
+const HEADER_BAR_DEFAULTS   = { hm: true, implementations: true, floors: true, affection: false, achievements: false };
 
 let state = {
   hollowMissions:        {},
@@ -36,6 +37,7 @@ let state = {
   steamConfig:           { apiKey: '', steamId: '' },
   steamHintDismissed:    false,
   progressBars:          { ...PROGRESS_BAR_DEFAULTS },
+  headerBars:            { ...HEADER_BAR_DEFAULTS },
   showChildImplIds:      false,
   hmExpanded:            {},
   hmHideCompleted:       false,
@@ -93,6 +95,7 @@ function loadState() {
       state = Object.assign(state, parsed);
       // Deep merge progressBars so new keys always get their defaults
       state.progressBars = Object.assign({ ...PROGRESS_BAR_DEFAULTS }, parsed.progressBars || {});
+      state.headerBars   = Object.assign({ ...HEADER_BAR_DEFAULTS },   parsed.headerBars   || {});
     }
   } catch (e) { console.error('Failed to load state', e); }
 }
@@ -136,6 +139,20 @@ function updateHMProgress() {
   const label = document.getElementById('hm-progress-label');
   if (fill)  { fill.style.width = total > 0 ? (done / total * 100) + '%' : '0%'; fill.classList.toggle('green', done === total); }
   if (label) label.textContent = `${done} / ${total}`;
+}
+
+function applyHeaderBarVisibility() {
+  const hb = state.headerBars;
+  [
+    { key: 'hm',              id: 'ov-hm'   },
+    { key: 'implementations', id: 'ov-impl' },
+    { key: 'floors',          id: 'ov-fl'   },
+    { key: 'affection',       id: 'ov-aff'  },
+    { key: 'achievements',    id: 'ov-ach'  },
+  ].forEach(({ key, id }) => {
+    const el = document.getElementById(id);
+    if (el) el.style.display = hb[key] ? '' : 'none';
+  });
 }
 
 function applyProgressBarVisibility() {
@@ -1181,20 +1198,40 @@ function renderSettingsTab() {
 
       <div class="settings-section">
         <h2 class="settings-section-title">Progress Bars</h2>
-        <p class="text-dim" style="font-size:12px; margin-bottom:12px;">
-          Show or hide the progress bar at the top of each tab.
-        </p>
+
+        <p class="text-dim" style="font-size:12px; margin-bottom:8px;">Overview bar (top of the page)</p>
+        <div id="hb-toggle-list" class="reset-trackers" style="margin-bottom:16px;">
+          ${[
+            { key: 'hm',              label: 'Hollow Missions'  },
+            { key: 'implementations', label: 'Implementations'  },
+            { key: 'floors',          label: 'LA Bonus'         },
+            { key: 'affection',       label: 'Affection'        },
+            { key: 'achievements',    label: 'Achievements'     },
+          ].map(({ key, label }) => `
+            <label class="pb-toggle-item">
+              <span>${label}</span>
+              <div class="toggle-switch">
+                <input type="checkbox" class="hb-toggle" data-key="${key}"${state.headerBars[key] ? ' checked' : ''}>
+                <span class="toggle-slider"></span>
+              </div>
+            </label>`).join('')}
+        </div>
+
+        <p class="text-dim" style="font-size:12px; margin-bottom:8px;">Tab progress bars</p>
         <div id="pb-toggle-list" class="reset-trackers">
           ${[
             { key: 'hm',              label: 'Hollow Missions'  },
             { key: 'implementations', label: 'Implementations'  },
-            { key: 'floors',          label: 'Floor Tracker'    },
+            { key: 'floors',          label: 'LA Bonus'         },
             { key: 'affection',       label: 'Affection'        },
             { key: 'achievements',    label: 'Achievements'     },
           ].map(({ key, label }) => `
-            <label class="reset-tracker-item">
-              <input type="checkbox" class="pb-toggle" data-key="${key}"${state.progressBars[key] ? ' checked' : ''} style="accent-color:var(--accent)">
+            <label class="pb-toggle-item">
               <span>${label}</span>
+              <div class="toggle-switch">
+                <input type="checkbox" class="pb-toggle" data-key="${key}"${state.progressBars[key] ? ' checked' : ''}>
+                <span class="toggle-slider"></span>
+              </div>
             </label>`).join('')}
         </div>
       </div>
@@ -1238,6 +1275,13 @@ function renderSettingsTab() {
 }
 
 function initProgressBarToggles() {
+  document.querySelectorAll('.hb-toggle').forEach(cb => {
+    cb.addEventListener('change', () => {
+      state.headerBars[cb.dataset.key] = cb.checked;
+      saveState();
+      applyHeaderBarVisibility();
+    });
+  });
   document.querySelectorAll('.pb-toggle').forEach(cb => {
     cb.addEventListener('change', () => {
       state.progressBars[cb.dataset.key] = cb.checked;
@@ -1377,6 +1421,12 @@ function initResetSection() {
 // ============================================================
 // INIT
 // ============================================================
+function updateHeaderOffset() {
+  const header = document.getElementById('sticky-header');
+  const content = document.getElementById('main-content');
+  if (header && content) content.style.paddingTop = (header.offsetHeight + 16) + 'px';
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   loadState();
   initTabs();
@@ -1390,6 +1440,10 @@ document.addEventListener('DOMContentLoaded', () => {
   initImplControls();
   renderSettingsTab();
   updateOverview();
+  applyHeaderBarVisibility();
   applyProgressBarVisibility();
   applyChildImplIdVisibility();
+  updateHeaderOffset();
 });
+
+window.addEventListener('resize', updateHeaderOffset);
