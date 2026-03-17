@@ -1162,10 +1162,10 @@ function renderSettingsTab() {
           </p>
           <div class="reset-trackers">
             <label class="reset-tracker-item"><input type="checkbox" id="reset-hollowMissions"> Hollow Missions</label>
+            <label class="reset-tracker-item"><input type="checkbox" id="reset-implementations"> Implementations</label>
             <label class="reset-tracker-item"><input type="checkbox" id="reset-floors"> Floor Tracker</label>
             <label class="reset-tracker-item"><input type="checkbox" id="reset-affection"> Affection</label>
             <label class="reset-tracker-item"><input type="checkbox" id="reset-achievements"> Achievements</label>
-            <label class="reset-tracker-item"><input type="checkbox" id="reset-implementations"> Implementations</label>
           </div>
           <div class="reset-actions">
             <button id="reset-selected-btn" class="btn btn-danger">Reset Selected</button>
