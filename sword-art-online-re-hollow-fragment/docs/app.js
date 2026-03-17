@@ -40,7 +40,8 @@ let state = {
   hmExpanded:            {},
   hmHideCompleted:       false,
   implCollapsed:         {},
-  implHideCompleted:     false
+  implHideCompleted:     false,
+  lastTab:               'hm'
 };
 
 // ---- IMPLEMENTATIONS UI STATE (not persisted) ----
@@ -75,9 +76,8 @@ function implStatus(id) {
 function implIsAvailable(id) {
   const parentId = implParentId(id);
   if (parentId === null) return true; // top-level always available
-  const rootId = id.split('.')[0];
-  const rs = implStatus(rootId);
-  return rs === 'implement' || rs === 'implemented';
+  const ps = implStatus(parentId);
+  return ps === 'implement' || ps === 'implemented';
 }
 
 const totalImpls     = () => IMPLEMENTATIONS_DATA.length;
@@ -159,14 +159,24 @@ function applyChildImplIdVisibility() {
 
 // ---- TABS ----
 function initTabs() {
+  const activateTab = tab => {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    const btn = document.querySelector(`.tab-btn[data-tab="${tab}"]`);
+    if (btn) btn.classList.add('active');
+    const panel = document.getElementById('panel-' + tab);
+    if (panel) panel.classList.add('active');
+  };
+
   document.querySelectorAll('.tab-btn').forEach(btn => {
     btn.addEventListener('click', () => {
-      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
-      btn.classList.add('active');
-      document.getElementById('panel-' + btn.dataset.tab).classList.add('active');
+      state.lastTab = btn.dataset.tab;
+      saveState();
+      activateTab(btn.dataset.tab);
     });
   });
+
+  activateTab(state.lastTab || 'hm');
 }
 
 // ============================================================
@@ -266,6 +276,7 @@ function createMissionRow(m, num) {
 
   const row = document.createElement('div');
   row.className = `mission-row${m.type ? ' type-' + m.type : ''}${done ? ' completed' : ''}`;
+  row.dataset.rank = rankNum;
 
   let typeTag = '';
   if (m.type === 'area_boss')   typeTag = '<span class="type-tag tag-area_boss">AREA BOSS</span>';
@@ -350,7 +361,8 @@ function initHMControls() {
     document.querySelectorAll('.mission-row').forEach(row => {
       const name = row.querySelector('.mission-name').textContent.toLowerCase();
       const map  = row.querySelector('.map-name')?.textContent.toLowerCase() || '';
-      row.style.display = (!q || name.includes(q) || map.includes(q)) ? '' : 'none';
+      const rank = row.dataset.rank || '';
+      row.style.display = (!q || q === 'rank' || name.includes(q) || map.includes(q) || rank === q || ('rank ' + rank) === q) ? '' : 'none';
     });
   });
   const hmHideBtn = document.getElementById('hm-hide-completed');
@@ -768,34 +780,52 @@ function renderImplementations() {
   );
 
   // Type filter: matching items only
+  const addAncestors = (matchIds, visibleSet) => {
+    matchIds.forEach(id => {
+      let curr = implParentId(id);
+      while (curr) { visibleSet.add(curr); curr = implParentId(curr); }
+    });
+  };
+
   let typeVisible = null;
   if (implFilterType !== 'all') {
-    typeVisible = new Set(sorted.filter(i => i.rewardType === implFilterType).map(i => i.id));
+    const matchIds = new Set(sorted.filter(i => i.rewardType === implFilterType).map(i => i.id));
+    typeVisible = new Set(matchIds);
+    addAncestors(matchIds, typeVisible);
   }
 
-  // Objective filter: matching items only
+  // Objective filter: matching items + unimplemented ancestors
   let objectiveVisible = null;
   if (implFilterObjective !== 'all') {
-    objectiveVisible = new Set(IMPL_OBJECTIVE_CATEGORIES[implFilterObjective] || []);
+    const matchIds = new Set(IMPL_OBJECTIVE_CATEGORIES[implFilterObjective] || []);
+    objectiveVisible = new Set(matchIds);
+    addAncestors(matchIds, objectiveVisible);
   }
 
-  // Floor filter: matching items only
+  // Floor filter: matching items + unimplemented ancestors
   let floorVisible = null;
   if (implFilterFloor !== 'all') {
-    if (implFilterFloor === 'only') {
-      floorVisible = new Set(Object.values(IMPL_FLOOR_NOTES).flat());
-    } else {
-      floorVisible = new Set(IMPL_FLOOR_NOTES[parseInt(implFilterFloor)] || []);
-    }
+    const matchIds = implFilterFloor === 'only'
+      ? new Set(Object.values(IMPL_FLOOR_NOTES).flat())
+      : new Set(IMPL_FLOOR_NOTES[parseInt(implFilterFloor)] || []);
+    floorVisible = new Set(matchIds);
+    addAncestors(matchIds, floorVisible);
   }
 
   // Search filter: matching items + all their ancestors
   const searchQ = implSearch.toLowerCase().trim();
   let searchVisible = null;
   if (searchQ) {
-    const matchIds = new Set(sorted.filter(i =>
-      i.name.toLowerCase().includes(searchQ) || i.id.includes(searchQ)
-    ).map(i => i.id));
+    const matchIds = new Set(sorted.filter(i => {
+      const s = searchQ;
+      return (
+        i.id.includes(s) ||
+        (i.name        && i.name.toLowerCase().includes(s)) ||
+        (i.objective   && i.objective.toLowerCase().includes(s)) ||
+        (i.rewardType  && i.rewardType.toLowerCase().includes(s)) ||
+        (i.notes       && i.notes.toLowerCase().includes(s))
+      );
+    }).map(i => i.id));
     searchVisible = new Set(matchIds);
     matchIds.forEach(id => {
       let curr = implParentId(id);
@@ -827,11 +857,16 @@ function renderImplementations() {
 
     const visibleItems = items.filter(impl => {
       if (implDepth(impl.id) === 0) {
-        if (anyFilterActive) {
-          // Show root only when not complete and there is at least one matching child
-          return implStatus(impl.id) !== 'implemented' && items.some(childPassesFilters);
-        }
         if (state.implHideCompleted && implStatus(impl.id) === 'implemented') return false;
+        if (anyFilterActive) {
+          const rootInSets = (
+            (!typeVisible      || typeVisible.has(impl.id)) &&
+            (!objectiveVisible || objectiveVisible.has(impl.id)) &&
+            (!floorVisible     || floorVisible.has(impl.id)) &&
+            (!searchVisible    || searchVisible.has(impl.id))
+          );
+          return rootInSets || items.some(childPassesFilters);
+        }
         return true;
       }
       if (typeVisible      && !typeVisible.has(impl.id))      return false;
@@ -949,10 +984,11 @@ function renderImplementations() {
         </div>`;
 
       row.querySelectorAll('[data-action]').forEach(btn => {
+        const id     = btn.dataset.id;
+        const action = btn.dataset.action;
+
         btn.addEventListener('click', e => {
           e.stopPropagation();
-          const id     = btn.dataset.id;
-          const action = btn.dataset.action;
           if (action === 'complete') {
             state.implementations[id] = 'implemented';
           } else if (action === 'cycle') {
@@ -979,6 +1015,27 @@ function renderImplementations() {
           updateAchInlineTrackers();
           renderImplementations();
         });
+
+        if (action === 'cycle') {
+          btn.addEventListener('contextmenu', e => {
+            e.preventDefault();
+            e.stopPropagation();
+            const current = implStatus(id);
+            if (!current) return; // already at Start, nothing to undo
+            if (current === 'checking') {
+              state.implementations[id] = null;
+            } else if (current === 'implement') {
+              state.implementations[id] = 'checking';
+            } else if (current === 'implemented') {
+              state.implementations[id] = 'implement';
+            }
+            lockDescendantsIfNeeded(id);
+            saveState();
+            updateOverview();
+            updateAchInlineTrackers();
+            renderImplementations();
+          });
+        }
       });
 
       const expandBtn = row.querySelector('.impl-expand-btn');
@@ -1085,8 +1142,6 @@ function initImplControls() {
 }
 
 function lockDescendantsIfNeeded(id) {
-  // Only cascade when the root itself is un-done
-  if (implParentId(id) !== null) return;
   IMPLEMENTATIONS_DATA.forEach(impl => {
     if (impl.id.startsWith(id + '.')) {
       state.implementations[impl.id] = null;
