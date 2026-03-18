@@ -115,6 +115,7 @@ html, body {
   background: var(--bg2);
   border-bottom: 2px solid var(--border);
   display: flex;
+  flex-wrap: wrap;
   gap: 0;
   padding: 0 16px;
 }
@@ -1498,6 +1499,11 @@ html, body {
 }
 
 /* Responsive */
+@media (max-width: 720px) {
+  #tab-bar { padding: 0; }
+  .tab-btn { flex: 0 0 33.333%; box-sizing: border-box; text-align: center; padding: 9px 4px; font-size: 12px; }
+}
+
 @media (max-width: 600px) {
   #overview-bar { padding: 8px; gap: 8px; }
   #overview-bar h1 { font-size: 13px; }

@@ -50,6 +50,7 @@ let state = {
 let implFilterType = 'all';
 let implFilterObjective = 'all';
 let implFilterFloor = 'all';
+let implFilterStatus = 'all';
 let implSearch = '';
 const implDetailsOpen = {};
 
@@ -829,6 +830,15 @@ function renderImplementations() {
     addAncestors(matchIds, floorVisible);
   }
 
+  // Status filter: matching items + their ancestors
+  let statusVisible = null;
+  if (implFilterStatus !== 'all') {
+    const targetStatus = implFilterStatus === 'start' ? null : implFilterStatus;
+    const matchIds = new Set(sorted.filter(i => implStatus(i.id) === targetStatus).map(i => i.id));
+    statusVisible = new Set(matchIds);
+    addAncestors(matchIds, statusVisible);
+  }
+
   // Search filter: matching items + all their ancestors
   const searchQ = implSearch.toLowerCase().trim();
   let searchVisible = null;
@@ -860,13 +870,14 @@ function renderImplementations() {
 
   list.innerHTML = '';
   groups.forEach((items, rootId) => {
-    const anyFilterActive = typeVisible || objectiveVisible || floorVisible || searchVisible;
+    const anyFilterActive = typeVisible || objectiveVisible || floorVisible || statusVisible || searchVisible;
 
     const childPassesFilters = impl => {
       if (implDepth(impl.id) === 0) return false;
       if (typeVisible      && !typeVisible.has(impl.id))      return false;
       if (objectiveVisible && !objectiveVisible.has(impl.id)) return false;
       if (floorVisible     && !floorVisible.has(impl.id))     return false;
+      if (statusVisible    && !statusVisible.has(impl.id))    return false;
       if (searchVisible    && !searchVisible.has(impl.id))    return false;
       if (state.implHideCompleted && implStatus(impl.id) === 'implemented') return false;
       return true;
@@ -880,6 +891,7 @@ function renderImplementations() {
             (!typeVisible      || typeVisible.has(impl.id)) &&
             (!objectiveVisible || objectiveVisible.has(impl.id)) &&
             (!floorVisible     || floorVisible.has(impl.id)) &&
+            (!statusVisible    || statusVisible.has(impl.id)) &&
             (!searchVisible    || searchVisible.has(impl.id))
           );
           return rootInSets || items.some(childPassesFilters);
@@ -889,6 +901,7 @@ function renderImplementations() {
       if (typeVisible      && !typeVisible.has(impl.id))      return false;
       if (objectiveVisible && !objectiveVisible.has(impl.id)) return false;
       if (floorVisible     && !floorVisible.has(impl.id))     return false;
+      if (statusVisible    && !statusVisible.has(impl.id))    return false;
       if (searchVisible    && !searchVisible.has(impl.id))    return false;
       if (state.implHideCompleted && implStatus(impl.id) === 'implemented') return false;
       return true;
@@ -1116,6 +1129,13 @@ function initImplControls() {
         <option value="only">Only Floor Unlocks</option>
         ${floors.map(f => `<option value="${f}">Floor ${f}</option>`).join('')}
       </select>
+      <select id="impl-filter-status" style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);color:var(--text);font-size:13px;padding:6px 10px;outline:none;cursor:pointer;">
+        <option value="all">All Statuses</option>
+        <option value="start">Start</option>
+        <option value="checking">Checking</option>
+        <option value="implement">Implement</option>
+        <option value="implemented">Implemented</option>
+      </select>
     </div>`;
 
   const implList = panel.querySelector('#impl-list');
@@ -1154,6 +1174,10 @@ function initImplControls() {
   });
   document.getElementById('impl-filter-floor').addEventListener('change', e => {
     implFilterFloor = e.target.value;
+    renderImplementations();
+  });
+  document.getElementById('impl-filter-status').addEventListener('change', e => {
+    implFilterStatus = e.target.value;
     renderImplementations();
   });
 }
