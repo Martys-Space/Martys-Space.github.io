@@ -1,11 +1,24 @@
 /* ===== storage.js — localStorage wrapper ===== */
 const Storage = (() => {
-  const USER_KEY = 'tg_user_v2';
-  const STATE_KEY = 'tg_state_v2';
-  const OLD_USER_KEY = 'training_game_user_v1';
-  const OLD_STATE_KEY = 'training_game_state_v1';
+  const LS_KEY = 'tg_v1';
 
   let _saveTimeout = null;
+  let _data = {};  // in-memory mirror of the single stored object
+
+  function _load() {
+    if (Object.keys(_data).length) return _data;
+    try {
+      const raw = localStorage.getItem(LS_KEY);
+      if (raw) _data = JSON.parse(raw);
+    } catch (e) { /* ignore */ }
+    return _data;
+  }
+
+  function _flush() {
+    try {
+      localStorage.setItem(LS_KEY, JSON.stringify(_data));
+    } catch (e) { /* ignore */ }
+  }
 
   function defaultState() {
     return {
@@ -44,49 +57,50 @@ const Storage = (() => {
   }
 
   function loadUser() {
-    try {
-      const raw = localStorage.getItem(USER_KEY);
-      if (raw) return JSON.parse(raw);
-    } catch (e) { /* ignore */ }
-    return null;
+    return _load().user || null;
   }
 
   function saveUser(user) {
-    try {
-      localStorage.setItem(USER_KEY, JSON.stringify(user));
-    } catch (e) { /* ignore */ }
+    _load();
+    _data.user = user;
+    _flush();
   }
 
   function loadState() {
-    try {
-      const raw = localStorage.getItem(STATE_KEY);
-      if (raw) {
-        const parsed = JSON.parse(raw);
-        // Merge with defaults to fill any missing fields
-        const state = { ...defaultState(), ...parsed };
-        state.trainingPlan = { ...defaultState().trainingPlan, ...parsed.trainingPlan };
-        state.stats = { ...defaultState().stats, ...parsed.stats };
-        return state;
-      }
-    } catch (e) { /* ignore */ }
+    const saved = _load().state;
+    if (saved) {
+      // Merge with defaults to fill any missing fields
+      const state = { ...defaultState(), ...saved };
+      state.trainingPlan = { ...defaultState().trainingPlan, ...saved.trainingPlan };
+      state.stats = { ...defaultState().stats, ...saved.stats };
+      return state;
+    }
     return defaultState();
   }
 
   function saveState(state) {
     // Debounce saves to avoid excessive writes
+    _load();
+    _data.state = state;
     clearTimeout(_saveTimeout);
-    _saveTimeout = setTimeout(() => {
-      try {
-        localStorage.setItem(STATE_KEY, JSON.stringify(state));
-      } catch (e) { /* ignore */ }
-    }, 100);
+    _saveTimeout = setTimeout(_flush, 100);
   }
 
   function saveStateImmediate(state) {
+    _load();
+    _data.state = state;
     clearTimeout(_saveTimeout);
-    try {
-      localStorage.setItem(STATE_KEY, JSON.stringify(state));
-    } catch (e) { /* ignore */ }
+    _flush();
+  }
+
+  function getInstallDismissed() {
+    return !!_load().installDismissed;
+  }
+
+  function setInstallDismissed() {
+    _load();
+    _data.installDismissed = true;
+    _flush();
   }
 
   function exportAll() {
@@ -101,11 +115,11 @@ const Storage = (() => {
   function importAll(jsonStr) {
     try {
       const data = JSON.parse(jsonStr);
-      if (data.user) saveUser(data.user);
-      if (data.state) {
-        clearTimeout(_saveTimeout);
-        localStorage.setItem(STATE_KEY, JSON.stringify(data.state));
-      }
+      _load();
+      if (data.user)  _data.user  = data.user;
+      if (data.state) _data.state = data.state;
+      clearTimeout(_saveTimeout);
+      _flush();
       return true;
     } catch (e) {
       return false;
@@ -113,36 +127,9 @@ const Storage = (() => {
   }
 
   function resetAll() {
-    localStorage.removeItem(USER_KEY);
-    localStorage.removeItem(STATE_KEY);
-  }
-
-  // Try to migrate from old v1 format
-  function migrateV1() {
-    try {
-      const oldUser = localStorage.getItem(OLD_USER_KEY);
-      const oldState = localStorage.getItem(OLD_STATE_KEY);
-      if (!oldUser && !oldState) return false;
-
-      if (oldUser) {
-        const parsed = JSON.parse(oldUser);
-        const user = defaultUser();
-        if (parsed.name) user.username = parsed.name;
-        saveUser(user);
-      }
-
-      if (oldState) {
-        const parsed = JSON.parse(oldState);
-        const state = defaultState();
-        if (parsed.xp) state.xp = parsed.xp;
-        if (parsed.gold) state.gold = parsed.gold;
-        saveStateImmediate(state);
-      }
-
-      return true;
-    } catch (e) {
-      return false;
-    }
+    clearTimeout(_saveTimeout);
+    _data = {};
+    localStorage.removeItem(LS_KEY);
   }
 
   return {
@@ -151,10 +138,11 @@ const Storage = (() => {
     loadState,
     saveState,
     saveStateImmediate,
+    getInstallDismissed,
+    setInstallDismissed,
     exportAll,
     importAll,
     resetAll,
-    migrateV1,
     defaultState,
     defaultUser
   };

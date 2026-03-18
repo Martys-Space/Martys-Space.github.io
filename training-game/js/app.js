@@ -403,7 +403,7 @@ const App = (() => {
     }
 
     // Don't show if user previously dismissed
-    if (localStorage.getItem('tg_install_dismissed')) return;
+    if (Storage.getInstallDismissed()) return;
 
     // Android / Chrome — capture the native beforeinstallprompt
     window.addEventListener('beforeinstallprompt', (e) => {
@@ -420,7 +420,7 @@ const App = (() => {
     if (isIos && isSafari && !navigator.standalone) {
       // Show after a short delay so it doesn't flash immediately
       setTimeout(() => {
-        if (localStorage.getItem('tg_install_dismissed')) return;
+        if (Storage.getInstallDismissed()) return;
         hint.textContent = 'Tap the share button, then "Add to Home Screen"';
         btnInstall.textContent = 'Got it';
         btnInstall.onclick = () => {
@@ -446,7 +446,7 @@ const App = (() => {
     // Dismiss button
     btnDismiss.addEventListener('click', () => {
       banner.classList.add('hidden');
-      localStorage.setItem('tg_install_dismissed', '1');
+      Storage.setInstallDismissed();
     });
 
     // Hide banner if app gets installed while page is open

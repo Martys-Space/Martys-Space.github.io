@@ -3,6 +3,7 @@
 // =============================================
 
 const MAX_CHOICES = 3;
+const LS_KEY = 'osrsl6_v1';
 
 // ─── State ────────────────────────────────────
 const state = {
@@ -545,7 +546,7 @@ function buildUnlocksOverview(activeRegions) {
 
 function loadTasksFromStorage() {
   try {
-    const saved = localStorage.getItem('osrs-l6-tasks');
+    const saved = localStorage.getItem(LS_KEY);
     if (saved) {
       state.tasks = JSON.parse(saved);
     }
@@ -559,7 +560,7 @@ function loadTasksFromStorage() {
 
 function saveTasksToStorage() {
   try {
-    localStorage.setItem('osrs-l6-tasks', JSON.stringify(state.tasks));
+    localStorage.setItem(LS_KEY, JSON.stringify(state.tasks));
   } catch (e) {}
 }
 
