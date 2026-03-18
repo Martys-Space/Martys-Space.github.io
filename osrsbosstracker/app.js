@@ -293,76 +293,110 @@ async function loadTitles() {
     }
 }
 
-// LocalStorage Functions
+// LocalStorage — single key
+const LS_KEY = 'osrsboss_v1';
+
+const SETTINGS_DEFAULTS = {
+    dateFormat: 'default',
+    showLevel: true,
+    showUsernameWithTitle: true,
+    showXPGains: true,
+    xpGainsPeriod: 'last_update',
+    showMilestonesInCard: true,
+    showDetailsInCard: true
+};
+
+let appState = {
+    currentUsername: null,
+    settings: { ...SETTINGS_DEFAULTS },
+    goalSortPreference: 'newest',
+    usernameHistory: [],
+    playerDataCache: {},
+    users: {}
+};
+
+function loadState() {
+    try {
+        const saved = localStorage.getItem(LS_KEY);
+        if (saved) {
+            const parsed = JSON.parse(saved);
+            appState = Object.assign(appState, parsed);
+            // Merge settings so new defaults are applied for missing keys
+            appState.settings = Object.assign({ ...SETTINGS_DEFAULTS }, parsed.settings || {});
+        }
+    } catch (e) {
+        console.warn('Could not load state:', e);
+    }
+}
+
+function saveState() {
+    try {
+        localStorage.setItem(LS_KEY, JSON.stringify(appState));
+    } catch (e) {
+        console.warn('Could not save state:', e);
+    }
+}
+
+function ensureUser(username) {
+    const key = username.toLowerCase();
+    if (!appState.users[key]) {
+        appState.users[key] = { goals: [], titleId: 'novice', xpHistory: [] };
+    }
+    return appState.users[key];
+}
+
 function saveGoalsToStorage(username, goals) {
-    const key = `osrs_goals_${username.toLowerCase()}`;
-    localStorage.setItem(key, JSON.stringify(goals));
+    ensureUser(username).goals = goals;
+    saveState();
 }
 
 function loadGoalsFromStorage(username) {
-    const key = `osrs_goals_${username.toLowerCase()}`;
-    const data = localStorage.getItem(key);
-    return data ? JSON.parse(data) : [];
+    return ensureUser(username).goals;
 }
 
 function saveUsername(username) {
-    localStorage.setItem('osrs_current_username', username);
+    appState.currentUsername = username;
+    saveState();
 }
 
 function loadSavedUsername() {
-    return localStorage.getItem('osrs_current_username');
+    return appState.currentUsername;
 }
 
 function saveSettings(settings) {
-    localStorage.setItem('osrs_settings', JSON.stringify(settings));
+    appState.settings = settings;
+    saveState();
 }
 
 function loadSettings() {
-    const saved = localStorage.getItem('osrs_settings');
-    return saved ? JSON.parse(saved) : {
-        dateFormat: 'default',
-        showLevel: true,
-        showUsernameWithTitle: true,
-        showXPGains: true,
-        xpGainsPeriod: 'last_update',
-        showMilestonesInCard: true,
-        showDetailsInCard: true
-    };
+    return appState.settings;
 }
 
 function saveSelectedTitle(username, titleId) {
-    const key = `osrs_title_${username.toLowerCase()}`;
-    localStorage.setItem(key, titleId);
+    ensureUser(username).titleId = titleId;
+    saveState();
 }
 
 function loadSelectedTitle(username) {
-    const key = `osrs_title_${username.toLowerCase()}`;
-    return localStorage.getItem(key) || 'novice';
+    return ensureUser(username).titleId || 'novice';
 }
 
 function saveXPHistory(username, xpData) {
-    const key = `osrs_xp_history_${username.toLowerCase()}`;
-    const history = loadXPHistory(username);
-
-    // Add new entry
-    history.push({
+    const user = ensureUser(username);
+    user.xpHistory.push({
         timestamp: Date.now(),
         date: new Date().toISOString(),
         totalXP: xpData.totalXP,
-        bosses: xpData.bosses // { boss_key: xp_value }
+        bosses: xpData.bosses
     });
-
-    // Keep only last 400 days of history to prevent localStorage bloat
+    // Keep only last 400 days of history to prevent storage bloat
     const cutoffDate = Date.now() - (400 * 24 * 60 * 60 * 1000);
-    const filteredHistory = history.filter(entry => entry.timestamp > cutoffDate);
-
-    localStorage.setItem(key, JSON.stringify(filteredHistory));
+    user.xpHistory = user.xpHistory.filter(entry => entry.timestamp > cutoffDate);
+    saveState();
 }
 
 function loadXPHistory(username) {
-    const key = `osrs_xp_history_${username.toLowerCase()}`;
-    const saved = localStorage.getItem(key);
-    return saved ? JSON.parse(saved) : [];
+    return ensureUser(username).xpHistory;
 }
 
 function calculateXPGains(username, period) {
@@ -474,36 +508,20 @@ function getRateLimitInfo() {
 
 // Cache Functions
 function savePlayerDataToCache(username, playerData) {
-    playerDataCache[username.toLowerCase()] = {
+    appState.playerDataCache[username.toLowerCase()] = {
         data: playerData,
         timestamp: Date.now()
     };
-
-    // Save to localStorage
-    try {
-        localStorage.setItem('playerDataCache', JSON.stringify(playerDataCache));
-    } catch (e) {
-        console.warn('Could not save to localStorage:', e);
-    }
+    saveState();
 }
 
 function loadPlayerDataFromCache(username) {
-    const cached = playerDataCache[username.toLowerCase()];
-    if (cached) {
-        return cached.data;
-    }
-    return null;
+    const cached = appState.playerDataCache[username.toLowerCase()];
+    return cached ? cached.data : null;
 }
 
 function loadCacheFromStorage() {
-    try {
-        const cached = localStorage.getItem('playerDataCache');
-        if (cached) {
-            playerDataCache = JSON.parse(cached);
-        }
-    } catch (e) {
-        console.warn('Could not load from localStorage:', e);
-    }
+    // Cache is already loaded as part of appState — no separate action needed
 }
 
 // API Functions
@@ -683,7 +701,7 @@ function handleChangeUsername() {
 }
 
 function saveUsernameToHistory(username) {
-    let history = JSON.parse(localStorage.getItem('usernameHistory') || '[]');
+    let history = appState.usernameHistory;
 
     // Remove username if it already exists (to avoid duplicates)
     history = history.filter(item => item.username.toLowerCase() !== username.toLowerCase());
@@ -695,13 +713,12 @@ function saveUsernameToHistory(username) {
     });
 
     // Keep only last 10
-    history = history.slice(0, 10);
-
-    localStorage.setItem('usernameHistory', JSON.stringify(history));
+    appState.usernameHistory = history.slice(0, 10);
+    saveState();
 }
 
 function renderUsernameHistory() {
-    const history = JSON.parse(localStorage.getItem('usernameHistory') || '[]');
+    const history = appState.usernameHistory;
 
     if (history.length === 0) {
         usernameHistory.style.display = 'none';
@@ -3183,8 +3200,9 @@ if (goalSortSelect) {
     goalSortSelect.addEventListener('change', (e) => {
         currentSortOption = e.target.value;
 
-        // Save to local storage
-        localStorage.setItem('goalSortPreference', currentSortOption);
+        // Save sort preference
+        appState.goalSortPreference = currentSortOption;
+        saveState();
 
         // Re-render the current tab's goals
         const activeTab = document.querySelector('.main-tab.active');
@@ -3203,19 +3221,15 @@ window.addEventListener('DOMContentLoaded', async () => {
     await loadBossPoints();
     await loadTitles();
 
-    // Load settings
+    // Load all persisted state from single key
+    loadState();
+
+    // Sync in-memory variables from appState
     userSettings = loadSettings();
-
-    // Load player data cache from localStorage
     loadCacheFromStorage();
-
-    // Load saved sort preference
-    const savedSort = localStorage.getItem('goalSortPreference');
-    if (savedSort) {
-        currentSortOption = savedSort;
-        if (goalSortSelect) {
-            goalSortSelect.value = savedSort;
-        }
+    currentSortOption = appState.goalSortPreference;
+    if (goalSortSelect) {
+        goalSortSelect.value = currentSortOption;
     }
 
     const savedUsername = loadSavedUsername();
