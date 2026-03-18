@@ -2526,39 +2526,39 @@
       "tiers": {
         "1": {
           "skill_experience": 2,
-          "worker_experience": 2
+          "worker_experience": 4
         },
         "2": {
           "skill_experience": 3,
-          "worker_experience": 3
+          "worker_experience": 8
         },
         "3": {
           "skill_experience": 4,
-          "worker_experience": 4
+          "worker_experience": 12
         },
         "4": {
           "skill_experience": 5,
-          "worker_experience": 5
+          "worker_experience": 16
         },
         "5": {
           "skill_experience": 6,
-          "worker_experience": 6
+          "worker_experience": 20
         },
         "6": {
           "skill_experience": 7,
-          "worker_experience": 7
+          "worker_experience": 25
         },
         "7": {
           "skill_experience": 8,
-          "worker_experience": 8
+          "worker_experience": 30
         },
         "8": {
           "skill_experience": 9,
-          "worker_experience": 9
+          "worker_experience": 35
         },
         "9": {
           "skill_experience": 10,
-          "worker_experience": 10
+          "worker_experience": 40
         }
       }
     },
@@ -2576,39 +2576,39 @@
       "tiers": {
         "1": {
           "skill_experience": 2,
-          "worker_experience": 2
+          "worker_experience": 4
         },
         "2": {
           "skill_experience": 3,
-          "worker_experience": 3
+          "worker_experience": 8
         },
         "3": {
           "skill_experience": 4,
-          "worker_experience": 4
+          "worker_experience": 12
         },
         "4": {
           "skill_experience": 5,
-          "worker_experience": 5
+          "worker_experience": 16
         },
         "5": {
           "skill_experience": 6,
-          "worker_experience": 6
+          "worker_experience": 20
         },
         "6": {
           "skill_experience": 7,
-          "worker_experience": 7
+          "worker_experience": 25
         },
         "7": {
           "skill_experience": 8,
-          "worker_experience": 8
+          "worker_experience": 30
         },
         "8": {
           "skill_experience": 9,
-          "worker_experience": 9
+          "worker_experience": 35
         },
         "9": {
           "skill_experience": 10,
-          "worker_experience": 10
+          "worker_experience": 40
         }
       }
     },
@@ -2629,39 +2629,39 @@
       "tiers": {
         "1": {
           "skill_experience": 2,
-          "worker_experience": 2
+          "worker_experience": 4
         },
         "2": {
           "skill_experience": 3,
-          "worker_experience": 3
+          "worker_experience": 8
         },
         "3": {
           "skill_experience": 4,
-          "worker_experience": 4
+          "worker_experience": 12
         },
         "4": {
           "skill_experience": 5,
-          "worker_experience": 5
+          "worker_experience": 16
         },
         "5": {
           "skill_experience": 6,
-          "worker_experience": 6
+          "worker_experience": 20
         },
         "6": {
           "skill_experience": 7,
-          "worker_experience": 7
+          "worker_experience": 25
         },
         "7": {
           "skill_experience": 8,
-          "worker_experience": 8
+          "worker_experience": 30
         },
         "8": {
           "skill_experience": 9,
-          "worker_experience": 9
+          "worker_experience": 35
         },
         "9": {
           "skill_experience": 10,
-          "worker_experience": 10
+          "worker_experience": 40
         }
       }
     },
@@ -2682,39 +2682,39 @@
       "tiers": {
         "1": {
           "skill_experience": 2,
-          "worker_experience": 2
+          "worker_experience": 4
         },
         "2": {
           "skill_experience": 3,
-          "worker_experience": 3
+          "worker_experience": 8
         },
         "3": {
           "skill_experience": 4,
-          "worker_experience": 4
+          "worker_experience": 12
         },
         "4": {
           "skill_experience": 5,
-          "worker_experience": 5
+          "worker_experience": 16
         },
         "5": {
           "skill_experience": 6,
-          "worker_experience": 6
+          "worker_experience": 20
         },
         "6": {
           "skill_experience": 7,
-          "worker_experience": 7
+          "worker_experience": 25
         },
         "7": {
           "skill_experience": 8,
-          "worker_experience": 8
+          "worker_experience": 30
         },
         "8": {
           "skill_experience": 9,
-          "worker_experience": 9
+          "worker_experience": 35
         },
         "9": {
           "skill_experience": 10,
-          "worker_experience": 10
+          "worker_experience": 40
         }
       }
     },
@@ -2732,39 +2732,39 @@
       "tiers": {
         "1": {
           "skill_experience": 2,
-          "worker_experience": 2
+          "worker_experience": 4
         },
         "2": {
           "skill_experience": 3,
-          "worker_experience": 3
+          "worker_experience": 8
         },
         "3": {
           "skill_experience": 4,
-          "worker_experience": 4
+          "worker_experience": 12
         },
         "4": {
           "skill_experience": 5,
-          "worker_experience": 5
+          "worker_experience": 16
         },
         "5": {
           "skill_experience": 6,
-          "worker_experience": 6
+          "worker_experience": 20
         },
         "6": {
           "skill_experience": 7,
-          "worker_experience": 7
+          "worker_experience": 25
         },
         "7": {
           "skill_experience": 8,
-          "worker_experience": 8
+          "worker_experience": 30
         },
         "8": {
           "skill_experience": 9,
-          "worker_experience": 9
+          "worker_experience": 35
         },
         "9": {
           "skill_experience": 10,
-          "worker_experience": 10
+          "worker_experience": 40
         }
       }
     },
@@ -2785,39 +2785,39 @@
       "tiers": {
         "1": {
           "skill_experience": 2,
-          "worker_experience": 2
+          "worker_experience": 4
         },
         "2": {
           "skill_experience": 3,
-          "worker_experience": 3
+          "worker_experience": 8
         },
         "3": {
           "skill_experience": 4,
-          "worker_experience": 4
+          "worker_experience": 12
         },
         "4": {
           "skill_experience": 5,
-          "worker_experience": 5
+          "worker_experience": 16
         },
         "5": {
           "skill_experience": 6,
-          "worker_experience": 6
+          "worker_experience": 20
         },
         "6": {
           "skill_experience": 7,
-          "worker_experience": 7
+          "worker_experience": 25
         },
         "7": {
           "skill_experience": 8,
-          "worker_experience": 8
+          "worker_experience": 30
         },
         "8": {
           "skill_experience": 9,
-          "worker_experience": 9
+          "worker_experience": 35
         },
         "9": {
           "skill_experience": 10,
-          "worker_experience": 10
+          "worker_experience": 40
         }
       }
     },
@@ -2835,39 +2835,39 @@
       "tiers": {
         "1": {
           "skill_experience": 2,
-          "worker_experience": 2
+          "worker_experience": 4
         },
         "2": {
           "skill_experience": 3,
-          "worker_experience": 3
+          "worker_experience": 8
         },
         "3": {
           "skill_experience": 4,
-          "worker_experience": 4
+          "worker_experience": 12
         },
         "4": {
           "skill_experience": 5,
-          "worker_experience": 5
+          "worker_experience": 16
         },
         "5": {
           "skill_experience": 6,
-          "worker_experience": 6
+          "worker_experience": 20
         },
         "6": {
           "skill_experience": 7,
-          "worker_experience": 7
+          "worker_experience": 25
         },
         "7": {
           "skill_experience": 8,
-          "worker_experience": 8
+          "worker_experience": 30
         },
         "8": {
           "skill_experience": 9,
-          "worker_experience": 9
+          "worker_experience": 35
         },
         "9": {
           "skill_experience": 10,
-          "worker_experience": 10
+          "worker_experience": 40
         }
       }
     },
@@ -2889,39 +2889,39 @@
       "tiers": {
         "1": {
           "skill_experience": 2,
-          "worker_experience": 2
+          "worker_experience": 4
         },
         "2": {
           "skill_experience": 3,
-          "worker_experience": 3
+          "worker_experience": 8
         },
         "3": {
           "skill_experience": 4,
-          "worker_experience": 4
+          "worker_experience": 12
         },
         "4": {
           "skill_experience": 5,
-          "worker_experience": 5
+          "worker_experience": 16
         },
         "5": {
           "skill_experience": 6,
-          "worker_experience": 6
+          "worker_experience": 20
         },
         "6": {
           "skill_experience": 7,
-          "worker_experience": 7
+          "worker_experience": 25
         },
         "7": {
           "skill_experience": 8,
-          "worker_experience": 8
+          "worker_experience": 30
         },
         "8": {
           "skill_experience": 9,
-          "worker_experience": 9
+          "worker_experience": 35
         },
         "9": {
           "skill_experience": 10,
-          "worker_experience": 10
+          "worker_experience": 40
         }
       }
     },
@@ -2943,39 +2943,39 @@
       "tiers": {
         "1": {
           "skill_experience": 2,
-          "worker_experience": 2
+          "worker_experience": 4
         },
         "2": {
           "skill_experience": 3,
-          "worker_experience": 3
+          "worker_experience": 8
         },
         "3": {
           "skill_experience": 4,
-          "worker_experience": 4
+          "worker_experience": 12
         },
         "4": {
           "skill_experience": 5,
-          "worker_experience": 5
+          "worker_experience": 16
         },
         "5": {
           "skill_experience": 6,
-          "worker_experience": 6
+          "worker_experience": 20
         },
         "6": {
           "skill_experience": 7,
-          "worker_experience": 7
+          "worker_experience": 25
         },
         "7": {
           "skill_experience": 8,
-          "worker_experience": 8
+          "worker_experience": 30
         },
         "8": {
           "skill_experience": 9,
-          "worker_experience": 9
+          "worker_experience": 35
         },
         "9": {
           "skill_experience": 10,
-          "worker_experience": 10
+          "worker_experience": 40
         }
       }
     },
@@ -3006,39 +3006,39 @@
       "tiers": {
         "1": {
           "skill_experience": 2,
-          "worker_experience": 2
+          "worker_experience": 4
         },
         "2": {
           "skill_experience": 3,
-          "worker_experience": 3
+          "worker_experience": 8
         },
         "3": {
           "skill_experience": 4,
-          "worker_experience": 4
+          "worker_experience": 12
         },
         "4": {
           "skill_experience": 5,
-          "worker_experience": 5
+          "worker_experience": 16
         },
         "5": {
           "skill_experience": 6,
-          "worker_experience": 6
+          "worker_experience": 20
         },
         "6": {
           "skill_experience": 7,
-          "worker_experience": 7
+          "worker_experience": 25
         },
         "7": {
           "skill_experience": 8,
-          "worker_experience": 8
+          "worker_experience": 30
         },
         "8": {
           "skill_experience": 9,
-          "worker_experience": 9
+          "worker_experience": 35
         },
         "9": {
           "skill_experience": 10,
-          "worker_experience": 10
+          "worker_experience": 40
         }
       }
     },
@@ -3069,39 +3069,39 @@
       "tiers": {
         "1": {
           "skill_experience": 2,
-          "worker_experience": 2
+          "worker_experience": 4
         },
         "2": {
           "skill_experience": 3,
-          "worker_experience": 3
+          "worker_experience": 8
         },
         "3": {
           "skill_experience": 4,
-          "worker_experience": 4
+          "worker_experience": 12
         },
         "4": {
           "skill_experience": 5,
-          "worker_experience": 5
+          "worker_experience": 16
         },
         "5": {
           "skill_experience": 6,
-          "worker_experience": 6
+          "worker_experience": 20
         },
         "6": {
           "skill_experience": 7,
-          "worker_experience": 7
+          "worker_experience": 25
         },
         "7": {
           "skill_experience": 8,
-          "worker_experience": 8
+          "worker_experience": 30
         },
         "8": {
           "skill_experience": 9,
-          "worker_experience": 9
+          "worker_experience": 35
         },
         "9": {
           "skill_experience": 10,
-          "worker_experience": 10
+          "worker_experience": 40
         }
       }
     },
@@ -3132,39 +3132,39 @@
       "tiers": {
         "1": {
           "skill_experience": 2,
-          "worker_experience": 2
+          "worker_experience": 4
         },
         "2": {
           "skill_experience": 3,
-          "worker_experience": 3
+          "worker_experience": 8
         },
         "3": {
           "skill_experience": 4,
-          "worker_experience": 4
+          "worker_experience": 12
         },
         "4": {
           "skill_experience": 5,
-          "worker_experience": 5
+          "worker_experience": 16
         },
         "5": {
           "skill_experience": 6,
-          "worker_experience": 6
+          "worker_experience": 20
         },
         "6": {
           "skill_experience": 7,
-          "worker_experience": 7
+          "worker_experience": 25
         },
         "7": {
           "skill_experience": 8,
-          "worker_experience": 8
+          "worker_experience": 30
         },
         "8": {
           "skill_experience": 9,
-          "worker_experience": 9
+          "worker_experience": 35
         },
         "9": {
           "skill_experience": 10,
-          "worker_experience": 10
+          "worker_experience": 40
         }
       }
     },
@@ -3195,39 +3195,39 @@
       "tiers": {
         "1": {
           "skill_experience": 2,
-          "worker_experience": 2
+          "worker_experience": 4
         },
         "2": {
           "skill_experience": 3,
-          "worker_experience": 3
+          "worker_experience": 8
         },
         "3": {
           "skill_experience": 4,
-          "worker_experience": 4
+          "worker_experience": 12
         },
         "4": {
           "skill_experience": 5,
-          "worker_experience": 5
+          "worker_experience": 16
         },
         "5": {
           "skill_experience": 6,
-          "worker_experience": 6
+          "worker_experience": 20
         },
         "6": {
           "skill_experience": 7,
-          "worker_experience": 7
+          "worker_experience": 25
         },
         "7": {
           "skill_experience": 8,
-          "worker_experience": 8
+          "worker_experience": 30
         },
         "8": {
           "skill_experience": 9,
-          "worker_experience": 9
+          "worker_experience": 35
         },
         "9": {
           "skill_experience": 10,
-          "worker_experience": 10
+          "worker_experience": 40
         }
       }
     },
@@ -3258,39 +3258,39 @@
       "tiers": {
         "1": {
           "skill_experience": 2,
-          "worker_experience": 2
+          "worker_experience": 4
         },
         "2": {
           "skill_experience": 3,
-          "worker_experience": 3
+          "worker_experience": 8
         },
         "3": {
           "skill_experience": 4,
-          "worker_experience": 4
+          "worker_experience": 12
         },
         "4": {
           "skill_experience": 5,
-          "worker_experience": 5
+          "worker_experience": 16
         },
         "5": {
           "skill_experience": 6,
-          "worker_experience": 6
+          "worker_experience": 20
         },
         "6": {
           "skill_experience": 7,
-          "worker_experience": 7
+          "worker_experience": 25
         },
         "7": {
           "skill_experience": 8,
-          "worker_experience": 8
+          "worker_experience": 30
         },
         "8": {
           "skill_experience": 9,
-          "worker_experience": 9
+          "worker_experience": 35
         },
         "9": {
           "skill_experience": 10,
-          "worker_experience": 10
+          "worker_experience": 40
         }
       }
     },
@@ -3321,39 +3321,39 @@
       "tiers": {
         "1": {
           "skill_experience": 2,
-          "worker_experience": 2
+          "worker_experience": 4
         },
         "2": {
           "skill_experience": 3,
-          "worker_experience": 3
+          "worker_experience": 8
         },
         "3": {
           "skill_experience": 4,
-          "worker_experience": 4
+          "worker_experience": 12
         },
         "4": {
           "skill_experience": 5,
-          "worker_experience": 5
+          "worker_experience": 16
         },
         "5": {
           "skill_experience": 6,
-          "worker_experience": 6
+          "worker_experience": 20
         },
         "6": {
           "skill_experience": 7,
-          "worker_experience": 7
+          "worker_experience": 25
         },
         "7": {
           "skill_experience": 8,
-          "worker_experience": 8
+          "worker_experience": 30
         },
         "8": {
           "skill_experience": 9,
-          "worker_experience": 9
+          "worker_experience": 35
         },
         "9": {
           "skill_experience": 10,
-          "worker_experience": 10
+          "worker_experience": 40
         }
       }
     },
@@ -3384,39 +3384,39 @@
       "tiers": {
         "1": {
           "skill_experience": 2,
-          "worker_experience": 2
+          "worker_experience": 4
         },
         "2": {
           "skill_experience": 3,
-          "worker_experience": 3
+          "worker_experience": 8
         },
         "3": {
           "skill_experience": 4,
-          "worker_experience": 4
+          "worker_experience": 12
         },
         "4": {
           "skill_experience": 5,
-          "worker_experience": 5
+          "worker_experience": 16
         },
         "5": {
           "skill_experience": 6,
-          "worker_experience": 6
+          "worker_experience": 20
         },
         "6": {
           "skill_experience": 7,
-          "worker_experience": 7
+          "worker_experience": 25
         },
         "7": {
           "skill_experience": 8,
-          "worker_experience": 8
+          "worker_experience": 30
         },
         "8": {
           "skill_experience": 9,
-          "worker_experience": 9
+          "worker_experience": 35
         },
         "9": {
           "skill_experience": 10,
-          "worker_experience": 10
+          "worker_experience": 40
         }
       }
     },
@@ -3447,39 +3447,39 @@
       "tiers": {
         "1": {
           "skill_experience": 2,
-          "worker_experience": 2
+          "worker_experience": 4
         },
         "2": {
           "skill_experience": 3,
-          "worker_experience": 3
+          "worker_experience": 8
         },
         "3": {
           "skill_experience": 4,
-          "worker_experience": 4
+          "worker_experience": 12
         },
         "4": {
           "skill_experience": 5,
-          "worker_experience": 5
+          "worker_experience": 16
         },
         "5": {
           "skill_experience": 6,
-          "worker_experience": 6
+          "worker_experience": 20
         },
         "6": {
           "skill_experience": 7,
-          "worker_experience": 7
+          "worker_experience": 25
         },
         "7": {
           "skill_experience": 8,
-          "worker_experience": 8
+          "worker_experience": 30
         },
         "8": {
           "skill_experience": 9,
-          "worker_experience": 9
+          "worker_experience": 35
         },
         "9": {
           "skill_experience": 10,
-          "worker_experience": 10
+          "worker_experience": 40
         }
       }
     },
@@ -3510,39 +3510,39 @@
       "tiers": {
         "1": {
           "skill_experience": 2,
-          "worker_experience": 2
+          "worker_experience": 4
         },
         "2": {
           "skill_experience": 3,
-          "worker_experience": 3
+          "worker_experience": 8
         },
         "3": {
           "skill_experience": 4,
-          "worker_experience": 4
+          "worker_experience": 12
         },
         "4": {
           "skill_experience": 5,
-          "worker_experience": 5
+          "worker_experience": 16
         },
         "5": {
           "skill_experience": 6,
-          "worker_experience": 6
+          "worker_experience": 20
         },
         "6": {
           "skill_experience": 7,
-          "worker_experience": 7
+          "worker_experience": 25
         },
         "7": {
           "skill_experience": 8,
-          "worker_experience": 8
+          "worker_experience": 30
         },
         "8": {
           "skill_experience": 9,
-          "worker_experience": 9
+          "worker_experience": 35
         },
         "9": {
           "skill_experience": 10,
-          "worker_experience": 10
+          "worker_experience": 40
         }
       }
     },
@@ -3573,39 +3573,39 @@
       "tiers": {
         "1": {
           "skill_experience": 2,
-          "worker_experience": 2
+          "worker_experience": 4
         },
         "2": {
           "skill_experience": 3,
-          "worker_experience": 3
+          "worker_experience": 8
         },
         "3": {
           "skill_experience": 4,
-          "worker_experience": 4
+          "worker_experience": 12
         },
         "4": {
           "skill_experience": 5,
-          "worker_experience": 5
+          "worker_experience": 16
         },
         "5": {
           "skill_experience": 6,
-          "worker_experience": 6
+          "worker_experience": 20
         },
         "6": {
           "skill_experience": 7,
-          "worker_experience": 7
+          "worker_experience": 25
         },
         "7": {
           "skill_experience": 8,
-          "worker_experience": 8
+          "worker_experience": 30
         },
         "8": {
           "skill_experience": 9,
-          "worker_experience": 9
+          "worker_experience": 35
         },
         "9": {
           "skill_experience": 10,
-          "worker_experience": 10
+          "worker_experience": 40
         }
       }
     }
@@ -3750,5 +3750,143 @@
     "recipe_god_gloves",
     "recipe_god_boots",
     "recipe"
-  ]
+  ],
+  "shop_config": {
+    "job_tier_costs": [
+      500,
+      2000,
+      5000,
+      15000,
+      40000,
+      100000,
+      250000,
+      600000,
+      1500000
+    ],
+    "auto_equip_cost": 50000,
+    "inventory_caps": {
+      "resources": {
+        "max_upgrades": 10,
+        "caps": [
+          100,
+          200,
+          350,
+          550,
+          800,
+          1200,
+          1750,
+          2500,
+          3500,
+          5000,
+          10000
+        ],
+        "costs": [
+          1000,
+          3000,
+          8000,
+          20000,
+          50000,
+          120000,
+          300000,
+          750000,
+          1800000,
+          4500000
+        ]
+      },
+      "equipment": {
+        "max_upgrades": 10,
+        "caps": [
+          5,
+          8,
+          10,
+          12,
+          15,
+          18,
+          20,
+          22,
+          25,
+          28,
+          30
+        ],
+        "costs": [
+          500,
+          1500,
+          4000,
+          10000,
+          25000,
+          60000,
+          150000,
+          375000,
+          900000,
+          2250000
+        ]
+      },
+      "recipes": {
+        "max_upgrades": 10,
+        "caps": [
+          5,
+          10,
+          15,
+          20,
+          25,
+          30,
+          35,
+          40,
+          45,
+          50,
+          60
+        ],
+        "costs": [
+          300,
+          800,
+          2000,
+          5000,
+          12000,
+          30000,
+          75000,
+          180000,
+          450000,
+          1100000
+        ]
+      }
+    }
+  },
+  "item_prices": {
+    "resources": {
+      "fish": 5,
+      "cooked_fish": 10,
+      "logs": 5,
+      "refined_wood": 15,
+      "fire_wood": 8,
+      "ore": 8,
+      "ingot": 20,
+      "material_part": 30
+    },
+    "recipes": {
+      "recipe_bronze": 50,
+      "recipe_iron": 150,
+      "recipe_steel": 350,
+      "recipe_black": 600,
+      "recipe_mithril": 1200,
+      "recipe_adamant": 2500,
+      "recipe_rune": 5000,
+      "recipe_dragon": 12000,
+      "recipe_god": 30000,
+      "recipe_victory": 100000
+    },
+    "equipment_by_tier": {
+      "bronze": 30,
+      "iron": 100,
+      "steel": 250,
+      "black": 500,
+      "mithril": 900,
+      "adamant": 1800,
+      "rune": 3500,
+      "dragon": 8000,
+      "god": 20000
+    },
+    "misc": {
+      "victory_trophy": 500000
+    }
+  }
 }
