@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OSRS Leagues VI - Region Picker</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="page-wrapper">
+
+    <!-- Header -->
+    <header class="site-header">
+      <div class="header-inner">
+        <h1 class="site-title">⚔️ OSRS Leagues VI</h1>
+        <p class="site-subtitle">Region Picker &amp; Task Tracker</p>
+      </div>
+      <!-- Tab Nav -->
+      <nav class="tab-nav" role="tablist">
+        <button class="tab-btn active" data-tab="picker" role="tab" aria-selected="true">🗺️ Region Picker</button>
+        <button class="tab-btn" data-tab="tasks" role="tab" aria-selected="false">📋 Task List</button>
+      </nav>
+    </header>
+
+    <!-- ═══════════════════════════════════════
+         TAB: REGION PICKER
+    ═══════════════════════════════════════ -->
+    <div id="tab-picker" class="tab-content active">
+      <div class="main-content">
+
+        <!-- Sidebar: region list -->
+        <aside class="region-panel">
+          <div class="panel-section">
+            <h2 class="panel-heading">Starter</h2>
+            <div class="region-list" id="starter-regions"></div>
+          </div>
+
+          <div class="panel-section">
+            <h2 class="panel-heading">Free Unlock</h2>
+            <div class="region-list" id="free-regions"></div>
+          </div>
+
+          <div class="panel-section">
+            <h2 class="panel-heading">Choose Regions
+              <span class="panel-counter" id="choice-counter">0 / 3</span>
+            </h2>
+            <div class="region-list" id="choice-regions"></div>
+          </div>
+
+          <!-- View mode switcher -->
+          <div class="view-switcher">
+            <button class="view-btn active" id="btn-single-view">Single Region</button>
+            <button class="view-btn" id="btn-overview">Overview</button>
+          </div>
+        </aside>
+
+        <!-- Detail panel -->
+        <section class="detail-panel" id="detail-panel">
+          <div class="detail-placeholder">
+            <p>← Select a region to view details</p>
+          </div>
+        </section>
+
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════
+         TAB: TASK LIST
+    ═══════════════════════════════════════ -->
+    <div id="tab-tasks" class="tab-content" hidden>
+
+      <!-- Task stats bar -->
+      <div class="task-stats-bar">
+        <div class="task-stat">
+          <span class="task-stat-value" id="stat-total">0</span>
+          <span class="task-stat-label">Total Tasks</span>
+        </div>
+        <div class="task-stat">
+          <span class="task-stat-value" id="stat-completed">0</span>
+          <span class="task-stat-label">Completed</span>
+        </div>
+        <div class="task-stat">
+          <span class="task-stat-value" id="stat-points-earned">0</span>
+          <span class="task-stat-label">Points Earned</span>
+        </div>
+        <div class="task-stat">
+          <span class="task-stat-value" id="stat-points-total">0</span>
+          <span class="task-stat-label">Total Points</span>
+        </div>
+      </div>
+
+      <div class="task-layout">
+
+        <!-- Task sidebar: import + filters -->
+        <aside class="task-sidebar">
+
+          <!-- Import -->
+          <div class="task-import-box">
+            <h3 class="panel-heading">Import Tasks</h3>
+            <p class="import-hint">Paste tasks copied directly from the OSRS wiki task list</p>
+            <textarea id="task-paste" placeholder="Paste wiki tasks here...&#10;&#10;Format: Area&#9;Name&#9;Task&#9;Requirements&#9;Pts&#9;Comp%&#10;&#10;You can paste multiple rows at once."></textarea>
+            <button class="btn-primary" id="btn-import-tasks">Import Pasted Tasks</button>
+            <div class="import-feedback" id="import-feedback"></div>
+          </div>
+
+          <!-- Filters -->
+          <div class="task-filter-box">
+            <h3 class="panel-heading">Filters</h3>
+
+            <label class="filter-label">Search</label>
+            <input type="text" class="filter-input" id="filter-search" placeholder="Name or task description...">
+
+            <label class="filter-label">Area</label>
+            <select class="filter-input" id="filter-area">
+              <option value="">All Areas</option>
+            </select>
+
+            <label class="filter-label">Min Points</label>
+            <select class="filter-input" id="filter-pts">
+              <option value="">Any</option>
+              <option value="5">5+</option>
+              <option value="10">10+</option>
+              <option value="20">20+</option>
+              <option value="30">30+</option>
+              <option value="50">50+</option>
+              <option value="80">80+</option>
+              <option value="100">100+</option>
+            </select>
+
+            <label class="filter-label">Status</label>
+            <select class="filter-input" id="filter-status">
+              <option value="">All</option>
+              <option value="incomplete">Incomplete</option>
+              <option value="complete">Completed</option>
+            </select>
+
+            <button class="btn-secondary" id="btn-clear-filters">Clear Filters</button>
+            <button class="btn-danger" id="btn-clear-tasks">Clear All Tasks</button>
+          </div>
+
+        </aside>
+
+        <!-- Task table -->
+        <div class="task-table-wrap">
+          <div class="task-table-header-row">
+            <span class="task-count-info" id="task-count-info">No tasks imported yet</span>
+            <div class="task-sort-controls">
+              <span>Sort:</span>
+              <button class="sort-btn active" data-sort="default">Default</button>
+              <button class="sort-btn" data-sort="pts-desc">Pts ↓</button>
+              <button class="sort-btn" data-sort="pts-asc">Pts ↑</button>
+              <button class="sort-btn" data-sort="area">Area</button>
+            </div>
+          </div>
+
+          <table class="task-table" id="task-table">
+            <thead>
+              <tr>
+                <th class="col-check">✓</th>
+                <th class="col-area">Area</th>
+                <th class="col-name">Name</th>
+                <th class="col-task">Task</th>
+                <th class="col-reqs">Requirements</th>
+                <th class="col-pts">Pts</th>
+              </tr>
+            </thead>
+            <tbody id="task-tbody">
+              <tr class="task-empty-row">
+                <td colspan="6">
+                  <div class="task-empty">
+                    <p>No tasks yet. Paste wiki tasks in the import box to get started.</p>
+                    <p class="task-empty-hint">Go to <a href="https://oldschool.runescape.wiki/w/Raging_Echoes_League/Tasks" target="_blank" rel="noopener">wiki tasks</a>, select & copy the table rows, then paste here.</p>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </div>
+
+  </div><!-- .page-wrapper -->
+
+  <!-- Skill detail modal -->
+  <div class="modal-overlay" id="modal-overlay" hidden>
+    <div class="modal" id="modal">
+      <button class="modal-close" id="modal-close" aria-label="Close">✕</button>
+      <div id="modal-content"></div>
+    </div>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

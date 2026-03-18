@@ -1,0 +1,149 @@
+[
+  {
+    "id": "novice",
+    "level": 1,
+    "title": "the Novice",
+    "position": "suffix",
+    "description": "Just getting started"
+  },
+  {
+    "id": "adventurer",
+    "level": 50,
+    "title": "the Adventurer",
+    "position": "suffix",
+    "description": "Reached level 50"
+  },
+  {
+    "id": "warrior",
+    "level": 100,
+    "title": "the Warrior",
+    "position": "suffix",
+    "description": "Reached level 100"
+  },
+  {
+    "id": "veteran",
+    "level": 150,
+    "title": "Veteran",
+    "position": "prefix",
+    "description": "Reached level 150"
+  },
+  {
+    "id": "champion",
+    "level": 200,
+    "title": "Champion",
+    "position": "prefix",
+    "description": "Reached level 200"
+  },
+  {
+    "id": "elite",
+    "level": 250,
+    "title": "Elite",
+    "position": "prefix",
+    "description": "Reached level 250"
+  },
+  {
+    "id": "master",
+    "level": 300,
+    "title": "Master",
+    "position": "prefix",
+    "description": "Reached level 300"
+  },
+  {
+    "id": "grandmaster",
+    "level": 350,
+    "title": "Grandmaster",
+    "position": "prefix",
+    "description": "Reached level 350"
+  },
+  {
+    "id": "legend",
+    "level": 400,
+    "title": "the Legend",
+    "position": "suffix",
+    "description": "Reached level 400"
+  },
+  {
+    "id": "mythic",
+    "level": 450,
+    "title": "the Mythic",
+    "position": "suffix",
+    "description": "Reached level 450"
+  },
+  {
+    "id": "immortal",
+    "level": 500,
+    "title": "Immortal",
+    "position": "prefix",
+    "description": "Reached level 500"
+  },
+  {
+    "id": "eternal",
+    "level": 550,
+    "title": "Eternal",
+    "position": "prefix",
+    "description": "Reached level 550"
+  },
+  {
+    "id": "divine",
+    "level": 600,
+    "title": "Divine",
+    "position": "prefix",
+    "description": "Reached level 600"
+  },
+  {
+    "id": "celestial",
+    "level": 650,
+    "title": "Celestial",
+    "position": "prefix",
+    "description": "Reached level 650"
+  },
+  {
+    "id": "transcendent",
+    "level": 700,
+    "title": "the Transcendent",
+    "position": "suffix",
+    "description": "Reached level 700"
+  },
+  {
+    "id": "ascended",
+    "level": 750,
+    "title": "the Ascended",
+    "position": "suffix",
+    "description": "Reached level 750"
+  },
+  {
+    "id": "supreme",
+    "level": 800,
+    "title": "Supreme",
+    "position": "prefix",
+    "description": "Reached level 800"
+  },
+  {
+    "id": "omnipotent",
+    "level": 850,
+    "title": "Omnipotent",
+    "position": "prefix",
+    "description": "Reached level 850"
+  },
+  {
+    "id": "unstoppable",
+    "level": 900,
+    "title": "the Unstoppable",
+    "position": "suffix",
+    "description": "Reached level 900"
+  },
+  {
+    "id": "godslayer",
+    "level": 950,
+    "title": "the Godslayer",
+    "position": "suffix",
+    "description": "Reached level 950"
+  },
+  {
+    "id": "maxed",
+    "level": 999,
+    "title": "the Maxed",
+    "position": "suffix",
+    "description": "Reached max level 999"
+  }
+]

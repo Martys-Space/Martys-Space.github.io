@@ -1,0 +1,3754 @@
+{
+  "items": {
+    "resources": {
+      "fish": 0,
+      "cooked_fish": 0,
+      "logs": 0,
+      "refined_wood": 0,
+      "fire_wood": 0,
+      "ore": 0,
+      "ingot": 0,
+      "material_part": 0,
+      "gold": 0
+    },
+    "recipes": {
+      "recipe_bronze": 0,
+      "recipe_iron": 0,
+      "recipe_steel": 0,
+      "recipe_black": 0,
+      "recipe_mithril": 0,
+      "recipe_adamant": 0,
+      "recipe_rune": 0,
+      "recipe_dragon": 0,
+      "recipe_god": 0,
+      "recipe_victory": 0
+    },
+    "miscellaneous": {
+      "victory_trophy": {
+        "type": "misc",
+        "tier": 9,
+        "craft_level": 80,
+        "unlocked_by": "fighting_tier_9",
+        "cost": {
+          "gold": 1000000,
+          "fish": 10000,
+          "logs": 10000,
+          "ore": 10000,
+          "cooked_fish": 10000,
+          "refined_wood": 10000,
+          "fire_wood": 10000,
+          "ingot": 10000,
+          "recipe_victory": 1
+        },
+        "description": "A special item that signifies victory in the game."
+      }
+    },
+    "gear": {
+      "bronze": {
+        "sword": {
+          "tier": 1,
+          "type": "weapon",
+          "effects": {
+            "speed_reduction": 0.5
+          },
+          "cost": {
+            "refined_wood": 100,
+            "ingot": 100,
+            "recipe_bronze": 1
+          },
+          "upgrade_to": "iron_sword",
+          "craft_level": 8
+        },
+        "armor": {
+          "tier": 1,
+          "type": "armor",
+          "effects": {},
+          "cost": {
+            "refined_wood": 150,
+            "ingot": 150,
+            "recipe_bronze": 1
+          },
+          "upgrade_to": "iron_armor",
+          "craft_level": 8
+        },
+        "shield": {
+          "tier": 1,
+          "type": "shield",
+          "effects": {},
+          "cost": {
+            "refined_wood": 100,
+            "ingot": 100,
+            "recipe_bronze": 1
+          },
+          "upgrade_to": "iron_shield",
+          "craft_level": 8
+        }
+      },
+      "iron": {
+        "sword": {
+          "tier": 2,
+          "type": "weapon",
+          "effects": {
+            "speed_reduction": 1
+          },
+          "cost": {
+            "bronze_sword": 1,
+            "refined_wood": 200,
+            "ingot": 200,
+            "recipe_iron": 1
+          },
+          "upgrade_to": "steel_sword",
+          "craft_level": 17
+        },
+        "armor": {
+          "tier": 2,
+          "type": "armor",
+          "effects": {},
+          "cost": {
+            "bronze_armor": 1,
+            "refined_wood": 300,
+            "ingot": 300,
+            "recipe_iron": 1
+          },
+          "upgrade_to": "steel_armor",
+          "craft_level": 17
+        },
+        "shield": {
+          "tier": 2,
+          "type": "shield",
+          "effects": {},
+          "cost": {
+            "bronze_shield": 1,
+            "refined_wood": 200,
+            "ingot": 200,
+            "recipe_iron": 1
+          },
+          "upgrade_to": "steel_shield",
+          "craft_level": 17
+        }
+      },
+      "steel": {
+        "sword": {
+          "tier": 3,
+          "type": "weapon",
+          "effects": {
+            "speed_reduction": 1.5
+          },
+          "cost": {
+            "iron_sword": 1,
+            "refined_wood": 300,
+            "ingot": 300,
+            "recipe_steel": 1
+          },
+          "upgrade_to": "black_sword",
+          "craft_level": 24
+        },
+        "armor": {
+          "tier": 3,
+          "type": "armor",
+          "effects": {},
+          "cost": {
+            "iron_armor": 1,
+            "refined_wood": 400,
+            "ingot": 400,
+            "recipe_steel": 1
+          },
+          "upgrade_to": "black_armor",
+          "craft_level": 24
+        },
+        "shield": {
+          "tier": 3,
+          "type": "shield",
+          "effects": {},
+          "cost": {
+            "iron_shield": 1,
+            "refined_wood": 300,
+            "ingot": 300,
+            "recipe_steel": 1
+          },
+          "upgrade_to": "black_shield",
+          "craft_level": 24
+        }
+      },
+      "black": {
+        "sword": {
+          "tier": 4,
+          "type": "weapon",
+          "effects": {
+            "speed_reduction": 2
+          },
+          "cost": {
+            "steel_sword": 1,
+            "refined_wood": 400,
+            "ingot": 400,
+            "recipe_black": 1
+          },
+          "upgrade_to": "mithril_sword",
+          "craft_level": 29
+        },
+        "armor": {
+          "tier": 4,
+          "type": "armor",
+          "effects": {},
+          "cost": {
+            "steel_armor": 1,
+            "refined_wood": 500,
+            "ingot": 500,
+            "recipe_black": 1
+          },
+          "upgrade_to": "mithril_armor",
+          "craft_level": 29
+        },
+        "shield": {
+          "tier": 4,
+          "type": "shield",
+          "effects": {},
+          "cost": {
+            "steel_shield": 1,
+            "refined_wood": 400,
+            "ingot": 400,
+            "recipe_black": 1
+          },
+          "upgrade_to": "mithril_shield",
+          "craft_level": 29
+        }
+      },
+      "mithril": {
+        "sword": {
+          "tier": 5,
+          "type": "weapon",
+          "effects": {
+            "speed_reduction": 2.5
+          },
+          "cost": {
+            "black_sword": 1,
+            "refined_wood": 500,
+            "ingot": 500,
+            "recipe_mithril": 1
+          },
+          "upgrade_to": "adamant_sword",
+          "craft_level": 37
+        },
+        "armor": {
+          "tier": 5,
+          "type": "armor",
+          "effects": {},
+          "cost": {
+            "black_armor": 1,
+            "refined_wood": 600,
+            "ingot": 600,
+            "recipe_mithril": 1
+          },
+          "upgrade_to": "adamant_armor",
+          "craft_level": 37
+        },
+        "shield": {
+          "tier": 5,
+          "type": "shield",
+          "effects": {},
+          "cost": {
+            "black_shield": 1,
+            "refined_wood": 500,
+            "ingot": 500,
+            "recipe_mithril": 1
+          },
+          "upgrade_to": "adamant_armor",
+          "craft_level": 37
+        }
+      },
+      "adamant": {
+        "sword": {
+          "tier": 6,
+          "type": "weapon",
+          "effects": {
+            "speed_reduction": 3
+          },
+          "cost": {
+            "mithril_sword": 1,
+            "refined_wood": 600,
+            "ingot": 600,
+            "recipe_adamant": 1
+          },
+          "upgrade_to": "rune_sword",
+          "craft_level": 47
+        },
+        "armor": {
+          "tier": 6,
+          "type": "armor",
+          "effects": {},
+          "cost": {
+            "mithril_armor": 1,
+            "refined_wood": 700,
+            "ingot": 700,
+            "recipe_adamant": 1
+          },
+          "upgrade_to": "rune_armor",
+          "craft_level": 47
+        },
+        "shield": {
+          "tier": 6,
+          "type": "shield",
+          "effects": {},
+          "cost": {
+            "mithril_shield": 1,
+            "refined_wood": 600,
+            "ingot": 600,
+            "recipe_adamant": 1
+          },
+          "upgrade_to": "rune_shield",
+          "craft_level": 47
+        }
+      },
+      "rune": {
+        "sword": {
+          "tier": 7,
+          "type": "weapon",
+          "effects": {
+            "speed_reduction": 3.5
+          },
+          "cost": {
+            "adamant_sword": 1,
+            "refined_wood": 700,
+            "ingot": 700,
+            "recipe_rune": 1
+          },
+          "upgrade_to": "dragon_sword",
+          "craft_level": 57
+        },
+        "armor": {
+          "tier": 7,
+          "type": "armor",
+          "effects": {},
+          "cost": {
+            "adamant_armor": 1,
+            "refined_wood": 800,
+            "ingot": 800,
+            "recipe_rune": 1
+          },
+          "upgrade_to": "dragon_armor",
+          "craft_level": 57
+        },
+        "shield": {
+          "tier": 7,
+          "type": "shield",
+          "effects": {},
+          "cost": {
+            "adamant_shield": 1,
+            "refined_wood": 700,
+            "ingot": 700,
+            "recipe_rune": 1
+          },
+          "upgrade_to": "dragon_shield",
+          "craft_level": 57
+        }
+      },
+      "dragon": {
+        "sword": {
+          "tier": 8,
+          "type": "weapon",
+          "effects": {
+            "speed_reduction": 4
+          },
+          "cost": {
+            "rune_sword": 1,
+            "refined_wood": 800,
+            "ingot": 800,
+            "recipe_dragon": 1
+          },
+          "upgrade_to": "god_sword",
+          "craft_level": 67
+        },
+        "armor": {
+          "tier": 8,
+          "type": "armor",
+          "effects": {},
+          "cost": {
+            "rune_armor": 1,
+            "refined_wood": 900,
+            "ingot": 900,
+            "recipe_dragon": 1
+          },
+          "upgrade_to": "god_armor",
+          "craft_level": 67
+        },
+        "shield": {
+          "tier": 8,
+          "type": "shield",
+          "effects": {},
+          "cost": {
+            "rune_shield": 1,
+            "refined_wood": 800,
+            "ingot": 800,
+            "recipe_dragon": 1
+          },
+          "upgrade_to": "god_shield",
+          "craft_level": 67
+        }
+      },
+      "god": {
+        "sword": {
+          "tier": 9,
+          "type": "weapon",
+          "effects": {
+            "speed_reduction": 5
+          },
+          "cost": {
+            "dragon_sword": 1,
+            "refined_wood": 900,
+            "ingot": 900,
+            "recipe_god": 1
+          },
+          "upgrade_to": "nothing",
+          "craft_level": 77
+        },
+        "armor": {
+          "tier": 9,
+          "type": "armor",
+          "effects": {},
+          "cost": {
+            "dragon_armor": 1,
+            "refined_wood": 1000,
+            "ingot": 1000,
+            "recipe_god": 1
+          },
+          "upgrade_to": "nothing",
+          "craft_level": 77
+        },
+        "shield": {
+          "tier": 9,
+          "type": "shield",
+          "effects": {},
+          "cost": {
+            "dragon_shield": 1,
+            "refined_wood": 900,
+            "ingot": 900,
+            "recipe_god": 1
+          },
+          "upgrade_to": "nothing",
+          "craft_level": 77
+        }
+      }
+    },
+    "tools": {
+      "bronze": {
+        "pickaxe": {
+          "used_for": "mining",
+          "effects": {
+            "speed_reduction": 0.5
+          },
+          "cost": {
+            "ingot": 100,
+            "logs": 200,
+            "recipe_bronze": 1
+          },
+          "craft_level": 2
+        },
+        "axe": {
+          "used_for": "woodcutting",
+          "effects": {
+            "speed_reduction": 0.5
+          },
+          "cost": {
+            "ingot": 100,
+            "logs": 200,
+            "recipe_bronze": 1
+          },
+          "craft_level": 1
+        },
+        "rod": {
+          "used_for": "fishing",
+          "effects": {
+            "speed_reduction": 0.5
+          },
+          "cost": {
+            "ingot": 100,
+            "logs": 200,
+            "recipe_bronze": 1
+          },
+          "craft_level": 3
+        },
+        "hammer": {
+          "used_for": "smithing",
+          "effects": {
+            "speed_reduction": 0.5
+          },
+          "cost": {
+            "ingot": 100,
+            "logs": 200,
+            "recipe_bronze": 1
+          },
+          "craft_level": 5
+        },
+        "saw": {
+          "used_for": "carpentry",
+          "effects": {
+            "speed_reduction": 0.5
+          },
+          "cost": {
+            "ingot": 100,
+            "logs": 200,
+            "recipe_bronze": 1
+          },
+          "craft_level": 5
+        }
+      },
+      "iron": {
+        "pickaxe": {
+          "used_for": "mining",
+          "effects": {
+            "speed_reduction": 10
+          },
+          "cost": {
+            "bronze_pickaxe": 1,
+            "ingot": 200,
+            "logs": 400,
+            "recipe_iron": 1
+          },
+          "craft_level": 11
+        },
+        "axe": {
+          "used_for": "woodcutting",
+          "effects": {
+            "speed_reduction": 1
+          },
+          "cost": {
+            "bronze_axe": 1,
+            "ingot": 200,
+            "logs": 400,
+            "recipe_iron": 1
+          },
+          "craft_level": 10
+        },
+        "rod": {
+          "used_for": "fishing",
+          "effects": {
+            "speed_reduction": 1
+          },
+          "cost": {
+            "bronze_rod": 1,
+            "ingot": 200,
+            "logs": 400,
+            "recipe_iron": 1
+          },
+          "craft_level": 12
+        },
+        "hammer": {
+          "used_for": "smithing",
+          "effects": {
+            "speed_reduction": 1
+          },
+          "cost": {
+            "bronze_hammer": 1,
+            "ingot": 200,
+            "logs": 400,
+            "recipe_iron": 1
+          },
+          "craft_level": 14
+        },
+        "saw": {
+          "used_for": "carpentry",
+          "effects": {
+            "speed_reduction": 1
+          },
+          "cost": {
+            "bronze_saw": 1,
+            "ingot": 200,
+            "logs": 400,
+            "recipe_iron": 1
+          },
+          "craft_level": 14
+        }
+      },
+      "steel": {
+        "pickaxe": {
+          "used_for": "mining",
+          "effects": {
+            "speed_reduction": 1.5
+          },
+          "cost": {
+            "iron_pickaxe": 1,
+            "ingot": 20,
+            "logs": 10,
+            "recipe_steel": 1
+          },
+          "craft_level": 20
+        },
+        "axe": {
+          "used_for": "woodcutting",
+          "effects": {
+            "speed_reduction": 1.5
+          },
+          "cost": {
+            "iron_axe": 1,
+            "ingot": 20,
+            "logs": 10,
+            "recipe_steel": 1
+          },
+          "craft_level": 20
+        },
+        "rod": {
+          "used_for": "fishing",
+          "effects": {
+            "speed_reduction": 1.5
+          },
+          "cost": {
+            "iron_rod": 1,
+            "ingot": 20,
+            "logs": 10,
+            "recipe_steel": 1
+          },
+          "craft_level": 20
+        },
+        "hammer": {
+          "used_for": "smithing",
+          "effects": {
+            "speed_reduction": 1.5
+          },
+          "cost": {
+            "iron_hammer": 1,
+            "ingot": 20,
+            "logs": 10,
+            "recipe_steel": 1
+          },
+          "craft_level": 22
+        },
+        "saw": {
+          "used_for": "carpentry",
+          "effects": {
+            "speed_reduction": 1.5
+          },
+          "cost": {
+            "iron_saw": 1,
+            "ingot": 20,
+            "logs": 10,
+            "recipe_steel": 1
+          },
+          "craft_level": 22
+        }
+      },
+      "black": {
+        "pickaxe": {
+          "used_for": "mining",
+          "effects": {
+            "speed_reduction": 2
+          },
+          "cost": {
+            "steel_pickaxe": 1,
+            "ingot": 25,
+            "logs": 12,
+            "recipe_black": 1
+          },
+          "craft_level": 25
+        },
+        "axe": {
+          "used_for": "woodcutting",
+          "effects": {
+            "speed_reduction": 2
+          },
+          "cost": {
+            "steel_axe": 1,
+            "ingot": 25,
+            "logs": 12,
+            "recipe_black": 1
+          },
+          "craft_level": 25
+        },
+        "rod": {
+          "used_for": "fishing",
+          "effects": {
+            "speed_reduction": 2
+          },
+          "cost": {
+            "steel_rod": 1,
+            "ingot": 25,
+            "logs": 12,
+            "recipe_black": 1
+          },
+          "craft_level": 25
+        },
+        "hammer": {
+          "used_for": "smithing",
+          "effects": {
+            "speed_reduction": 2
+          },
+          "cost": {
+            "steel_hammer": 1,
+            "ingot": 25,
+            "logs": 12,
+            "recipe_black": 1
+          },
+          "craft_level": 27
+        },
+        "saw": {
+          "used_for": "carpentry",
+          "effects": {
+            "speed_reduction": 2
+          },
+          "cost": {
+            "steel_saw": 1,
+            "ingot": 25,
+            "logs": 12,
+            "recipe_black": 1
+          },
+          "craft_level": 27
+        }
+      },
+      "mithril": {
+        "pickaxe": {
+          "used_for": "mining",
+          "effects": {
+            "speed_reduction": 2.5
+          },
+          "cost": {
+            "black_pickaxe": 1,
+            "ingot": 30,
+            "logs": 15,
+            "recipe_mithril": 1
+          },
+          "craft_level": 31
+        },
+        "axe": {
+          "used_for": "woodcutting",
+          "effects": {
+            "speed_reduction": 2.5
+          },
+          "cost": {
+            "black_axe": 1,
+            "ingot": 30,
+            "logs": 15,
+            "recipe_mithril": 1
+          },
+          "craft_level": 30
+        },
+        "rod": {
+          "used_for": "fishing",
+          "effects": {
+            "speed_reduction": 2.5
+          },
+          "cost": {
+            "black_rod": 1,
+            "ingot": 30,
+            "logs": 15,
+            "recipe_mithril": 1
+          },
+          "craft_level": 32
+        },
+        "hammer": {
+          "used_for": "smithing",
+          "effects": {
+            "speed_reduction": 2.5
+          },
+          "cost": {
+            "black_hammer": 1,
+            "ingot": 30,
+            "logs": 15,
+            "recipe_mithril": 1
+          },
+          "craft_level": 34
+        },
+        "saw": {
+          "used_for": "carpentry",
+          "effects": {
+            "speed_reduction": 2.5
+          },
+          "cost": {
+            "black_saw": 1,
+            "ingot": 30,
+            "logs": 15,
+            "recipe_mithril": 1
+          },
+          "craft_level": 34
+        }
+      },
+      "adamant": {
+        "pickaxe": {
+          "used_for": "mining",
+          "effects": {
+            "speed_reduction": 3
+          },
+          "cost": {
+            "mithril_pickaxe": 1,
+            "ingot": 35,
+            "logs": 18,
+            "recipe_adamant": 1
+          },
+          "craft_level": 41
+        },
+        "axe": {
+          "used_for": "woodcutting",
+          "effects": {
+            "speed_reduction": 3
+          },
+          "cost": {
+            "mithril_axe": 1,
+            "ingot": 35,
+            "logs": 18,
+            "recipe_adamant": 1
+          },
+          "craft_level": 40
+        },
+        "rod": {
+          "used_for": "fishing",
+          "effects": {
+            "speed_reduction": 3
+          },
+          "cost": {
+            "mithril_rod": 1,
+            "ingot": 35,
+            "logs": 18,
+            "recipe_adamant": 1
+          },
+          "craft_level": 42
+        },
+        "hammer": {
+          "used_for": "smithing",
+          "effects": {
+            "speed_reduction": 3
+          },
+          "cost": {
+            "mithril_hammer": 1,
+            "ingot": 35,
+            "logs": 18,
+            "recipe_adamant": 1
+          },
+          "craft_level": 44
+        },
+        "saw": {
+          "used_for": "carpentry",
+          "effects": {
+            "speed_reduction": 3
+          },
+          "cost": {
+            "mithril_saw": 1,
+            "ingot": 35,
+            "logs": 18,
+            "recipe_adamant": 1
+          },
+          "craft_level": 44
+        }
+      },
+      "rune": {
+        "pickaxe": {
+          "used_for": "mining",
+          "effects": {
+            "speed_reduction": 3.5
+          },
+          "cost": {
+            "adamant_pickaxe": 1,
+            "ingot": 40,
+            "logs": 20,
+            "recipe_rune": 1
+          },
+          "craft_level": 51
+        },
+        "axe": {
+          "used_for": "woodcutting",
+          "effects": {
+            "speed_reduction": 3.5
+          },
+          "cost": {
+            "adamant_axe": 1,
+            "ingot": 40,
+            "logs": 20,
+            "recipe_rune": 1
+          },
+          "craft_level": 50
+        },
+        "rod": {
+          "used_for": "fishing",
+          "effects": {
+            "speed_reduction": 3.5
+          },
+          "cost": {
+            "adamant_rod": 1,
+            "ingot": 40,
+            "logs": 20,
+            "recipe_rune": 1
+          },
+          "craft_level": 52
+        },
+        "hammer": {
+          "used_for": "smithing",
+          "effects": {
+            "speed_reduction": 3.5
+          },
+          "cost": {
+            "adamant_hammer": 1,
+            "ingot": 40,
+            "logs": 20,
+            "recipe_rune": 1
+          },
+          "craft_level": 54
+        },
+        "saw": {
+          "used_for": "carpentry",
+          "effects": {
+            "speed_reduction": 3.5
+          },
+          "cost": {
+            "adamant_saw": 1,
+            "ingot": 40,
+            "logs": 20,
+            "recipe_rune": 1
+          },
+          "craft_level": 54
+        }
+      },
+      "dragon": {
+        "pickaxe": {
+          "used_for": "mining",
+          "effects": {
+            "speed_reduction": 4
+          },
+          "cost": {
+            "rune_pickaxe": 1,
+            "ingot": 45,
+            "logs": 25,
+            "recipe_dragon": 1
+          },
+          "craft_level": 61
+        },
+        "axe": {
+          "used_for": "woodcutting",
+          "effects": {
+            "speed_reduction": 4
+          },
+          "cost": {
+            "rune_axe": 1,
+            "ingot": 45,
+            "logs": 25,
+            "recipe_dragon": 1
+          },
+          "craft_level": 60
+        },
+        "rod": {
+          "used_for": "fishing",
+          "effects": {
+            "speed_reduction": 4
+          },
+          "cost": {
+            "rune_rod": 1,
+            "ingot": 45,
+            "logs": 25,
+            "recipe_dragon": 1
+          },
+          "craft_level": 62
+        },
+        "hammer": {
+          "used_for": "smithing",
+          "effects": {
+            "speed_reduction": 4
+          },
+          "cost": {
+            "rune_hammer": 1,
+            "ingot": 45,
+            "logs": 25,
+            "recipe_dragon": 1
+          },
+          "craft_level": 64
+        },
+        "saw": {
+          "used_for": "carpentry",
+          "effects": {
+            "speed_reduction": 4
+          },
+          "cost": {
+            "rune_saw": 1,
+            "ingot": 45,
+            "logs": 25,
+            "recipe_dragon": 1
+          },
+          "craft_level": 64
+        }
+      },
+      "god": {
+        "pickaxe": {
+          "used_for": "mining",
+          "effects": {
+            "speed_reduction": 5
+          },
+          "cost": {
+            "dragon_pickaxe": 1,
+            "ingot": 50,
+            "logs": 30,
+            "recipe_god": 1
+          },
+          "craft_level": 71
+        },
+        "axe": {
+          "used_for": "woodcutting",
+          "effects": {
+            "speed_reduction": 5
+          },
+          "cost": {
+            "dragon_axe": 1,
+            "ingot": 50,
+            "logs": 30,
+            "recipe_god": 1
+          },
+          "craft_level": 70
+        },
+        "rod": {
+          "used_for": "fishing",
+          "effects": {
+            "speed_reduction": 5
+          },
+          "cost": {
+            "dragon_rod": 1,
+            "ingot": 50,
+            "logs": 30,
+            "recipe_god": 1
+          },
+          "craft_level": 72
+        },
+        "hammer": {
+          "used_for": "smithing",
+          "effects": {
+            "speed_reduction": 5
+          },
+          "cost": {
+            "dragon_hammer": 1,
+            "ingot": 50,
+            "logs": 30,
+            "recipe_god": 1
+          },
+          "craft_level": 74
+        },
+        "saw": {
+          "used_for": "carpentry",
+          "effects": {
+            "speed_reduction": 5
+          },
+          "cost": {
+            "dragon_saw": 1,
+            "ingot": 50,
+            "logs": 30,
+            "recipe_god": 1
+          },
+          "craft_level": 74
+        }
+      }
+    },
+    "accessories": {
+      "bronze": {
+        "tinderbox": {
+          "used_for": "firemaking",
+          "effects": {
+            "speed_reduction": 0.5
+          },
+          "cost": {
+            "ingot": 100,
+            "logs": 200,
+            "recipe_bronze": 1
+          },
+          "craft_level": 4
+        },
+        "gloves": {
+          "used_for": "cooking",
+          "effects": {
+            "speed_reduction": 0.5
+          },
+          "cost": {
+            "fish": 300,
+            "logs": 200,
+            "recipe_bronze": 1
+          },
+          "craft_level": 4
+        },
+        "boots": {
+          "used_for": "thieving",
+          "effects": {
+            "speed_reduction": 0.5,
+            "gold_multiplier": 1.5
+          },
+          "cost": {
+            "ingot": 100,
+            "logs": 200,
+            "recipe_bronze": 1
+          },
+          "craft_level": 6
+        },
+        "needle_&_thread": {
+          "used_for": "crafting",
+          "effects": {
+            "speed_reduction": 0.5
+          },
+          "cost": {
+            "ingot": 30,
+            "logs": 50,
+            "recipe_bronze": 1
+          },
+          "craft_level": 6
+        }
+      },
+      "iron": {
+        "tinderbox": {
+          "used_for": "firemaking",
+          "effects": {
+            "speed_reduction": 1
+          },
+          "cost": {
+            "bronze_tinderbox": 1,
+            "logs": 200,
+            "recipe_iron": 1
+          },
+          "craft_level": 13
+        },
+        "gloves": {
+          "used_for": "cooking",
+          "effects": {
+            "speed_reduction": 1
+          },
+          "cost": {
+            "bronze_gloves": 1,
+            "fish": 200,
+            "logs": 400,
+            "recipe_iron": 1
+          },
+          "craft_level": 13
+        },
+        "boots": {
+          "used_for": "thieving",
+          "effects": {
+            "speed_reduction": 1,
+            "gold_multiplier": 2
+          },
+          "cost": {
+            "bronze_boots": 1,
+            "ingot": 200,
+            "logs": 400,
+            "recipe_iron": 1
+          },
+          "craft_level": 15
+        },
+        "needle_&_thread": {
+          "used_for": "crafting",
+          "effects": {
+            "speed_reduction": 1
+          },
+          "cost": {
+            "ingot": 60,
+            "logs": 100,
+            "recipe_iron": 1
+          },
+          "craft_level": 15
+        }
+      },
+      "steel": {
+        "tinderbox": {
+          "used_for": "firemaking",
+          "effects": {
+            "speed_reduction": 1.5
+          },
+          "cost": {
+            "iron_tinderbox": 1,
+            "logs": 6,
+            "recipe_steel": 1
+          },
+          "craft_level": 21
+        },
+        "gloves": {
+          "used_for": "cooking",
+          "effects": {
+            "speed_reduction": 1.5
+          },
+          "cost": {
+            "iron_gloves": 1,
+            "fish": 15,
+            "logs": 6,
+            "recipe_steel": 1
+          },
+          "craft_level": 21
+        },
+        "boots": {
+          "used_for": "thieving",
+          "effects": {
+            "speed_reduction": 1.5,
+            "gold_multiplier": 5
+          },
+          "cost": {
+            "iron_boots": 1,
+            "ingot": 20,
+            "logs": 10,
+            "recipe_steel": 1
+          },
+          "craft_level": 22
+        },
+        "needle_&_thread": {
+          "used_for": "crafting",
+          "effects": {
+            "speed_reduction": 1.5
+          },
+          "cost": {
+            "ingot": 60,
+            "logs": 100,
+            "recipe_steel": 1
+          },
+          "craft_level": 22
+        }
+      },
+      "black": {
+        "tinderbox": {
+          "used_for": "firemaking",
+          "effects": {
+            "speed_reduction": 2
+          },
+          "cost": {
+            "steel_tinderbox": 1,
+            "logs": 6,
+            "recipe_black": 1
+          },
+          "craft_level": 26
+        },
+        "gloves": {
+          "used_for": "cooking",
+          "effects": {
+            "speed_reduction": 2
+          },
+          "cost": {
+            "steel_gloves": 1,
+            "fish": 20,
+            "logs": 8,
+            "recipe_black": 1
+          },
+          "craft_level": 26
+        },
+        "boots": {
+          "used_for": "thieving",
+          "effects": {
+            "speed_reduction": 2,
+            "gold_multiplier": 7.5
+          },
+          "cost": {
+            "steel_boots": 1,
+            "ingot": 25,
+            "logs": 12,
+            "recipe_black": 1
+          },
+          "craft_level": 27
+        },
+        "needle_&_thread": {
+          "used_for": "crafting",
+          "effects": {
+            "speed_reduction": 2
+          },
+          "cost": {
+            "ingot": 60,
+            "logs": 100,
+            "recipe_black": 1
+          },
+          "craft_level": 27
+        }
+      },
+      "mithril": {
+        "tinderbox": {
+          "used_for": "firemaking",
+          "effects": {
+            "speed_reduction": 2.5
+          },
+          "cost": {
+            "black_tinderbox": 1,
+            "logs": 6,
+            "recipe_mithril": 1
+          },
+          "craft_level": 33
+        },
+        "gloves": {
+          "used_for": "cooking",
+          "effects": {
+            "speed_reduction": 2.5
+          },
+          "cost": {
+            "black_gloves": 1,
+            "fish": 25,
+            "logs": 10,
+            "recipe_mithril": 1
+          },
+          "craft_level": 33
+        },
+        "boots": {
+          "used_for": "thieving",
+          "effects": {
+            "speed_reduction": 2.5,
+            "gold_multiplier": 10
+          },
+          "cost": {
+            "black_boots": 1,
+            "ingot": 30,
+            "logs": 15,
+            "recipe_mithril": 1
+          },
+          "craft_level": 35
+        },
+        "needle_&_thread": {
+          "used_for": "crafting",
+          "effects": {
+            "speed_reduction": 2.5
+          },
+          "cost": {
+            "ingot": 60,
+            "logs": 100,
+            "recipe_mithril": 1
+          },
+          "craft_level": 35
+        }
+      },
+      "adamant": {
+        "tinderbox": {
+          "used_for": "firemaking",
+          "effects": {
+            "speed_reduction": 3
+          },
+          "cost": {
+            "mithril_tinderbox": 1,
+            "logs": 6,
+            "recipe_adamant": 1
+          },
+          "craft_level": 43
+        },
+        "gloves": {
+          "used_for": "cooking",
+          "effects": {
+            "speed_reduction": 3
+          },
+          "cost": {
+            "mithril_gloves": 1,
+            "fish": 30,
+            "logs": 12,
+            "recipe_adamant": 1
+          },
+          "craft_level": 43
+        },
+        "boots": {
+          "used_for": "thieving",
+          "effects": {
+            "speed_reduction": 3,
+            "gold_multiplier": 15
+          },
+          "cost": {
+            "mithril_boots": 1,
+            "ingot": 35,
+            "logs": 18,
+            "recipe_adamant": 1
+          },
+          "craft_level": 45
+        },
+        "needle_&_thread": {
+          "used_for": "crafting",
+          "effects": {
+            "speed_reduction": 3
+          },
+          "cost": {
+            "ingot": 60,
+            "logs": 100,
+            "recipe_adamant": 1
+          },
+          "craft_level": 45
+        }
+      },
+      "rune": {
+        "tinderbox": {
+          "used_for": "firemaking",
+          "effects": {
+            "speed_reduction": 3.5
+          },
+          "cost": {
+            "adamant_tinderbox": 1,
+            "logs": 6,
+            "recipe_rune": 1
+          },
+          "craft_level": 53
+        },
+        "gloves": {
+          "used_for": "cooking",
+          "effects": {
+            "speed_reduction": 3.5
+          },
+          "cost": {
+            "adamant_gloves": 1,
+            "fish": 35,
+            "logs": 15,
+            "recipe_rune": 1
+          },
+          "craft_level": 53
+        },
+        "boots": {
+          "used_for": "thieving",
+          "effects": {
+            "speed_reduction": 3.5,
+            "gold_multiplier": 20
+          },
+          "cost": {
+            "adamant_boots": 1,
+            "ingot": 40,
+            "logs": 20,
+            "recipe_rune": 1
+          },
+          "craft_level": 55
+        },
+        "needle_&_thread": {
+          "used_for": "crafting",
+          "effects": {
+            "speed_reduction": 3.5
+          },
+          "cost": {
+            "ingot": 60,
+            "logs": 100,
+            "recipe_rune": 1
+          },
+          "craft_level": 55
+        }
+      },
+      "dragon": {
+        "tinderbox": {
+          "used_for": "firemaking",
+          "effects": {
+            "speed_reduction": 4
+          },
+          "cost": {
+            "rune_tinderbox": 1,
+            "logs": 6,
+            "recipe_dragon": 1
+          },
+          "craft_level": 63
+        },
+        "gloves": {
+          "used_for": "cooking",
+          "effects": {
+            "speed_reduction": 4
+          },
+          "cost": {
+            "rune_gloves": 1,
+            "fish": 40,
+            "logs": 20,
+            "recipe_dragon": 1
+          },
+          "craft_level": 63
+        },
+        "boots": {
+          "used_for": "thieving",
+          "effects": {
+            "speed_reduction": 4,
+            "gold_multiplier": 25
+          },
+          "cost": {
+            "rune_boots": 1,
+            "ingot": 45,
+            "logs": 25,
+            "recipe_dragon": 1
+          },
+          "craft_level": 65
+        },
+        "needle_&_thread": {
+          "used_for": "crafting",
+          "effects": {
+            "speed_reduction": 4
+          },
+          "cost": {
+            "ingot": 60,
+            "logs": 100,
+            "recipe_dragon": 1
+          },
+          "craft_level": 65
+        }
+      },
+      "god": {
+        "tinderbox": {
+          "used_for": "firemaking",
+          "effects": {
+            "speed_reduction": 5
+          },
+          "cost": {
+            "dragon_tinderbox": 1,
+            "logs": 30,
+            "recipe_god": 1
+          },
+          "craft_level": 73
+        },
+        "gloves": {
+          "used_for": "cooking",
+          "effects": {
+            "speed_reduction": 5
+          },
+          "cost": {
+            "dragon_gloves": 1,
+            "fish": 45,
+            "logs": 25,
+            "recipe_god": 1
+          },
+          "craft_level": 73
+        },
+        "boots": {
+          "used_for": "thieving",
+          "effects": {
+            "speed_reduction": 5,
+            "gold_multiplier": 40
+          },
+          "cost": {
+            "dragon_boots": 1,
+            "ingot": 50,
+            "logs": 30,
+            "recipe_god": 1
+          },
+          "craft_level": 75
+        },
+        "needle_&_thread": {
+          "used_for": "crafting",
+          "effects": {
+            "speed_reduction": 5
+          },
+          "cost": {
+            "ingot": 60,
+            "logs": 100,
+            "recipe_god": 1
+          },
+          "craft_level": 75
+        }
+      }
+    }
+  },
+  "worker_template": {
+    "skills": {
+      "thieving": {
+        "level": 1,
+        "experience": 0
+      },
+      "woodcutting": {
+        "level": 1,
+        "experience": 0
+      },
+      "firemaking": {
+        "level": 1,
+        "experience": 0
+      },
+      "carpentry": {
+        "level": 1,
+        "experience": 0
+      },
+      "mining": {
+        "level": 1,
+        "experience": 0
+      },
+      "smithing": {
+        "level": 1,
+        "experience": 0
+      },
+      "fishing": {
+        "level": 1,
+        "experience": 0
+      },
+      "cooking": {
+        "level": 1,
+        "experience": 0
+      },
+      "crafting": {
+        "level": 1,
+        "experience": 0
+      },
+      "farming": {
+        "level": 1,
+        "experience": 0
+      },
+      "potionmaking": {
+        "level": 1,
+        "experience": 0
+      },
+      "combat": {
+        "level": 1,
+        "experience": 0
+      }
+    },
+    "jobs_completed": {},
+    "description": "",
+    "cost": 100,
+    "assign_to": null,
+    "timer": 0,
+    "gear": {
+      "sword": null,
+      "armor": null,
+      "shield": null
+    },
+    "tools": {
+      "pickaxe": null,
+      "axe": null,
+      "rod": null,
+      "hammer": null,
+      "saw": null
+    },
+    "accessories": {
+      "tinderbox": null,
+      "gloves": null,
+      "boots": null
+    }
+  },
+  "limits": {
+    "max_workers": 30,
+    "max_workers_per_job": 10,
+    "max_skill_level": 99,
+    "max_worker_level": 99,
+    "max_equipment_tier": 9,
+    "max_tool_tier": 9,
+    "worker_skill_xp_bonus": 0.01
+  },
+  "crafting_config": {
+    "base_max_workers": 2,
+    "base_max_queue": 4,
+    "workers_per_milestone": 1,
+    "queue_per_milestone": 2,
+    "milestone_interval": 10,
+    "base_craft_time": 300,
+    "craft_time_per_tier": 600,
+    "worker_craft_speed_bonus": 0.008
+  },
+  "skills": {
+    "thieving": {
+      "level": 1,
+      "experience": 0,
+      "unlocks": [
+        {
+          "level": 5,
+          "type": "job_tier",
+          "name": "Thieving job tier 1",
+          "description": "",
+          "ref": "thieving_job_tier_1"
+        },
+        {
+          "level": 10,
+          "type": "job_tier",
+          "name": "Thieving job tier 2",
+          "description": "",
+          "ref": "thieving_job_tier_2"
+        },
+        {
+          "level": 20,
+          "type": "job_tier",
+          "name": "Thieving job tier 3",
+          "description": "",
+          "ref": "thieving_job_tier_3"
+        },
+        {
+          "level": 25,
+          "type": "job_tier",
+          "name": "Thieving job tier 4",
+          "description": "",
+          "ref": "thieving_job_tier_4"
+        },
+        {
+          "level": 30,
+          "type": "job_tier",
+          "name": "Thieving job tier 5",
+          "description": "",
+          "ref": "thieving_job_tier_5"
+        },
+        {
+          "level": 40,
+          "type": "job_tier",
+          "name": "Thieving job tier 6",
+          "description": "",
+          "ref": "thieving_job_tier_6"
+        },
+        {
+          "level": 50,
+          "type": "job_tier",
+          "name": "Thieving job tier 7",
+          "description": "",
+          "ref": "thieving_job_tier_7"
+        },
+        {
+          "level": 60,
+          "type": "job_tier",
+          "name": "Thieving job tier 8",
+          "description": "",
+          "ref": "thieving_job_tier_8"
+        },
+        {
+          "level": 70,
+          "type": "job_tier",
+          "name": "Thieving job tier 9",
+          "description": "",
+          "ref": "thieving_job_tier_9"
+        }
+      ]
+    },
+    "woodcutting": {
+      "level": 1,
+      "experience": 0,
+      "unlocks": [
+        {
+          "level": 5,
+          "type": "job_tier",
+          "name": "Woodcutting job tier 1",
+          "description": "",
+          "ref": "woodcutting_job_tier_1"
+        },
+        {
+          "level": 10,
+          "type": "job_tier",
+          "name": "Woodcutting job tier 2",
+          "description": "",
+          "ref": "woodcutting_job_tier_2"
+        },
+        {
+          "level": 20,
+          "type": "job_tier",
+          "name": "Woodcutting job tier 3",
+          "description": "",
+          "ref": "woodcutting_job_tier_3"
+        },
+        {
+          "level": 25,
+          "type": "job_tier",
+          "name": "Woodcutting job tier 4",
+          "description": "",
+          "ref": "woodcutting_job_tier_4"
+        },
+        {
+          "level": 30,
+          "type": "job_tier",
+          "name": "Woodcutting job tier 5",
+          "description": "",
+          "ref": "woodcutting_job_tier_5"
+        },
+        {
+          "level": 40,
+          "type": "job_tier",
+          "name": "Woodcutting job tier 6",
+          "description": "",
+          "ref": "woodcutting_job_tier_6"
+        },
+        {
+          "level": 50,
+          "type": "job_tier",
+          "name": "Woodcutting job tier 7",
+          "description": "",
+          "ref": "woodcutting_job_tier_7"
+        },
+        {
+          "level": 60,
+          "type": "job_tier",
+          "name": "Woodcutting job tier 8",
+          "description": "",
+          "ref": "woodcutting_job_tier_8"
+        },
+        {
+          "level": 70,
+          "type": "job_tier",
+          "name": "Woodcutting job tier 9",
+          "description": "",
+          "ref": "woodcutting_job_tier_9"
+        }
+      ]
+    },
+    "firemaking": {
+      "level": 1,
+      "experience": 0,
+      "unlocks": [
+        {
+          "level": 5,
+          "type": "job_tier",
+          "name": "Firemaking job tier 1",
+          "description": "",
+          "ref": "firemaking_job_tier_1"
+        },
+        {
+          "level": 10,
+          "type": "job_tier",
+          "name": "Firemaking job tier 2",
+          "description": "",
+          "ref": "firemaking_job_tier_2"
+        },
+        {
+          "level": 20,
+          "type": "job_tier",
+          "name": "Firemaking job tier 3",
+          "description": "",
+          "ref": "firemaking_job_tier_3"
+        },
+        {
+          "level": 25,
+          "type": "job_tier",
+          "name": "Firemaking job tier 4",
+          "description": "",
+          "ref": "firemaking_job_tier_4"
+        },
+        {
+          "level": 30,
+          "type": "job_tier",
+          "name": "Firemaking job tier 5",
+          "description": "",
+          "ref": "firemaking_job_tier_5"
+        },
+        {
+          "level": 40,
+          "type": "job_tier",
+          "name": "Firemaking job tier 6",
+          "description": "",
+          "ref": "firemaking_job_tier_6"
+        },
+        {
+          "level": 50,
+          "type": "job_tier",
+          "name": "Firemaking job tier 7",
+          "description": "",
+          "ref": "firemaking_job_tier_7"
+        },
+        {
+          "level": 60,
+          "type": "job_tier",
+          "name": "Firemaking job tier 8",
+          "description": "",
+          "ref": "firemaking_job_tier_8"
+        },
+        {
+          "level": 70,
+          "type": "job_tier",
+          "name": "Firemaking job tier 9",
+          "description": "",
+          "ref": "firemaking_job_tier_9"
+        }
+      ]
+    },
+    "carpentry": {
+      "level": 1,
+      "experience": 0,
+      "unlocks": [
+        {
+          "level": 5,
+          "type": "job_tier",
+          "name": "Carpentry job tier 1",
+          "description": "",
+          "ref": "carpentry_job_tier_1"
+        },
+        {
+          "level": 10,
+          "type": "job_tier",
+          "name": "Carpentry job tier 2",
+          "description": "",
+          "ref": "carpentry_job_tier_2"
+        },
+        {
+          "level": 20,
+          "type": "job_tier",
+          "name": "Carpentry job tier 3",
+          "description": "",
+          "ref": "carpentry_job_tier_3"
+        },
+        {
+          "level": 25,
+          "type": "job_tier",
+          "name": "Carpentry job tier 4",
+          "description": "",
+          "ref": "carpentry_job_tier_4"
+        },
+        {
+          "level": 30,
+          "type": "job_tier",
+          "name": "Carpentry job tier 5",
+          "description": "",
+          "ref": "carpentry_job_tier_5"
+        },
+        {
+          "level": 40,
+          "type": "job_tier",
+          "name": "Carpentry job tier 6",
+          "description": "",
+          "ref": "carpentry_job_tier_6"
+        },
+        {
+          "level": 50,
+          "type": "job_tier",
+          "name": "Carpentry job tier 7",
+          "description": "",
+          "ref": "carpentry_job_tier_7"
+        },
+        {
+          "level": 60,
+          "type": "job_tier",
+          "name": "Carpentry job tier 8",
+          "description": "",
+          "ref": "carpentry_job_tier_8"
+        },
+        {
+          "level": 70,
+          "type": "job_tier",
+          "name": "Carpentry job tier 9",
+          "description": "",
+          "ref": "carpentry_job_tier_9"
+        }
+      ]
+    },
+    "mining": {
+      "level": 1,
+      "experience": 0,
+      "unlocks": [
+        {
+          "level": 5,
+          "type": "job_tier",
+          "name": "Mining job tier 1",
+          "description": "",
+          "ref": "mining_job_tier_1"
+        },
+        {
+          "level": 10,
+          "type": "job_tier",
+          "name": "Mining job tier 2",
+          "description": "",
+          "ref": "mining_job_tier_2"
+        },
+        {
+          "level": 20,
+          "type": "job_tier",
+          "name": "Mining job tier 3",
+          "description": "",
+          "ref": "mining_job_tier_3"
+        },
+        {
+          "level": 25,
+          "type": "job_tier",
+          "name": "Mining job tier 4",
+          "description": "",
+          "ref": "mining_job_tier_4"
+        },
+        {
+          "level": 30,
+          "type": "job_tier",
+          "name": "Mining job tier 5",
+          "description": "",
+          "ref": "mining_job_tier_5"
+        },
+        {
+          "level": 40,
+          "type": "job_tier",
+          "name": "Mining job tier 6",
+          "description": "",
+          "ref": "mining_job_tier_6"
+        },
+        {
+          "level": 50,
+          "type": "job_tier",
+          "name": "Mining job tier 7",
+          "description": "",
+          "ref": "mining_job_tier_7"
+        },
+        {
+          "level": 60,
+          "type": "job_tier",
+          "name": "Mining job tier 8",
+          "description": "",
+          "ref": "mining_job_tier_8"
+        },
+        {
+          "level": 70,
+          "type": "job_tier",
+          "name": "Mining job tier 9",
+          "description": "",
+          "ref": "mining_job_tier_9"
+        }
+      ]
+    },
+    "smithing": {
+      "level": 1,
+      "experience": 0,
+      "unlocks": [
+        {
+          "level": 5,
+          "type": "job_tier",
+          "name": "Smithing job tier 1",
+          "description": "",
+          "ref": "smithing_job_tier_1"
+        },
+        {
+          "level": 10,
+          "type": "job_tier",
+          "name": "Smithing job tier 2",
+          "description": "",
+          "ref": "smithing_job_tier_2"
+        },
+        {
+          "level": 20,
+          "type": "job_tier",
+          "name": "Smithing job tier 3",
+          "description": "",
+          "ref": "smithing_job_tier_3"
+        },
+        {
+          "level": 25,
+          "type": "job_tier",
+          "name": "Smithing job tier 4",
+          "description": "",
+          "ref": "smithing_job_tier_4"
+        },
+        {
+          "level": 30,
+          "type": "job_tier",
+          "name": "Smithing job tier 5",
+          "description": "",
+          "ref": "smithing_job_tier_5"
+        },
+        {
+          "level": 40,
+          "type": "job_tier",
+          "name": "Smithing job tier 6",
+          "description": "",
+          "ref": "smithing_job_tier_6"
+        },
+        {
+          "level": 50,
+          "type": "job_tier",
+          "name": "Smithing job tier 7",
+          "description": "",
+          "ref": "smithing_job_tier_7"
+        },
+        {
+          "level": 60,
+          "type": "job_tier",
+          "name": "Smithing job tier 8",
+          "description": "",
+          "ref": "smithing_job_tier_8"
+        },
+        {
+          "level": 70,
+          "type": "job_tier",
+          "name": "Smithing job tier 9",
+          "description": "",
+          "ref": "smithing_job_tier_9"
+        }
+      ]
+    },
+    "fishing": {
+      "level": 1,
+      "experience": 0,
+      "unlocks": [
+        {
+          "level": 5,
+          "type": "job_tier",
+          "name": "Fishing job tier 1",
+          "description": "",
+          "ref": "fishing_job_tier_1"
+        },
+        {
+          "level": 10,
+          "type": "job_tier",
+          "name": "Fishing job tier 2",
+          "description": "",
+          "ref": "fishing_job_tier_2"
+        },
+        {
+          "level": 20,
+          "type": "job_tier",
+          "name": "Fishing job tier 3",
+          "description": "",
+          "ref": "fishing_job_tier_3"
+        },
+        {
+          "level": 25,
+          "type": "job_tier",
+          "name": "Fishing job tier 4",
+          "description": "",
+          "ref": "fishing_job_tier_4"
+        },
+        {
+          "level": 30,
+          "type": "job_tier",
+          "name": "Fishing job tier 5",
+          "description": "",
+          "ref": "fishing_job_tier_5"
+        },
+        {
+          "level": 40,
+          "type": "job_tier",
+          "name": "Fishing job tier 6",
+          "description": "",
+          "ref": "fishing_job_tier_6"
+        },
+        {
+          "level": 50,
+          "type": "job_tier",
+          "name": "Fishing job tier 7",
+          "description": "",
+          "ref": "fishing_job_tier_7"
+        },
+        {
+          "level": 60,
+          "type": "job_tier",
+          "name": "Fishing job tier 8",
+          "description": "",
+          "ref": "fishing_job_tier_8"
+        },
+        {
+          "level": 70,
+          "type": "job_tier",
+          "name": "Fishing job tier 9",
+          "description": "",
+          "ref": "fishing_job_tier_9"
+        }
+      ]
+    },
+    "cooking": {
+      "level": 1,
+      "experience": 0,
+      "unlocks": [
+        {
+          "level": 5,
+          "type": "job_tier",
+          "name": "Cooking job tier 1",
+          "description": "",
+          "ref": "cooking_job_tier_1"
+        },
+        {
+          "level": 10,
+          "type": "job_tier",
+          "name": "Cooking job tier 2",
+          "description": "",
+          "ref": "cooking_job_tier_2"
+        },
+        {
+          "level": 20,
+          "type": "job_tier",
+          "name": "Cooking job tier 3",
+          "description": "",
+          "ref": "cooking_job_tier_3"
+        },
+        {
+          "level": 25,
+          "type": "job_tier",
+          "name": "Cooking job tier 4",
+          "description": "",
+          "ref": "cooking_job_tier_4"
+        },
+        {
+          "level": 30,
+          "type": "job_tier",
+          "name": "Cooking job tier 5",
+          "description": "",
+          "ref": "cooking_job_tier_5"
+        },
+        {
+          "level": 40,
+          "type": "job_tier",
+          "name": "Cooking job tier 6",
+          "description": "",
+          "ref": "cooking_job_tier_6"
+        },
+        {
+          "level": 50,
+          "type": "job_tier",
+          "name": "Cooking job tier 7",
+          "description": "",
+          "ref": "cooking_job_tier_7"
+        },
+        {
+          "level": 60,
+          "type": "job_tier",
+          "name": "Cooking job tier 8",
+          "description": "",
+          "ref": "cooking_job_tier_8"
+        },
+        {
+          "level": 70,
+          "type": "job_tier",
+          "name": "Cooking job tier 9",
+          "description": "",
+          "ref": "cooking_job_tier_9"
+        }
+      ]
+    },
+    "crafting": {
+      "level": 1,
+      "experience": 0,
+      "unlocks": [
+        {
+          "level": 5,
+          "type": "craft",
+          "name": "Bronze Items",
+          "description": "Can craft Bronze tier items",
+          "ref": "bronze_items"
+        },
+        {
+          "level": 5,
+          "type": "job_tier",
+          "name": "Crafting job tier 1",
+          "description": "",
+          "ref": "crafting_job_tier_1"
+        },
+        {
+          "level": 10,
+          "type": "craft",
+          "name": "Iron Items",
+          "description": "Can craft Iron tier items",
+          "ref": "iron_items"
+        },
+        {
+          "level": 10,
+          "type": "job_tier",
+          "name": "Crafting job tier 2",
+          "description": "",
+          "ref": "crafting_job_tier_2"
+        },
+        {
+          "level": 20,
+          "type": "craft",
+          "name": "Steel Items",
+          "description": "Can craft Steel tier items",
+          "ref": "steel_items"
+        },
+        {
+          "level": 20,
+          "type": "job_tier",
+          "name": "Crafting job tier 3",
+          "description": "",
+          "ref": "crafting_job_tier_3"
+        },
+        {
+          "level": 25,
+          "type": "craft",
+          "name": "Black Items",
+          "description": "Can craft Black tier items",
+          "ref": "black_items"
+        },
+        {
+          "level": 25,
+          "type": "job_tier",
+          "name": "Crafting job tier 4",
+          "description": "",
+          "ref": "crafting_job_tier_4"
+        },
+        {
+          "level": 30,
+          "type": "craft",
+          "name": "Mithril Items",
+          "description": "Can craft Mithril tier items",
+          "ref": "mithril_items"
+        },
+        {
+          "level": 30,
+          "type": "job_tier",
+          "name": "Crafting job tier 5",
+          "description": "",
+          "ref": "crafting_job_tier_5"
+        },
+        {
+          "level": 40,
+          "type": "craft",
+          "name": "Adamant Items",
+          "description": "Can craft Adamant tier items",
+          "ref": "adamant_items"
+        },
+        {
+          "level": 40,
+          "type": "job_tier",
+          "name": "Crafting job tier 6",
+          "description": "",
+          "ref": "crafting_job_tier_6"
+        },
+        {
+          "level": 50,
+          "type": "craft",
+          "name": "Rune Items",
+          "description": "Can craft Rune tier items",
+          "ref": "rune_items"
+        },
+        {
+          "level": 50,
+          "type": "job_tier",
+          "name": "Crafting job tier 7",
+          "description": "",
+          "ref": "crafting_job_tier_7"
+        },
+        {
+          "level": 60,
+          "type": "craft",
+          "name": "Dragon Items",
+          "description": "Can craft Dragon tier items",
+          "ref": "dragon_items"
+        },
+        {
+          "level": 60,
+          "type": "job_tier",
+          "name": "Crafting job tier 8",
+          "description": "",
+          "ref": "crafting_job_tier_8"
+        },
+        {
+          "level": 70,
+          "type": "craft",
+          "name": "God Items",
+          "description": "Can craft God tier items",
+          "ref": "god_items"
+        },
+        {
+          "level": 70,
+          "type": "job_tier",
+          "name": "Crafting job tier 9",
+          "description": "",
+          "ref": "crafting_job_tier_9"
+        }
+      ]
+    },
+    "farming": {
+      "level": 1,
+      "experience": 0,
+      "unlocks": [
+        {
+          "level": 5,
+          "type": "job_tier",
+          "name": "Farming job tier 1",
+          "description": "",
+          "ref": "farming_job_tier_1"
+        },
+        {
+          "level": 10,
+          "type": "job_tier",
+          "name": "Farming job tier 2",
+          "description": "",
+          "ref": "farming_job_tier_2"
+        },
+        {
+          "level": 20,
+          "type": "job_tier",
+          "name": "Farming job tier 3",
+          "description": "",
+          "ref": "farming_job_tier_3"
+        },
+        {
+          "level": 25,
+          "type": "job_tier",
+          "name": "Farming job tier 4",
+          "description": "",
+          "ref": "farming_job_tier_4"
+        },
+        {
+          "level": 30,
+          "type": "job_tier",
+          "name": "Farming job tier 5",
+          "description": "",
+          "ref": "farming_job_tier_5"
+        },
+        {
+          "level": 40,
+          "type": "job_tier",
+          "name": "Farming job tier 6",
+          "description": "",
+          "ref": "farming_job_tier_6"
+        },
+        {
+          "level": 50,
+          "type": "job_tier",
+          "name": "Farming job tier 7",
+          "description": "",
+          "ref": "farming_job_tier_7"
+        },
+        {
+          "level": 60,
+          "type": "job_tier",
+          "name": "Farming job tier 8",
+          "description": "",
+          "ref": "farming_job_tier_8"
+        },
+        {
+          "level": 70,
+          "type": "job_tier",
+          "name": "Farming job tier 9",
+          "description": "",
+          "ref": "farming_job_tier_9"
+        }
+      ]
+    },
+    "potionmaking": {
+      "level": 1,
+      "experience": 0,
+      "unlocks": [
+        {
+          "level": 5,
+          "type": "job_tier",
+          "name": "Potionmaking job tier 1",
+          "description": "",
+          "ref": "potionmaking_job_tier_1"
+        },
+        {
+          "level": 10,
+          "type": "job_tier",
+          "name": "Potionmaking job tier 2",
+          "description": "",
+          "ref": "potionmaking_job_tier_2"
+        },
+        {
+          "level": 20,
+          "type": "job_tier",
+          "name": "Potionmaking job tier 3",
+          "description": "",
+          "ref": "potionmaking_job_tier_3"
+        },
+        {
+          "level": 25,
+          "type": "job_tier",
+          "name": "Potionmaking job tier 4",
+          "description": "",
+          "ref": "potionmaking_job_tier_4"
+        },
+        {
+          "level": 30,
+          "type": "job_tier",
+          "name": "Potionmaking job tier 5",
+          "description": "",
+          "ref": "potionmaking_job_tier_5"
+        },
+        {
+          "level": 40,
+          "type": "job_tier",
+          "name": "Potionmaking job tier 6",
+          "description": "",
+          "ref": "potionmaking_job_tier_6"
+        },
+        {
+          "level": 50,
+          "type": "job_tier",
+          "name": "Potionmaking job tier 7",
+          "description": "",
+          "ref": "potionmaking_job_tier_7"
+        },
+        {
+          "level": 60,
+          "type": "job_tier",
+          "name": "Potionmaking job tier 8",
+          "description": "",
+          "ref": "potionmaking_job_tier_8"
+        },
+        {
+          "level": 70,
+          "type": "job_tier",
+          "name": "Potionmaking job tier 9",
+          "description": "",
+          "ref": "potionmaking_job_tier_9"
+        }
+      ]
+    },
+    "combat": {
+      "level": 1,
+      "experience": 0,
+      "unlocks": [
+        {
+          "level": 5,
+          "type": "job_tier",
+          "name": "Combat job tier 1",
+          "description": "",
+          "ref": "combat_job_tier_1"
+        },
+        {
+          "level": 10,
+          "type": "job_tier",
+          "name": "Combat job tier 2",
+          "description": "",
+          "ref": "combat_job_tier_2"
+        },
+        {
+          "level": 20,
+          "type": "job_tier",
+          "name": "Combat job tier 3",
+          "description": "",
+          "ref": "combat_job_tier_3"
+        },
+        {
+          "level": 25,
+          "type": "job_tier",
+          "name": "Combat job tier 4",
+          "description": "",
+          "ref": "combat_job_tier_4"
+        },
+        {
+          "level": 30,
+          "type": "job_tier",
+          "name": "Combat job tier 5",
+          "description": "",
+          "ref": "combat_job_tier_5"
+        },
+        {
+          "level": 40,
+          "type": "job_tier",
+          "name": "Combat job tier 6",
+          "description": "",
+          "ref": "combat_job_tier_6"
+        },
+        {
+          "level": 50,
+          "type": "job_tier",
+          "name": "Combat job tier 7",
+          "description": "",
+          "ref": "combat_job_tier_7"
+        },
+        {
+          "level": 60,
+          "type": "job_tier",
+          "name": "Combat job tier 8",
+          "description": "",
+          "ref": "combat_job_tier_8"
+        },
+        {
+          "level": 70,
+          "type": "job_tier",
+          "name": "Combat job tier 9",
+          "description": "",
+          "ref": "combat_job_tier_9"
+        }
+      ]
+    }
+  },
+  "jobs": {
+    "thieving": {
+      "job_tier": 0,
+      "job_type": "skilling",
+      "job_action_time": 14,
+      "required_gear": "none",
+      "job_equipment": "boots",
+      "skill_experience": 1,
+      "worker_experience": 2.5,
+      "required_resources": {
+        "cooked_fish": 1
+      },
+      "produces": {
+        "gold": {
+          "min": 5,
+          "max": 10
+        },
+        "logs": {
+          "min": 0,
+          "max": 1
+        },
+        "fire_wood": {
+          "min": 0,
+          "max": 1
+        },
+        "ore": {
+          "min": 0,
+          "max": 1
+        }
+      },
+      "tiers": {
+        "1": {
+          "skill_experience": 2,
+          "worker_experience": 2
+        },
+        "2": {
+          "skill_experience": 3,
+          "worker_experience": 3
+        },
+        "3": {
+          "skill_experience": 4,
+          "worker_experience": 4
+        },
+        "4": {
+          "skill_experience": 5,
+          "worker_experience": 5
+        },
+        "5": {
+          "skill_experience": 6,
+          "worker_experience": 6
+        },
+        "6": {
+          "skill_experience": 7,
+          "worker_experience": 7
+        },
+        "7": {
+          "skill_experience": 8,
+          "worker_experience": 8
+        },
+        "8": {
+          "skill_experience": 9,
+          "worker_experience": 9
+        },
+        "9": {
+          "skill_experience": 10,
+          "worker_experience": 10
+        }
+      }
+    },
+    "woodcutting": {
+      "job_tier": 0,
+      "job_type": "skilling",
+      "job_action_time": 16,
+      "required_gear": "none",
+      "job_equipment": "axe",
+      "skill_experience": 1,
+      "worker_experience": 2.5,
+      "produces": {
+        "logs": 1
+      },
+      "tiers": {
+        "1": {
+          "skill_experience": 2,
+          "worker_experience": 2
+        },
+        "2": {
+          "skill_experience": 3,
+          "worker_experience": 3
+        },
+        "3": {
+          "skill_experience": 4,
+          "worker_experience": 4
+        },
+        "4": {
+          "skill_experience": 5,
+          "worker_experience": 5
+        },
+        "5": {
+          "skill_experience": 6,
+          "worker_experience": 6
+        },
+        "6": {
+          "skill_experience": 7,
+          "worker_experience": 7
+        },
+        "7": {
+          "skill_experience": 8,
+          "worker_experience": 8
+        },
+        "8": {
+          "skill_experience": 9,
+          "worker_experience": 9
+        },
+        "9": {
+          "skill_experience": 10,
+          "worker_experience": 10
+        }
+      }
+    },
+    "firemaking": {
+      "job_tier": 0,
+      "job_type": "skilling",
+      "job_action_time": 10,
+      "required_gear": "none",
+      "job_equipment": "tinderbox",
+      "skill_experience": 1,
+      "worker_experience": 2.5,
+      "required_resources": {
+        "logs": 1
+      },
+      "produces": {
+        "fire_wood": 1
+      },
+      "tiers": {
+        "1": {
+          "skill_experience": 2,
+          "worker_experience": 2
+        },
+        "2": {
+          "skill_experience": 3,
+          "worker_experience": 3
+        },
+        "3": {
+          "skill_experience": 4,
+          "worker_experience": 4
+        },
+        "4": {
+          "skill_experience": 5,
+          "worker_experience": 5
+        },
+        "5": {
+          "skill_experience": 6,
+          "worker_experience": 6
+        },
+        "6": {
+          "skill_experience": 7,
+          "worker_experience": 7
+        },
+        "7": {
+          "skill_experience": 8,
+          "worker_experience": 8
+        },
+        "8": {
+          "skill_experience": 9,
+          "worker_experience": 9
+        },
+        "9": {
+          "skill_experience": 10,
+          "worker_experience": 10
+        }
+      }
+    },
+    "carpentry": {
+      "job_tier": 0,
+      "job_type": "skilling",
+      "job_action_time": 12,
+      "required_gear": "none",
+      "job_equipment": "saw",
+      "skill_experience": 1,
+      "worker_experience": 2.5,
+      "required_resources": {
+        "logs": 1
+      },
+      "produces": {
+        "refined_wood": 1
+      },
+      "tiers": {
+        "1": {
+          "skill_experience": 2,
+          "worker_experience": 2
+        },
+        "2": {
+          "skill_experience": 3,
+          "worker_experience": 3
+        },
+        "3": {
+          "skill_experience": 4,
+          "worker_experience": 4
+        },
+        "4": {
+          "skill_experience": 5,
+          "worker_experience": 5
+        },
+        "5": {
+          "skill_experience": 6,
+          "worker_experience": 6
+        },
+        "6": {
+          "skill_experience": 7,
+          "worker_experience": 7
+        },
+        "7": {
+          "skill_experience": 8,
+          "worker_experience": 8
+        },
+        "8": {
+          "skill_experience": 9,
+          "worker_experience": 9
+        },
+        "9": {
+          "skill_experience": 10,
+          "worker_experience": 10
+        }
+      }
+    },
+    "mining": {
+      "job_tier": 0,
+      "job_type": "skilling",
+      "job_action_time": 18,
+      "required_gear": "none",
+      "job_equipment": "pickaxe",
+      "skill_experience": 1,
+      "worker_experience": 2.5,
+      "produces": {
+        "ore": 1
+      },
+      "tiers": {
+        "1": {
+          "skill_experience": 2,
+          "worker_experience": 2
+        },
+        "2": {
+          "skill_experience": 3,
+          "worker_experience": 3
+        },
+        "3": {
+          "skill_experience": 4,
+          "worker_experience": 4
+        },
+        "4": {
+          "skill_experience": 5,
+          "worker_experience": 5
+        },
+        "5": {
+          "skill_experience": 6,
+          "worker_experience": 6
+        },
+        "6": {
+          "skill_experience": 7,
+          "worker_experience": 7
+        },
+        "7": {
+          "skill_experience": 8,
+          "worker_experience": 8
+        },
+        "8": {
+          "skill_experience": 9,
+          "worker_experience": 9
+        },
+        "9": {
+          "skill_experience": 10,
+          "worker_experience": 10
+        }
+      }
+    },
+    "smithing": {
+      "job_tier": 0,
+      "job_type": "skilling",
+      "job_action_time": 12,
+      "required_gear": "none",
+      "job_equipment": "hammer",
+      "skill_experience": 1,
+      "worker_experience": 2.5,
+      "required_resources": {
+        "ore": 1
+      },
+      "produces": {
+        "ingot": 1
+      },
+      "tiers": {
+        "1": {
+          "skill_experience": 2,
+          "worker_experience": 2
+        },
+        "2": {
+          "skill_experience": 3,
+          "worker_experience": 3
+        },
+        "3": {
+          "skill_experience": 4,
+          "worker_experience": 4
+        },
+        "4": {
+          "skill_experience": 5,
+          "worker_experience": 5
+        },
+        "5": {
+          "skill_experience": 6,
+          "worker_experience": 6
+        },
+        "6": {
+          "skill_experience": 7,
+          "worker_experience": 7
+        },
+        "7": {
+          "skill_experience": 8,
+          "worker_experience": 8
+        },
+        "8": {
+          "skill_experience": 9,
+          "worker_experience": 9
+        },
+        "9": {
+          "skill_experience": 10,
+          "worker_experience": 10
+        }
+      }
+    },
+    "fishing": {
+      "job_tier": 0,
+      "job_type": "skilling",
+      "job_action_time": 16,
+      "required_gear": "none",
+      "job_equipment": "rod",
+      "skill_experience": 1,
+      "worker_experience": 2.5,
+      "produces": {
+        "fish": 1
+      },
+      "tiers": {
+        "1": {
+          "skill_experience": 2,
+          "worker_experience": 2
+        },
+        "2": {
+          "skill_experience": 3,
+          "worker_experience": 3
+        },
+        "3": {
+          "skill_experience": 4,
+          "worker_experience": 4
+        },
+        "4": {
+          "skill_experience": 5,
+          "worker_experience": 5
+        },
+        "5": {
+          "skill_experience": 6,
+          "worker_experience": 6
+        },
+        "6": {
+          "skill_experience": 7,
+          "worker_experience": 7
+        },
+        "7": {
+          "skill_experience": 8,
+          "worker_experience": 8
+        },
+        "8": {
+          "skill_experience": 9,
+          "worker_experience": 9
+        },
+        "9": {
+          "skill_experience": 10,
+          "worker_experience": 10
+        }
+      }
+    },
+    "cooking": {
+      "job_tier": 0,
+      "job_type": "skilling",
+      "job_action_time": 14,
+      "required_gear": "none",
+      "job_equipment": "gloves",
+      "skill_experience": 1,
+      "worker_experience": 2.5,
+      "required_resources": {
+        "fish": 1,
+        "fire_wood": 1
+      },
+      "produces": {
+        "cooked_fish": 1
+      },
+      "tiers": {
+        "1": {
+          "skill_experience": 2,
+          "worker_experience": 2
+        },
+        "2": {
+          "skill_experience": 3,
+          "worker_experience": 3
+        },
+        "3": {
+          "skill_experience": 4,
+          "worker_experience": 4
+        },
+        "4": {
+          "skill_experience": 5,
+          "worker_experience": 5
+        },
+        "5": {
+          "skill_experience": 6,
+          "worker_experience": 6
+        },
+        "6": {
+          "skill_experience": 7,
+          "worker_experience": 7
+        },
+        "7": {
+          "skill_experience": 8,
+          "worker_experience": 8
+        },
+        "8": {
+          "skill_experience": 9,
+          "worker_experience": 9
+        },
+        "9": {
+          "skill_experience": 10,
+          "worker_experience": 10
+        }
+      }
+    },
+    "crafting": {
+      "job_tier": 0,
+      "job_type": "skilling",
+      "job_action_time": 15,
+      "required_gear": "none",
+      "job_equipment": "none",
+      "skill_experience": 1,
+      "worker_experience": 2.5,
+      "required_resources": {
+        "ingot": 1,
+        "refined_wood": 1
+      },
+      "produces": {
+        "material_part": 1
+      },
+      "tiers": {
+        "1": {
+          "skill_experience": 2,
+          "worker_experience": 2
+        },
+        "2": {
+          "skill_experience": 3,
+          "worker_experience": 3
+        },
+        "3": {
+          "skill_experience": 4,
+          "worker_experience": 4
+        },
+        "4": {
+          "skill_experience": 5,
+          "worker_experience": 5
+        },
+        "5": {
+          "skill_experience": 6,
+          "worker_experience": 6
+        },
+        "6": {
+          "skill_experience": 7,
+          "worker_experience": 7
+        },
+        "7": {
+          "skill_experience": 8,
+          "worker_experience": 8
+        },
+        "8": {
+          "skill_experience": 9,
+          "worker_experience": 9
+        },
+        "9": {
+          "skill_experience": 10,
+          "worker_experience": 10
+        }
+      }
+    },
+    "fighting_tier_1": {
+      "monster": "goblin",
+      "job_tier": 0,
+      "job_type": "combat",
+      "job_action_time": 15,
+      "required_gear": "none",
+      "job_equipment": "sword, armor, shield",
+      "skill_experience": 1,
+      "worker_experience": 2.5,
+      "required_resources": {
+        "cooked_fish": 1,
+        "material_part": 1
+      },
+      "fights_required_to_unlock_next": 500,
+      "unlocks": "fighting_tier_2",
+      "produces": {
+        "gold": {
+          "min": 15,
+          "max": 35
+        },
+        "recipe_bronze": {
+          "chance": 0.01
+        }
+      },
+      "tiers": {
+        "1": {
+          "skill_experience": 2,
+          "worker_experience": 2
+        },
+        "2": {
+          "skill_experience": 3,
+          "worker_experience": 3
+        },
+        "3": {
+          "skill_experience": 4,
+          "worker_experience": 4
+        },
+        "4": {
+          "skill_experience": 5,
+          "worker_experience": 5
+        },
+        "5": {
+          "skill_experience": 6,
+          "worker_experience": 6
+        },
+        "6": {
+          "skill_experience": 7,
+          "worker_experience": 7
+        },
+        "7": {
+          "skill_experience": 8,
+          "worker_experience": 8
+        },
+        "8": {
+          "skill_experience": 9,
+          "worker_experience": 9
+        },
+        "9": {
+          "skill_experience": 10,
+          "worker_experience": 10
+        }
+      }
+    },
+    "fighting_tier_2": {
+      "monster": "skeleton",
+      "job_tier": 0,
+      "job_type": "combat",
+      "job_action_time": 15,
+      "required_gear": "bronze_sword, bronze_armor, bronze_shield",
+      "job_equipment": "sword, armor, shield",
+      "skill_experience": 1,
+      "worker_experience": 2.5,
+      "required_resources": {
+        "cooked_fish": 1,
+        "material_part": 2
+      },
+      "fights_required_to_unlock_next": 1000,
+      "unlocks": "fighting_tier_3",
+      "produces": {
+        "gold": {
+          "min": 30,
+          "max": 70
+        },
+        "recipe_iron": {
+          "chance": 0.01
+        }
+      },
+      "tiers": {
+        "1": {
+          "skill_experience": 2,
+          "worker_experience": 2
+        },
+        "2": {
+          "skill_experience": 3,
+          "worker_experience": 3
+        },
+        "3": {
+          "skill_experience": 4,
+          "worker_experience": 4
+        },
+        "4": {
+          "skill_experience": 5,
+          "worker_experience": 5
+        },
+        "5": {
+          "skill_experience": 6,
+          "worker_experience": 6
+        },
+        "6": {
+          "skill_experience": 7,
+          "worker_experience": 7
+        },
+        "7": {
+          "skill_experience": 8,
+          "worker_experience": 8
+        },
+        "8": {
+          "skill_experience": 9,
+          "worker_experience": 9
+        },
+        "9": {
+          "skill_experience": 10,
+          "worker_experience": 10
+        }
+      }
+    },
+    "fighting_tier_3": {
+      "monster": "spider",
+      "job_tier": 0,
+      "job_type": "combat",
+      "job_action_time": 15,
+      "required_gear": "iron_sword, iron_armor, iron_shield",
+      "job_equipment": "sword, armor, shield",
+      "skill_experience": 1,
+      "worker_experience": 2.5,
+      "required_resources": {
+        "cooked_fish": 2,
+        "material_part": 2
+      },
+      "fights_required_to_unlock_next": 1500,
+      "unlocks": "fighting_tier_4",
+      "produces": {
+        "gold": {
+          "min": 50,
+          "max": 100
+        },
+        "recipe_steel": {
+          "chance": 0.01
+        }
+      },
+      "tiers": {
+        "1": {
+          "skill_experience": 2,
+          "worker_experience": 2
+        },
+        "2": {
+          "skill_experience": 3,
+          "worker_experience": 3
+        },
+        "3": {
+          "skill_experience": 4,
+          "worker_experience": 4
+        },
+        "4": {
+          "skill_experience": 5,
+          "worker_experience": 5
+        },
+        "5": {
+          "skill_experience": 6,
+          "worker_experience": 6
+        },
+        "6": {
+          "skill_experience": 7,
+          "worker_experience": 7
+        },
+        "7": {
+          "skill_experience": 8,
+          "worker_experience": 8
+        },
+        "8": {
+          "skill_experience": 9,
+          "worker_experience": 9
+        },
+        "9": {
+          "skill_experience": 10,
+          "worker_experience": 10
+        }
+      }
+    },
+    "fighting_tier_4": {
+      "monster": "black_wizard",
+      "job_tier": 0,
+      "job_type": "combat",
+      "job_action_time": 15,
+      "required_gear": "steel_sword, steel_armor, steel_shield",
+      "job_equipment": "sword, armor, shield",
+      "skill_experience": 1,
+      "worker_experience": 2.5,
+      "required_resources": {
+        "cooked_fish": 2,
+        "material_part": 3
+      },
+      "fights_required_to_unlock_next": 2000,
+      "unlocks": "fighting_tier_5",
+      "produces": {
+        "gold": {
+          "min": 70,
+          "max": 130
+        },
+        "recipe_black": {
+          "chance": 0.01
+        }
+      },
+      "tiers": {
+        "1": {
+          "skill_experience": 2,
+          "worker_experience": 2
+        },
+        "2": {
+          "skill_experience": 3,
+          "worker_experience": 3
+        },
+        "3": {
+          "skill_experience": 4,
+          "worker_experience": 4
+        },
+        "4": {
+          "skill_experience": 5,
+          "worker_experience": 5
+        },
+        "5": {
+          "skill_experience": 6,
+          "worker_experience": 6
+        },
+        "6": {
+          "skill_experience": 7,
+          "worker_experience": 7
+        },
+        "7": {
+          "skill_experience": 8,
+          "worker_experience": 8
+        },
+        "8": {
+          "skill_experience": 9,
+          "worker_experience": 9
+        },
+        "9": {
+          "skill_experience": 10,
+          "worker_experience": 10
+        }
+      }
+    },
+    "fighting_tier_5": {
+      "monster": "black_knight",
+      "job_tier": 0,
+      "job_type": "combat",
+      "job_action_time": 15,
+      "required_gear": "black_sword, black_armor, black_shield",
+      "job_equipment": "sword, armor, shield",
+      "skill_experience": 1,
+      "worker_experience": 2.5,
+      "required_resources": {
+        "cooked_fish": 3,
+        "material_part": 3
+      },
+      "fights_required_to_unlock_next": 3000,
+      "unlocks": "fighting_tier_6",
+      "produces": {
+        "gold": {
+          "min": 100,
+          "max": 200
+        },
+        "recipe_mithril": {
+          "chance": 0.01
+        }
+      },
+      "tiers": {
+        "1": {
+          "skill_experience": 2,
+          "worker_experience": 2
+        },
+        "2": {
+          "skill_experience": 3,
+          "worker_experience": 3
+        },
+        "3": {
+          "skill_experience": 4,
+          "worker_experience": 4
+        },
+        "4": {
+          "skill_experience": 5,
+          "worker_experience": 5
+        },
+        "5": {
+          "skill_experience": 6,
+          "worker_experience": 6
+        },
+        "6": {
+          "skill_experience": 7,
+          "worker_experience": 7
+        },
+        "7": {
+          "skill_experience": 8,
+          "worker_experience": 8
+        },
+        "8": {
+          "skill_experience": 9,
+          "worker_experience": 9
+        },
+        "9": {
+          "skill_experience": 10,
+          "worker_experience": 10
+        }
+      }
+    },
+    "fighting_tier_6": {
+      "monster": "ghost",
+      "job_tier": 0,
+      "job_type": "combat",
+      "job_action_time": 15,
+      "required_gear": "mithril_sword, mithril_armor, mithril_shield",
+      "job_equipment": "sword, armor, shield",
+      "skill_experience": 1,
+      "worker_experience": 2.5,
+      "required_resources": {
+        "cooked_fish": 3,
+        "material_part": 4
+      },
+      "fights_required_to_unlock_next": 4000,
+      "unlocks": "fighting_tier_7",
+      "produces": {
+        "gold": {
+          "min": 140,
+          "max": 260
+        },
+        "recipe_adamant": {
+          "chance": 0.01
+        }
+      },
+      "tiers": {
+        "1": {
+          "skill_experience": 2,
+          "worker_experience": 2
+        },
+        "2": {
+          "skill_experience": 3,
+          "worker_experience": 3
+        },
+        "3": {
+          "skill_experience": 4,
+          "worker_experience": 4
+        },
+        "4": {
+          "skill_experience": 5,
+          "worker_experience": 5
+        },
+        "5": {
+          "skill_experience": 6,
+          "worker_experience": 6
+        },
+        "6": {
+          "skill_experience": 7,
+          "worker_experience": 7
+        },
+        "7": {
+          "skill_experience": 8,
+          "worker_experience": 8
+        },
+        "8": {
+          "skill_experience": 9,
+          "worker_experience": 9
+        },
+        "9": {
+          "skill_experience": 10,
+          "worker_experience": 10
+        }
+      }
+    },
+    "fighting_tier_7": {
+      "monster": "gargoyle",
+      "job_tier": 0,
+      "job_type": "combat",
+      "job_action_time": 15,
+      "required_gear": "adamant_sword, adamant_armor, adamant_shield",
+      "job_equipment": "sword, armor, shield",
+      "skill_experience": 1,
+      "worker_experience": 2.5,
+      "required_resources": {
+        "cooked_fish": 4,
+        "material_part": 4
+      },
+      "fights_required_to_unlock_next": 6000,
+      "unlocks": "fighting_tier_8",
+      "produces": {
+        "gold": {
+          "min": 280,
+          "max": 520
+        },
+        "recipe_rune": {
+          "chance": 0.01
+        }
+      },
+      "tiers": {
+        "1": {
+          "skill_experience": 2,
+          "worker_experience": 2
+        },
+        "2": {
+          "skill_experience": 3,
+          "worker_experience": 3
+        },
+        "3": {
+          "skill_experience": 4,
+          "worker_experience": 4
+        },
+        "4": {
+          "skill_experience": 5,
+          "worker_experience": 5
+        },
+        "5": {
+          "skill_experience": 6,
+          "worker_experience": 6
+        },
+        "6": {
+          "skill_experience": 7,
+          "worker_experience": 7
+        },
+        "7": {
+          "skill_experience": 8,
+          "worker_experience": 8
+        },
+        "8": {
+          "skill_experience": 9,
+          "worker_experience": 9
+        },
+        "9": {
+          "skill_experience": 10,
+          "worker_experience": 10
+        }
+      }
+    },
+    "fighting_tier_8": {
+      "monster": "demon",
+      "job_tier": 0,
+      "job_type": "combat",
+      "job_action_time": 15,
+      "required_gear": "rune_sword, rune_armor, rune_shield",
+      "job_equipment": "sword, armor, shield",
+      "skill_experience": 1,
+      "worker_experience": 2.5,
+      "required_resources": {
+        "cooked_fish": 4,
+        "material_part": 5
+      },
+      "fights_required_to_unlock_next": 8000,
+      "unlocks": "fighting_tier_9",
+      "produces": {
+        "gold": {
+          "min": 560,
+          "max": 1040
+        },
+        "recipe_dragon": {
+          "chance": 0.01
+        }
+      },
+      "tiers": {
+        "1": {
+          "skill_experience": 2,
+          "worker_experience": 2
+        },
+        "2": {
+          "skill_experience": 3,
+          "worker_experience": 3
+        },
+        "3": {
+          "skill_experience": 4,
+          "worker_experience": 4
+        },
+        "4": {
+          "skill_experience": 5,
+          "worker_experience": 5
+        },
+        "5": {
+          "skill_experience": 6,
+          "worker_experience": 6
+        },
+        "6": {
+          "skill_experience": 7,
+          "worker_experience": 7
+        },
+        "7": {
+          "skill_experience": 8,
+          "worker_experience": 8
+        },
+        "8": {
+          "skill_experience": 9,
+          "worker_experience": 9
+        },
+        "9": {
+          "skill_experience": 10,
+          "worker_experience": 10
+        }
+      }
+    },
+    "fighting_tier_9": {
+      "monster": "dragon",
+      "job_tier": 0,
+      "job_type": "combat",
+      "job_action_time": 15,
+      "required_gear": "dragon_sword, dragon_armor, dragon_shield",
+      "job_equipment": "sword, armor, shield",
+      "skill_experience": 1,
+      "worker_experience": 2.5,
+      "required_resources": {
+        "cooked_fish": 5,
+        "material_part": 5
+      },
+      "fights_required_to_unlock_next": 10000,
+      "unlocks": "fighting_tier_10",
+      "produces": {
+        "gold": {
+          "min": 840,
+          "max": 1560
+        },
+        "recipe_god": {
+          "chance": 0.01
+        }
+      },
+      "tiers": {
+        "1": {
+          "skill_experience": 2,
+          "worker_experience": 2
+        },
+        "2": {
+          "skill_experience": 3,
+          "worker_experience": 3
+        },
+        "3": {
+          "skill_experience": 4,
+          "worker_experience": 4
+        },
+        "4": {
+          "skill_experience": 5,
+          "worker_experience": 5
+        },
+        "5": {
+          "skill_experience": 6,
+          "worker_experience": 6
+        },
+        "6": {
+          "skill_experience": 7,
+          "worker_experience": 7
+        },
+        "7": {
+          "skill_experience": 8,
+          "worker_experience": 8
+        },
+        "8": {
+          "skill_experience": 9,
+          "worker_experience": 9
+        },
+        "9": {
+          "skill_experience": 10,
+          "worker_experience": 10
+        }
+      }
+    },
+    "fighting_tier_10": {
+      "monster": "hydra",
+      "job_tier": 0,
+      "job_type": "combat",
+      "job_action_time": 20,
+      "required_gear": "god_sword, god_armor, god_shield",
+      "job_equipment": "sword, armor, shield",
+      "skill_experience": 1,
+      "worker_experience": 2.5,
+      "required_resources": {
+        "cooked_fish": 5,
+        "material_part": 6
+      },
+      "fights_required_to_unlock_next": 15000,
+      "unlocks": "nothing",
+      "produces": {
+        "gold": {
+          "min": 1400,
+          "max": 2600
+        },
+        "recipe_victory": {
+          "chance": 0.0001
+        }
+      },
+      "tiers": {
+        "1": {
+          "skill_experience": 2,
+          "worker_experience": 2
+        },
+        "2": {
+          "skill_experience": 3,
+          "worker_experience": 3
+        },
+        "3": {
+          "skill_experience": 4,
+          "worker_experience": 4
+        },
+        "4": {
+          "skill_experience": 5,
+          "worker_experience": 5
+        },
+        "5": {
+          "skill_experience": 6,
+          "worker_experience": 6
+        },
+        "6": {
+          "skill_experience": 7,
+          "worker_experience": 7
+        },
+        "7": {
+          "skill_experience": 8,
+          "worker_experience": 8
+        },
+        "8": {
+          "skill_experience": 9,
+          "worker_experience": 9
+        },
+        "9": {
+          "skill_experience": 10,
+          "worker_experience": 10
+        }
+      }
+    }
+  },
+  "equipment": {
+    "gear_parts": [
+      "sword",
+      "armor",
+      "shield"
+    ],
+    "tools_parts": [
+      "pickaxe",
+      "axe",
+      "rod",
+      "hammer",
+      "saw",
+      "tinderbox",
+      "gloves",
+      "boots"
+    ]
+  },
+  "tiers": {
+    "bronze": 1,
+    "iron": 2,
+    "steel": 3,
+    "black": 4,
+    "mithril": 5,
+    "adamant": 6,
+    "rune": 7,
+    "dragon": 8,
+    "god": 9
+  },
+  "equipment_tiers": {
+    "bronze": {
+      "level": 1
+    },
+    "iron": {
+      "level": 10
+    },
+    "steel": {
+      "level": 20
+    },
+    "black": {
+      "level": 25
+    },
+    "mithril": {
+      "level": 30
+    },
+    "adamant": {
+      "level": 40
+    },
+    "rune": {
+      "level": 50
+    },
+    "dragon": {
+      "level": 60
+    },
+    "god": {
+      "level": 70
+    }
+  },
+  "removed_items": [
+    "recipe_bronze_sword",
+    "recipe_bronze_armor",
+    "recipe_bronze_shield",
+    "recipe_bronze_pickaxe",
+    "recipe_bronze_axe",
+    "recipe_bronze_rod",
+    "recipe_bronze_hammer",
+    "recipe_bronze_gloves",
+    "recipe_bronze_boots",
+    "recipe_iron_sword",
+    "recipe_iron_armor",
+    "recipe_iron_shield",
+    "recipe_iron_pickaxe",
+    "recipe_iron_axe",
+    "recipe_iron_rod",
+    "recipe_iron_hammer",
+    "recipe_iron_gloves",
+    "recipe_iron_boots",
+    "recipe_steel_sword",
+    "recipe_steel_armor",
+    "recipe_steel_shield",
+    "recipe_steel_pickaxe",
+    "recipe_steel_axe",
+    "recipe_steel_rod",
+    "recipe_steel_hammer",
+    "recipe_steel_gloves",
+    "recipe_steel_boots",
+    "recipe_black_sword",
+    "recipe_black_armor",
+    "recipe_black_shield",
+    "recipe_black_pickaxe",
+    "recipe_black_axe",
+    "recipe_black_rod",
+    "recipe_black_hammer",
+    "recipe_black_gloves",
+    "recipe_black_boots",
+    "recipe_mithril_sword",
+    "recipe_mithril_armor",
+    "recipe_mithril_shield",
+    "recipe_mithril_pickaxe",
+    "recipe_mithril_axe",
+    "recipe_mithril_rod",
+    "recipe_mithril_hammer",
+    "recipe_mithril_gloves",
+    "recipe_mithril_boots",
+    "recipe_adamant_sword",
+    "recipe_adamant_armor",
+    "recipe_adamant_shield",
+    "recipe_adamant_pickaxe",
+    "recipe_adamant_axe",
+    "recipe_adamant_rod",
+    "recipe_adamant_hammer",
+    "recipe_adamant_gloves",
+    "recipe_adamant_boots",
+    "recipe_rune_sword",
+    "recipe_rune_armor",
+    "recipe_rune_shield",
+    "recipe_rune_pickaxe",
+    "recipe_rune_axe",
+    "recipe_rune_rod",
+    "recipe_rune_hammer",
+    "recipe_rune_gloves",
+    "recipe_rune_boots",
+    "recipe_dragon_sword",
+    "recipe_dragon_armor",
+    "recipe_dragon_shield",
+    "recipe_dragon_pickaxe",
+    "recipe_dragon_axe",
+    "recipe_dragon_rod",
+    "recipe_dragon_hammer",
+    "recipe_dragon_gloves",
+    "recipe_dragon_boots",
+    "recipe_god_sword",
+    "recipe_god_armor",
+    "recipe_god_shield",
+    "recipe_god_pickaxe",
+    "recipe_god_axe",
+    "recipe_god_rod",
+    "recipe_god_hammer",
+    "recipe_god_gloves",
+    "recipe_god_boots",
+    "recipe"
+  ]
+}

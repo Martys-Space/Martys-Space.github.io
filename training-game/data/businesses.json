@@ -1,0 +1,189 @@
+{
+  "businesses": [
+    {
+      "id": "grocery",
+      "name": "Grocery Store",
+      "icon": "🛒",
+      "unlockLevel": 2,
+      "baseCost": 50,
+      "baseXpPerCycle": 3,
+      "baseMoneyPerCycle": 5,
+      "xpPerBusinessLevel": 100,
+      "cycleDurationHours": 8,
+      "baseMaxClaims": 5,
+      "upgrades": [
+        {
+          "id": "g_variety",
+          "name": "Increased Variety",
+          "description": "More products attract more customers",
+          "baseCost": 20,
+          "costMultiplier": 1.5,
+          "maxLevel": 5,
+          "moneyBoostPerLevel": 0.12,
+          "xpBoostPerLevel": 0.08,
+          "type": "boost",
+          "levelReqBase": 2
+        },
+        {
+          "id": "g_storage",
+          "name": "Extended Storage",
+          "description": "Increase max claims by 1",
+          "baseCost": 100,
+          "costMultiplier": 2.0,
+          "maxLevel": 3,
+          "claimStorageBonus": 1,
+          "type": "claim_storage",
+          "levelReqBase": 3
+        }
+      ]
+    },
+    {
+      "id": "coffee",
+      "name": "Coffee Shop",
+      "icon": "☕",
+      "unlockLevel": 4,
+      "baseCost": 80,
+      "baseXpPerCycle": 4,
+      "baseMoneyPerCycle": 7,
+      "xpPerBusinessLevel": 150,
+      "cycleDurationHours": 8,
+      "baseMaxClaims": 5,
+      "upgrades": [
+        {
+          "id": "c_menu",
+          "name": "Expanded Menu",
+          "description": "More drinks, more sales",
+          "baseCost": 30,
+          "costMultiplier": 1.5,
+          "maxLevel": 5,
+          "moneyBoostPerLevel": 0.10,
+          "xpBoostPerLevel": 0.06,
+          "type": "boost",
+          "levelReqBase": 4
+        },
+        {
+          "id": "c_storage",
+          "name": "Loyalty Program",
+          "description": "Increase max claims by 1",
+          "baseCost": 120,
+          "costMultiplier": 2.0,
+          "maxLevel": 3,
+          "claimStorageBonus": 1,
+          "type": "claim_storage",
+          "levelReqBase": 5
+        }
+      ]
+    },
+    {
+      "id": "local_shop",
+      "name": "Local Shop",
+      "icon": "🏪",
+      "unlockLevel": 6,
+      "baseCost": 120,
+      "baseXpPerCycle": 5,
+      "baseMoneyPerCycle": 9,
+      "xpPerBusinessLevel": 200,
+      "cycleDurationHours": 8,
+      "baseMaxClaims": 5,
+      "upgrades": [
+        {
+          "id": "ls_renovate",
+          "name": "Renovate Store",
+          "description": "Better layout increases foot traffic",
+          "baseCost": 40,
+          "costMultiplier": 1.6,
+          "maxLevel": 5,
+          "moneyBoostPerLevel": 0.14,
+          "xpBoostPerLevel": 0.08,
+          "type": "boost",
+          "levelReqBase": 6
+        },
+        {
+          "id": "ls_storage",
+          "name": "Stock Room Expansion",
+          "description": "Increase max claims by 1",
+          "baseCost": 150,
+          "costMultiplier": 2.0,
+          "maxLevel": 3,
+          "claimStorageBonus": 1,
+          "type": "claim_storage",
+          "levelReqBase": 7
+        }
+      ]
+    },
+    {
+      "id": "gym",
+      "name": "Gym",
+      "icon": "🏋️",
+      "unlockLevel": 10,
+      "baseCost": 200,
+      "baseXpPerCycle": 8,
+      "baseMoneyPerCycle": 14,
+      "xpPerBusinessLevel": 300,
+      "cycleDurationHours": 8,
+      "baseMaxClaims": 5,
+      "upgrades": [
+        {
+          "id": "gym_equip",
+          "name": "Premium Equipment",
+          "description": "Top-tier equipment attracts more members",
+          "baseCost": 60,
+          "costMultiplier": 1.6,
+          "maxLevel": 5,
+          "moneyBoostPerLevel": 0.15,
+          "xpBoostPerLevel": 0.10,
+          "type": "boost",
+          "levelReqBase": 10
+        },
+        {
+          "id": "gym_storage",
+          "name": "24/7 Access",
+          "description": "Increase max claims by 1",
+          "baseCost": 200,
+          "costMultiplier": 2.0,
+          "maxLevel": 3,
+          "claimStorageBonus": 1,
+          "type": "claim_storage",
+          "levelReqBase": 12
+        }
+      ]
+    },
+    {
+      "id": "tech_startup",
+      "name": "Tech Startup",
+      "icon": "💻",
+      "unlockLevel": 15,
+      "baseCost": 500,
+      "baseXpPerCycle": 15,
+      "baseMoneyPerCycle": 25,
+      "xpPerBusinessLevel": 500,
+      "cycleDurationHours": 8,
+      "baseMaxClaims": 5,
+      "upgrades": [
+        {
+          "id": "ts_team",
+          "name": "Hire Engineers",
+          "description": "Better team, better output",
+          "baseCost": 100,
+          "costMultiplier": 1.7,
+          "maxLevel": 5,
+          "moneyBoostPerLevel": 0.18,
+          "xpBoostPerLevel": 0.12,
+          "type": "boost",
+          "levelReqBase": 15
+        },
+        {
+          "id": "ts_storage",
+          "name": "Server Scaling",
+          "description": "Increase max claims by 1",
+          "baseCost": 300,
+          "costMultiplier": 2.0,
+          "maxLevel": 3,
+          "claimStorageBonus": 1,
+          "type": "claim_storage",
+          "levelReqBase": 18
+        }
+      ]
+    }
+  ]
+}

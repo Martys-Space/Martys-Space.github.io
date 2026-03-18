@@ -1,0 +1,151 @@
+{
+  "versions": [
+    {
+      "id": "1.1.5",
+      "label": "1.1.5 (Latest)",
+      "isLatest": true,
+      "schemaFile": "versions/schema_versions/skills_schema_v1.1.5.json",
+      "defaultSkillsFile": "versions/default_versions/skills_v1.1.5.json"
+    },
+    {
+      "id": "1.1.3",
+      "label": "1.1.3",
+      "schemaFile": "versions/schema_versions/skills_schema_v1.1.3.json",
+      "defaultSkillsFile": "versions/default_versions/skills_v1.1.3.json"
+    }
+  ],
+  "triggerTypes": [
+    {"id": "NONE", "name": "None", "description": "No trigger", "addedIn": "1.0.0"},
+    {"id": "BLOCK_BREAK", "name": "Block Break", "description": "Breaking blocks", "addedIn": "1.0.0"},
+    {"id": "ENTITY_KILL", "name": "Entity Kill", "description": "Killing mobs", "addedIn": "1.0.0"},
+    {"id": "PLAYER_CHAT", "name": "Player Chat", "description": "Sending messages", "addedIn": "1.0.0"},
+    {"id": "SPRINT", "name": "Sprint", "description": "Sprinting", "addedIn": "1.0.0"},
+    {"id": "CRAFT_ITEM", "name": "Craft Item", "description": "Crafting items", "addedIn": "1.0.0"},
+    {"id": "PLACE_BLOCK", "name": "Place Block", "description": "Placing blocks", "addedIn": "1.0.0"},
+    {"id": "GLIDE", "name": "Glide", "description": "Gliding", "addedIn": "1.0.0"},
+    {"id": "SWIM", "name": "Swim", "description": "Swimming", "addedIn": "1.0.0"},
+    {"id": "CLIMB", "name": "Climb", "description": "Climbing", "addedIn": "1.0.0"},
+    {"id": "JUMP", "name": "Jump", "description": "Jumping", "addedIn": "1.0.0"},
+    {"id": "ROLL", "name": "Roll", "description": "Rolling", "addedIn": "1.0.0"},
+    {"id": "SLIDE", "name": "Slide", "description": "Sliding", "addedIn": "1.0.0"},
+    {"id": "CRITICAL_HIT", "name": "Critical Hit", "description": "Critical hits", "addedIn": "1.0.0"},
+    {"id": "SPEND_MANA", "name": "Spend Mana", "description": "Spending mana", "addedIn": "1.0.0"},
+    {"id": "PLAYER_DEATH", "name": "Player Death", "description": "Player death", "addedIn": "1.0.0"},
+    {"id": "PLAYER_KILL", "name": "Player Kill", "description": "Killing players", "addedIn": "1.0.0"},
+    {"id": "PARRY", "name": "Parry", "description": "Blocking damage", "addedIn": "1.0.0"},
+    {"id": "PROJECTILE_HIT", "name": "Projectile Hit", "description": "Projectile hits", "addedIn": "1.0.0"},
+    {"id": "INTERACT", "name": "Interact", "description": "Interactions (F key)", "addedIn": "1.0.0"}
+  ],
+  "unlockTypes": [
+    {"id": "ITEM", "name": "Item", "description": "Give item as reward", "addedIn": "1.0.0"},
+    {"id": "STAT_HEALTH", "name": "Health", "description": "Increase max health", "addedIn": "1.0.0"},
+    {"id": "STAT_STAMINA", "name": "Stamina", "description": "Increase max stamina", "addedIn": "1.0.0"},
+    {"id": "STAT_MANA", "name": "Mana", "description": "Increase max mana", "addedIn": "1.0.0"},
+    {"id": "STAT_OXYGEN", "name": "Oxygen", "description": "Increase max oxygen", "addedIn": "1.0.0"},
+    {"id": "STAT_STAMINA_REGEN", "name": "Stamina Regen", "description": "Increase stamina regen rate", "addedIn": "1.0.0"},
+    {"id": "STAT_BLOCKBREAK_SPEED", "name": "Block Break Speed", "description": "Increase mining speed", "addedIn": "1.0.0"},
+    {"id": "STAT_CRIT_CHANCE", "name": "Crit Chance", "description": "Increase critical hit chance", "addedIn": "1.0.0"},
+    {"id": "STAT_CRIT_DAMAGE", "name": "Crit Damage", "description": "Increase critical hit damage", "addedIn": "1.0.0"},
+    {"id": "STAT_VAMPIRISM", "name": "Vampirism", "description": "Gain health on hit", "addedIn": "1.0.0"},
+    {"id": "STAT_CRAFTING_PROFICIENCY", "name": "Crafting Proficiency", "description": "Chance to double craft", "addedIn": "1.0.0"},
+    {"id": "STAT_MOVEMENT_SPEED", "name": "Movement Speed", "description": "Increase movement speed", "addedIn": "1.0.0"},
+    {"id": "MAGNET", "name": "Magnet", "description": "Attract dropped items", "addedIn": "1.0.0"},
+    {"id": "STAT_DURABILITY_MODIFIER", "name": "Durability", "description": "Modify item durability", "addedIn": "1.0.0"},
+    {"id": "STAT_BONUS_DROP_CHANCE", "name": "Bonus Drop Chance", "description": "Chance for double drops", "addedIn": "1.0.0"},
+    {"id": "STAT_DAMAGE_MELEE", "name": "Melee Damage", "description": "Increase melee weapon damage", "addedIn": "1.1.5"},
+    {"id": "STAT_DAMAGE_RANGED", "name": "Ranged Damage", "description": "Increase ranged weapon damage", "addedIn": "1.1.5"},
+    {"id": "STAT_DAMAGE_MAGIC", "name": "Magic Damage", "description": "Increase magic damage", "addedIn": "1.1.5"},
+    {"id": "STAT_DAMAGE_FIRE", "name": "Fire Damage", "description": "Increase fire damage", "addedIn": "1.1.5"},
+    {"id": "STAT_DAMAGE_LIGHT", "name": "Light Attack Damage", "description": "Increase light attack damage", "addedIn": "1.1.5"},
+    {"id": "STAT_DAMAGE_CHARGED", "name": "Charged Attack Damage", "description": "Increase charged attack damage", "addedIn": "1.1.5"},
+    {"id": "STAT_DAMAGE_SIGNATURE", "name": "Signature Damage", "description": "Increase signature attack damage", "addedIn": "1.1.5"},
+    {"id": "STAT_REDUCE_DAMAGE", "name": "Damage Reduction", "description": "Reduce all damage taken", "addedIn": "1.1.5"},
+    {"id": "STAT_RESISTANCE_PROJECTILE", "name": "Projectile Resistance", "description": "Reduce projectile damage", "addedIn": "1.1.5"},
+    {"id": "STAT_RESISTANCE_MELEE", "name": "Melee Resistance", "description": "Reduce melee damage taken", "addedIn": "1.1.5"},
+    {"id": "STAT_RESISTANCE_MAGIC", "name": "Magic Resistance", "description": "Reduce magic damage taken", "addedIn": "1.1.5"},
+    {"id": "STAT_RESISTANCE_FIRE", "name": "Fire Resistance", "description": "Reduce fire damage taken", "addedIn": "1.1.5"},
+    {"id": "STAT_RESISTANCE_FALL", "name": "Fall Resistance", "description": "Reduce fall damage", "addedIn": "1.1.5"},
+    {"id": "STAT_RESISTANCE_DROWNING", "name": "Drowning Resistance", "description": "Reduce drowning damage", "addedIn": "1.1.5"},
+    {"id": "STAT_RESISTANCE_SUFFOCATION", "name": "Suffocation Resistance", "description": "Reduce suffocation damage", "addedIn": "1.1.5"},
+    {"id": "STAT_RESISTANCE_VOID", "name": "Void Resistance", "description": "Reduce void damage", "addedIn": "1.1.5"},
+    {"id": "STAT_RESISTANCE_EXPLOSION", "name": "Explosion Resistance", "description": "Reduce explosion damage", "addedIn": "1.1.5"},
+    {"id": "STAT_SIGNATURE_ENERGY", "name": "Signature Energy", "description": "Modify signature energy gain/loss", "addedIn": "1.1.5"},
+    {"id": "STAT_STRENGTH", "name": "Strength", "description": "Attack damage bonus", "addedIn": "1.0.0", "removedIn": "1.1.5"},
+    {"id": "STAT_DEFENCE", "name": "Defence", "description": "Damage reduction", "addedIn": "1.0.0", "removedIn": "1.1.5"}
+  ],
+  "requirementTypes": [
+    {"id": "NONE", "name": "None", "description": "No requirement", "addedIn": "1.0.0"},
+    {"id": "ITEM_IN_HAND", "name": "Item in Hand", "description": "Must hold specific item", "addedIn": "1.0.0"}
+  ],
+  "skillFields": {
+    "id": {"addedIn": "1.0.0"},
+    "displayName": {"addedIn": "1.0.0"},
+    "description": {"addedIn": "1.0.0"},
+    "baseXp": {"addedIn": "1.0.0"},
+    "multiplier": {"addedIn": "1.0.0"},
+    "maxLevel": {"addedIn": "1.0.0"},
+    "triggers": {"addedIn": "1.0.0"},
+    "requirements": {"addedIn": "1.0.0"},
+    "unlocks": {"addedIn": "1.0.0"},
+    "lockedItems": {"addedIn": "1.0.0"},
+    "statScaling": {"addedIn": "1.0.0"},
+    "mechanics": {"addedIn": "1.0.0"}
+  },
+  "triggerFields": {
+    "type": {"addedIn": "1.0.0"},
+    "allowList": {"addedIn": "1.0.0"},
+    "denyList": {"addedIn": "1.0.0"},
+    "cooldown": {"addedIn": "1.0.0"},
+    "minLevel": {"addedIn": "1.0.0"},
+    "maxLevel": {"addedIn": "1.0.0"},
+    "xpReward": {"addedIn": "1.0.0"},
+    "requiresMovement": {"addedIn": "1.0.0"},
+    "xpValues": {"addedIn": "1.0.0"},
+    "customData": {"addedIn": "1.0.0"}
+  },
+  "unlockFields": {
+    "type": {"addedIn": "1.0.0"},
+    "level": {"addedIn": "1.0.0"},
+    "everyLevel": {"addedIn": "1.0.0"},
+    "percentage": {"addedIn": "1.0.0"},
+    "valueType": {"addedIn": "1.0.0"},
+    "target": {"addedIn": "1.0.0"},
+    "amount": {"addedIn": "1.0.0"}
+  },
+  "requirementFields": {
+    "type": {"addedIn": "1.0.0"},
+    "allowList": {"addedIn": "1.0.0"},
+    "denyList": {"addedIn": "1.0.0"},
+    "customData": {"addedIn": "1.0.0"}
+  },
+  "lockedItemFields": {
+    "itemId": {"addedIn": "1.0.0"},
+    "level": {"addedIn": "1.0.0"}
+  },
+  "unlockTypeGroups": [
+    {
+      "name": "Rewards",
+      "types": ["ITEM", "MAGNET"]
+    },
+    {
+      "name": "Base Stats",
+      "types": ["STAT_HEALTH", "STAT_STAMINA", "STAT_MANA", "STAT_OXYGEN", "STAT_STAMINA_REGEN", "STAT_MOVEMENT_SPEED"]
+    },
+    {
+      "name": "Combat Stats",
+      "types": ["STAT_CRIT_CHANCE", "STAT_CRIT_DAMAGE", "STAT_VAMPIRISM", "STAT_STRENGTH", "STAT_DEFENCE"]
+    },
+    {
+      "name": "Damage Types",
+      "types": ["STAT_DAMAGE_MELEE", "STAT_DAMAGE_RANGED", "STAT_DAMAGE_MAGIC", "STAT_DAMAGE_FIRE", "STAT_DAMAGE_LIGHT", "STAT_DAMAGE_CHARGED", "STAT_DAMAGE_SIGNATURE"]
+    },
+    {
+      "name": "Resistances",
+      "types": ["STAT_REDUCE_DAMAGE", "STAT_RESISTANCE_MELEE", "STAT_RESISTANCE_PROJECTILE", "STAT_RESISTANCE_MAGIC", "STAT_RESISTANCE_FIRE", "STAT_RESISTANCE_FALL", "STAT_RESISTANCE_DROWNING", "STAT_RESISTANCE_SUFFOCATION", "STAT_RESISTANCE_VOID", "STAT_RESISTANCE_EXPLOSION"]
+    },
+    {
+      "name": "Utility",
+      "types": ["STAT_BLOCKBREAK_SPEED", "STAT_CRAFTING_PROFICIENCY", "STAT_DURABILITY_MODIFIER", "STAT_BONUS_DROP_CHANCE", "STAT_SIGNATURE_ENERGY"]
+    }
+  ]
+}

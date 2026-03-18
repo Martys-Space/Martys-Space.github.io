@@ -1,0 +1,596 @@
+[
+  {
+    "id": "skill_1769559998092",
+    "displayName": "Schema",
+    "description": "",
+    "baseXp": 50.0,
+    "multiplier": 2.0,
+    "maxLevel": 100,
+    "triggers": [
+      {
+        "type": "BLOCK_BREAK",
+        "allowList": [
+          "rock",
+          "wood",
+          "stone"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 0,
+        "maxLevel": 2147483647,
+        "xpReward": 2,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "ENTITY_KILL",
+        "allowList": [
+          "skeleton"
+        ],
+        "denyList": [
+          "fox"
+        ],
+        "cooldown": 0,
+        "minLevel": 0,
+        "maxLevel": 2147483647,
+        "xpReward": 2,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "PLAYER_CHAT",
+        "allowList": [],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 0,
+        "maxLevel": 2147483647,
+        "xpReward": 2,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "SPRINT",
+        "allowList": [],
+        "denyList": [],
+        "cooldown": 1,
+        "minLevel": 0,
+        "maxLevel": 2147483647,
+        "xpReward": 5,
+        "requiresMovement": true,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "CRAFT_ITEM",
+        "allowList": [
+          "seed"
+        ],
+        "denyList": [
+          "fruit"
+        ],
+        "cooldown": 0,
+        "minLevel": 0,
+        "maxLevel": 2147483647,
+        "xpReward": 5,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "PLACE_BLOCK",
+        "allowList": [
+          "cobble"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 0,
+        "maxLevel": 2147483647,
+        "xpReward": 5,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "GLIDE",
+        "allowList": [],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 0,
+        "maxLevel": 2147483647,
+        "xpReward": 5,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "SWIM",
+        "allowList": [],
+        "denyList": [],
+        "cooldown": 2,
+        "minLevel": 0,
+        "maxLevel": 2147483647,
+        "xpReward": 10,
+        "requiresMovement": true,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "CLIMB",
+        "allowList": [],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 0,
+        "maxLevel": 2147483647,
+        "xpReward": 10,
+        "requiresMovement": true,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "JUMP",
+        "allowList": [],
+        "denyList": [],
+        "cooldown": 2,
+        "minLevel": 0,
+        "maxLevel": 2147483647,
+        "xpReward": 10,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "ROLL",
+        "allowList": [],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 0,
+        "maxLevel": 2147483647,
+        "xpReward": 10,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "SLIDE",
+        "allowList": [],
+        "denyList": [],
+        "cooldown": 10,
+        "minLevel": 0,
+        "maxLevel": 2147483647,
+        "xpReward": 10,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "CRITICAL_HIT",
+        "allowList": [],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 0,
+        "maxLevel": 2147483647,
+        "xpReward": 0,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "PLAYER_DEATH",
+        "allowList": [],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 0,
+        "maxLevel": 2147483647,
+        "xpReward": 0,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "PLAYER_KILL",
+        "allowList": [],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 0,
+        "maxLevel": 2147483647,
+        "xpReward": 0,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "PARRY",
+        "allowList": [],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 0,
+        "maxLevel": 2147483647,
+        "xpReward": 0,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "PROJECTILE_HIT",
+        "allowList": [],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 0,
+        "maxLevel": 2147483647,
+        "xpReward": 0,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "INTERACT",
+        "allowList": [],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 0,
+        "maxLevel": 2147483647,
+        "xpReward": 0,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "SPEND_MANA",
+        "allowList": [],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 0,
+        "maxLevel": 2147483647,
+        "xpReward": 0,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "NONE",
+        "allowList": [],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 0,
+        "maxLevel": 2147483647,
+        "xpReward": 0,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      }
+    ],
+    "requirements": [
+      {
+        "type": "ITEM_IN_HAND",
+        "allowList": [
+          "pickaxe",
+          "hatchet"
+        ],
+        "denyList": [
+          "sword"
+        ],
+        "customData": {}
+      },
+      {
+        "type": "NONE",
+        "allowList": [],
+        "denyList": [],
+        "customData": {}
+      }
+    ],
+    "unlocks": [
+      {
+        "type": "ITEM",
+        "level": 1,
+        "everyLevel": false,
+        "percentage": false,
+        "valueType": "FLAT",
+        "target": "",
+        "amount": 1.0
+      },
+      {
+        "type": "STAT_HEALTH",
+        "level": 1,
+        "everyLevel": false,
+        "percentage": false,
+        "valueType": "FLAT",
+        "target": "",
+        "amount": 1.0
+      },
+      {
+        "type": "STAT_STAMINA",
+        "level": 1,
+        "everyLevel": true,
+        "percentage": true,
+        "valueType": "PERCENT_BASE",
+        "target": "",
+        "amount": 1.0
+      },
+      {
+        "type": "STAT_MANA",
+        "level": 1,
+        "everyLevel": true,
+        "percentage": true,
+        "valueType": "PERCENT_TOTAL",
+        "target": "",
+        "amount": 1.0
+      },
+      {
+        "type": "STAT_OXYGEN",
+        "level": 1,
+        "everyLevel": true,
+        "percentage": true,
+        "valueType": "PERCENT_BASE",
+        "target": "",
+        "amount": 1.0
+      },
+      {
+        "type": "STAT_STAMINA_REGEN",
+        "level": 1,
+        "everyLevel": true,
+        "percentage": true,
+        "valueType": "PERCENT_TOTAL",
+        "target": "",
+        "amount": 1.0
+      },
+      {
+        "type": "STAT_BLOCKBREAK_SPEED",
+        "level": 1,
+        "everyLevel": false,
+        "percentage": false,
+        "valueType": "FLAT",
+        "target": "",
+        "amount": 1.0
+      },
+      {
+        "type": "STAT_CRIT_CHANCE",
+        "level": 1,
+        "everyLevel": false,
+        "percentage": false,
+        "valueType": "FLAT",
+        "target": "",
+        "amount": 1.0
+      },
+      {
+        "type": "STAT_CRIT_DAMAGE",
+        "level": 1,
+        "everyLevel": false,
+        "percentage": false,
+        "valueType": "FLAT",
+        "target": "",
+        "amount": 1.0
+      },
+      {
+        "type": "STAT_VAMPIRISM",
+        "level": 1,
+        "everyLevel": false,
+        "percentage": false,
+        "valueType": "FLAT",
+        "target": "",
+        "amount": 1.0
+      },
+      {
+        "type": "STAT_CRAFTING_PROFICIENCY",
+        "level": 1,
+        "everyLevel": false,
+        "percentage": false,
+        "valueType": "FLAT",
+        "target": "",
+        "amount": 1.0
+      },
+      {
+        "type": "STAT_MOVEMENT_SPEED",
+        "level": 1,
+        "everyLevel": false,
+        "percentage": false,
+        "valueType": "FLAT",
+        "target": "",
+        "amount": 1.0
+      },
+      {
+        "type": "STAT_DURABILITY_MODIFIER",
+        "level": 1,
+        "everyLevel": false,
+        "percentage": false,
+        "valueType": "FLAT",
+        "target": "",
+        "amount": 1.0
+      },
+      {
+        "type": "STAT_BONUS_DROP_CHANCE",
+        "level": 1,
+        "everyLevel": false,
+        "percentage": false,
+        "valueType": "FLAT",
+        "target": "",
+        "amount": 1.0
+      },
+      {
+        "type": "MAGNET",
+        "level": 1,
+        "everyLevel": false,
+        "percentage": false,
+        "valueType": "FLAT",
+        "target": "",
+        "amount": 1.0
+      },
+      {
+        "type": "STAT_DAMAGE_MELEE",
+        "level": 1,
+        "everyLevel": false,
+        "percentage": false,
+        "valueType": "FLAT",
+        "target": "",
+        "amount": 1.0
+      },
+      {
+        "type": "STAT_DAMAGE_RANGED",
+        "level": 1,
+        "everyLevel": false,
+        "percentage": false,
+        "valueType": "FLAT",
+        "target": "",
+        "amount": 1.0
+      },
+      {
+        "type": "STAT_DAMAGE_MAGIC",
+        "level": 1,
+        "everyLevel": false,
+        "percentage": false,
+        "valueType": "FLAT",
+        "target": "",
+        "amount": 1.0
+      },
+      {
+        "type": "STAT_DAMAGE_FIRE",
+        "level": 1,
+        "everyLevel": false,
+        "percentage": false,
+        "valueType": "FLAT",
+        "target": "",
+        "amount": 1.0
+      },
+      {
+        "type": "STAT_DAMAGE_LIGHT",
+        "level": 1,
+        "everyLevel": false,
+        "percentage": false,
+        "valueType": "FLAT",
+        "target": "",
+        "amount": 1.0
+      },
+      {
+        "type": "STAT_DAMAGE_CHARGED",
+        "level": 1,
+        "everyLevel": false,
+        "percentage": false,
+        "valueType": "FLAT",
+        "target": "",
+        "amount": 1.0
+      },
+      {
+        "type": "STAT_DAMAGE_SIGNATURE",
+        "level": 1,
+        "everyLevel": false,
+        "percentage": false,
+        "valueType": "FLAT",
+        "target": "",
+        "amount": 1.0
+      },
+      {
+        "type": "STAT_REDUCE_DAMAGE",
+        "level": 1,
+        "everyLevel": false,
+        "percentage": false,
+        "valueType": "FLAT",
+        "target": "",
+        "amount": 1.0
+      },
+      {
+        "type": "STAT_RESISTANCE_PROJECTILE",
+        "level": 1,
+        "everyLevel": false,
+        "percentage": false,
+        "valueType": "FLAT",
+        "target": "",
+        "amount": 1.0
+      },
+      {
+        "type": "STAT_RESISTANCE_MELEE",
+        "level": 1,
+        "everyLevel": false,
+        "percentage": false,
+        "valueType": "FLAT",
+        "target": "",
+        "amount": 1.0
+      },
+      {
+        "type": "STAT_RESISTANCE_MAGIC",
+        "level": 1,
+        "everyLevel": false,
+        "percentage": false,
+        "valueType": "FLAT",
+        "target": "",
+        "amount": 1.0
+      },
+      {
+        "type": "STAT_RESISTANCE_FIRE",
+        "level": 1,
+        "everyLevel": false,
+        "percentage": false,
+        "valueType": "FLAT",
+        "target": "",
+        "amount": 1.0
+      },
+      {
+        "type": "STAT_RESISTANCE_FALL",
+        "level": 1,
+        "everyLevel": false,
+        "percentage": false,
+        "valueType": "FLAT",
+        "target": "",
+        "amount": 1.0
+      },
+      {
+        "type": "STAT_RESISTANCE_DROWNING",
+        "level": 1,
+        "everyLevel": false,
+        "percentage": false,
+        "valueType": "FLAT",
+        "target": "",
+        "amount": 1.0
+      },
+      {
+        "type": "STAT_RESISTANCE_SUFFOCATION",
+        "level": 1,
+        "everyLevel": false,
+        "percentage": false,
+        "valueType": "FLAT",
+        "target": "",
+        "amount": 1.0
+      },
+      {
+        "type": "STAT_RESISTANCE_VOID",
+        "level": 1,
+        "everyLevel": false,
+        "percentage": false,
+        "valueType": "FLAT",
+        "target": "",
+        "amount": 1.0
+      },
+      {
+        "type": "STAT_RESISTANCE_EXPLOSION",
+        "level": 1,
+        "everyLevel": false,
+        "percentage": false,
+        "valueType": "FLAT",
+        "target": "",
+        "amount": 1.0
+      },
+      {
+        "type": "STAT_SIGNATURE_ENERGY",
+        "level": 1,
+        "everyLevel": false,
+        "percentage": false,
+        "valueType": "FLAT",
+        "target": "",
+        "amount": 1.0
+      }
+    ],
+    "lockedItems": [
+      {
+        "itemId": "Tool_Pickaxe_Crude",
+        "level": 1
+      },
+      {
+        "itemId": "Tool_Pickaxe_Iron",
+        "level": 10
+      }
+    ],
+    "statScaling": {},
+    "mechanics": []
+  }
+]

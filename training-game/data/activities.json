@@ -1,0 +1,279 @@
+{
+  "categories": [
+    {
+      "id": "run",
+      "name": "Run",
+      "unit": "min",
+      "description": "Running at pace",
+      "tags": ["cardio", "outdoor"],
+      "durations": [5, 10, 15, 20, 25, 30, 50],
+      "maxPerDay": 3,
+      "xpMultiplier": 2.0,
+      "goldMultiplier": 0.2
+    },
+    {
+      "id": "jog",
+      "name": "Jog",
+      "unit": "min",
+      "description": "Light jogging",
+      "tags": ["cardio", "outdoor"],
+      "durations": [10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
+      "maxPerDay": 3,
+      "xpMultiplier": 1.6,
+      "goldMultiplier": 0.15
+    },
+    {
+      "id": "walk",
+      "name": "Walk",
+      "unit": "min",
+      "description": "Walking at steady pace",
+      "tags": ["cardio", "outdoor", "low-impact"],
+      "durations": [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120],
+      "maxPerDay": 3,
+      "xpMultiplier": 1.0,
+      "goldMultiplier": 0.1
+    },
+    {
+      "id": "cycle",
+      "name": "Cycle",
+      "unit": "min",
+      "description": "Cycling outdoors or stationary",
+      "tags": ["cardio", "outdoor", "low-impact"],
+      "durations": [15, 30, 45, 50, 60],
+      "maxPerDay": 3,
+      "xpMultiplier": 2.2,
+      "goldMultiplier": 0.25
+    },
+    {
+      "id": "swim",
+      "name": "Swimming",
+      "unit": "min",
+      "description": "Swimming laps or freestyle",
+      "tags": ["cardio", "full-body", "low-impact"],
+      "durations": [15, 30, 45, 50, 60],
+      "maxPerDay": 3,
+      "xpMultiplier": 2.4,
+      "goldMultiplier": 0.22
+    },
+    {
+      "id": "elliptical",
+      "name": "Elliptical",
+      "unit": "min",
+      "description": "Elliptical machine training",
+      "tags": ["cardio", "gym", "low-impact"],
+      "durations": [10, 20, 30, 40, 50, 60],
+      "maxPerDay": 3,
+      "xpMultiplier": 2.0,
+      "goldMultiplier": 0.16
+    },
+    {
+      "id": "rowing",
+      "name": "Rowing",
+      "unit": "min",
+      "description": "Rowing machine or boat",
+      "tags": ["cardio", "full-body", "gym"],
+      "durations": [10, 20, 30, 40, 50, 60],
+      "maxPerDay": 3,
+      "xpMultiplier": 2.3,
+      "goldMultiplier": 0.18
+    },
+    {
+      "id": "hike",
+      "name": "Hike",
+      "unit": "min",
+      "description": "Hiking trails or hills",
+      "tags": ["cardio", "outdoor"],
+      "durations": [30, 50, 60, 90, 120],
+      "maxPerDay": 3,
+      "xpMultiplier": 1.1,
+      "goldMultiplier": 0.12
+    },
+    {
+      "id": "jump_rope",
+      "name": "Jump Rope",
+      "unit": "min",
+      "description": "Skipping rope",
+      "tags": ["cardio", "full-body"],
+      "durations": [5, 10, 15, 20, 30, 40, 50],
+      "maxPerDay": 3,
+      "xpMultiplier": 2.0,
+      "goldMultiplier": 0.12
+    },
+    {
+      "id": "stairs",
+      "name": "Stairs / Step-ups",
+      "unit": "min",
+      "description": "Stair climbing or step-ups",
+      "tags": ["cardio", "legs"],
+      "durations": [5, 10, 15, 20, 30, 40, 50],
+      "maxPerDay": 3,
+      "xpMultiplier": 1.9,
+      "goldMultiplier": 0.14
+    },
+    {
+      "id": "dance",
+      "name": "Dancing",
+      "unit": "min",
+      "description": "Any style of dance",
+      "tags": ["cardio", "fun"],
+      "durations": [10, 20, 30, 40, 50, 60],
+      "maxPerDay": 3,
+      "xpMultiplier": 1.4,
+      "goldMultiplier": 0.1
+    },
+    {
+      "id": "strength",
+      "name": "Strength Training",
+      "unit": "min",
+      "description": "General weight training session",
+      "tags": ["strength", "gym"],
+      "durations": [10, 20, 30, 40, 50, 60],
+      "maxPerDay": 3,
+      "xpMultiplier": 3.0,
+      "goldMultiplier": 0.4
+    },
+    {
+      "id": "pushups",
+      "name": "Push-ups",
+      "unit": "reps",
+      "description": "Bodyweight push-ups",
+      "tags": ["strength", "bodyweight", "upper-body"],
+      "durations": [5, 10, 15, 20, 30, 40, 50, 75, 100],
+      "maxPerDay": 3,
+      "xpMultiplier": 0.8,
+      "goldMultiplier": 0.05
+    },
+    {
+      "id": "pullups",
+      "name": "Pull-ups",
+      "unit": "reps",
+      "description": "Pull-ups or chin-ups",
+      "tags": ["strength", "bodyweight", "upper-body"],
+      "durations": [1, 2, 3, 5, 8, 10, 15, 20],
+      "maxPerDay": 3,
+      "xpMultiplier": 1.5,
+      "goldMultiplier": 0.12
+    },
+    {
+      "id": "squats",
+      "name": "Squats",
+      "unit": "reps",
+      "description": "Bodyweight or weighted squats",
+      "tags": ["strength", "legs"],
+      "durations": [10, 20, 30, 40, 50, 75, 100],
+      "maxPerDay": 3,
+      "xpMultiplier": 0.9,
+      "goldMultiplier": 0.06
+    },
+    {
+      "id": "lunges",
+      "name": "Lunges",
+      "unit": "reps",
+      "description": "Forward or reverse lunges",
+      "tags": ["strength", "legs"],
+      "durations": [10, 20, 30, 40, 50],
+      "maxPerDay": 3,
+      "xpMultiplier": 0.9,
+      "goldMultiplier": 0.06
+    },
+    {
+      "id": "deadlift",
+      "name": "Deadlift",
+      "unit": "reps",
+      "description": "Barbell or dumbbell deadlifts",
+      "tags": ["strength", "gym", "full-body"],
+      "durations": [1, 3, 5, 8, 10, 12],
+      "maxPerDay": 3,
+      "xpMultiplier": 3.2,
+      "goldMultiplier": 0.3
+    },
+    {
+      "id": "bench",
+      "name": "Bench Press",
+      "unit": "reps",
+      "description": "Barbell or dumbbell bench press",
+      "tags": ["strength", "gym", "upper-body"],
+      "durations": [1, 3, 5, 8, 10, 12],
+      "maxPerDay": 3,
+      "xpMultiplier": 2.8,
+      "goldMultiplier": 0.28
+    },
+    {
+      "id": "kettlebell",
+      "name": "Kettlebell Swings",
+      "unit": "reps",
+      "description": "Kettlebell swing exercises",
+      "tags": ["strength", "full-body"],
+      "durations": [10, 20, 30, 40, 50, 75],
+      "maxPerDay": 3,
+      "xpMultiplier": 1.6,
+      "goldMultiplier": 0.1
+    },
+    {
+      "id": "boxing",
+      "name": "Boxing",
+      "unit": "min",
+      "description": "Bag work or pad work",
+      "tags": ["cardio", "strength", "full-body"],
+      "durations": [10, 15, 20, 30, 40, 50],
+      "maxPerDay": 3,
+      "xpMultiplier": 2.1,
+      "goldMultiplier": 0.18
+    },
+    {
+      "id": "burpees",
+      "name": "Burpees",
+      "unit": "reps",
+      "description": "Full body burpees",
+      "tags": ["cardio", "strength", "full-body"],
+      "durations": [5, 10, 15, 20, 30, 40],
+      "maxPerDay": 3,
+      "xpMultiplier": 1.8,
+      "goldMultiplier": 0.15
+    },
+    {
+      "id": "situps",
+      "name": "Sit-ups",
+      "unit": "reps",
+      "description": "Crunches or sit-ups",
+      "tags": ["strength", "core"],
+      "durations": [10, 20, 30, 40, 50, 75, 100],
+      "maxPerDay": 3,
+      "xpMultiplier": 0.6,
+      "goldMultiplier": 0.04
+    },
+    {
+      "id": "plank",
+      "name": "Plank",
+      "unit": "sec",
+      "description": "Static plank hold",
+      "tags": ["strength", "core"],
+      "durations": [15, 30, 45, 60, 90, 120, 180, 300],
+      "maxPerDay": 3,
+      "xpMultiplier": 0.04,
+      "goldMultiplier": 0.003
+    },
+    {
+      "id": "jumping_jacks",
+      "name": "Jumping Jacks",
+      "unit": "reps",
+      "description": "Standard jumping jacks",
+      "tags": ["cardio", "warmup"],
+      "durations": [10, 20, 30, 50, 75, 100],
+      "maxPerDay": 3,
+      "xpMultiplier": 1.0,
+      "goldMultiplier": 0.05
+    },
+    {
+      "id": "yoga",
+      "name": "Yoga",
+      "unit": "min",
+      "description": "Yoga flow or stretching",
+      "tags": ["flexibility", "low-impact"],
+      "durations": [10, 20, 30, 40, 50, 60],
+      "maxPerDay": 3,
+      "xpMultiplier": 1.2,
+      "goldMultiplier": 0.08
+    }
+  ]
+}

@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OSRS Boss Goal Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header id="mainHeader">
+            <h1>OSRS Boss Goal Tracker</h1>
+            <p class="subtitle">Set goals and track your progress over time</p>
+        </header>
+
+        <!-- Username Section -->
+        <div class="username-section" id="usernameSection">
+            <div class="input-group">
+                <input
+                    type="text"
+                    id="usernameInput"
+                    placeholder="Enter your OSRS username"
+                    autocomplete="off"
+                >
+                <button id="submitUsername" class="btn-primary">Set Username</button>
+            </div>
+            <button id="goBackToUser" class="btn-secondary" style="display: none; margin-top: 15px;">← Go Back to Current User</button>
+            <div id="usernameHistory" class="username-history" style="display: none;">
+                <h3>Recent Usernames</h3>
+                <div id="usernameHistoryList" class="username-history-list"></div>
+            </div>
+        </div>
+
+        <!-- Compact Header (shown after username is set) -->
+        <div class="compact-header" id="compactHeader" style="display: none;">
+            <div class="compact-header-content">
+                <h2>OSRS Boss Goal Tracker</h2>
+                <div class="compact-header-actions">
+                    <button id="updateDataBtn" class="btn-change-user">🔄 Update</button>
+                    <button id="settingsBtn" class="btn-change-user">⚙️ Settings</button>
+                    <button id="changeUsername" class="btn-change-user">Change Username</button>
+                </div>
+            </div>
+            <div class="level-display" id="levelDisplay">
+                <!-- Level info will be dynamically inserted here -->
+            </div>
+        </div>
+
+        <!-- Loading & Error Messages -->
+        <div id="loadingIndicator" class="loading" style="display: none;">
+            <div class="spinner"></div>
+            <p id="loadingText">Loading...</p>
+        </div>
+
+        <div id="errorMessage" class="error-message" style="display: none;"></div>
+
+        <!-- Main Content Area -->
+        <div id="mainContent" style="display: none;">
+
+            <!-- Goals Overview Section -->
+            <div id="goalsOverview" class="goals-section">
+                <div class="section-header">
+                    <h2>
+                        <span id="displayUsername"></span>'s Goals
+                        <span id="gamemodeDisplay" class="gamemode-badge"></span>
+                    </h2>
+                    <div class="header-actions">
+                        <button id="showHiddenGoals" class="btn-secondary" style="display: none;">
+                            Show Hidden Goals
+                        </button>
+                        <button id="createGoalBtn" class="btn-primary">Create New Goal</button>
+                    </div>
+                </div>
+
+                <div class="tabs-and-sort">
+                    <div id="mainTabs" class="main-tabs">
+                        <button class="main-tab active" data-tab="active">Active</button>
+                        <button class="main-tab" data-tab="paused">Paused</button>
+                        <button class="main-tab" data-tab="completed">Completed</button>
+                        <button class="main-tab" data-tab="bosskc">Boss KC</button>
+                        <button class="main-tab" data-tab="titles">Titles</button>
+                    </div>
+                    <div class="sort-wrapper">
+                        <button id="sortToggleBtn" class="btn-sort-toggle" title="Sort options">
+                            <span class="filter-icon">🔍</span>
+                        </button>
+                        <div class="sort-container" id="sortContainer" style="display: none;">
+                            <label for="goalSort">Sort by:</label>
+                            <select id="goalSort" class="sort-select">
+                                <option value="newest">Newest First</option>
+                                <option value="oldest">Oldest First</option>
+                                <option value="progress_desc">Progress (High to Low)</option>
+                                <option value="progress_asc">Progress (Low to High)</option>
+                                <option value="name_asc">Name (A-Z)</option>
+                                <option value="name_desc">Name (Z-A)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Active Goals Tab Content -->
+                <div id="activeTabContent" class="tab-content active">
+                    <div id="goalsList" class="goals-list"></div>
+                    <div id="emptyGoals" class="empty-state" style="display: none;">
+                        <p>No goals yet. Create your first goal to start tracking!</p>
+                    </div>
+                </div>
+
+                <!-- Paused Goals Tab Content -->
+                <div id="pausedTabContent" class="tab-content" style="display: none;">
+                    <div id="goalsListPaused" class="goals-list"></div>
+                    <div id="emptyGoalsPaused" class="empty-state" style="display: none;">
+                        <p>No paused goals.</p>
+                    </div>
+                </div>
+
+                <!-- Completed Goals Tab Content -->
+                <div id="completedTabContent" class="tab-content" style="display: none;">
+                    <div id="goalsListCompleted" class="goals-list"></div>
+                    <div id="emptyGoalsCompleted" class="empty-state" style="display: none;">
+                        <p>No completed goals.</p>
+                    </div>
+                </div>
+
+                <!-- Boss KC Tab Content -->
+                <div id="bosskcTabContent" class="tab-content" style="display: none;">
+                    <div class="boss-kc-container">
+                        <div class="boss-kc-search">
+                            <input type="text" id="bossKCSearch" placeholder="Search bosses..." autocomplete="off">
+                        </div>
+                        <div id="bossKCList" class="boss-kc-list"></div>
+                    </div>
+                </div>
+
+                <!-- Titles Tab Content -->
+                <div id="titlesTabContent" class="tab-content" style="display: none;">
+                    <div class="titles-container">
+                        <div class="titles-header">
+                            <h3>Unlocked Titles</h3>
+                            <div id="currentTitleDisplay" class="current-title-display"></div>
+                        </div>
+                        <div id="titlesList" class="titles-list"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Goal Detail View -->
+            <div id="goalDetailView" class="goal-detail" style="display: none;">
+                <button id="backToOverview" class="btn-back">← Back to Goals</button>
+                <div id="goalDetailContent"></div>
+            </div>
+
+            <!-- Create/Edit Goal Modal -->
+            <div id="goalModal" class="modal" style="display: none;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 id="modalTitle">Create New Goal</h2>
+                        <button class="modal-close" id="closeModal">&times;</button>
+                    </div>
+                    <form id="goalForm">
+                        <div class="form-group">
+                            <label for="goalType">Goal Type *</label>
+                            <select id="goalType" required>
+                                <option value="kc">Kill Count Goal</option>
+                                <option value="xp">XP Goal</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="goalBoss">Select Boss *</label>
+                            <select id="goalBoss" required>
+                                <option value="">Choose a boss...</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group" id="kcTargetGroup">
+                            <label for="goalTarget">Target Kills *</label>
+                            <input type="number" id="goalTarget" min="1" required placeholder="e.g., 5000">
+                        </div>
+
+                        <div class="form-group" id="xpTargetGroup" style="display: none;">
+                            <label for="goalXPTarget">Target XP *</label>
+                            <input type="number" id="goalXPTarget" min="1" placeholder="e.g., 100000">
+                        </div>
+
+                        <div class="form-group" id="kcMilestoneGroup">
+                            <label for="goalMilestone">Milestone Interval *</label>
+                            <input type="number" id="goalMilestone" min="1" required placeholder="e.g., 100">
+                            <small>Number of kills between each milestone</small>
+                        </div>
+
+                        <div class="form-group" id="xpMilestoneGroup" style="display: none;">
+                            <label for="goalXPMilestone">Milestone Interval (XP) *</label>
+                            <input type="number" id="goalXPMilestone" min="1" placeholder="e.g., 10000">
+                            <small>Amount of XP between each milestone</small>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="button" class="btn-secondary" id="cancelGoal">Cancel</button>
+                            <button type="submit" class="btn-primary" id="saveGoal">Create Goal</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Hidden Goals Modal -->
+            <div id="hiddenGoalsModal" class="modal" style="display: none;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2>Hidden Goals</h2>
+                        <button class="modal-close" id="closeHiddenModal">&times;</button>
+                    </div>
+                    <div id="hiddenGoalsList" class="hidden-goals-list"></div>
+                </div>
+            </div>
+
+            <!-- Settings Modal -->
+            <div id="settingsModal" class="modal" style="display: none;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2>Settings</h2>
+                        <button class="modal-close" id="closeSettingsModal">&times;</button>
+                    </div>
+                    <div class="settings-content">
+                        <div class="form-group">
+                            <label for="dateFormat">Date Format</label>
+                            <select id="dateFormat" class="settings-select">
+                                <option value="default">Default (MM/DD/YYYY)</option>
+                                <option value="dmy">DD/MM/YYYY</option>
+                                <option value="ymd">YYYY-MM-DD</option>
+                                <option value="long">Month DD, YYYY</option>
+                            </select>
+                            <small>Choose how dates are displayed throughout the app</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="showLevel" checked>
+                                <span>Show Level Display</span>
+                            </label>
+                            <small>Toggle level and XP progress bar visibility</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="showUsernameWithTitle" checked>
+                                <span>Show Username with Title</span>
+                            </label>
+                            <small>Display username and title in level section</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="showXPGains" checked>
+                                <span>Show XP Gains</span>
+                            </label>
+                            <small>Display XP gained in header and Boss KC tab</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="xpGainsPeriod">XP Gains Time Period</label>
+                            <select id="xpGainsPeriod" class="settings-select">
+                                <option value="last_update">Since Last Update</option>
+                                <option value="today">Today</option>
+                                <option value="7days">Past 7 Days</option>
+                                <option value="30days">Past 30 Days</option>
+                                <option value="365days">Past Year</option>
+                                <option value="current_month">Current Month</option>
+                                <option value="current_year">Current Year</option>
+                            </select>
+                            <small>Choose time period for XP gains display</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="showMilestonesInCard" checked>
+                                <span>Show Milestones in Goal Cards</span>
+                            </label>
+                            <small>Display milestone progress in goal overview cards</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="showDetailsInCard" checked>
+                                <span>Show Details in Goal Cards</span>
+                            </label>
+                            <small>Display started at, current KC, target KC and remaining in goal overview cards</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Import/Export Goals</label>
+                            <div style="display: flex; gap: 10px; margin-top: 10px;">
+                                <button id="exportGoals" class="btn-secondary" style="flex: 1;">Export Goals</button>
+                                <button id="importGoals" class="btn-secondary" style="flex: 1;">Import Goals</button>
+                            </div>
+                            <small>Export your goals to use on other devices. Importing will merge with existing goals (prevents duplicates and abuse).</small>
+                            <input type="file" id="importFileInput" accept=".json" style="display: none;">
+                        </div>
+
+                        <div class="form-actions">
+                            <button id="saveSettings" class="btn-primary">Save Settings</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <footer>
+            <p>Powered by <a href="https://wiseoldman.net" target="_blank">Wise Old Man API</a></p>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

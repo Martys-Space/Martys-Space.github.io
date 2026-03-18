@@ -1,0 +1,5638 @@
+[
+  {
+    "id": "dagger",
+    "displayName": "Dagger",
+    "baseXp": 300.0,
+    "multiplier": 1.02,
+    "maxLevel": 100,
+    "triggers": [
+      {
+        "type": "ENTITY_KILL",
+        "allowList": [
+          "Bluegill",
+          "Catfish",
+          "Clownfish",
+          "Crab",
+          "Frostgill",
+          "Jellyfish_Blue",
+          "Jellyfish_Cyan",
+          "Jellyfish_Green",
+          "Jellyfish_Man_of_War",
+          "Jellyfish_Red",
+          "Jellyfish_Yellow",
+          "Lobster",
+          "Minnow",
+          "Pike",
+          "Piranha",
+          "Piranha_Black",
+          "Pufferfish",
+          "Salmon",
+          "Snapjaw",
+          "Tang_Blue",
+          "Tang_Chevron",
+          "Tang_Lemon_Peel",
+          "Tang_Sailfin",
+          "Trout_Rainbow"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 0,
+        "maxLevel": 2147483647,
+        "xpReward": 200,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "ENTITY_KILL",
+        "allowList": [
+          "Chicken_Undead",
+          "Duck",
+          "Antelope",
+          "Armadillo",
+          "Bison",
+          "Bison_Calf",
+          "Frog",
+          "Boar_Piglet",
+          "Bunny",
+          "Squirrel",
+          "Camel_Calf",
+          "Chicken",
+          "Chick",
+          "Chicken_Desert",
+          "Chick_Desert",
+          "Cow",
+          "Calf",
+          "Doe",
+          "Stag",
+          "Goat",
+          "Kid",
+          "Horse",
+          "Foal",
+          "Mouse",
+          "Rat",
+          "Mosshorn",
+          "Mouflon",
+          "Mouflon_Lamb",
+          "Pig",
+          "Piglet",
+          "Rabbit",
+          "Ram",
+          "Ram_Lamb",
+          "Sheep",
+          "Lamb",
+          "Skrill",
+          "Skrill_Chick",
+          "Turkey",
+          "Turkey_Chick",
+          "Warthog",
+          "Warthog_Piglet"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 0,
+        "maxLevel": 2147483647,
+        "xpReward": 300,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "ENTITY_KILL",
+        "allowList": [
+          "Archaeopteryx",
+          "Moose_Bull",
+          "Moose_Cow",
+          "Bat",
+          "Bat_Ice",
+          "Bluebird",
+          "Crow",
+          "Greenfinch",
+          "Flamingo",
+          "Hawk",
+          "Camel",
+          "Owl_Brown",
+          "Owl_Snowy",
+          "Parrot",
+          "Penguin",
+          "Pigeon",
+          "Pterodactyl",
+          "Raven",
+          "Sparrow",
+          "Tetrabird",
+          "Vulture",
+          "Woodpecker",
+          "Cactee",
+          "Gecko",
+          "Larva_Silk",
+          "Meerkat",
+          "Molerat",
+          "Boar",
+          "Scorpion",
+          "Slug_Magma",
+          "Snail_Frost",
+          "Snail_Magma",
+          "Fox",
+          "Cobra",
+          "Snake_Marsh",
+          "Rattlesnake",
+          "Spider",
+          "Spider_Cave",
+          "Cow_Undead"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 0,
+        "maxLevel": 2147483647,
+        "xpReward": 400,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "ENTITY_KILL",
+        "allowList": [
+          "Ghoul",
+          "Horse_Skeleton",
+          "Horse_Skeleton_Armored",
+          "Pig_Undead",
+          "Skeleton_Archer",
+          "Skeleton_Archmage",
+          "Skeleton_Burnt_Alchemist",
+          "Skeleton_Burnt_Archer",
+          "Skeleton_Burnt_Gunner",
+          "Skeleton_Burnt_Knight",
+          "Skeleton_Burnt_Lancer",
+          "Skeleton_Burnt_Praetorian",
+          "Skeleton_Burnt_Soldier",
+          "Skeleton_Burnt_Wizard",
+          "Skeleton_Fighter",
+          "Skeleton_Frost_Archer",
+          "Skeleton_Frost_Archmage",
+          "Skeleton_Frost_Fighter",
+          "Skeleton_Frost_Knight",
+          "Skeleton_Frost_Mage",
+          "Skeleton_Frost_Ranger",
+          "Skeleton_Frost_Scout",
+          "Skeleton_Frost_Soldier",
+          "Skeleton_Knight",
+          "Skeleton_Mage",
+          "Skeleton_Pirate_Gunner",
+          "Skeleton_Pirate_Striker",
+          "Skeleton_Ranger",
+          "Skeleton_Archer",
+          "Skeleton_Archmage",
+          "Skeleton_Assassin",
+          "Skeleton_Guard",
+          "Skeleton_Mage",
+          "Skeleton_Ranger",
+          "Skeleton_Scout",
+          "Skeleton_Soldier",
+          "Skeleton_Scout",
+          "Skeleton_Soldier",
+          "Zombie",
+          "Zombie_Burnt",
+          "Zombie_Frost",
+          "Zombie_Sand",
+          "Goblin_Duke",
+          "Goblin_Hermit",
+          "Goblin_Lobber",
+          "Goblin_Miner",
+          "Goblin_Scavenger",
+          "Goblin_Scrapper",
+          "Goblin_Thief",
+          "Larva_Void"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 0,
+        "maxLevel": 2147483647,
+        "xpReward": 1000,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "ENTITY_KILL",
+        "allowList": [
+          "Feran_Burrower",
+          "Feran_Temple_Civilian",
+          "Feran_Civilian",
+          "Feran_Cub",
+          "Feran_Longtooth",
+          "Feran_Sharptooth",
+          "Feran_Windwalker",
+          "Eel_Moray",
+          "Shark_Hammerhead",
+          "Shellfish_Lava",
+          "Trilobite",
+          "Trilobite_Black",
+          "Humpback_Whale",
+          "Hyena",
+          "Leopard_Snow",
+          "Tiger_Sabertooth",
+          "Wolf_black",
+          "Wolf_White",
+          "Werewolf",
+          "Hound_Bleached",
+          "Zombie_Aberrant",
+          "Crawler_Void"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 0,
+        "maxLevel": 2147483647,
+        "xpReward": 1500,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "ENTITY_KILL",
+        "allowList": [
+          "Scarak_Broodmother",
+          "Scarak_Defender",
+          "Scarak_Fighter",
+          "Scarak_Louse",
+          "Scarak_Seeker",
+          "Trork_Brawler",
+          "Trork_Chieftain",
+          "Trork_Guard",
+          "Trork_Hunter",
+          "Trork_Mauler",
+          "Trork_Sentry",
+          "Trork_Elder",
+          "Trork_Warrior",
+          "Skeleton_Incandescent_Fighter",
+          "Skeleton_Incandescent_Footman",
+          "Skeleton_Incandescent_Head",
+          "Skeleton_Incandescent_Mage"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 0,
+        "maxLevel": 2147483647,
+        "xpReward": 2000,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "ENTITY_KILL",
+        "allowList": [
+          "Outlander_Berserker",
+          "Outlander_Brute",
+          "Outlander_Initiate",
+          "Outlander_Hunter",
+          "Outlander_Marauder",
+          "Outlander_Unsworn",
+          "Outlander_Priest",
+          "Outlander_Sorcerer",
+          "Outlander_Stalker",
+          "Bear_Grizzly",
+          "Bear_Polar",
+          "Crocodile",
+          "Fen_Stalker",
+          "Lizard_Sand",
+          "Raptor_Cave",
+          "Snapdragon",
+          "Toad_Rhino",
+          "Toad_Rhino_Magma",
+          "Tortoise",
+          "Trillodon",
+          "Golem_Crystal_Earth",
+          "Goblin_Ogre",
+          "Skeleton_Pirate_Captain"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 0,
+        "maxLevel": 2147483647,
+        "xpReward": 2400,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "ENTITY_KILL",
+        "allowList": [
+          "Hedera",
+          "Rex_Cave",
+          "Yeti",
+          "Spawn_Void",
+          "Spectre_Void"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 0,
+        "maxLevel": 2147483647,
+        "xpReward": 4400,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "ENTITY_KILL",
+        "allowList": [
+          "Eye_Void",
+          "Golem_Crystal_Flame",
+          "Golem_Crystal_Frost",
+          "Golem_Crystal_Sand",
+          "Golem_Crystal_Thunder",
+          "Golem_Firesteel",
+          "Golem_Gudian_Void"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 0,
+        "maxLevel": 2147483647,
+        "xpReward": 6000,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "ENTITY_KILL",
+        "allowList": [
+          "Dragon_Frost",
+          "Emberwulf",
+          "Shadow_Knight",
+          "Wraith"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 0,
+        "maxLevel": 2147483647,
+        "xpReward": 12000,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      }
+    ],
+    "requirements": [
+      {
+        "type": "ITEM_IN_HAND",
+        "allowList": [
+          "Weapon_Daggers_Crude",
+          "Weapon_Daggers_Stone_Trork",
+          "Weapon_Daggers_Copper",
+          "Weapon_Dagger_Doomed_Outlander",
+          "Weapon_Daggers_Doomed_Outlander_Fang",
+          "Weapon_Daggers_Feran_Bone",
+          "Weapon_Daggers_Iron",
+          "Weapon_Daggers_Thorium",
+          "Weapon_Daggers_Cobalt",
+          "Weapon_Daggers_Adamantite",
+          "Weapon_Daggers_Mithril"
+        ],
+        "denyList": []
+      }
+    ],
+    "unlocks": [
+      {
+        "type": "STAT_STAMINA_REGEN",
+        "level": 2,
+        "everyLevel": true,
+        "percentage": false,
+        "valueType": "FLAT",
+        "target": "",
+        "amount": 0.001
+      },
+      {
+        "type": "STAT_CRIT_DAMAGE",
+        "level": 2,
+        "everyLevel": true,
+        "percentage": false,
+        "valueType": "FLAT",
+        "target": "",
+        "amount": 0.015
+      },
+      {
+        "type": "STAT_STAMINA",
+        "level": 2,
+        "everyLevel": true,
+        "percentage": false,
+        "valueType": "FLAT",
+        "target": "",
+        "amount": 0.05
+      },
+      {
+        "type": "STAT_STRENGTH",
+        "level": 2,
+        "everyLevel": true,
+        "percentage": false,
+        "valueType": "FLAT",
+        "target": "",
+        "amount": 0.15
+      },
+      {
+        "type": "STAT_DEFENSE",
+        "level": 2,
+        "everyLevel": true,
+        "percentage": false,
+        "valueType": "FLAT",
+        "target": "",
+        "amount": 0.01
+      },
+      {
+        "type": "STAT_HEALTH",
+        "level": 2,
+        "everyLevel": true,
+        "percentage": false,
+        "valueType": "FLAT",
+        "target": "",
+        "amount": 0.5
+      },
+      {
+        "type": "STAT_VAMPIRISM",
+        "level": 2,
+        "everyLevel": true,
+        "percentage": false,
+        "valueType": "FLAT",
+        "target": "",
+        "amount": 0.005
+      }
+    ],
+    "lockedItems": [
+      {
+        "itemId": "Weapon_Daggers_Crude",
+        "level": 1
+      },
+      {
+        "itemId": "Weapon_Daggers_Stone_Trork",
+        "level": 5
+      },
+      {
+        "itemId": "Weapon_Daggers_Copper",
+        "level": 10
+      },
+      {
+        "itemId": "Weapon_Dagger_Doomed_Outlander",
+        "level": 15
+      },
+      {
+        "itemId": "Weapon_Daggers_Doomed_Outlander_Fang",
+        "level": 15
+      },
+      {
+        "itemId": "Weapon_Daggers_Feran_Bone",
+        "level": 15
+      },
+      {
+        "itemId": "Weapon_Daggers_Iron",
+        "level": 20
+      },
+      {
+        "itemId": "Weapon_Daggers_Thorium",
+        "level": 30
+      },
+      {
+        "itemId": "Weapon_Daggers_Cobalt",
+        "level": 40
+      },
+      {
+        "itemId": "Weapon_Daggers_Adamantite",
+        "level": 50
+      },
+      {
+        "itemId": "Weapon_Daggers_Mithril",
+        "level": 60
+      }
+    ],
+    "statScaling": {},
+    "mechanics": []
+  },
+  {
+    "id": "skill_1768926677708",
+    "displayName": "Excavation",
+    "description": "",
+    "baseXp": 300.0,
+    "multiplier": 1.1,
+    "maxLevel": 100,
+    "triggers": [
+      {
+        "type": "BLOCK_BREAK",
+        "allowList": [
+          "Dirt",
+          "Grass",
+          "Mud",
+          "Soil_Sand",
+          "Soil_Clay",
+          "Soil_Ash"
+        ],
+        "denyList": [
+          "soil_clay_"
+        ],
+        "cooldown": 0,
+        "minLevel": 0,
+        "maxLevel": 2147483647,
+        "xpReward": 25,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      }
+    ],
+    "requirements": [
+      {
+        "type": "ITEM_IN_HAND",
+        "allowList": [
+          "Tool_Shovel"
+        ],
+        "denyList": [],
+        "customData": {}
+      }
+    ],
+    "unlocks": [
+      {
+        "type": "MAGNET",
+        "level": 50,
+        "everyLevel": false,
+        "percentage": false,
+        "valueType": "FLAT",
+        "target": "",
+        "amount": 1.0
+      }
+    ],
+    "lockedItems": [
+      {
+        "itemId": "Tool_Shovel_Iron",
+        "level": 1
+      },
+      {
+        "itemId": "Tool_Shovel_Thorium",
+        "level": 30
+      },
+      {
+        "itemId": "Tool_Shovel_Cobalt",
+        "level": 40
+      }
+    ],
+    "statScaling": {},
+    "mechanics": []
+  },
+  {
+    "id": "mace",
+    "displayName": "Mace",
+    "baseXp": 300.0,
+    "multiplier": 1.02,
+    "maxLevel": 100,
+    "triggers": [
+      {
+        "type": "ENTITY_KILL",
+        "allowList": [
+          "Bluegill",
+          "Catfish",
+          "Clownfish",
+          "Crab",
+          "Frostgill",
+          "Jellyfish_Blue",
+          "Jellyfish_Cyan",
+          "Jellyfish_Green",
+          "Jellyfish_Man_of_War",
+          "Jellyfish_Red",
+          "Jellyfish_Yellow",
+          "Lobster",
+          "Minnow",
+          "Pike",
+          "Piranha",
+          "Piranha_Black",
+          "Pufferfish",
+          "Salmon",
+          "Snapjaw",
+          "Tang_Blue",
+          "Tang_Chevron",
+          "Tang_Lemon_Peel",
+          "Tang_Sailfin",
+          "Trout_Rainbow"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 0,
+        "maxLevel": 2147483647,
+        "xpReward": 200,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "ENTITY_KILL",
+        "allowList": [
+          "Chicken_Undead",
+          "Duck",
+          "Antelope",
+          "Armadillo",
+          "Bison",
+          "Bison_Calf",
+          "Frog",
+          "Boar_Piglet",
+          "Bunny",
+          "Squirrel",
+          "Camel_Calf",
+          "Chicken",
+          "Chick",
+          "Chicken_Desert",
+          "Chick_Desert",
+          "Cow",
+          "Calf",
+          "Doe",
+          "Stag",
+          "Goat",
+          "Kid",
+          "Horse",
+          "Foal",
+          "Mouse",
+          "Rat",
+          "Mosshorn",
+          "Mouflon",
+          "Mouflon_Lamb",
+          "Pig",
+          "Piglet",
+          "Rabbit",
+          "Ram",
+          "Ram_Lamb",
+          "Sheep",
+          "Lamb",
+          "Skrill",
+          "Skrill_Chick",
+          "Turkey",
+          "Turkey_Chick",
+          "Warthog",
+          "Warthog_Piglet"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 0,
+        "maxLevel": 2147483647,
+        "xpReward": 300,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "ENTITY_KILL",
+        "allowList": [
+          "Archaeopteryx",
+          "Moose_Bull",
+          "Moose_Cow",
+          "Bat",
+          "Bat_Ice",
+          "Bluebird",
+          "Crow",
+          "Greenfinch",
+          "Flamingo",
+          "Hawk",
+          "Camel",
+          "Owl_Brown",
+          "Owl_Snowy",
+          "Parrot",
+          "Penguin",
+          "Pigeon",
+          "Pterodactyl",
+          "Raven",
+          "Sparrow",
+          "Tetrabird",
+          "Vulture",
+          "Woodpecker",
+          "Cactee",
+          "Gecko",
+          "Larva_Silk",
+          "Meerkat",
+          "Molerat",
+          "Boar",
+          "Scorpion",
+          "Slug_Magma",
+          "Snail_Frost",
+          "Snail_Magma",
+          "Fox",
+          "Cobra",
+          "Snake_Marsh",
+          "Rattlesnake",
+          "Spider",
+          "Spider_Cave",
+          "Cow_Undead"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 0,
+        "maxLevel": 2147483647,
+        "xpReward": 400,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "ENTITY_KILL",
+        "allowList": [
+          "Ghoul",
+          "Horse_Skeleton",
+          "Horse_Skeleton_Armored",
+          "Pig_Undead",
+          "Skeleton_Archer",
+          "Skeleton_Archmage",
+          "Skeleton_Burnt_Alchemist",
+          "Skeleton_Burnt_Archer",
+          "Skeleton_Burnt_Gunner",
+          "Skeleton_Burnt_Knight",
+          "Skeleton_Burnt_Lancer",
+          "Skeleton_Burnt_Praetorian",
+          "Skeleton_Burnt_Soldier",
+          "Skeleton_Burnt_Wizard",
+          "Skeleton_Fighter",
+          "Skeleton_Frost_Archer",
+          "Skeleton_Frost_Archmage",
+          "Skeleton_Frost_Fighter",
+          "Skeleton_Frost_Knight",
+          "Skeleton_Frost_Mage",
+          "Skeleton_Frost_Ranger",
+          "Skeleton_Frost_Scout",
+          "Skeleton_Frost_Soldier",
+          "Skeleton_Knight",
+          "Skeleton_Mage",
+          "Skeleton_Pirate_Gunner",
+          "Skeleton_Pirate_Striker",
+          "Skeleton_Ranger",
+          "Skeleton_Archer",
+          "Skeleton_Archmage",
+          "Skeleton_Assassin",
+          "Skeleton_Guard",
+          "Skeleton_Mage",
+          "Skeleton_Ranger",
+          "Skeleton_Scout",
+          "Skeleton_Soldier",
+          "Skeleton_Scout",
+          "Skeleton_Soldier",
+          "Zombie",
+          "Zombie_Burnt",
+          "Zombie_Frost",
+          "Zombie_Sand",
+          "Goblin_Duke",
+          "Goblin_Hermit",
+          "Goblin_Lobber",
+          "Goblin_Miner",
+          "Goblin_Scavenger",
+          "Goblin_Scrapper",
+          "Goblin_Thief",
+          "Larva_Void"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 0,
+        "maxLevel": 2147483647,
+        "xpReward": 1000,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "ENTITY_KILL",
+        "allowList": [
+          "Feran_Burrower",
+          "Feran_Temple_Civilian",
+          "Feran_Civilian",
+          "Feran_Cub",
+          "Feran_Longtooth",
+          "Feran_Sharptooth",
+          "Feran_Windwalker",
+          "Eel_Moray",
+          "Shark_Hammerhead",
+          "Shellfish_Lava",
+          "Trilobite",
+          "Trilobite_Black",
+          "Humpback_Whale",
+          "Hyena",
+          "Leopard_Snow",
+          "Tiger_Sabertooth",
+          "Wolf_black",
+          "Wolf_White",
+          "Werewolf",
+          "Hound_Bleached",
+          "Zombie_Aberrant",
+          "Crawler_Void"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 0,
+        "maxLevel": 2147483647,
+        "xpReward": 1500,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "ENTITY_KILL",
+        "allowList": [
+          "Scarak_Broodmother",
+          "Scarak_Defender",
+          "Scarak_Fighter",
+          "Scarak_Louse",
+          "Scarak_Seeker",
+          "Trork_Brawler",
+          "Trork_Chieftain",
+          "Trork_Guard",
+          "Trork_Hunter",
+          "Trork_Mauler",
+          "Trork_Sentry",
+          "Trork_Elder",
+          "Trork_Warrior",
+          "Skeleton_Incandescent_Fighter",
+          "Skeleton_Incandescent_Footman",
+          "Skeleton_Incandescent_Head",
+          "Skeleton_Incandescent_Mage"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 0,
+        "maxLevel": 2147483647,
+        "xpReward": 2000,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "ENTITY_KILL",
+        "allowList": [
+          "Outlander_Berserker",
+          "Outlander_Brute",
+          "Outlander_Initiate",
+          "Outlander_Hunter",
+          "Outlander_Marauder",
+          "Outlander_Unsworn",
+          "Outlander_Priest",
+          "Outlander_Sorcerer",
+          "Outlander_Stalker",
+          "Bear_Grizzly",
+          "Bear_Polar",
+          "Crocodile",
+          "Fen_Stalker",
+          "Lizard_Sand",
+          "Raptor_Cave",
+          "Snapdragon",
+          "Toad_Rhino",
+          "Toad_Rhino_Magma",
+          "Tortoise",
+          "Trillodon",
+          "Golem_Crystal_Earth",
+          "Goblin_Ogre",
+          "Skeleton_Pirate_Captain"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 0,
+        "maxLevel": 2147483647,
+        "xpReward": 2400,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "ENTITY_KILL",
+        "allowList": [
+          "Hedera",
+          "Rex_Cave",
+          "Yeti",
+          "Spawn_Void",
+          "Spectre_Void"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 0,
+        "maxLevel": 2147483647,
+        "xpReward": 4400,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "ENTITY_KILL",
+        "allowList": [
+          "Eye_Void",
+          "Golem_Crystal_Flame",
+          "Golem_Crystal_Frost",
+          "Golem_Crystal_Sand",
+          "Golem_Crystal_Thunder",
+          "Golem_Firesteel",
+          "Golem_Gudian_Void"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 0,
+        "maxLevel": 2147483647,
+        "xpReward": 6000,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "ENTITY_KILL",
+        "allowList": [
+          "Dragon_Frost",
+          "Emberwulf",
+          "Shadow_Knight",
+          "Wraith"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 0,
+        "maxLevel": 2147483647,
+        "xpReward": 12000,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      }
+    ],
+    "requirements": [
+      {
+        "type": "ITEM_IN_HAND",
+        "allowList": [
+          "Weapon_Mace_Crude",
+          "Weapon_Mace_Copper",
+          "Weapon_Mace_Scrap",
+          "Weapon_Mace_Stone_Trork",
+          "Weapon_Mace_Iron",
+          "Weapon_Mace_Thorium",
+          "Weapon_Mace_Cobalt",
+          "Weapon_Mace_Adamantite",
+          "Weapon_Mace_Mithril"
+        ],
+        "denyList": []
+      }
+    ],
+    "unlocks": [
+      {
+        "type": "STAT_STAMINA_REGEN",
+        "level": 2,
+        "everyLevel": true,
+        "percentage": false,
+        "valueType": "FLAT",
+        "target": "",
+        "amount": 0.001
+      },
+      {
+        "type": "STAT_CRIT_DAMAGE",
+        "level": 2,
+        "everyLevel": true,
+        "percentage": false,
+        "valueType": "FLAT",
+        "target": "",
+        "amount": 0.015
+      },
+      {
+        "type": "STAT_STAMINA",
+        "level": 2,
+        "everyLevel": true,
+        "percentage": false,
+        "valueType": "FLAT",
+        "target": "",
+        "amount": 0.05
+      },
+      {
+        "type": "STAT_STRENGTH",
+        "level": 2,
+        "everyLevel": true,
+        "percentage": false,
+        "valueType": "FLAT",
+        "target": "",
+        "amount": 0.15
+      },
+      {
+        "type": "STAT_DEFENSE",
+        "level": 2,
+        "everyLevel": true,
+        "percentage": false,
+        "valueType": "FLAT",
+        "target": "",
+        "amount": 0.01
+      },
+      {
+        "type": "STAT_HEALTH",
+        "level": 2,
+        "everyLevel": true,
+        "percentage": false,
+        "valueType": "FLAT",
+        "target": "",
+        "amount": 0.5
+      },
+      {
+        "type": "STAT_VAMPIRISM",
+        "level": 2,
+        "everyLevel": true,
+        "percentage": false,
+        "valueType": "FLAT",
+        "target": "",
+        "amount": 0.005
+      }
+    ],
+    "lockedItems": [
+      {
+        "itemId": "Weapon_Mace_Crude",
+        "level": 1
+      },
+      {
+        "itemId": "Weapon_Mace_Copper",
+        "level": 5
+      },
+      {
+        "itemId": "Weapon_Mace_Scrap",
+        "level": 10
+      },
+      {
+        "itemId": "Weapon_Mace_Stone_Trork",
+        "level": 15
+      },
+      {
+        "itemId": "Weapon_Mace_Iron",
+        "level": 20
+      },
+      {
+        "itemId": "Weapon_Mace_Thorium",
+        "level": 30
+      },
+      {
+        "itemId": "Weapon_Mace_Cobalt",
+        "level": 40
+      },
+      {
+        "itemId": "Weapon_Mace_Adamantite",
+        "level": 50
+      },
+      {
+        "itemId": "Weapon_Mace_Mithril",
+        "level": 60
+      }
+    ],
+    "statScaling": {},
+    "mechanics": []
+  },
+  {
+    "id": "throwing_spear",
+    "displayName": "Throwing Spear",
+    "baseXp": 300.0,
+    "multiplier": 1.02,
+    "maxLevel": 100,
+    "triggers": [
+      {
+        "type": "ENTITY_KILL",
+        "allowList": [
+          "Bluegill",
+          "Catfish",
+          "Clownfish",
+          "Crab",
+          "Frostgill",
+          "Jellyfish_Blue",
+          "Jellyfish_Cyan",
+          "Jellyfish_Green",
+          "Jellyfish_Man_of_War",
+          "Jellyfish_Red",
+          "Jellyfish_Yellow",
+          "Lobster",
+          "Minnow",
+          "Pike",
+          "Piranha",
+          "Piranha_Black",
+          "Pufferfish",
+          "Salmon",
+          "Snapjaw",
+          "Tang_Blue",
+          "Tang_Chevron",
+          "Tang_Lemon_Peel",
+          "Tang_Sailfin",
+          "Trout_Rainbow"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 0,
+        "maxLevel": 2147483647,
+        "xpReward": 200,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "ENTITY_KILL",
+        "allowList": [
+          "Chicken_Undead",
+          "Duck",
+          "Antelope",
+          "Armadillo",
+          "Bison",
+          "Bison_Calf",
+          "Frog",
+          "Boar_Piglet",
+          "Bunny",
+          "Squirrel",
+          "Camel_Calf",
+          "Chicken",
+          "Chick",
+          "Chicken_Desert",
+          "Chick_Desert",
+          "Cow",
+          "Calf",
+          "Doe",
+          "Stag",
+          "Goat",
+          "Kid",
+          "Horse",
+          "Foal",
+          "Mouse",
+          "Rat",
+          "Mosshorn",
+          "Mouflon",
+          "Mouflon_Lamb",
+          "Pig",
+          "Piglet",
+          "Rabbit",
+          "Ram",
+          "Ram_Lamb",
+          "Sheep",
+          "Lamb",
+          "Skrill",
+          "Skrill_Chick",
+          "Turkey",
+          "Turkey_Chick",
+          "Warthog",
+          "Warthog_Piglet"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 0,
+        "maxLevel": 2147483647,
+        "xpReward": 300,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "ENTITY_KILL",
+        "allowList": [
+          "Archaeopteryx",
+          "Moose_Bull",
+          "Moose_Cow",
+          "Bat",
+          "Bat_Ice",
+          "Bluebird",
+          "Crow",
+          "Greenfinch",
+          "Flamingo",
+          "Hawk",
+          "Camel",
+          "Owl_Brown",
+          "Owl_Snowy",
+          "Parrot",
+          "Penguin",
+          "Pigeon",
+          "Pterodactyl",
+          "Raven",
+          "Sparrow",
+          "Tetrabird",
+          "Vulture",
+          "Woodpecker",
+          "Cactee",
+          "Gecko",
+          "Larva_Silk",
+          "Meerkat",
+          "Molerat",
+          "Boar",
+          "Scorpion",
+          "Slug_Magma",
+          "Snail_Frost",
+          "Snail_Magma",
+          "Fox",
+          "Cobra",
+          "Snake_Marsh",
+          "Rattlesnake",
+          "Spider",
+          "Spider_Cave",
+          "Cow_Undead"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 0,
+        "maxLevel": 2147483647,
+        "xpReward": 400,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "ENTITY_KILL",
+        "allowList": [
+          "Ghoul",
+          "Horse_Skeleton",
+          "Horse_Skeleton_Armored",
+          "Pig_Undead",
+          "Skeleton_Archer",
+          "Skeleton_Archmage",
+          "Skeleton_Burnt_Alchemist",
+          "Skeleton_Burnt_Archer",
+          "Skeleton_Burnt_Gunner",
+          "Skeleton_Burnt_Knight",
+          "Skeleton_Burnt_Lancer",
+          "Skeleton_Burnt_Praetorian",
+          "Skeleton_Burnt_Soldier",
+          "Skeleton_Burnt_Wizard",
+          "Skeleton_Fighter",
+          "Skeleton_Frost_Archer",
+          "Skeleton_Frost_Archmage",
+          "Skeleton_Frost_Fighter",
+          "Skeleton_Frost_Knight",
+          "Skeleton_Frost_Mage",
+          "Skeleton_Frost_Ranger",
+          "Skeleton_Frost_Scout",
+          "Skeleton_Frost_Soldier",
+          "Skeleton_Knight",
+          "Skeleton_Mage",
+          "Skeleton_Pirate_Gunner",
+          "Skeleton_Pirate_Striker",
+          "Skeleton_Ranger",
+          "Skeleton_Archer",
+          "Skeleton_Archmage",
+          "Skeleton_Assassin",
+          "Skeleton_Guard",
+          "Skeleton_Mage",
+          "Skeleton_Ranger",
+          "Skeleton_Scout",
+          "Skeleton_Soldier",
+          "Skeleton_Scout",
+          "Skeleton_Soldier",
+          "Zombie",
+          "Zombie_Burnt",
+          "Zombie_Frost",
+          "Zombie_Sand",
+          "Goblin_Duke",
+          "Goblin_Hermit",
+          "Goblin_Lobber",
+          "Goblin_Miner",
+          "Goblin_Scavenger",
+          "Goblin_Scrapper",
+          "Goblin_Thief",
+          "Larva_Void"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 0,
+        "maxLevel": 2147483647,
+        "xpReward": 1000,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "ENTITY_KILL",
+        "allowList": [
+          "Feran_Burrower",
+          "Feran_Temple_Civilian",
+          "Feran_Civilian",
+          "Feran_Cub",
+          "Feran_Longtooth",
+          "Feran_Sharptooth",
+          "Feran_Windwalker",
+          "Eel_Moray",
+          "Shark_Hammerhead",
+          "Shellfish_Lava",
+          "Trilobite",
+          "Trilobite_Black",
+          "Humpback_Whale",
+          "Hyena",
+          "Leopard_Snow",
+          "Tiger_Sabertooth",
+          "Wolf_black",
+          "Wolf_White",
+          "Werewolf",
+          "Hound_Bleached",
+          "Zombie_Aberrant",
+          "Crawler_Void"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 0,
+        "maxLevel": 2147483647,
+        "xpReward": 1500,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "ENTITY_KILL",
+        "allowList": [
+          "Scarak_Broodmother",
+          "Scarak_Defender",
+          "Scarak_Fighter",
+          "Scarak_Louse",
+          "Scarak_Seeker",
+          "Trork_Brawler",
+          "Trork_Chieftain",
+          "Trork_Guard",
+          "Trork_Hunter",
+          "Trork_Mauler",
+          "Trork_Sentry",
+          "Trork_Elder",
+          "Trork_Warrior",
+          "Skeleton_Incandescent_Fighter",
+          "Skeleton_Incandescent_Footman",
+          "Skeleton_Incandescent_Head",
+          "Skeleton_Incandescent_Mage"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 0,
+        "maxLevel": 2147483647,
+        "xpReward": 2000,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "ENTITY_KILL",
+        "allowList": [
+          "Outlander_Berserker",
+          "Outlander_Brute",
+          "Outlander_Initiate",
+          "Outlander_Hunter",
+          "Outlander_Marauder",
+          "Outlander_Unsworn",
+          "Outlander_Priest",
+          "Outlander_Sorcerer",
+          "Outlander_Stalker",
+          "Bear_Grizzly",
+          "Bear_Polar",
+          "Crocodile",
+          "Fen_Stalker",
+          "Lizard_Sand",
+          "Raptor_Cave",
+          "Snapdragon",
+          "Toad_Rhino",
+          "Toad_Rhino_Magma",
+          "Tortoise",
+          "Trillodon",
+          "Golem_Crystal_Earth",
+          "Goblin_Ogre",
+          "Skeleton_Pirate_Captain"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 0,
+        "maxLevel": 2147483647,
+        "xpReward": 2400,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "ENTITY_KILL",
+        "allowList": [
+          "Hedera",
+          "Rex_Cave",
+          "Yeti",
+          "Spawn_Void",
+          "Spectre_Void"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 0,
+        "maxLevel": 2147483647,
+        "xpReward": 4400,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "ENTITY_KILL",
+        "allowList": [
+          "Eye_Void",
+          "Golem_Crystal_Flame",
+          "Golem_Crystal_Frost",
+          "Golem_Crystal_Sand",
+          "Golem_Crystal_Thunder",
+          "Golem_Firesteel",
+          "Golem_Gudian_Void"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 0,
+        "maxLevel": 2147483647,
+        "xpReward": 6000,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "ENTITY_KILL",
+        "allowList": [
+          "Dragon_Frost",
+          "Emberwulf",
+          "Shadow_Knight",
+          "Wraith"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 0,
+        "maxLevel": 2147483647,
+        "xpReward": 12000,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      }
+    ],
+    "requirements": [
+      {
+        "type": "ITEM_IN_HAND",
+        "allowList": [
+          "Weapon_Spear_Stone_Trork",
+          "Weapon_Spear_Bone",
+          "Weapon_Harpoon_Fishbone"
+        ],
+        "denyList": []
+      }
+    ],
+    "unlocks": [
+      {
+        "type": "STAT_STAMINA_REGEN",
+        "level": 2,
+        "everyLevel": true,
+        "percentage": false,
+        "valueType": "FLAT",
+        "target": "",
+        "amount": 0.001
+      },
+      {
+        "type": "STAT_CRIT_DAMAGE",
+        "level": 2,
+        "everyLevel": true,
+        "percentage": false,
+        "valueType": "FLAT",
+        "target": "",
+        "amount": 0.015
+      },
+      {
+        "type": "STAT_STAMINA",
+        "level": 2,
+        "everyLevel": true,
+        "percentage": false,
+        "valueType": "FLAT",
+        "target": "",
+        "amount": 0.05
+      },
+      {
+        "type": "STAT_STRENGTH",
+        "level": 2,
+        "everyLevel": true,
+        "percentage": false,
+        "valueType": "FLAT",
+        "target": "",
+        "amount": 0.15
+      },
+      {
+        "type": "STAT_DEFENSE",
+        "level": 2,
+        "everyLevel": true,
+        "percentage": false,
+        "valueType": "FLAT",
+        "target": "",
+        "amount": 0.01
+      },
+      {
+        "type": "STAT_HEALTH",
+        "level": 2,
+        "everyLevel": true,
+        "percentage": false,
+        "valueType": "FLAT",
+        "target": "",
+        "amount": 0.5
+      },
+      {
+        "type": "STAT_VAMPIRISM",
+        "level": 2,
+        "everyLevel": true,
+        "percentage": false,
+        "valueType": "FLAT",
+        "target": "",
+        "amount": 0.005
+      }
+    ],
+    "lockedItems": [
+      {
+        "itemId": "Weapon_Spear_Stone_Trork",
+        "level": 1
+      },
+      {
+        "itemId": "Weapon_Spear_Bone",
+        "level": 1
+      },
+      {
+        "itemId": "Weapon_Harpoon_Fishbone",
+        "level": 1
+      }
+    ],
+    "statScaling": {},
+    "mechanics": []
+  },
+  {
+    "id": "staff",
+    "displayName": "Staff",
+    "baseXp": 300.0,
+    "multiplier": 1.02,
+    "maxLevel": 100,
+    "triggers": [
+      {
+        "type": "ENTITY_KILL",
+        "allowList": [
+          "Bluegill",
+          "Catfish",
+          "Clownfish",
+          "Crab",
+          "Frostgill",
+          "Jellyfish_Blue",
+          "Jellyfish_Cyan",
+          "Jellyfish_Green",
+          "Jellyfish_Man_of_War",
+          "Jellyfish_Red",
+          "Jellyfish_Yellow",
+          "Lobster",
+          "Minnow",
+          "Pike",
+          "Piranha",
+          "Piranha_Black",
+          "Pufferfish",
+          "Salmon",
+          "Snapjaw",
+          "Tang_Blue",
+          "Tang_Chevron",
+          "Tang_Lemon_Peel",
+          "Tang_Sailfin",
+          "Trout_Rainbow"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 0,
+        "maxLevel": 2147483647,
+        "xpReward": 200,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "ENTITY_KILL",
+        "allowList": [
+          "Chicken_Undead",
+          "Duck",
+          "Antelope",
+          "Armadillo",
+          "Bison",
+          "Bison_Calf",
+          "Frog",
+          "Boar_Piglet",
+          "Bunny",
+          "Squirrel",
+          "Camel_Calf",
+          "Chicken",
+          "Chick",
+          "Chicken_Desert",
+          "Chick_Desert",
+          "Cow",
+          "Calf",
+          "Doe",
+          "Stag",
+          "Goat",
+          "Kid",
+          "Horse",
+          "Foal",
+          "Mouse",
+          "Rat",
+          "Mosshorn",
+          "Mouflon",
+          "Mouflon_Lamb",
+          "Pig",
+          "Piglet",
+          "Rabbit",
+          "Ram",
+          "Ram_Lamb",
+          "Sheep",
+          "Lamb",
+          "Skrill",
+          "Skrill_Chick",
+          "Turkey",
+          "Turkey_Chick",
+          "Warthog",
+          "Warthog_Piglet"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 0,
+        "maxLevel": 2147483647,
+        "xpReward": 300,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "ENTITY_KILL",
+        "allowList": [
+          "Archaeopteryx",
+          "Moose_Bull",
+          "Moose_Cow",
+          "Bat",
+          "Bat_Ice",
+          "Bluebird",
+          "Crow",
+          "Greenfinch",
+          "Flamingo",
+          "Hawk",
+          "Camel",
+          "Owl_Brown",
+          "Owl_Snowy",
+          "Parrot",
+          "Penguin",
+          "Pigeon",
+          "Pterodactyl",
+          "Raven",
+          "Sparrow",
+          "Tetrabird",
+          "Vulture",
+          "Woodpecker",
+          "Cactee",
+          "Gecko",
+          "Larva_Silk",
+          "Meerkat",
+          "Molerat",
+          "Boar",
+          "Scorpion",
+          "Slug_Magma",
+          "Snail_Frost",
+          "Snail_Magma",
+          "Fox",
+          "Cobra",
+          "Snake_Marsh",
+          "Rattlesnake",
+          "Spider",
+          "Spider_Cave",
+          "Cow_Undead"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 0,
+        "maxLevel": 2147483647,
+        "xpReward": 400,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "ENTITY_KILL",
+        "allowList": [
+          "Ghoul",
+          "Horse_Skeleton",
+          "Horse_Skeleton_Armored",
+          "Pig_Undead",
+          "Skeleton_Archer",
+          "Skeleton_Archmage",
+          "Skeleton_Burnt_Alchemist",
+          "Skeleton_Burnt_Archer",
+          "Skeleton_Burnt_Gunner",
+          "Skeleton_Burnt_Knight",
+          "Skeleton_Burnt_Lancer",
+          "Skeleton_Burnt_Praetorian",
+          "Skeleton_Burnt_Soldier",
+          "Skeleton_Burnt_Wizard",
+          "Skeleton_Fighter",
+          "Skeleton_Frost_Archer",
+          "Skeleton_Frost_Archmage",
+          "Skeleton_Frost_Fighter",
+          "Skeleton_Frost_Knight",
+          "Skeleton_Frost_Mage",
+          "Skeleton_Frost_Ranger",
+          "Skeleton_Frost_Scout",
+          "Skeleton_Frost_Soldier",
+          "Skeleton_Knight",
+          "Skeleton_Mage",
+          "Skeleton_Pirate_Gunner",
+          "Skeleton_Pirate_Striker",
+          "Skeleton_Ranger",
+          "Skeleton_Archer",
+          "Skeleton_Archmage",
+          "Skeleton_Assassin",
+          "Skeleton_Guard",
+          "Skeleton_Mage",
+          "Skeleton_Ranger",
+          "Skeleton_Scout",
+          "Skeleton_Soldier",
+          "Skeleton_Scout",
+          "Skeleton_Soldier",
+          "Zombie",
+          "Zombie_Burnt",
+          "Zombie_Frost",
+          "Zombie_Sand",
+          "Goblin_Duke",
+          "Goblin_Hermit",
+          "Goblin_Lobber",
+          "Goblin_Miner",
+          "Goblin_Scavenger",
+          "Goblin_Scrapper",
+          "Goblin_Thief",
+          "Larva_Void"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 0,
+        "maxLevel": 2147483647,
+        "xpReward": 1000,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "ENTITY_KILL",
+        "allowList": [
+          "Feran_Burrower",
+          "Feran_Temple_Civilian",
+          "Feran_Civilian",
+          "Feran_Cub",
+          "Feran_Longtooth",
+          "Feran_Sharptooth",
+          "Feran_Windwalker",
+          "Eel_Moray",
+          "Shark_Hammerhead",
+          "Shellfish_Lava",
+          "Trilobite",
+          "Trilobite_Black",
+          "Humpback_Whale",
+          "Hyena",
+          "Leopard_Snow",
+          "Tiger_Sabertooth",
+          "Wolf_black",
+          "Wolf_White",
+          "Werewolf",
+          "Hound_Bleached",
+          "Zombie_Aberrant",
+          "Crawler_Void"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 0,
+        "maxLevel": 2147483647,
+        "xpReward": 1500,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "ENTITY_KILL",
+        "allowList": [
+          "Scarak_Broodmother",
+          "Scarak_Defender",
+          "Scarak_Fighter",
+          "Scarak_Louse",
+          "Scarak_Seeker",
+          "Trork_Brawler",
+          "Trork_Chieftain",
+          "Trork_Guard",
+          "Trork_Hunter",
+          "Trork_Mauler",
+          "Trork_Sentry",
+          "Trork_Elder",
+          "Trork_Warrior",
+          "Skeleton_Incandescent_Fighter",
+          "Skeleton_Incandescent_Footman",
+          "Skeleton_Incandescent_Head",
+          "Skeleton_Incandescent_Mage"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 0,
+        "maxLevel": 2147483647,
+        "xpReward": 2000,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "ENTITY_KILL",
+        "allowList": [
+          "Outlander_Berserker",
+          "Outlander_Brute",
+          "Outlander_Initiate",
+          "Outlander_Hunter",
+          "Outlander_Marauder",
+          "Outlander_Unsworn",
+          "Outlander_Priest",
+          "Outlander_Sorcerer",
+          "Outlander_Stalker",
+          "Bear_Grizzly",
+          "Bear_Polar",
+          "Crocodile",
+          "Fen_Stalker",
+          "Lizard_Sand",
+          "Raptor_Cave",
+          "Snapdragon",
+          "Toad_Rhino",
+          "Toad_Rhino_Magma",
+          "Tortoise",
+          "Trillodon",
+          "Golem_Crystal_Earth",
+          "Goblin_Ogre",
+          "Skeleton_Pirate_Captain"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 0,
+        "maxLevel": 2147483647,
+        "xpReward": 2400,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "ENTITY_KILL",
+        "allowList": [
+          "Hedera",
+          "Rex_Cave",
+          "Yeti",
+          "Spawn_Void",
+          "Spectre_Void"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 0,
+        "maxLevel": 2147483647,
+        "xpReward": 4400,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "ENTITY_KILL",
+        "allowList": [
+          "Eye_Void",
+          "Golem_Crystal_Flame",
+          "Golem_Crystal_Frost",
+          "Golem_Crystal_Sand",
+          "Golem_Crystal_Thunder",
+          "Golem_Firesteel",
+          "Golem_Gudian_Void"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 0,
+        "maxLevel": 2147483647,
+        "xpReward": 6000,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "ENTITY_KILL",
+        "allowList": [
+          "Dragon_Frost",
+          "Emberwulf",
+          "Shadow_Knight",
+          "Wraith"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 0,
+        "maxLevel": 2147483647,
+        "xpReward": 12000,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      }
+    ],
+    "requirements": [
+      {
+        "type": "ITEM_IN_HAND",
+        "allowList": [
+          "Weapon_Staff_Ice_Crystal",
+          "Weapon_Staff_Flame_Crystal"
+        ],
+        "denyList": []
+      }
+    ],
+    "unlocks": [
+      {
+        "type": "STAT_STAMINA_REGEN",
+        "level": 2,
+        "everyLevel": true,
+        "percentage": false,
+        "valueType": "FLAT",
+        "target": "",
+        "amount": 0.001
+      },
+      {
+        "type": "STAT_CRIT_DAMAGE",
+        "level": 2,
+        "everyLevel": true,
+        "percentage": false,
+        "valueType": "FLAT",
+        "target": "",
+        "amount": 0.015
+      },
+      {
+        "type": "STAT_STAMINA",
+        "level": 2,
+        "everyLevel": true,
+        "percentage": false,
+        "valueType": "FLAT",
+        "target": "",
+        "amount": 0.05
+      },
+      {
+        "type": "STAT_STRENGTH",
+        "level": 2,
+        "everyLevel": true,
+        "percentage": false,
+        "valueType": "FLAT",
+        "target": "",
+        "amount": 0.15
+      },
+      {
+        "type": "STAT_DEFENSE",
+        "level": 2,
+        "everyLevel": true,
+        "percentage": false,
+        "valueType": "FLAT",
+        "target": "",
+        "amount": 0.01
+      },
+      {
+        "type": "STAT_HEALTH",
+        "level": 2,
+        "everyLevel": true,
+        "percentage": false,
+        "valueType": "FLAT",
+        "target": "",
+        "amount": 0.5
+      },
+      {
+        "type": "STAT_VAMPIRISM",
+        "level": 2,
+        "everyLevel": true,
+        "percentage": false,
+        "valueType": "FLAT",
+        "target": "",
+        "amount": 0.005
+      }
+    ],
+    "lockedItems": [
+      {
+        "itemId": "Weapon_Staff_Ice_Crystal",
+        "level": 1
+      },
+      {
+        "itemId": "Weapon_Staff_Flame_Crystal",
+        "level": 1
+      }
+    ],
+    "statScaling": {},
+    "mechanics": []
+  },
+  {
+    "id": "mining",
+    "displayName": "Mining",
+    "description": "",
+    "baseXp": 300.0,
+    "multiplier": 1.1,
+    "maxLevel": 100,
+    "triggers": [
+      {
+        "type": "BLOCK_BREAK",
+        "allowList": [
+          "Rock_"
+        ],
+        "denyList": [
+          "Brick, Cobble, Beam, Half, Slab, Roof, Basalt, Sandstone, Shale, Slate, Volcanic"
+        ],
+        "cooldown": 0,
+        "minLevel": 0,
+        "maxLevel": 2147483647,
+        "xpReward": 25,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "BLOCK_BREAK",
+        "allowList": [
+          "Rock_Basalt"
+        ],
+        "denyList": [
+          "Brick, Cobble, Beam, Half, Slab, Roof"
+        ],
+        "cooldown": 0,
+        "minLevel": 5,
+        "maxLevel": 2147483647,
+        "xpReward": 35,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "BLOCK_BREAK",
+        "allowList": [
+          "Rock_Sandstone"
+        ],
+        "denyList": [
+          "Brick, Cobble, Beam, Half, Slab, Roof"
+        ],
+        "cooldown": 0,
+        "minLevel": 10,
+        "maxLevel": 2147483647,
+        "xpReward": 45,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "BLOCK_BREAK",
+        "allowList": [
+          "Rock_Shale"
+        ],
+        "denyList": [
+          "Brick, Cobble, Beam, Half, Slab, Roof"
+        ],
+        "cooldown": 0,
+        "minLevel": 15,
+        "maxLevel": 2147483647,
+        "xpReward": 50,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "BLOCK_BREAK",
+        "allowList": [
+          "Rock_Slate"
+        ],
+        "denyList": [
+          "Brick, Cobble, Beam, Half, Slab, Roof"
+        ],
+        "cooldown": 0,
+        "minLevel": 20,
+        "maxLevel": 2147483647,
+        "xpReward": 55,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "BLOCK_BREAK",
+        "allowList": [
+          "Rock_Volcanic"
+        ],
+        "denyList": [
+          "Brick, Cobble, Beam, Half, Slab, Roof"
+        ],
+        "cooldown": 0,
+        "minLevel": 25,
+        "maxLevel": 2147483647,
+        "xpReward": 60,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "BLOCK_BREAK",
+        "allowList": [
+          "Ore_Copper"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 10,
+        "maxLevel": 2147483647,
+        "xpReward": 200,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "BLOCK_BREAK",
+        "allowList": [
+          "Ore_Copper_Sandstone",
+          "Ore_Iron_Stone"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 20,
+        "maxLevel": 2147483647,
+        "xpReward": 300,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "BLOCK_BREAK",
+        "allowList": [
+          "Ore_Iron_Basalt"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 20,
+        "maxLevel": 2147483647,
+        "xpReward": 350,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "BLOCK_BREAK",
+        "allowList": [
+          "Ore_Copper_Shale"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 40,
+        "maxLevel": 2147483647,
+        "xpReward": 400,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "BLOCK_BREAK",
+        "allowList": [
+          "Ore_Iron_Sandstone"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 35,
+        "maxLevel": 2147483647,
+        "xpReward": 450,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "BLOCK_BREAK",
+        "allowList": [
+          "ore_gold",
+          "ore_silver"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 0,
+        "maxLevel": 2147483647,
+        "xpReward": 500,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "BLOCK_BREAK",
+        "allowList": [
+          "Ore_Iron_Shale",
+          "Ore_Silver_Basalt",
+          "Ore_Gold_Basalt"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 25,
+        "maxLevel": 2147483647,
+        "xpReward": 550,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "BLOCK_BREAK",
+        "allowList": [
+          "Ore_Silver_Sandstone",
+          "Ore_Thorium_Mud",
+          "Ore_Gold_Sandstone"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 30,
+        "maxLevel": 2147483647,
+        "xpReward": 600,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "BLOCK_BREAK",
+        "allowList": [
+          "Ore_Iron_Slate",
+          "Ore_Thorium_Sandstone"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 35,
+        "maxLevel": 2147483647,
+        "xpReward": 650,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "BLOCK_BREAK",
+        "allowList": [
+          "Ore_Iron_Volcanic",
+          "Ore_Silver_Shale",
+          "Ore_Gold_Shale",
+          "Ore_Cobalt_Shale"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 40,
+        "maxLevel": 2147483647,
+        "xpReward": 750,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "BLOCK_BREAK",
+        "allowList": [
+          "Ore_Silver_Slate",
+          "Ore_Gold_Slate",
+          "Ore_Cobalt_Slate",
+          "Ore_Cobalt_Slate_Cracked"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 25,
+        "maxLevel": 2147483647,
+        "xpReward": 850,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "BLOCK_BREAK",
+        "allowList": [
+          "Ore_Silver_Volcanic",
+          "Ore_Gold_Volcanic"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 50,
+        "maxLevel": 2147483647,
+        "xpReward": 900,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "BLOCK_BREAK",
+        "allowList": [
+          "Ore_Adamantite_Magma",
+          "Ore_Adamantite_Magma_Cracked"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 50,
+        "maxLevel": 2147483647,
+        "xpReward": 1250,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "BLOCK_BREAK",
+        "allowList": [
+          "ore_mithril"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 60,
+        "maxLevel": 2147483647,
+        "xpReward": 1800,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "BLOCK_BREAK",
+        "allowList": [
+          "ore_onyxium"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 70,
+        "maxLevel": 2147483647,
+        "xpReward": 2500,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      }
+    ],
+    "requirements": [
+      {
+        "type": "ITEM_IN_HAND",
+        "allowList": [
+          "Pickaxe"
+        ],
+        "denyList": [],
+        "customData": {}
+      }
+    ],
+    "unlocks": [
+      {
+        "type": "STAT_BLOCKBREAK_SPEED",
+        "level": 2,
+        "everyLevel": true,
+        "percentage": false,
+        "valueType": "FLAT",
+        "target": "",
+        "amount": 0.01
+      }
+    ],
+    "lockedItems": [
+      {
+        "itemId": "Tool_Pickaxe_Crude",
+        "level": 1
+      },
+      {
+        "itemId": "Tool_Pickaxe_Scrap",
+        "level": 5
+      },
+      {
+        "itemId": "Tool_Pickaxe_Copper",
+        "level": 10
+      },
+      {
+        "itemId": "Rock_Basalt",
+        "level": 5
+      },
+      {
+        "itemId": "Rock_Sandstone",
+        "level": 10
+      },
+      {
+        "itemId": "Rock_Shale",
+        "level": 15
+      },
+      {
+        "itemId": "Rock_Slate",
+        "level": 20
+      },
+      {
+        "itemId": "Rock_Volcanic",
+        "level": 25
+      },
+      {
+        "itemId": "Ore_Copper_Stone",
+        "level": 10
+      },
+      {
+        "itemId": "Ore_Copper_Sandstone",
+        "level": 35
+      },
+      {
+        "itemId": "Ore_Copper_Shale",
+        "level": 40
+      },
+      {
+        "itemId": "Tool_Pickaxe_Iron",
+        "level": 20
+      },
+      {
+        "itemId": "Ore_Iron_Stone",
+        "level": 20
+      },
+      {
+        "itemId": "Ore_Iron_Basalt",
+        "level": 20
+      },
+      {
+        "itemId": "Ore_Iron_Sandstone",
+        "level": 35
+      },
+      {
+        "itemId": "Ore_Iron_Shale",
+        "level": 40
+      },
+      {
+        "itemId": "Ore_Iron_Slate",
+        "level": 45
+      },
+      {
+        "itemId": "Ore_Iron_Volcanic",
+        "level": 50
+      },
+      {
+        "itemId": "Ore_Silver_Stone",
+        "level": 25
+      },
+      {
+        "itemId": "Ore_Silver_Basalt",
+        "level": 25
+      },
+      {
+        "itemId": "Ore_Silver_Sandstone",
+        "level": 35
+      },
+      {
+        "itemId": "Ore_Silver_Shale",
+        "level": 40
+      },
+      {
+        "itemId": "Ore_Silver_Slate",
+        "level": 45
+      },
+      {
+        "itemId": "Ore_Silver_Volcanic",
+        "level": 50
+      },
+      {
+        "itemId": "Tool_Pickaxe_Thorium",
+        "level": 30
+      },
+      {
+        "itemId": "Ore_Thorium_Mud",
+        "level": 30
+      },
+      {
+        "itemId": "Ore_Thorium_Sandstone",
+        "level": 35
+      },
+      {
+        "itemId": "Ore_Gold_Stone",
+        "level": 30
+      },
+      {
+        "itemId": "Ore_Gold_Basalt",
+        "level": 30
+      },
+      {
+        "itemId": "Ore_Gold_Sandstone",
+        "level": 35
+      },
+      {
+        "itemId": "Ore_Gold_Shale",
+        "level": 40
+      },
+      {
+        "itemId": "Ore_Gold_Slate",
+        "level": 45
+      },
+      {
+        "itemId": "Ore_Gold_Volcanic",
+        "level": 50
+      },
+      {
+        "itemId": "Tool_Pickaxe_Cobalt",
+        "level": 40
+      },
+      {
+        "itemId": "Ore_Cobalt_Shale",
+        "level": 40
+      },
+      {
+        "itemId": "Ore_Cobalt_Slate",
+        "level": 45
+      },
+      {
+        "itemId": "Ore_Cobalt_Slate_Cracked",
+        "level": 45
+      },
+      {
+        "itemId": "Tool_Pickaxe_Adamantite",
+        "level": 50
+      },
+      {
+        "itemId": "Ore_Adamantite_Magma",
+        "level": 50
+      },
+      {
+        "itemId": "Ore_Adamantite_Magma_Cracked",
+        "level": 50
+      },
+      {
+        "itemId": "Tool_Pickaxe_Mithril",
+        "level": 60
+      },
+      {
+        "itemId": "Ore_Mithril_Stone",
+        "level": 60
+      },
+      {
+        "itemId": "Tool_Pickaxe_Onyxium",
+        "level": 70
+      },
+      {
+        "itemId": "Ore_Onyxium_Stone",
+        "level": 70
+      }
+    ],
+    "statScaling": {},
+    "mechanics": []
+  },
+  {
+    "id": "bow",
+    "displayName": "Bow",
+    "baseXp": 300.0,
+    "multiplier": 1.02,
+    "maxLevel": 100,
+    "triggers": [
+      {
+        "type": "ENTITY_KILL",
+        "allowList": [
+          "Bluegill",
+          "Catfish",
+          "Clownfish",
+          "Crab",
+          "Frostgill",
+          "Jellyfish_Blue",
+          "Jellyfish_Cyan",
+          "Jellyfish_Green",
+          "Jellyfish_Man_of_War",
+          "Jellyfish_Red",
+          "Jellyfish_Yellow",
+          "Lobster",
+          "Minnow",
+          "Pike",
+          "Piranha",
+          "Piranha_Black",
+          "Pufferfish",
+          "Salmon",
+          "Snapjaw",
+          "Tang_Blue",
+          "Tang_Chevron",
+          "Tang_Lemon_Peel",
+          "Tang_Sailfin",
+          "Trout_Rainbow"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 0,
+        "maxLevel": 2147483647,
+        "xpReward": 200,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "ENTITY_KILL",
+        "allowList": [
+          "Chicken_Undead",
+          "Duck",
+          "Antelope",
+          "Armadillo",
+          "Bison",
+          "Bison_Calf",
+          "Frog",
+          "Boar_Piglet",
+          "Bunny",
+          "Squirrel",
+          "Camel_Calf",
+          "Chicken",
+          "Chick",
+          "Chicken_Desert",
+          "Chick_Desert",
+          "Cow",
+          "Calf",
+          "Doe",
+          "Stag",
+          "Goat",
+          "Kid",
+          "Horse",
+          "Foal",
+          "Mouse",
+          "Rat",
+          "Mosshorn",
+          "Mouflon",
+          "Mouflon_Lamb",
+          "Pig",
+          "Piglet",
+          "Rabbit",
+          "Ram",
+          "Ram_Lamb",
+          "Sheep",
+          "Lamb",
+          "Skrill",
+          "Skrill_Chick",
+          "Turkey",
+          "Turkey_Chick",
+          "Warthog",
+          "Warthog_Piglet"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 0,
+        "maxLevel": 2147483647,
+        "xpReward": 300,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "ENTITY_KILL",
+        "allowList": [
+          "Archaeopteryx",
+          "Moose_Bull",
+          "Moose_Cow",
+          "Bat",
+          "Bat_Ice",
+          "Bluebird",
+          "Crow",
+          "Greenfinch",
+          "Flamingo",
+          "Hawk",
+          "Camel",
+          "Owl_Brown",
+          "Owl_Snowy",
+          "Parrot",
+          "Penguin",
+          "Pigeon",
+          "Pterodactyl",
+          "Raven",
+          "Sparrow",
+          "Tetrabird",
+          "Vulture",
+          "Woodpecker",
+          "Cactee",
+          "Gecko",
+          "Larva_Silk",
+          "Meerkat",
+          "Molerat",
+          "Boar",
+          "Scorpion",
+          "Slug_Magma",
+          "Snail_Frost",
+          "Snail_Magma",
+          "Fox",
+          "Cobra",
+          "Snake_Marsh",
+          "Rattlesnake",
+          "Spider",
+          "Spider_Cave",
+          "Cow_Undead"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 0,
+        "maxLevel": 2147483647,
+        "xpReward": 400,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "ENTITY_KILL",
+        "allowList": [
+          "Ghoul",
+          "Horse_Skeleton",
+          "Horse_Skeleton_Armored",
+          "Pig_Undead",
+          "Skeleton_Archer",
+          "Skeleton_Archmage",
+          "Skeleton_Burnt_Alchemist",
+          "Skeleton_Burnt_Archer",
+          "Skeleton_Burnt_Gunner",
+          "Skeleton_Burnt_Knight",
+          "Skeleton_Burnt_Lancer",
+          "Skeleton_Burnt_Praetorian",
+          "Skeleton_Burnt_Soldier",
+          "Skeleton_Burnt_Wizard",
+          "Skeleton_Fighter",
+          "Skeleton_Frost_Archer",
+          "Skeleton_Frost_Archmage",
+          "Skeleton_Frost_Fighter",
+          "Skeleton_Frost_Knight",
+          "Skeleton_Frost_Mage",
+          "Skeleton_Frost_Ranger",
+          "Skeleton_Frost_Scout",
+          "Skeleton_Frost_Soldier",
+          "Skeleton_Knight",
+          "Skeleton_Mage",
+          "Skeleton_Pirate_Gunner",
+          "Skeleton_Pirate_Striker",
+          "Skeleton_Ranger",
+          "Skeleton_Archer",
+          "Skeleton_Archmage",
+          "Skeleton_Assassin",
+          "Skeleton_Guard",
+          "Skeleton_Mage",
+          "Skeleton_Ranger",
+          "Skeleton_Scout",
+          "Skeleton_Soldier",
+          "Skeleton_Scout",
+          "Skeleton_Soldier",
+          "Zombie",
+          "Zombie_Burnt",
+          "Zombie_Frost",
+          "Zombie_Sand",
+          "Goblin_Duke",
+          "Goblin_Hermit",
+          "Goblin_Lobber",
+          "Goblin_Miner",
+          "Goblin_Scavenger",
+          "Goblin_Scrapper",
+          "Goblin_Thief",
+          "Larva_Void"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 0,
+        "maxLevel": 2147483647,
+        "xpReward": 1000,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "ENTITY_KILL",
+        "allowList": [
+          "Feran_Burrower",
+          "Feran_Temple_Civilian",
+          "Feran_Civilian",
+          "Feran_Cub",
+          "Feran_Longtooth",
+          "Feran_Sharptooth",
+          "Feran_Windwalker",
+          "Eel_Moray",
+          "Shark_Hammerhead",
+          "Shellfish_Lava",
+          "Trilobite",
+          "Trilobite_Black",
+          "Humpback_Whale",
+          "Hyena",
+          "Leopard_Snow",
+          "Tiger_Sabertooth",
+          "Wolf_black",
+          "Wolf_White",
+          "Werewolf",
+          "Hound_Bleached",
+          "Zombie_Aberrant",
+          "Crawler_Void"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 0,
+        "maxLevel": 2147483647,
+        "xpReward": 1500,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "ENTITY_KILL",
+        "allowList": [
+          "Scarak_Broodmother",
+          "Scarak_Defender",
+          "Scarak_Fighter",
+          "Scarak_Louse",
+          "Scarak_Seeker",
+          "Trork_Brawler",
+          "Trork_Chieftain",
+          "Trork_Guard",
+          "Trork_Hunter",
+          "Trork_Mauler",
+          "Trork_Sentry",
+          "Trork_Elder",
+          "Trork_Warrior",
+          "Skeleton_Incandescent_Fighter",
+          "Skeleton_Incandescent_Footman",
+          "Skeleton_Incandescent_Head",
+          "Skeleton_Incandescent_Mage"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 0,
+        "maxLevel": 2147483647,
+        "xpReward": 2000,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "ENTITY_KILL",
+        "allowList": [
+          "Outlander_Berserker",
+          "Outlander_Brute",
+          "Outlander_Initiate",
+          "Outlander_Hunter",
+          "Outlander_Marauder",
+          "Outlander_Unsworn",
+          "Outlander_Priest",
+          "Outlander_Sorcerer",
+          "Outlander_Stalker",
+          "Bear_Grizzly",
+          "Bear_Polar",
+          "Crocodile",
+          "Fen_Stalker",
+          "Lizard_Sand",
+          "Raptor_Cave",
+          "Snapdragon",
+          "Toad_Rhino",
+          "Toad_Rhino_Magma",
+          "Tortoise",
+          "Trillodon",
+          "Golem_Crystal_Earth",
+          "Goblin_Ogre",
+          "Skeleton_Pirate_Captain"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 0,
+        "maxLevel": 2147483647,
+        "xpReward": 2400,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "ENTITY_KILL",
+        "allowList": [
+          "Hedera",
+          "Rex_Cave",
+          "Yeti",
+          "Spawn_Void",
+          "Spectre_Void"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 0,
+        "maxLevel": 2147483647,
+        "xpReward": 4400,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "ENTITY_KILL",
+        "allowList": [
+          "Eye_Void",
+          "Golem_Crystal_Flame",
+          "Golem_Crystal_Frost",
+          "Golem_Crystal_Sand",
+          "Golem_Crystal_Thunder",
+          "Golem_Firesteel",
+          "Golem_Gudian_Void"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 0,
+        "maxLevel": 2147483647,
+        "xpReward": 6000,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "ENTITY_KILL",
+        "allowList": [
+          "Dragon_Frost",
+          "Emberwulf",
+          "Shadow_Knight",
+          "Wraith"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 0,
+        "maxLevel": 2147483647,
+        "xpReward": 12000,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      }
+    ],
+    "requirements": [
+      {
+        "type": "ITEM_IN_HAND",
+        "allowList": [
+          "Shortbow",
+          "Crossbow"
+        ],
+        "denyList": []
+      }
+    ],
+    "unlocks": [
+      {
+        "type": "STAT_STAMINA_REGEN",
+        "level": 2,
+        "everyLevel": true,
+        "percentage": false,
+        "valueType": "FLAT",
+        "target": "",
+        "amount": 0.001
+      },
+      {
+        "type": "STAT_CRIT_DAMAGE",
+        "level": 2,
+        "everyLevel": true,
+        "percentage": false,
+        "valueType": "FLAT",
+        "target": "",
+        "amount": 0.015
+      },
+      {
+        "type": "STAT_STAMINA",
+        "level": 2,
+        "everyLevel": true,
+        "percentage": false,
+        "valueType": "FLAT",
+        "target": "",
+        "amount": 0.05
+      },
+      {
+        "type": "STAT_STRENGTH",
+        "level": 2,
+        "everyLevel": true,
+        "percentage": false,
+        "valueType": "FLAT",
+        "target": "",
+        "amount": 0.15
+      },
+      {
+        "type": "STAT_DEFENSE",
+        "level": 2,
+        "everyLevel": true,
+        "percentage": false,
+        "valueType": "FLAT",
+        "target": "",
+        "amount": 0.01
+      },
+      {
+        "type": "STAT_HEALTH",
+        "level": 2,
+        "everyLevel": true,
+        "percentage": false,
+        "valueType": "FLAT",
+        "target": "",
+        "amount": 0.5
+      },
+      {
+        "type": "STAT_VAMPIRISM",
+        "level": 2,
+        "everyLevel": true,
+        "percentage": false,
+        "valueType": "FLAT",
+        "target": "",
+        "amount": 0.005
+      }
+    ],
+    "lockedItems": [
+      {
+        "itemId": "Weapon_Shortbow_Crude",
+        "level": 1
+      },
+      {
+        "itemId": "Weapon_Shortbow_Copper",
+        "level": 5
+      },
+      {
+        "itemId": "Weapon_Crossbow_Iron_Hand",
+        "level": 20
+      },
+      {
+        "itemId": "Weapon_Shortbow_Iron",
+        "level": 20
+      },
+      {
+        "itemId": "Weapon_Shortbow_Outlander_Cursed",
+        "level": 25
+      },
+      {
+        "itemId": "Weapon_Shortbow_Thorium",
+        "level": 30
+      },
+      {
+        "itemId": "Weapon_Crossbow_Ancient_Steel_Hand",
+        "level": 35
+      },
+      {
+        "itemId": "Weapon_Shortbow_Cobalt",
+        "level": 40
+      },
+      {
+        "itemId": "Weapon_Shortbow_Adamantite",
+        "level": 50
+      },
+      {
+        "itemId": "Weapon_Shortbow_Mithril",
+        "level": 60
+      }
+    ],
+    "statScaling": {},
+    "mechanics": []
+  },
+  {
+    "id": "skill_1768921088820",
+    "displayName": "Combat",
+    "description": "",
+    "baseXp": 300.0,
+    "multiplier": 1.02,
+    "maxLevel": 126,
+    "triggers": [
+      {
+        "type": "ENTITY_KILL",
+        "allowList": [
+          "Bluegill",
+          "Catfish",
+          "Clownfish",
+          "Crab",
+          "Frostgill",
+          "Jellyfish_Blue",
+          "Jellyfish_Cyan",
+          "Jellyfish_Green",
+          "Jellyfish_Man_of_War",
+          "Jellyfish_Red",
+          "Jellyfish_Yellow",
+          "Lobster",
+          "Minnow",
+          "Pike",
+          "Piranha",
+          "Piranha_Black",
+          "Pufferfish",
+          "Salmon",
+          "Snapjaw",
+          "Tang_Blue",
+          "Tang_Chevron",
+          "Tang_Lemon_Peel",
+          "Tang_Sailfin",
+          "Trout_Rainbow"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 0,
+        "maxLevel": 2147483647,
+        "xpReward": 50,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "ENTITY_KILL",
+        "allowList": [
+          "Chicken_Undead",
+          "Duck",
+          "Antelope",
+          "Armadillo",
+          "Bison",
+          "Bison_Calf",
+          "Frog",
+          "Boar_Piglet",
+          "Bunny",
+          "Squirrel",
+          "Camel_Calf",
+          "Chicken",
+          "Chick",
+          "Chicken_Desert",
+          "Chick_Desert",
+          "Cow",
+          "Calf",
+          "Doe",
+          "Stag",
+          "Goat",
+          "Kid",
+          "Horse",
+          "Foal",
+          "Mouse",
+          "Rat",
+          "Mosshorn",
+          "Mouflon",
+          "Mouflon_Lamb",
+          "Pig",
+          "Piglet",
+          "Rabbit",
+          "Ram",
+          "Ram_Lamb",
+          "Sheep",
+          "Lamb",
+          "Skrill",
+          "Skrill_Chick",
+          "Turkey",
+          "Turkey_Chick",
+          "Warthog",
+          "Warthog_Piglet"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 0,
+        "maxLevel": 2147483647,
+        "xpReward": 75,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "ENTITY_KILL",
+        "allowList": [
+          "Archaeopteryx",
+          "Moose_Bull",
+          "Moose_Cow",
+          "Bat",
+          "Bat_Ice",
+          "Bluebird",
+          "Crow",
+          "Greenfinch",
+          "Flamingo",
+          "Hawk",
+          "Camel",
+          "Owl_Brown",
+          "Owl_Snowy",
+          "Parrot",
+          "Penguin",
+          "Pigeon",
+          "Pterodactyl",
+          "Raven",
+          "Sparrow",
+          "Tetrabird",
+          "Vulture",
+          "Woodpecker",
+          "Cactee",
+          "Gecko",
+          "Larva_Silk",
+          "Meerkat",
+          "Molerat",
+          "Boar",
+          "Scorpion",
+          "Slug_Magma",
+          "Snail_Frost",
+          "Snail_Magma",
+          "Fox",
+          "Cobra",
+          "Snake_Marsh",
+          "Rattlesnake",
+          "Spider",
+          "Spider_Cave",
+          "Cow_Undead"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 0,
+        "maxLevel": 2147483647,
+        "xpReward": 100,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "ENTITY_KILL",
+        "allowList": [
+          "Ghoul",
+          "Horse_Skeleton",
+          "Horse_Skeleton_Armored",
+          "Pig_Undead",
+          "Skeleton_Archer",
+          "Skeleton_Archmage",
+          "Skeleton_Burnt_Alchemist",
+          "Skeleton_Burnt_Archer",
+          "Skeleton_Burnt_Gunner",
+          "Skeleton_Burnt_Knight",
+          "Skeleton_Burnt_Lancer",
+          "Skeleton_Burnt_Praetorian",
+          "Skeleton_Burnt_Soldier",
+          "Skeleton_Burnt_Wizard",
+          "Skeleton_Fighter",
+          "Skeleton_Frost_Archer",
+          "Skeleton_Frost_Archmage",
+          "Skeleton_Frost_Fighter",
+          "Skeleton_Frost_Knight",
+          "Skeleton_Frost_Mage",
+          "Skeleton_Frost_Ranger",
+          "Skeleton_Frost_Scout",
+          "Skeleton_Frost_Soldier",
+          "Skeleton_Knight",
+          "Skeleton_Mage",
+          "Skeleton_Pirate_Gunner",
+          "Skeleton_Pirate_Striker",
+          "Skeleton_Ranger",
+          "Skeleton_Archer",
+          "Skeleton_Archmage",
+          "Skeleton_Assassin",
+          "Skeleton_Guard",
+          "Skeleton_Mage",
+          "Skeleton_Ranger",
+          "Skeleton_Scout",
+          "Skeleton_Soldier",
+          "Skeleton_Scout",
+          "Skeleton_Soldier",
+          "Zombie",
+          "Zombie_Burnt",
+          "Zombie_Frost",
+          "Zombie_Sand",
+          "Goblin_Duke",
+          "Goblin_Hermit",
+          "Goblin_Lobber",
+          "Goblin_Miner",
+          "Goblin_Scavenger",
+          "Goblin_Scrapper",
+          "Goblin_Thief",
+          "Larva_Void"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 0,
+        "maxLevel": 2147483647,
+        "xpReward": 250,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "ENTITY_KILL",
+        "allowList": [
+          "Feran_Burrower",
+          "Feran_Temple_Civilian",
+          "Feran_Civilian",
+          "Feran_Cub",
+          "Feran_Longtooth",
+          "Feran_Sharptooth",
+          "Feran_Windwalker",
+          "Eel_Moray",
+          "Shark_Hammerhead",
+          "Shellfish_Lava",
+          "Trilobite",
+          "Trilobite_Black",
+          "Humpback_Whale",
+          "Hyena",
+          "Leopard_Snow",
+          "Tiger_Sabertooth",
+          "Wolf_black",
+          "Wolf_White",
+          "Werewolf",
+          "Hound_Bleached",
+          "Zombie_Aberrant",
+          "Crawler_Void"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 0,
+        "maxLevel": 2147483647,
+        "xpReward": 375,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "ENTITY_KILL",
+        "allowList": [
+          "Scarak_Broodmother",
+          "Scarak_Defender",
+          "Scarak_Fighter",
+          "Scarak_Louse",
+          "Scarak_Seeker",
+          "Trork_Brawler",
+          "Trork_Chieftain",
+          "Trork_Guard",
+          "Trork_Hunter",
+          "Trork_Mauler",
+          "Trork_Sentry",
+          "Trork_Elder",
+          "Trork_Warrior",
+          "Skeleton_Incandescent_Fighter",
+          "Skeleton_Incandescent_Footman",
+          "Skeleton_Incandescent_Head",
+          "Skeleton_Incandescent_Mage"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 0,
+        "maxLevel": 2147483647,
+        "xpReward": 500,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "ENTITY_KILL",
+        "allowList": [
+          "Outlander_Berserker",
+          "Outlander_Brute",
+          "Outlander_Initiate",
+          "Outlander_Hunter",
+          "Outlander_Marauder",
+          "Outlander_Unsworn",
+          "Outlander_Priest",
+          "Outlander_Sorcerer",
+          "Outlander_Stalker",
+          "Bear_Grizzly",
+          "Bear_Polar",
+          "Crocodile",
+          "Fen_Stalker",
+          "Lizard_Sand",
+          "Raptor_Cave",
+          "Snapdragon",
+          "Toad_Rhino",
+          "Toad_Rhino_Magma",
+          "Tortoise",
+          "Trillodon",
+          "Golem_Crystal_Earth",
+          "Goblin_Ogre",
+          "Skeleton_Pirate_Captain"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 0,
+        "maxLevel": 2147483647,
+        "xpReward": 600,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "ENTITY_KILL",
+        "allowList": [
+          "Hedera",
+          "Rex_Cave",
+          "Yeti",
+          "Spawn_Void",
+          "Spectre_Void"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 0,
+        "maxLevel": 2147483647,
+        "xpReward": 1100,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "ENTITY_KILL",
+        "allowList": [
+          "Eye_Void",
+          "Golem_Crystal_Flame",
+          "Golem_Crystal_Frost",
+          "Golem_Crystal_Sand",
+          "Golem_Crystal_Thunder",
+          "Golem_Firesteel",
+          "Golem_Gudian_Void"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 0,
+        "maxLevel": 2147483647,
+        "xpReward": 1500,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "ENTITY_KILL",
+        "allowList": [
+          "Dragon_Frost",
+          "Emberwulf",
+          "Shadow_Knight",
+          "Wraith"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 0,
+        "maxLevel": 2147483647,
+        "xpReward": 3000,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      }
+    ],
+    "requirements": [],
+    "unlocks": [
+      {
+        "type": "STAT_HEALTH",
+        "level": 2,
+        "everyLevel": true,
+        "percentage": false,
+        "valueType": "FLAT",
+        "target": "",
+        "amount": 1.0
+      },
+      {
+        "type": "STAT_STAMINA",
+        "level": 2,
+        "everyLevel": true,
+        "percentage": false,
+        "valueType": "FLAT",
+        "target": "",
+        "amount": 0.1
+      },
+      {
+        "type": "STAT_MANA",
+        "level": 2,
+        "everyLevel": true,
+        "percentage": false,
+        "valueType": "FLAT",
+        "target": "",
+        "amount": 0.1
+      },
+      {
+        "type": "STAT_STAMINA_REGEN",
+        "level": 2,
+        "everyLevel": true,
+        "percentage": false,
+        "valueType": "FLAT",
+        "target": "",
+        "amount": 0.001
+      },
+      {
+        "type": "STAT_STRENGTH",
+        "level": 2,
+        "everyLevel": true,
+        "percentage": false,
+        "valueType": "FLAT",
+        "target": "",
+        "amount": 0.25
+      },
+      {
+        "type": "STAT_DEFENSE",
+        "level": 2,
+        "everyLevel": true,
+        "percentage": false,
+        "valueType": "FLAT",
+        "target": "",
+        "amount": 0.01
+      },
+      {
+        "type": "STAT_CRIT_CHANCE",
+        "level": 2,
+        "everyLevel": true,
+        "percentage": false,
+        "valueType": "FLAT",
+        "target": "",
+        "amount": 0.02
+      },
+      {
+        "type": "STAT_CRIT_DAMAGE",
+        "level": 2,
+        "everyLevel": true,
+        "percentage": false,
+        "valueType": "FLAT",
+        "target": "",
+        "amount": 0.25
+      },
+      {
+        "type": "STAT_VAMPIRISM",
+        "level": 2,
+        "everyLevel": true,
+        "percentage": false,
+        "valueType": "FLAT",
+        "target": "",
+        "amount": 0.01
+      }
+    ],
+    "lockedItems": [],
+    "statScaling": {},
+    "mechanics": []
+  },
+  {
+    "id": "building",
+    "displayName": "Building",
+    "description": "",
+    "baseXp": 300.0,
+    "multiplier": 1.1,
+    "maxLevel": 100,
+    "triggers": [
+      {
+        "type": "PLACE_BLOCK",
+        "allowList": [],
+        "denyList": [
+          "Seed",
+          "Sapling"
+        ],
+        "cooldown": 0,
+        "minLevel": 0,
+        "maxLevel": 2147483647,
+        "xpReward": 10,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      }
+    ],
+    "requirements": [],
+    "unlocks": [
+      {
+        "type": "STAT_STAMINA",
+        "level": 2,
+        "everyLevel": true,
+        "percentage": false,
+        "valueType": "FLAT",
+        "target": "",
+        "amount": 0.1
+      }
+    ],
+    "lockedItems": [],
+    "statScaling": {},
+    "mechanics": []
+  },
+  {
+    "id": "swimming",
+    "displayName": "Swimming",
+    "description": "",
+    "baseXp": 300.0,
+    "multiplier": 1.1,
+    "maxLevel": 100,
+    "triggers": [
+      {
+        "type": "SWIM",
+        "allowList": [],
+        "denyList": [],
+        "cooldown": 2,
+        "minLevel": 0,
+        "maxLevel": 2147483647,
+        "xpReward": 25,
+        "requiresMovement": true,
+        "xpValues": {},
+        "customData": {}
+      }
+    ],
+    "requirements": [],
+    "unlocks": [
+      {
+        "type": "STAT_OXYGEN",
+        "level": 2,
+        "everyLevel": true,
+        "percentage": false,
+        "valueType": "FLAT",
+        "target": "",
+        "amount": 1.0
+      }
+    ],
+    "lockedItems": [],
+    "statScaling": {},
+    "mechanics": []
+  },
+  {
+    "id": "sword",
+    "displayName": "Sword",
+    "baseXp": 300.0,
+    "multiplier": 1.02,
+    "maxLevel": 100,
+    "triggers": [
+      {
+        "type": "ENTITY_KILL",
+        "allowList": [
+          "Bluegill",
+          "Catfish",
+          "Clownfish",
+          "Crab",
+          "Frostgill",
+          "Jellyfish_Blue",
+          "Jellyfish_Cyan",
+          "Jellyfish_Green",
+          "Jellyfish_Man_of_War",
+          "Jellyfish_Red",
+          "Jellyfish_Yellow",
+          "Lobster",
+          "Minnow",
+          "Pike",
+          "Piranha",
+          "Piranha_Black",
+          "Pufferfish",
+          "Salmon",
+          "Snapjaw",
+          "Tang_Blue",
+          "Tang_Chevron",
+          "Tang_Lemon_Peel",
+          "Tang_Sailfin",
+          "Trout_Rainbow"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 0,
+        "maxLevel": 2147483647,
+        "xpReward": 200,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "ENTITY_KILL",
+        "allowList": [
+          "Chicken_Undead",
+          "Duck",
+          "Antelope",
+          "Armadillo",
+          "Bison",
+          "Bison_Calf",
+          "Frog",
+          "Boar_Piglet",
+          "Bunny",
+          "Squirrel",
+          "Camel_Calf",
+          "Chicken",
+          "Chick",
+          "Chicken_Desert",
+          "Chick_Desert",
+          "Cow",
+          "Calf",
+          "Doe",
+          "Stag",
+          "Goat",
+          "Kid",
+          "Horse",
+          "Foal",
+          "Mouse",
+          "Rat",
+          "Mosshorn",
+          "Mouflon",
+          "Mouflon_Lamb",
+          "Pig",
+          "Piglet",
+          "Rabbit",
+          "Ram",
+          "Ram_Lamb",
+          "Sheep",
+          "Lamb",
+          "Skrill",
+          "Skrill_Chick",
+          "Turkey",
+          "Turkey_Chick",
+          "Warthog",
+          "Warthog_Piglet"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 0,
+        "maxLevel": 2147483647,
+        "xpReward": 300,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "ENTITY_KILL",
+        "allowList": [
+          "Archaeopteryx",
+          "Moose_Bull",
+          "Moose_Cow",
+          "Bat",
+          "Bat_Ice",
+          "Bluebird",
+          "Crow",
+          "Greenfinch",
+          "Flamingo",
+          "Hawk",
+          "Camel",
+          "Owl_Brown",
+          "Owl_Snowy",
+          "Parrot",
+          "Penguin",
+          "Pigeon",
+          "Pterodactyl",
+          "Raven",
+          "Sparrow",
+          "Tetrabird",
+          "Vulture",
+          "Woodpecker",
+          "Cactee",
+          "Gecko",
+          "Larva_Silk",
+          "Meerkat",
+          "Molerat",
+          "Boar",
+          "Scorpion",
+          "Slug_Magma",
+          "Snail_Frost",
+          "Snail_Magma",
+          "Fox",
+          "Cobra",
+          "Snake_Marsh",
+          "Rattlesnake",
+          "Spider",
+          "Spider_Cave",
+          "Cow_Undead"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 0,
+        "maxLevel": 2147483647,
+        "xpReward": 400,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "ENTITY_KILL",
+        "allowList": [
+          "Ghoul",
+          "Horse_Skeleton",
+          "Horse_Skeleton_Armored",
+          "Pig_Undead",
+          "Skeleton_Archer",
+          "Skeleton_Archmage",
+          "Skeleton_Burnt_Alchemist",
+          "Skeleton_Burnt_Archer",
+          "Skeleton_Burnt_Gunner",
+          "Skeleton_Burnt_Knight",
+          "Skeleton_Burnt_Lancer",
+          "Skeleton_Burnt_Praetorian",
+          "Skeleton_Burnt_Soldier",
+          "Skeleton_Burnt_Wizard",
+          "Skeleton_Fighter",
+          "Skeleton_Frost_Archer",
+          "Skeleton_Frost_Archmage",
+          "Skeleton_Frost_Fighter",
+          "Skeleton_Frost_Knight",
+          "Skeleton_Frost_Mage",
+          "Skeleton_Frost_Ranger",
+          "Skeleton_Frost_Scout",
+          "Skeleton_Frost_Soldier",
+          "Skeleton_Knight",
+          "Skeleton_Mage",
+          "Skeleton_Pirate_Gunner",
+          "Skeleton_Pirate_Striker",
+          "Skeleton_Ranger",
+          "Skeleton_Archer",
+          "Skeleton_Archmage",
+          "Skeleton_Assassin",
+          "Skeleton_Guard",
+          "Skeleton_Mage",
+          "Skeleton_Ranger",
+          "Skeleton_Scout",
+          "Skeleton_Soldier",
+          "Skeleton_Scout",
+          "Skeleton_Soldier",
+          "Zombie",
+          "Zombie_Burnt",
+          "Zombie_Frost",
+          "Zombie_Sand",
+          "Goblin_Duke",
+          "Goblin_Hermit",
+          "Goblin_Lobber",
+          "Goblin_Miner",
+          "Goblin_Scavenger",
+          "Goblin_Scrapper",
+          "Goblin_Thief",
+          "Larva_Void"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 0,
+        "maxLevel": 2147483647,
+        "xpReward": 1000,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "ENTITY_KILL",
+        "allowList": [
+          "Feran_Burrower",
+          "Feran_Temple_Civilian",
+          "Feran_Civilian",
+          "Feran_Cub",
+          "Feran_Longtooth",
+          "Feran_Sharptooth",
+          "Feran_Windwalker",
+          "Eel_Moray",
+          "Shark_Hammerhead",
+          "Shellfish_Lava",
+          "Trilobite",
+          "Trilobite_Black",
+          "Humpback_Whale",
+          "Hyena",
+          "Leopard_Snow",
+          "Tiger_Sabertooth",
+          "Wolf_black",
+          "Wolf_White",
+          "Werewolf",
+          "Hound_Bleached",
+          "Zombie_Aberrant",
+          "Crawler_Void"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 0,
+        "maxLevel": 2147483647,
+        "xpReward": 1500,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "ENTITY_KILL",
+        "allowList": [
+          "Scarak_Broodmother",
+          "Scarak_Defender",
+          "Scarak_Fighter",
+          "Scarak_Louse",
+          "Scarak_Seeker",
+          "Trork_Brawler",
+          "Trork_Chieftain",
+          "Trork_Guard",
+          "Trork_Hunter",
+          "Trork_Mauler",
+          "Trork_Sentry",
+          "Trork_Elder",
+          "Trork_Warrior",
+          "Skeleton_Incandescent_Fighter",
+          "Skeleton_Incandescent_Footman",
+          "Skeleton_Incandescent_Head",
+          "Skeleton_Incandescent_Mage"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 0,
+        "maxLevel": 2147483647,
+        "xpReward": 2000,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "ENTITY_KILL",
+        "allowList": [
+          "Outlander_Berserker",
+          "Outlander_Brute",
+          "Outlander_Initiate",
+          "Outlander_Hunter",
+          "Outlander_Marauder",
+          "Outlander_Unsworn",
+          "Outlander_Priest",
+          "Outlander_Sorcerer",
+          "Outlander_Stalker",
+          "Bear_Grizzly",
+          "Bear_Polar",
+          "Crocodile",
+          "Fen_Stalker",
+          "Lizard_Sand",
+          "Raptor_Cave",
+          "Snapdragon",
+          "Toad_Rhino",
+          "Toad_Rhino_Magma",
+          "Tortoise",
+          "Trillodon",
+          "Golem_Crystal_Earth",
+          "Goblin_Ogre",
+          "Skeleton_Pirate_Captain"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 0,
+        "maxLevel": 2147483647,
+        "xpReward": 2400,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "ENTITY_KILL",
+        "allowList": [
+          "Hedera",
+          "Rex_Cave",
+          "Yeti",
+          "Spawn_Void",
+          "Spectre_Void"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 0,
+        "maxLevel": 2147483647,
+        "xpReward": 4400,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "ENTITY_KILL",
+        "allowList": [
+          "Eye_Void",
+          "Golem_Crystal_Flame",
+          "Golem_Crystal_Frost",
+          "Golem_Crystal_Sand",
+          "Golem_Crystal_Thunder",
+          "Golem_Firesteel",
+          "Golem_Gudian_Void"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 0,
+        "maxLevel": 2147483647,
+        "xpReward": 6000,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "ENTITY_KILL",
+        "allowList": [
+          "Dragon_Frost",
+          "Emberwulf",
+          "Shadow_Knight",
+          "Wraith"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 0,
+        "maxLevel": 2147483647,
+        "xpReward": 12000,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      }
+    ],
+    "requirements": [
+      {
+        "type": "ITEM_IN_HAND",
+        "allowList": [
+          "Sword"
+        ],
+        "denyList": []
+      }
+    ],
+    "unlocks": [
+      {
+        "type": "STAT_STAMINA_REGEN",
+        "level": 2,
+        "everyLevel": true,
+        "percentage": false,
+        "valueType": "FLAT",
+        "target": "",
+        "amount": 0.001
+      },
+      {
+        "type": "STAT_CRIT_DAMAGE",
+        "level": 2,
+        "everyLevel": true,
+        "percentage": false,
+        "valueType": "FLAT",
+        "target": "",
+        "amount": 0.015
+      },
+      {
+        "type": "STAT_STAMINA",
+        "level": 2,
+        "everyLevel": true,
+        "percentage": false,
+        "valueType": "FLAT",
+        "target": "",
+        "amount": 0.05
+      },
+      {
+        "type": "STAT_STRENGTH",
+        "level": 2,
+        "everyLevel": true,
+        "percentage": false,
+        "valueType": "FLAT",
+        "target": "",
+        "amount": 0.15
+      },
+      {
+        "type": "STAT_DEFENSE",
+        "level": 2,
+        "everyLevel": true,
+        "percentage": false,
+        "valueType": "FLAT",
+        "target": "",
+        "amount": 0.01
+      },
+      {
+        "type": "STAT_HEALTH",
+        "level": 2,
+        "everyLevel": true,
+        "percentage": false,
+        "valueType": "FLAT",
+        "target": "",
+        "amount": 0.5
+      },
+      {
+        "type": "STAT_VAMPIRISM",
+        "level": 2,
+        "everyLevel": true,
+        "percentage": false,
+        "valueType": "FLAT",
+        "target": "",
+        "amount": 0.005
+      }
+    ],
+    "lockedItems": [
+      {
+        "itemId": "Weapon_Sword_Crude",
+        "level": 1
+      },
+      {
+        "itemId": "Weapon_Sword_Copper",
+        "level": 5
+      },
+      {
+        "itemId": "Weapon_Sword_Rusty_Steel",
+        "level": 10
+      },
+      {
+        "itemId": "Weapon_Sword_Scrap",
+        "level": 10
+      },
+      {
+        "itemId": "Weapon_Sword_Stone_Trork",
+        "level": 15
+      },
+      {
+        "itemId": "Weapon_Sword_Iron",
+        "level": 20
+      },
+      {
+        "itemId": "Weapon_Sword_Doomed_Outlander",
+        "level": 25
+      },
+      {
+        "itemId": "Weapon_Sword_Bone",
+        "level": 25
+      },
+      {
+        "itemId": "Weapon_Sword_Thorium",
+        "level": 30
+      },
+      {
+        "itemId": "Weapon_Sword_Cobalt",
+        "level": 40
+      },
+      {
+        "itemId": "Weapon_Sword_Adamantite",
+        "level": 50
+      },
+      {
+        "itemId": "Weapon_Sword_Mithril",
+        "level": 60
+      }
+    ],
+    "statScaling": {},
+    "mechanics": []
+  },
+  {
+    "id": "woodcutting",
+    "displayName": "Woodcutting",
+    "description": "Chop all types of trunks with an hatchet to gain higher levels, and unlock different types of logs.",
+    "baseXp": 300.0,
+    "multiplier": 1.1,
+    "maxLevel": 100,
+    "triggers": [
+      {
+        "type": "BLOCK_BREAK",
+        "allowList": [
+          "Wood_Ash_Trunk",
+          "Wood_Ash_Trunk_Full",
+          "Wood_Oak_Trunk",
+          "Wood_Oak_Trunk_Full"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 0,
+        "maxLevel": 2147483647,
+        "xpReward": 220,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "BLOCK_BREAK",
+        "allowList": [
+          "Wood_Beech_Trunk",
+          "Wood_Beech_Trunk_Full"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 5,
+        "maxLevel": 2147483647,
+        "xpReward": 280,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "BLOCK_BREAK",
+        "allowList": [
+          "Wood_Birch_Trunk",
+          "Wood_Birch_Trunk_Full"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 8,
+        "maxLevel": 2147483647,
+        "xpReward": 330,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "BLOCK_BREAK",
+        "allowList": [
+          "Wood_Azure_Trunk",
+          "Wood_Azure_Trunk_Full"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 10,
+        "maxLevel": 2147483647,
+        "xpReward": 420,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "BLOCK_BREAK",
+        "allowList": [
+          "Wood_Aspen_Trunk",
+          "Wood_Aspen_Trunk_Full"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 14,
+        "maxLevel": 2147483647,
+        "xpReward": 510,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "BLOCK_BREAK",
+        "allowList": [
+          "Wood_Maple_Trunk",
+          "Wood_Maple_Trunk_Full"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 18,
+        "maxLevel": 2147483647,
+        "xpReward": 550,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "BLOCK_BREAK",
+        "allowList": [
+          "Wood_Redwood_Trunk",
+          "Wood_Redwood_Trunk_Full"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 20,
+        "maxLevel": 2147483647,
+        "xpReward": 600,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "BLOCK_BREAK",
+        "allowList": [
+          "Wood_Fir_Trunk",
+          "Wood_Fir_Trunk_Full"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 25,
+        "maxLevel": 2147483647,
+        "xpReward": 660,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "BLOCK_BREAK",
+        "allowList": [
+          "Wood_Cedar_Trunk",
+          "Wood_Cedar_Trunk_Full"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 28,
+        "maxLevel": 2147483647,
+        "xpReward": 750,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "BLOCK_BREAK",
+        "allowList": [
+          "Wood_Dry_Trunk",
+          "Wood_Dry_Trunk_Full"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 30,
+        "maxLevel": 2147483647,
+        "xpReward": 820,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "BLOCK_BREAK",
+        "allowList": [
+          "Wood_Bottletree_Trunk",
+          "Wood_Bottletree_Trunk_Full"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 32,
+        "maxLevel": 2147483647,
+        "xpReward": 920,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "BLOCK_BREAK",
+        "allowList": [
+          "Wood_Gumboab_Trunk",
+          "Wood_Gumboab_Trunk_Full"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 35,
+        "maxLevel": 2147483647,
+        "xpReward": 1000,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "BLOCK_BREAK",
+        "allowList": [
+          "Wood_Palo_Trunk",
+          "Wood_Palo_Trunk_Full"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 38,
+        "maxLevel": 2147483647,
+        "xpReward": 1110,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "BLOCK_BREAK",
+        "allowList": [
+          "Wood_Palm_Trunk",
+          "Wood_Palm_Trunk_Full"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 40,
+        "maxLevel": 2147483647,
+        "xpReward": 1130,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "BLOCK_BREAK",
+        "allowList": [
+          "Wood_Burnt_Trunk",
+          "Wood_Burnt_Trunk_Full"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 42,
+        "maxLevel": 2147483647,
+        "xpReward": 1200,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "BLOCK_BREAK",
+        "allowList": [
+          "Wood_Fire_Trunk",
+          "Wood_Fire_Trunk_Full"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 45,
+        "maxLevel": 2147483647,
+        "xpReward": 1330,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "BLOCK_BREAK",
+        "allowList": [
+          "Wood_Petrified_Trunk",
+          "Wood_Petrified_Trunk_Full"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 48,
+        "maxLevel": 2147483647,
+        "xpReward": 1460,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "BLOCK_BREAK",
+        "allowList": [
+          "Wood_Poisoned_Trunk",
+          "Wood_Poisoned_Trunk_Full"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 50,
+        "maxLevel": 2147483647,
+        "xpReward": 1680,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "BLOCK_BREAK",
+        "allowList": [
+          "Wood_Sallow_Trunk",
+          "Wood_Sallow_Trunk_Full"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 52,
+        "maxLevel": 2147483647,
+        "xpReward": 1800,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "BLOCK_BREAK",
+        "allowList": [
+          "Wood_Spiral_Trunk",
+          "Wood_Spiral_Trunk_Full"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 55,
+        "maxLevel": 2147483647,
+        "xpReward": 1910,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "BLOCK_BREAK",
+        "allowList": [
+          "Wood_Camphor_Trunk",
+          "Wood_Camphor_Trunk_Full"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 58,
+        "maxLevel": 2147483647,
+        "xpReward": 2060,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "BLOCK_BREAK",
+        "allowList": [
+          "Wood_Bamboo_Trunk",
+          "Wood_Bamboo_Trunk_Deco"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 60,
+        "maxLevel": 2147483647,
+        "xpReward": 2180,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "BLOCK_BREAK",
+        "allowList": [
+          "Wood_Banyan_Trunk",
+          "Wood_Banyan_Trunk_Full"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 62,
+        "maxLevel": 2147483647,
+        "xpReward": 2300,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      }
+    ],
+    "requirements": [
+      {
+        "type": "ITEM_IN_HAND",
+        "allowList": [
+          "Hatchet",
+          "Axe"
+        ],
+        "denyList": []
+      }
+    ],
+    "unlocks": [
+      {
+        "type": "MECHANIC",
+        "level": 15,
+        "everyLevel": false,
+        "percentage": false,
+        "valueType": "FLAT",
+        "target": "MAGNETIC_PICKUP",
+        "amount": 1.0
+      }
+    ],
+    "lockedItems": [
+      {
+        "itemId": "Tool_Hatchet_Crude",
+        "level": 1
+      },
+      {
+        "itemId": "Tool_Hatchet_Wood",
+        "level": 5
+      },
+      {
+        "itemId": "Tool_Hatchet_Copper",
+        "level": 10
+      },
+      {
+        "itemId": "Tool_Hatchet_Stone",
+        "level": 10
+      },
+      {
+        "itemId": "Tool_Hatchet_Iron",
+        "level": 20
+      },
+      {
+        "itemId": "Tool_Hatchet_Thorium",
+        "level": 30
+      },
+      {
+        "itemId": "Tool_Hatchet_Cobalt",
+        "level": 40
+      },
+      {
+        "itemId": "Tool_Hatchet_Adamantite",
+        "level": 50
+      },
+      {
+        "itemId": "Tool_Hatchet_Mithril",
+        "level": 60
+      },
+      {
+        "itemId": "Wood_Beech_Trunk",
+        "level": 5
+      },
+      {
+        "itemId": "Wood_Beech_Trunk_Full",
+        "level": 5
+      },
+      {
+        "itemId": "Wood_Birch_Trunk",
+        "level": 8
+      },
+      {
+        "itemId": "Wood_Birch_Trunk_Full",
+        "level": 8
+      },
+      {
+        "itemId": "Wood_Azure_Trunk",
+        "level": 10
+      },
+      {
+        "itemId": "Wood_Azure_Trunk_Full",
+        "level": 10
+      },
+      {
+        "itemId": "Wood_Aspen_Trunk",
+        "level": 14
+      },
+      {
+        "itemId": "Wood_Aspen_Trunk_Full",
+        "level": 14
+      },
+      {
+        "itemId": "Wood_Maple_Trunk",
+        "level": 18
+      },
+      {
+        "itemId": "Wood_Maple_Trunk_Full",
+        "level": 18
+      },
+      {
+        "itemId": "Wood_Redwood_Trunk",
+        "level": 20
+      },
+      {
+        "itemId": "Wood_Redwood_Trunk_Full",
+        "level": 20
+      },
+      {
+        "itemId": "Wood_Fir_Trunk",
+        "level": 25
+      },
+      {
+        "itemId": "Wood_Fir_Trunk_Full",
+        "level": 25
+      },
+      {
+        "itemId": "Wood_Cedar_Trunk",
+        "level": 28
+      },
+      {
+        "itemId": "Wood_Cedar_Trunk_Full",
+        "level": 28
+      },
+      {
+        "itemId": "Wood_Dry_Trunk",
+        "level": 30
+      },
+      {
+        "itemId": "Wood_Dry_Trunk_Full",
+        "level": 30
+      },
+      {
+        "itemId": "Wood_Bottletree_Trunk",
+        "level": 32
+      },
+      {
+        "itemId": "Wood_Bottletree_Trunk_Full",
+        "level": 32
+      },
+      {
+        "itemId": "Wood_Gumboab_Trunk",
+        "level": 35
+      },
+      {
+        "itemId": "Wood_Gumboab_Trunk_Full",
+        "level": 35
+      },
+      {
+        "itemId": "Wood_Palo_Trunk",
+        "level": 38
+      },
+      {
+        "itemId": "Wood_Palo_Trunk_Full",
+        "level": 38
+      },
+      {
+        "itemId": "Wood_Palm_Trunk",
+        "level": 40
+      },
+      {
+        "itemId": "Wood_Palm_Trunk_Full",
+        "level": 40
+      },
+      {
+        "itemId": "Wood_Burnt_Trunk",
+        "level": 42
+      },
+      {
+        "itemId": "Wood_Burnt_Trunk_Full",
+        "level": 42
+      },
+      {
+        "itemId": "Wood_Fire_Trunk",
+        "level": 45
+      },
+      {
+        "itemId": "Wood_Fire_Trunk_Full",
+        "level": 45
+      },
+      {
+        "itemId": "Wood_Petrified_Trunk",
+        "level": 48
+      },
+      {
+        "itemId": "Wood_Petrified_Trunk_Full",
+        "level": 48
+      },
+      {
+        "itemId": "Wood_Poisoned_Trunk",
+        "level": 50
+      },
+      {
+        "itemId": "Wood_Poisoned_Trunk_Full",
+        "level": 50
+      },
+      {
+        "itemId": "Wood_Sallow_Trunk",
+        "level": 52
+      },
+      {
+        "itemId": "Wood_Sallow_Trunk_Full",
+        "level": 52
+      },
+      {
+        "itemId": "Wood_Spiral_Trunk",
+        "level": 55
+      },
+      {
+        "itemId": "Wood_Spiral_Trunk_Full",
+        "level": 55
+      },
+      {
+        "itemId": "Wood_Camphor_Trunk",
+        "level": 58
+      },
+      {
+        "itemId": "Wood_Camphor_Trunk_Full",
+        "level": 58
+      },
+      {
+        "itemId": "Wood_Bamboo_Trunk",
+        "level": 60
+      },
+      {
+        "itemId": "Wood_Bamboo_Trunk_Deco",
+        "level": 60
+      },
+      {
+        "itemId": "Wood_Banyan_Trunk",
+        "level": 62
+      },
+      {
+        "itemId": "Wood_Banyan_Trunk_Full",
+        "level": 62
+      }
+    ],
+    "statScaling": {},
+    "mechanics": []
+  },
+  {
+    "id": "skill_1769032442296",
+    "displayName": "Block",
+    "description": "",
+    "baseXp": 300.0,
+    "multiplier": 1.02,
+    "maxLevel": 100,
+    "triggers": [
+      {
+        "type": "PARRY",
+        "allowList": [],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 0,
+        "maxLevel": 2147483647,
+        "xpReward": 100,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      }
+    ],
+    "requirements": [],
+    "unlocks": [
+      {
+        "type": "STAT_DEFENSE",
+        "level": 2,
+        "everyLevel": true,
+        "percentage": false,
+        "valueType": "FLAT",
+        "target": "",
+        "amount": 0.025
+      },
+      {
+        "type": "STAT_STAMINA",
+        "level": 2,
+        "everyLevel": true,
+        "percentage": false,
+        "valueType": "FLAT",
+        "target": "",
+        "amount": 0.05
+      },
+      {
+        "type": "STAT_HEALTH",
+        "level": 2,
+        "everyLevel": true,
+        "percentage": false,
+        "valueType": "FLAT",
+        "target": "",
+        "amount": 0.01
+      },
+      {
+        "type": "STAT_BLOCKBREAK_SPEED",
+        "level": 2,
+        "everyLevel": true,
+        "percentage": false,
+        "valueType": "FLAT",
+        "target": "",
+        "amount": 0.005
+      }
+    ],
+    "lockedItems": [],
+    "statScaling": {},
+    "mechanics": []
+  },
+  {
+    "id": "skill_1768929499403",
+    "displayName": "Farming",
+    "description": "Harvesting various plants",
+    "baseXp": 300.0,
+    "multiplier": 1.1,
+    "maxLevel": 100,
+    "triggers": [
+      {
+        "type": "INTERACT",
+        "allowList": [
+          "plant_flower"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 0,
+        "maxLevel": 2147483647,
+        "xpReward": 5,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "INTERACT",
+        "allowList": [
+          "Plant_Crop_Berry_Winter_Block",
+          "Plant_Crop_Berry_Block",
+          "Plant_Crop_Berry_Wet_Block"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 0,
+        "maxLevel": 2147483647,
+        "xpReward": 10,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "INTERACT",
+        "allowList": [
+          "*Plant_Crop_Wheat_Block_State_Definitions_StageFinal",
+          "*Plant_Crop_Wheat_Block_Eternal_State_Definitions_StageFinal"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 0,
+        "maxLevel": 2147483647,
+        "xpReward": 10,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "INTERACT",
+        "allowList": [
+          "*Plant_Crop_Lettuce_Block_Eternal_State_Definitions_StageFinal",
+          "*Plant_Crop_Lettuce_Block_State_Definitions_StageFinal"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 5,
+        "maxLevel": 2147483647,
+        "xpReward": 15,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "INTERACT",
+        "allowList": [
+          "*Plant_Crop_Carrot_Block_State_Definitions_StageFinal",
+          "*Plant_Crop_Carrot_Block_Eternal_State_Definitions_StageFinal"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 10,
+        "maxLevel": 2147483647,
+        "xpReward": 25,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "INTERACT",
+        "allowList": [
+          "*Plant_Crop_Corn_Block_State_Definitions_StageFinal",
+          "*Plant_Crop_Corn_Block_Eternal_State_Definitions_StageFinal"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 15,
+        "maxLevel": 2147483647,
+        "xpReward": 35,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "INTERACT",
+        "allowList": [
+          "*Plant_Crop_Cauliflower_Block_State_Definitions_StageFinal",
+          "*Plant_Crop_Cauliflower_Block_Eternal_State_Definitions_StageFinal"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 20,
+        "maxLevel": 2147483647,
+        "xpReward": 45,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "INTERACT",
+        "allowList": [
+          "*Plant_Crop_Turnip_Block_Eternal_State_Definitions_StageFinal",
+          "*Plant_Crop_Turnip_Block_State_Definitions_StageFinal"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 25,
+        "maxLevel": 2147483647,
+        "xpReward": 55,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "INTERACT",
+        "allowList": [
+          "*Plant_Crop_Aubergine_Block_State_Definitions_StageFinal",
+          "*Plant_Crop_Aubergine_Block_Eternal_State_Definitions_StageFinal"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 30,
+        "maxLevel": 2147483647,
+        "xpReward": 65,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "INTERACT",
+        "allowList": [
+          "*Plant_Crop_Pumpkin_Block_State_Definitions_StageFinal",
+          "*Plant_Crop_Pumpkin_Block_Eternal_State_Definitions_StageFinal"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 35,
+        "maxLevel": 2147483647,
+        "xpReward": 75,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "INTERACT",
+        "allowList": [
+          "*Plant_Crop_Tomato_Block_State_Definitions_StageFinal",
+          "*Plant_Crop_Tomato_Block_Eternal_State_Definitions_StageFinal"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 40,
+        "maxLevel": 2147483647,
+        "xpReward": 85,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "INTERACT",
+        "allowList": [
+          "*Plant_Crop_Chilli_Block_State_Definitions_StageFinal",
+          "*Plant_Crop_Chilli_Block_Eternal_State_Definitions_StageFinal"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 45,
+        "maxLevel": 2147483647,
+        "xpReward": 95,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "INTERACT",
+        "allowList": [
+          "*Plant_Crop_Cotton_Block_State_Definitions_StageFinal",
+          "*Plant_Crop_Cotton_Block_Eternal_State_Definitions_StageFinal"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 50,
+        "maxLevel": 2147483647,
+        "xpReward": 105,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "INTERACT",
+        "allowList": [
+          "*Plant_Crop_Rice_Block_State_Definitions_StageFinal",
+          "*Plant_Crop_Rice_Block_Eternal_State_Definitions_StageFinal"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 55,
+        "maxLevel": 2147483647,
+        "xpReward": 115,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "INTERACT",
+        "allowList": [
+          "*Plant_Crop_Onion_Block_State_Definitions_StageFinal",
+          "*Plant_Crop_Onion_Block_Eternal_State_Definitions_StageFinal"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 60,
+        "maxLevel": 2147483647,
+        "xpReward": 125,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "INTERACT",
+        "allowList": [
+          "*Plant_Crop_Potato_Block_Eternal_State_Definitions_StageFinal",
+          "*Plant_Crop_Potato_Block_State_Definitions_StageFinal"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 65,
+        "maxLevel": 2147483647,
+        "xpReward": 135,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      }
+    ],
+    "requirements": [],
+    "unlocks": [
+      {
+        "type": "STAT_CRAFTING_PROFICIENCY",
+        "level": 50,
+        "everyLevel": true,
+        "percentage": false,
+        "valueType": "FLAT",
+        "target": "",
+        "amount": 0.001
+      }
+    ],
+    "lockedItems": [
+      {
+        "itemId": "Plant_Seeds_Lettuce",
+        "level": 5
+      },
+      {
+        "itemId": "Plant_Seeds_Carrot",
+        "level": 10
+      },
+      {
+        "itemId": "Plant_Seeds_Corn",
+        "level": 15
+      },
+      {
+        "itemId": "Plant_Seeds_Cauliflower",
+        "level": 20
+      },
+      {
+        "itemId": "Plant_Seeds_Turnip",
+        "level": 25
+      },
+      {
+        "itemId": "Plant_Seeds_Aubergine",
+        "level": 30
+      },
+      {
+        "itemId": "Plant_Seeds_Pumpkin",
+        "level": 35
+      },
+      {
+        "itemId": "Plant_Seeds_Tomato",
+        "level": 40
+      },
+      {
+        "itemId": "Plant_Seeds_Chilli",
+        "level": 45
+      },
+      {
+        "itemId": "Plant_Seeds_Cotton",
+        "level": 50
+      },
+      {
+        "itemId": "Plant_Seeds_Rice",
+        "level": 55
+      },
+      {
+        "itemId": "Plant_Seeds_Onion",
+        "level": 60
+      },
+      {
+        "itemId": "Plant_Seeds_Potato",
+        "level": 65
+      }
+    ],
+    "statScaling": {},
+    "mechanics": []
+  },
+  {
+    "id": "crafting",
+    "displayName": "Crafting",
+    "description": "",
+    "baseXp": 300.0,
+    "multiplier": 1.1,
+    "maxLevel": 100,
+    "triggers": [
+      {
+        "type": "CRAFT_ITEM",
+        "allowList": [],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 0,
+        "maxLevel": 2147483647,
+        "xpReward": 25,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      }
+    ],
+    "requirements": [],
+    "unlocks": [
+      {
+        "type": "STAT_CRAFTING_PROFICIENCY",
+        "level": 2,
+        "everyLevel": true,
+        "percentage": false,
+        "valueType": "FLAT",
+        "target": "",
+        "amount": 0.001
+      }
+    ],
+    "lockedItems": [],
+    "statScaling": {},
+    "mechanics": []
+  },
+  {
+    "id": "agility",
+    "displayName": "Agility",
+    "description": "",
+    "baseXp": 300.0,
+    "multiplier": 1.1,
+    "maxLevel": 100,
+    "triggers": [
+      {
+        "type": "SPRINT",
+        "allowList": [],
+        "denyList": [],
+        "cooldown": 2,
+        "minLevel": 0,
+        "maxLevel": 2147483647,
+        "xpReward": 25,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "JUMP",
+        "allowList": [],
+        "denyList": [],
+        "cooldown": 1,
+        "minLevel": 10,
+        "maxLevel": 2147483647,
+        "xpReward": 20,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "CLIMB",
+        "allowList": [],
+        "denyList": [],
+        "cooldown": 1,
+        "minLevel": 20,
+        "maxLevel": 2147483647,
+        "xpReward": 30,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "ROLL",
+        "allowList": [],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 30,
+        "maxLevel": 2147483647,
+        "xpReward": 125,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "SLIDE",
+        "allowList": [],
+        "denyList": [],
+        "cooldown": 1,
+        "minLevel": 40,
+        "maxLevel": 2147483647,
+        "xpReward": 75,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "GLIDE",
+        "allowList": [],
+        "denyList": [],
+        "cooldown": 2,
+        "minLevel": 50,
+        "maxLevel": 2147483647,
+        "xpReward": 150,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      }
+    ],
+    "requirements": [],
+    "unlocks": [
+      {
+        "type": "STAT_MOVEMENT_SPEED",
+        "level": 1,
+        "everyLevel": true,
+        "percentage": false,
+        "valueType": "FLAT",
+        "target": "",
+        "amount": 0.005
+      }
+    ],
+    "lockedItems": [],
+    "statScaling": {},
+    "mechanics": []
+  },
+  {
+    "id": "battleaxe",
+    "displayName": "Battleaxe",
+    "baseXp": 300.0,
+    "multiplier": 1.02,
+    "maxLevel": 100,
+    "triggers": [
+      {
+        "type": "ENTITY_KILL",
+        "allowList": [
+          "Bluegill",
+          "Catfish",
+          "Clownfish",
+          "Crab",
+          "Frostgill",
+          "Jellyfish_Blue",
+          "Jellyfish_Cyan",
+          "Jellyfish_Green",
+          "Jellyfish_Man_of_War",
+          "Jellyfish_Red",
+          "Jellyfish_Yellow",
+          "Lobster",
+          "Minnow",
+          "Pike",
+          "Piranha",
+          "Piranha_Black",
+          "Pufferfish",
+          "Salmon",
+          "Snapjaw",
+          "Tang_Blue",
+          "Tang_Chevron",
+          "Tang_Lemon_Peel",
+          "Tang_Sailfin",
+          "Trout_Rainbow"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 0,
+        "maxLevel": 2147483647,
+        "xpReward": 200,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "ENTITY_KILL",
+        "allowList": [
+          "Chicken_Undead",
+          "Duck",
+          "Antelope",
+          "Armadillo",
+          "Bison",
+          "Bison_Calf",
+          "Frog",
+          "Boar_Piglet",
+          "Bunny",
+          "Squirrel",
+          "Camel_Calf",
+          "Chicken",
+          "Chick",
+          "Chicken_Desert",
+          "Chick_Desert",
+          "Cow",
+          "Calf",
+          "Doe",
+          "Stag",
+          "Goat",
+          "Kid",
+          "Horse",
+          "Foal",
+          "Mouse",
+          "Rat",
+          "Mosshorn",
+          "Mouflon",
+          "Mouflon_Lamb",
+          "Pig",
+          "Piglet",
+          "Rabbit",
+          "Ram",
+          "Ram_Lamb",
+          "Sheep",
+          "Lamb",
+          "Skrill",
+          "Skrill_Chick",
+          "Turkey",
+          "Turkey_Chick",
+          "Warthog",
+          "Warthog_Piglet"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 0,
+        "maxLevel": 2147483647,
+        "xpReward": 300,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "ENTITY_KILL",
+        "allowList": [
+          "Archaeopteryx",
+          "Moose_Bull",
+          "Moose_Cow",
+          "Bat",
+          "Bat_Ice",
+          "Bluebird",
+          "Crow",
+          "Greenfinch",
+          "Flamingo",
+          "Hawk",
+          "Camel",
+          "Owl_Brown",
+          "Owl_Snowy",
+          "Parrot",
+          "Penguin",
+          "Pigeon",
+          "Pterodactyl",
+          "Raven",
+          "Sparrow",
+          "Tetrabird",
+          "Vulture",
+          "Woodpecker",
+          "Cactee",
+          "Gecko",
+          "Larva_Silk",
+          "Meerkat",
+          "Molerat",
+          "Boar",
+          "Scorpion",
+          "Slug_Magma",
+          "Snail_Frost",
+          "Snail_Magma",
+          "Fox",
+          "Cobra",
+          "Snake_Marsh",
+          "Rattlesnake",
+          "Spider",
+          "Spider_Cave",
+          "Cow_Undead"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 0,
+        "maxLevel": 2147483647,
+        "xpReward": 400,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "ENTITY_KILL",
+        "allowList": [
+          "Ghoul",
+          "Horse_Skeleton",
+          "Horse_Skeleton_Armored",
+          "Pig_Undead",
+          "Skeleton_Archer",
+          "Skeleton_Archmage",
+          "Skeleton_Burnt_Alchemist",
+          "Skeleton_Burnt_Archer",
+          "Skeleton_Burnt_Gunner",
+          "Skeleton_Burnt_Knight",
+          "Skeleton_Burnt_Lancer",
+          "Skeleton_Burnt_Praetorian",
+          "Skeleton_Burnt_Soldier",
+          "Skeleton_Burnt_Wizard",
+          "Skeleton_Fighter",
+          "Skeleton_Frost_Archer",
+          "Skeleton_Frost_Archmage",
+          "Skeleton_Frost_Fighter",
+          "Skeleton_Frost_Knight",
+          "Skeleton_Frost_Mage",
+          "Skeleton_Frost_Ranger",
+          "Skeleton_Frost_Scout",
+          "Skeleton_Frost_Soldier",
+          "Skeleton_Knight",
+          "Skeleton_Mage",
+          "Skeleton_Pirate_Gunner",
+          "Skeleton_Pirate_Striker",
+          "Skeleton_Ranger",
+          "Skeleton_Archer",
+          "Skeleton_Archmage",
+          "Skeleton_Assassin",
+          "Skeleton_Guard",
+          "Skeleton_Mage",
+          "Skeleton_Ranger",
+          "Skeleton_Scout",
+          "Skeleton_Soldier",
+          "Skeleton_Scout",
+          "Skeleton_Soldier",
+          "Zombie",
+          "Zombie_Burnt",
+          "Zombie_Frost",
+          "Zombie_Sand",
+          "Goblin_Duke",
+          "Goblin_Hermit",
+          "Goblin_Lobber",
+          "Goblin_Miner",
+          "Goblin_Scavenger",
+          "Goblin_Scrapper",
+          "Goblin_Thief",
+          "Larva_Void"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 0,
+        "maxLevel": 2147483647,
+        "xpReward": 1000,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "ENTITY_KILL",
+        "allowList": [
+          "Feran_Burrower",
+          "Feran_Temple_Civilian",
+          "Feran_Civilian",
+          "Feran_Cub",
+          "Feran_Longtooth",
+          "Feran_Sharptooth",
+          "Feran_Windwalker",
+          "Eel_Moray",
+          "Shark_Hammerhead",
+          "Shellfish_Lava",
+          "Trilobite",
+          "Trilobite_Black",
+          "Humpback_Whale",
+          "Hyena",
+          "Leopard_Snow",
+          "Tiger_Sabertooth",
+          "Wolf_black",
+          "Wolf_White",
+          "Werewolf",
+          "Hound_Bleached",
+          "Zombie_Aberrant",
+          "Crawler_Void"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 0,
+        "maxLevel": 2147483647,
+        "xpReward": 1500,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "ENTITY_KILL",
+        "allowList": [
+          "Scarak_Broodmother",
+          "Scarak_Defender",
+          "Scarak_Fighter",
+          "Scarak_Louse",
+          "Scarak_Seeker",
+          "Trork_Brawler",
+          "Trork_Chieftain",
+          "Trork_Guard",
+          "Trork_Hunter",
+          "Trork_Mauler",
+          "Trork_Sentry",
+          "Trork_Elder",
+          "Trork_Warrior",
+          "Skeleton_Incandescent_Fighter",
+          "Skeleton_Incandescent_Footman",
+          "Skeleton_Incandescent_Head",
+          "Skeleton_Incandescent_Mage"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 0,
+        "maxLevel": 2147483647,
+        "xpReward": 2000,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "ENTITY_KILL",
+        "allowList": [
+          "Outlander_Berserker",
+          "Outlander_Brute",
+          "Outlander_Initiate",
+          "Outlander_Hunter",
+          "Outlander_Marauder",
+          "Outlander_Unsworn",
+          "Outlander_Priest",
+          "Outlander_Sorcerer",
+          "Outlander_Stalker",
+          "Bear_Grizzly",
+          "Bear_Polar",
+          "Crocodile",
+          "Fen_Stalker",
+          "Lizard_Sand",
+          "Raptor_Cave",
+          "Snapdragon",
+          "Toad_Rhino",
+          "Toad_Rhino_Magma",
+          "Tortoise",
+          "Trillodon",
+          "Golem_Crystal_Earth",
+          "Goblin_Ogre",
+          "Skeleton_Pirate_Captain"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 0,
+        "maxLevel": 2147483647,
+        "xpReward": 2400,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "ENTITY_KILL",
+        "allowList": [
+          "Hedera",
+          "Rex_Cave",
+          "Yeti",
+          "Spawn_Void",
+          "Spectre_Void"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 0,
+        "maxLevel": 2147483647,
+        "xpReward": 4400,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "ENTITY_KILL",
+        "allowList": [
+          "Eye_Void",
+          "Golem_Crystal_Flame",
+          "Golem_Crystal_Frost",
+          "Golem_Crystal_Sand",
+          "Golem_Crystal_Thunder",
+          "Golem_Firesteel",
+          "Golem_Gudian_Void"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 0,
+        "maxLevel": 2147483647,
+        "xpReward": 6000,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      },
+      {
+        "type": "ENTITY_KILL",
+        "allowList": [
+          "Dragon_Frost",
+          "Emberwulf",
+          "Shadow_Knight",
+          "Wraith"
+        ],
+        "denyList": [],
+        "cooldown": 0,
+        "minLevel": 0,
+        "maxLevel": 2147483647,
+        "xpReward": 12000,
+        "requiresMovement": false,
+        "xpValues": {},
+        "customData": {}
+      }
+    ],
+    "requirements": [
+      {
+        "type": "ITEM_IN_HAND",
+        "allowList": [
+          "Battleaxe",
+          "Halberd"
+        ],
+        "denyList": []
+      }
+    ],
+    "unlocks": [
+      {
+        "type": "STAT_STAMINA_REGEN",
+        "level": 2,
+        "everyLevel": true,
+        "percentage": false,
+        "valueType": "FLAT",
+        "target": "",
+        "amount": 0.001
+      },
+      {
+        "type": "STAT_CRIT_DAMAGE",
+        "level": 2,
+        "everyLevel": true,
+        "percentage": false,
+        "valueType": "FLAT",
+        "target": "",
+        "amount": 0.015
+      },
+      {
+        "type": "STAT_STAMINA",
+        "level": 2,
+        "everyLevel": true,
+        "percentage": false,
+        "valueType": "FLAT",
+        "target": "",
+        "amount": 0.05
+      },
+      {
+        "type": "STAT_STRENGTH",
+        "level": 2,
+        "everyLevel": true,
+        "percentage": false,
+        "valueType": "FLAT",
+        "target": "",
+        "amount": 0.15
+      },
+      {
+        "type": "STAT_DEFENSE",
+        "level": 2,
+        "everyLevel": true,
+        "percentage": false,
+        "valueType": "FLAT",
+        "target": "",
+        "amount": 0.01
+      },
+      {
+        "type": "STAT_HEALTH",
+        "level": 2,
+        "everyLevel": true,
+        "percentage": false,
+        "valueType": "FLAT",
+        "target": "",
+        "amount": 0.5
+      },
+      {
+        "type": "STAT_VAMPIRISM",
+        "level": 2,
+        "everyLevel": true,
+        "percentage": false,
+        "valueType": "FLAT",
+        "target": "",
+        "amount": 0.005
+      }
+    ],
+    "lockedItems": [
+      {
+        "itemId": "Weapon_Battleaxe_Crude",
+        "level": 1
+      },
+      {
+        "itemId": "Weapon_Battleaxe_Copper",
+        "level": 5
+      },
+      {
+        "itemId": "Weapon_Halberd_Rusty_Steel",
+        "level": 10
+      },
+      {
+        "itemId": "Weapon_Battleaxe_Stone_Trork",
+        "level": 15
+      },
+      {
+        "itemId": "Weapon_Battleaxe_Iron",
+        "level": 20
+      },
+      {
+        "itemId": "Weapon_Battleaxe_Thorium",
+        "level": 30
+      },
+      {
+        "itemId": "Weapon_Battleaxe_Cobalt",
+        "level": 40
+      },
+      {
+        "itemId": "Weapon_Battleaxe_Adamantite",
+        "level": 50
+      },
+      {
+        "itemId": "Weapon_Battleaxe_Mithril",
+        "level": 60
+      }
+    ],
+    "statScaling": {},
+    "mechanics": []
+  }
+]

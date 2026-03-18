@@ -1,0 +1,83 @@
+{
+  "fish": [
+    "Bluegill", "Catfish", "Clownfish", "Frostgill", "Minnow", "Pike", "Piranha", "Piranha_Black",
+    "Pufferfish", "Salmon", "Snapjaw", "Tang_Blue", "Tang_Chevron", "Tang_Lemon_Peel", "Tang_Sailfin",
+    "Trout_Rainbow", "Eel_Moray", "Shark_Hammerhead"
+  ],
+  "aquatic": [
+    "Crab", "Lobster", "Jellyfish_Blue", "Jellyfish_Cyan", "Jellyfish_Green", "Jellyfish_Man_of_War",
+    "Jellyfish_Red", "Jellyfish_Yellow", "Humpback_Whale", "Shellfish_Lava", "Trilobite", "Trilobite_Black"
+  ],
+  "birds": [
+    "Archaeopteryx", "Bluebird", "Crow", "Duck", "Flamingo", "Greenfinch", "Hawk", "Owl_Brown",
+    "Owl_Snowy", "Parrot", "Penguin", "Pigeon", "Pterodactyl", "Raven", "Sparrow", "Tetrabird",
+    "Vulture", "Woodpecker", "Chicken", "Chick", "Chicken_Desert", "Chick_Desert", "Chicken_Undead",
+    "Turkey", "Turkey_Chick", "Skrill", "Skrill_Chick"
+  ],
+  "small_animals": [
+    "Bunny", "Rabbit", "Mouse", "Rat", "Squirrel", "Frog", "Gecko", "Meerkat", "Molerat",
+    "Cactee", "Larva_Silk", "Armadillo"
+  ],
+  "farm_animals": [
+    "Cow", "Calf", "Cow_Undead", "Pig", "Piglet", "Pig_Undead", "Sheep", "Lamb", "Goat", "Kid",
+    "Chicken", "Chick", "Turkey", "Turkey_Chick", "Horse", "Foal"
+  ],
+  "wild_animals": [
+    "Antelope", "Bison", "Bison_Calf", "Boar", "Boar_Piglet", "Camel", "Camel_Calf", "Doe", "Stag",
+    "Fox", "Moose_Bull", "Moose_Cow", "Mosshorn", "Mouflon", "Mouflon_Lamb", "Ram", "Ram_Lamb",
+    "Warthog", "Warthog_Piglet", "Bat", "Bat_Ice"
+  ],
+  "predators": [
+    "Grizzly_Bear", "Polar_Bear", "Hyena", "Leopard_Snow", "Tiger_Sabertooth", "Wolf_black", "Wolf_White",
+    "Werewolf", "Hound_Bleached", "Crocodile", "Cobra", "Snake_Marsh", "Rattlesnake", "Scorpion",
+    "Spider", "Spider_Cave"
+  ],
+  "reptiles_amphibians": [
+    "Gecko", "Lizard_Sand", "Tortoise", "Toad_Rhino", "Toad_Rhino_Magma", "Frog", "Snapdragon",
+    "Trillodon", "Raptor_Cave", "Rex_Cave"
+  ],
+  "slugs_snails": [
+    "Slug_Magma", "Snail_Frost", "Snail_Magma"
+  ],
+  "undead": [
+    "Zombie", "Zombie_Burnt", "Zombie_Frost", "Zombie_Sand", "Zombie_Aberrant", "Ghoul",
+    "Skeleton_Archer", "Skeleton_Archmage", "Skeleton_Assassin", "Skeleton_Fighter", "Skeleton_Guard",
+    "Skeleton_Knight", "Skeleton_Mage", "Skeleton_Ranger", "Skeleton_Scout", "Skeleton_Soldier",
+    "Skeleton_Burnt_Alchemist", "Skeleton_Burnt_Archer", "Skeleton_Burnt_Gunner", "Skeleton_Burnt_Knight",
+    "Skeleton_Burnt_Lancer", "Skeleton_Burnt_Praetorian", "Skeleton_Burnt_Soldier", "Skeleton_Burnt_Wizard",
+    "Skeleton_Frost_Archer", "Skeleton_Frost_Archmage", "Skeleton_Frost_Fighter", "Skeleton_Frost_Knight",
+    "Skeleton_Frost_Mage", "Skeleton_Frost_Ranger", "Skeleton_Frost_Scout", "Skeleton_Frost_Soldier",
+    "Skeleton_Incandescent_Fighter", "Skeleton_Incandescent_Footman", "Skeleton_Incandescent_Head",
+    "Skeleton_Incandescent_Mage", "Skeleton_Pirate_Captain", "Skeleton_Pirate_Gunner", "Skeleton_Pirate_Striker",
+    "Horse_Skeleton", "Horse_Skeleton_Armored", "Chicken_Undead", "Cow_Undead", "Pig_Undead"
+  ],
+  "goblins": [
+    "Goblin_Duke", "Goblin_Hermit", "Goblin_Lobber", "Goblin_Miner", "Goblin_Ogre",
+    "Goblin_Scavenger", "Goblin_Scrapper", "Goblin_Thief"
+  ],
+  "trorks": [
+    "Trork_Brawler", "Trork_Chieftain", "Trork_Elder", "Trork_Guard", "Trork_Hunter",
+    "Trork_Mauler", "Trork_Sentry", "Trork_Warrior"
+  ],
+  "feran": [
+    "Feran_Burrower", "Feran_Civilian", "Feran_Cub", "Feran_Longtooth", "Feran_Sharptooth",
+    "Feran_Temple_Civilian", "Feran_Windwalker"
+  ],
+  "outlanders": [
+    "Outlander_Berserker", "Outlander_Brute", "Outlander_Hunter", "Outlander_Initiate",
+    "Outlander_Marauder", "Outlander_Priest", "Outlander_Sorcerer", "Outlander_Stalker", "Outlander_Unsworn"
+  ],
+  "scaraks": [
+    "Scarak_Broodmother", "Scarak_Defender", "Scarak_Fighter", "Scarak_Louse", "Scarak_Seeker"
+  ],
+  "void": [
+    "Crawler_Void", "Eye_Void", "Larva_Void", "Spawn_Void", "Spectre_Void"
+  ],
+  "golems": [
+    "Golem_Crystal_Earth", "Golem_Crystal_Flame", "Golem_Crystal_Frost", "Golem_Crystal_Sand",
+    "Golem_Crystal_Thunder", "Golem_Firesteel", "Golem_Gudian_Void"
+  ],
+  "bosses": [
+    "Dragon_Frost", "Emberwulf", "Hedera", "Rex_Cave", "Shadow_Knight", "Wraith", "Yeti", "Fen_Stalker"
+  ]
+}

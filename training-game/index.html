@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Training Game</title>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#1a1a2e">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="apple-touch-icon" href="icons/icon-192.svg">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <div id="app">
+
+    <!-- Top Bar -->
+    <header id="topbar">
+      <div class="topbar-left">
+        <span class="app-logo">⚔️</span>
+        <span id="display-username">Guest</span>
+      </div>
+      <div class="topbar-stats">
+        <div class="stat-chip stat-level" title="Level">
+          <span class="stat-icon">⭐</span>
+          <span id="display-level">1</span>
+        </div>
+        <div class="stat-chip stat-xp" title="Experience Points">
+          <span class="stat-icon">✦</span>
+          <span id="display-xp">0</span>
+        </div>
+        <div class="stat-chip stat-gold" title="Gold">
+          <span class="stat-icon">🪙</span>
+          <span id="display-gold">0</span>
+        </div>
+        <div class="stat-chip stat-bizmoney" title="Business Money">
+          <span class="stat-icon">💎</span>
+          <span id="display-biz-money">0</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- XP Progress Bar -->
+    <div id="xp-progress-bar">
+      <div id="xp-progress-fill"></div>
+    </div>
+
+    <!-- Main Content -->
+    <main id="main-content">
+
+      <!-- TODAY View -->
+      <section id="view-today" class="view active">
+        <div class="view-header">
+          <h2>Today's Training</h2>
+          <div id="streak-badge" class="streak-badge hidden">
+            <span class="streak-icon">🔥</span>
+            <span id="streak-count">0</span> day streak
+          </div>
+        </div>
+        <div id="today-empty" class="empty-state">
+          <div class="empty-icon">📋</div>
+          <p>No training plan yet</p>
+          <button id="btn-create-plan-prompt" class="btn-primary">Create Training Plan</button>
+        </div>
+        <div id="today-list" class="activity-list hidden"></div>
+        <div id="today-done" class="today-done hidden">
+          <div class="done-icon">✅</div>
+          <p>All done for today!</p>
+        </div>
+      </section>
+
+      <!-- PLAN View -->
+      <section id="view-plan" class="view hidden">
+        <div class="view-header">
+          <h2>Training Plan</h2>
+        </div>
+        <div id="plan-items-list" class="plan-list"></div>
+        <div id="plan-empty" class="empty-state">
+          <div class="empty-icon">🏋️</div>
+          <p>Your plan is empty</p>
+          <p class="empty-sub">Add activities to build your training plan</p>
+        </div>
+        <div class="plan-actions">
+          <button id="btn-add-activity" class="btn-primary btn-wide">+ Add Activity</button>
+        </div>
+      </section>
+
+      <!-- GAME View -->
+      <section id="view-game" class="view hidden">
+        <div class="view-header">
+          <h2>Businesses</h2>
+        </div>
+        <div id="businesses-list" class="businesses-grid"></div>
+      </section>
+
+      <!-- SETTINGS View -->
+      <section id="view-settings" class="view hidden">
+        <div class="view-header">
+          <h2>Settings</h2>
+        </div>
+
+        <div class="settings-group">
+          <h3>Notifications</h3>
+          <label class="toggle-row">
+            <span>Enable reminders</span>
+            <div class="toggle-switch">
+              <input type="checkbox" id="setting-notif-enabled">
+              <span class="toggle-slider"></span>
+            </div>
+          </label>
+          <label class="input-row" id="notif-time-row">
+            <span>Reminder time</span>
+            <input type="time" id="setting-notif-time" value="08:00">
+          </label>
+        </div>
+
+        <div class="settings-group">
+          <h3>Display</h3>
+          <label class="toggle-row">
+            <span>Show progressive overload on cards</span>
+            <div class="toggle-switch">
+              <input type="checkbox" id="setting-show-progressive" checked>
+              <span class="toggle-slider"></span>
+            </div>
+          </label>
+        </div>
+
+        <div class="settings-group">
+          <h3>Account</h3>
+          <button id="btn-change-username" class="btn-secondary btn-wide">Change Username</button>
+          <button id="btn-export-data" class="btn-secondary btn-wide">Export Data</button>
+          <button id="btn-import-data" class="btn-secondary btn-wide">Import Data</button>
+          <input type="file" id="import-file-input" accept=".json" class="hidden">
+        </div>
+
+        <div class="settings-group">
+          <h3>Info</h3>
+          <button id="btn-open-info" class="btn-secondary btn-wide">How This Works</button>
+        </div>
+
+        <div class="settings-group">
+          <h3 class="text-danger">Danger Zone</h3>
+          <button id="btn-reset-data" class="btn-danger btn-wide">Reset All Data</button>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Bottom Navigation -->
+    <nav id="bottom-nav">
+      <button class="nav-btn active" data-view="view-today">
+        <span class="nav-icon">✓</span>
+        <span class="nav-label">Today</span>
+      </button>
+      <button class="nav-btn" data-view="view-plan">
+        <span class="nav-icon">✎</span>
+        <span class="nav-label">Plan</span>
+      </button>
+      <button class="nav-btn" data-view="view-game">
+        <span class="nav-icon">★</span>
+        <span class="nav-label">Game</span>
+      </button>
+      <button class="nav-btn" data-view="view-settings">
+        <span class="nav-icon">⚙</span>
+        <span class="nav-label">Settings</span>
+      </button>
+    </nav>
+
+  </div>
+
+  <!-- MODALS -->
+
+  <!-- Username Modal -->
+  <div id="modal-username" class="modal hidden">
+    <div class="modal-backdrop"></div>
+    <div class="modal-content">
+      <h2>Welcome, Warrior</h2>
+      <p>Pick a name to begin your training journey</p>
+      <input type="text" id="input-username" placeholder="Your name" maxlength="20" autocomplete="off">
+      <div class="modal-actions">
+        <button id="btn-save-username" class="btn-primary btn-wide">Start Training</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Activity Picker Modal -->
+  <div id="modal-activity-picker" class="modal hidden">
+    <div class="modal-backdrop"></div>
+    <div class="modal-content modal-large">
+      <div class="modal-header">
+        <h2>Choose Activity</h2>
+        <button class="modal-close" data-close="modal-activity-picker">&times;</button>
+      </div>
+      <input type="text" id="activity-search" placeholder="Search activities..." autocomplete="off">
+      <div class="tag-filters" id="tag-filters"></div>
+      <div id="activity-picker-grid" class="activity-picker-grid"></div>
+    </div>
+  </div>
+
+  <!-- Plan Item Config Modal -->
+  <div id="modal-plan-item" class="modal hidden">
+    <div class="modal-backdrop"></div>
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 id="plan-item-title">Configure Activity</h2>
+        <button class="modal-close" data-close="modal-plan-item">&times;</button>
+      </div>
+      <div id="plan-item-form">
+        <div class="form-group">
+          <label class="form-label">Frequency</label>
+          <div class="radio-group">
+            <label class="radio-option">
+              <input type="radio" name="frequency" value="daily" checked>
+              <span class="radio-custom"></span>
+              Daily
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="frequency" value="weekly">
+              <span class="radio-custom"></span>
+              Times per week
+            </label>
+          </div>
+          <div id="weekly-config" class="hidden">
+            <label class="form-label">How many times per week?</label>
+            <input type="number" id="plan-times-per-week" class="form-input" min="1" max="7" value="3">
+          </div>
+        </div>
+
+        <div class="form-group" id="amount-group">
+          <label class="form-label">Amount</label>
+          <div id="amount-fields"></div>
+        </div>
+
+        <div class="form-group">
+          <label class="toggle-row">
+            <span>Progressive Overload</span>
+            <div class="toggle-switch">
+              <input type="checkbox" id="plan-progressive">
+              <span class="toggle-slider"></span>
+            </div>
+          </label>
+          <p class="form-hint">Gradually increase over time</p>
+          <div id="progressive-fields" class="hidden">
+            <div class="form-group">
+              <label class="form-label">Progress every</label>
+              <div class="radio-group">
+                <label class="radio-option">
+                  <input type="radio" name="prog-rate" value="session" checked>
+                  Session
+                </label>
+                <label class="radio-option">
+                  <input type="radio" name="prog-rate" value="weekly">
+                  Week
+                </label>
+              </div>
+            </div>
+            <!-- Dynamic fields injected by JS based on unit type -->
+            <div id="progressive-dynamic-fields"></div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-actions">
+        <button id="btn-cancel-plan-item" class="btn-secondary">Cancel</button>
+        <button id="btn-confirm-plan-item" class="btn-primary">Add to Plan</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Business Detail Modal -->
+  <div id="modal-business" class="modal hidden">
+    <div class="modal-backdrop"></div>
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 id="business-modal-title">Business</h2>
+        <button class="modal-close" data-close="modal-business">&times;</button>
+      </div>
+      <div id="business-modal-body"></div>
+    </div>
+  </div>
+
+  <!-- Level Up Modal -->
+  <div id="modal-levelup" class="modal hidden">
+    <div class="modal-backdrop"></div>
+    <div class="modal-content modal-celebration">
+      <div class="celebration-effects">✨</div>
+      <h2>Level Up!</h2>
+      <div id="levelup-details"></div>
+      <div class="modal-actions">
+        <button id="btn-close-levelup" class="btn-primary btn-wide">Continue</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Info Modal -->
+  <div id="modal-info" class="modal hidden">
+    <div class="modal-backdrop"></div>
+    <div class="modal-content modal-large">
+      <div class="modal-header">
+        <h2>How It Works</h2>
+        <button class="modal-close" data-close="modal-info">&times;</button>
+      </div>
+      <div class="info-content">
+        <div class="info-section">
+          <h3>Training</h3>
+          <p>Create a training plan by adding activities. Set how often you want to train and how much. Complete activities each day to earn <strong>XP</strong> and <strong>Gold</strong>.</p>
+        </div>
+        <div class="info-section">
+          <h3>Progressive Overload</h3>
+          <p>Enable progressive overload on any activity to gradually increase the amount over time. Set a starting value and a maximum — the target increases each time you complete it.</p>
+        </div>
+        <div class="info-section">
+          <h3>Leveling Up</h3>
+          <p>Every 100 XP earns you a new level. Higher levels unlock new businesses to invest in.</p>
+        </div>
+        <div class="info-section">
+          <h3>Businesses</h3>
+          <p>Spend Gold to buy businesses. Each business generates interest every 8 hours (3 times per day). You can store up to 5 claims — after that, no more accumulate until you claim.</p>
+        </div>
+        <div class="info-section">
+          <h3>Business Money</h3>
+          <p>Claiming interest gives you <strong>Business Money</strong> (💎), a separate currency. Spend it on upgrades like better yields or extra claim storage.</p>
+        </div>
+      </div>
+      <div class="modal-actions">
+        <button class="btn-secondary modal-close-btn" data-close="modal-info">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Install App Banner -->
+  <div id="install-banner" class="install-banner hidden">
+    <div class="install-banner-content">
+      <div class="install-banner-icon">⚔️</div>
+      <div class="install-banner-text">
+        <strong>Install Training Game</strong>
+        <span id="install-banner-hint">Add to your home screen for the best experience</span>
+      </div>
+    </div>
+    <div class="install-banner-actions">
+      <button id="btn-install-dismiss" class="install-dismiss">&times;</button>
+      <button id="btn-install-app" class="btn-install">Install</button>
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div id="toast-container"></div>
+
+  <!-- Scripts -->
+  <script src="js/storage.js"></script>
+  <script src="js/notifications.js"></script>
+  <script src="js/training.js"></script>
+  <script src="js/game.js"></script>
+  <script src="js/app.js"></script>
+
+</body>
+</html>
