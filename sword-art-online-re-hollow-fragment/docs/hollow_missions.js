@@ -269,6 +269,17 @@ const HOLLOW_MISSIONS_DATA = [
     target: "15x Chemical Slimes",
     time_limit: "60 min", recommended_level: 142,
   },
+  {
+    id: "SF-24", region: "Selvendys_Forest_Area", type: null,
+    name: "Infestation from the Deep Wood",
+    location: "Forest Maze",
+    mission_rank: "Rank 3",
+    strategy: "A sudden surge in population has forced some insects to spill out from their usual abode and explore other areas with their queen of the deep wood. Halt the queen and her ilk's expansion!",
+    summary: "Defeat 15 Chemical Slimes while leaving Melt Slimes alive.",
+    goal: "Defeat specified number of the target enemy",
+    target: "1x Queen Emeraude",
+    time_limit: "60 min", recommended_level: 165,
+  },
 
   // ─── Bastia Gate / Floating Ruins Area ───────────────────────────────────
   {
