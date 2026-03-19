@@ -494,7 +494,7 @@ const HOLLOW_MISSIONS_DATA = [
     time_limit: null, recommended_level: 115,
   },
   {
-    id: "GB-2", region: "Graceleaf_Bay_Area", type: "boss",
+    id: "GB-2", region: "Graceleaf_Bay_Area", type: null,
     name: "Aquatic Ruler",
     location: "The Seadrake's Roost",
     mission_rank: "Rank 1",
