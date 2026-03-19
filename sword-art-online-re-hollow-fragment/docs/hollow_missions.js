@@ -275,7 +275,7 @@ const HOLLOW_MISSIONS_DATA = [
     location: "Forest Maze",
     mission_rank: "Rank 3",
     strategy: "A sudden surge in population has forced some insects to spill out from their usual abode and explore other areas with their queen of the deep wood. Halt the queen and her ilk's expansion!",
-    summary: "Defeat 15 Chemical Slimes while leaving Melt Slimes alive.",
+    summary: "Defeat 1x Queen Emeraude and her swarm of Deep Wood Insects.",
     goal: "Defeat specified number of the target enemy",
     target: "1x Queen Emeraude",
     time_limit: "60 min", recommended_level: 165,
