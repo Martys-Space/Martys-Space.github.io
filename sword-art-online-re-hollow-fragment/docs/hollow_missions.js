@@ -258,6 +258,17 @@ const HOLLOW_MISSIONS_DATA = [
     target: "1x Darkness Eater",
     time_limit: "30 min", recommended_level: 126,
   },
+  {
+    id: "SF-23", region: "Selvendys_Forest_Area", type: null,
+    name: "Corrosive Substance",
+    location: "Abandoned Weapon Test Site",
+    mission_rank: "Rank 2",
+    strategy: "Unusual slimes with the uncanny ability to melt things have been let loose on the orders of other slimes. Defeat any slimes other than melt Slimes in order to capture the runaway menaces!",
+    summary: "Defeat 15 Chemical Slimes while leaving Melt Slimes alive.",
+    goal: "Defeat target/Leave specified enemy alive",
+    target: "15x Chemical Slimes",
+    time_limit: "60 min", recommended_level: 142,
+  },
 
   // ─── Bastia Gate / Floating Ruins Area ───────────────────────────────────
   {
@@ -532,7 +543,7 @@ const HOLLOW_MISSIONS_DATA = [
     location: "Graceleaf Beach",
     mission_rank: "Rank 1",
     strategy: "Acquire the entrails of a rarely seen crab monster. The target is holed up somewhere together with some very bad-tasting crabs. Defeat everything but Tasty Clipper to capture it!",
-    summary: "Defeat all Vile Crabs while leaving Tasty Clipper alive.",
+    summary: "Defeat 12 Vile Crabs while leaving Tasty Clipper alive.",
     goal: "Defeat target/Leave specified enemy alive",
     target: "12x Vile Crabs",
     time_limit: "45 min", recommended_level: 117,
