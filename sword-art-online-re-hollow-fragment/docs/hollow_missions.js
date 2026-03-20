@@ -1059,7 +1059,7 @@ const HOLLOW_MISSIONS_DATA = [
     time_limit: "20 min", recommended_level: 123,
   },
   {
-    id: "AO-15", region: "Alevaste_Otherworld_Area", type: null,
+    id: "AO-15", region: "Alevaste_Otherworld_Area", type: null, part: 1,
     name: "Ruin-Gnawing Ants",
     location: "Hall of the Followers' Loyal Triumph",
     mission_rank: "Rank 1",
@@ -1070,7 +1070,7 @@ const HOLLOW_MISSIONS_DATA = [
     time_limit: "20 min", recommended_level: 110,
   },
   {
-    id: "AO-16", region: "Alevaste_Otherworld_Area", type: null,
+    id: "AO-16", region: "Alevaste_Otherworld_Area", type: null, part: 2,
     name: "Attack of the Female Warrior Ants",
     location: "Hall of the Followers' Loyal Triumph",
     mission_rank: "Rank 1",
