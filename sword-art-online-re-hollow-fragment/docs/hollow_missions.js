@@ -691,6 +691,17 @@ const HOLLOW_MISSIONS_DATA = [
     target: "Chief Navigator Sandra and Ocean Pirates",
     time_limit: "20 min", recommended_level: 135,
   },
+  {
+    id: "GB-20", region: "Graceleaf_Bay_Area", type: "boss",
+    name: "Return of the Conqueror",
+    location: "Graceleaf Beach",
+    mission_rank: "Rank 3",
+    strategy: "Surpassing all other kobolds, reigning supreme over monsterkind, the lord of the very principles that bind existence together has returned! Defeat the despot to free the land from his evil clutches!",
+    summary: "Defeat Ragnamazur the Dynast to free the land from his evil clutches.",
+    goal: "Defeat specified number of the target enemy",
+    target: "1x Ragnamazur the Dynast",
+    time_limit: "60 min", recommended_level: 195,
+  },
 
   // ─── Driogeer Skycaves Area ───────────────────────────────────────────────
   {
