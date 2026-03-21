@@ -871,7 +871,7 @@ const IMPLEMENTATIONS_DATA = [
     rewardTarget: 250,
     hollowPointCost: 30,
     testingInfo: "Based on the data regarding risk-related dangers, we have unlocked a new battle skill. Testers are to gather sample data on this skill.",
-    objective: "Reflect set no. of attacks from Lv10+ enemies",
+    objective: "Reflect set no. of attacks from Lv110+ enemies",
     restrictions: "5x DMG reflect / DEF +50% / Max BST -500",
     targetMissions: "Mission rank 1 or higher",
     notes: "Added to skill list as a new battle skill."
