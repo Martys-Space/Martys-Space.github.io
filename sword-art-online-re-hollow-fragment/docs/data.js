@@ -295,7 +295,7 @@ const ACHIEVEMENTS_DATA = [
   { key: 'treasure_hunter',     name: 'Treasure Hunter',                           description: 'Raise your bond with Philia to the max level' },
   { key: 'mmo_level',           name: 'MMOs that use a level system are unfair that way', description: 'Kirito reaches at least level 150' },
   { key: 'fairy',               name: 'Fairy',                                     description: 'Raise your bond with Leafa to the max level' },
-  { key: 'absolute_sword',      name: 'Absolute Sword',                            description: 'Master OSS (Original Sword Skills)' },
+  { key: 'absolute_sword',      name: 'Absolute Sword',                            description: 'Beat Yuuki' },
   { key: 'not_on_my_watch',     name: 'Not on my watch!',                          description: 'Complete the game without any one of the lead group dying' },
   { key: 'thank_you',           name: 'Thank you for playing',                     description: 'Game cleared with play time exceeding 100 hours' },
   { key: 'beta_tester',         name: 'Beta Tester',                               description: 'Get every Last Attacking Bonus (floors 76–100)' },
