@@ -1291,7 +1291,7 @@ const IMPLEMENTATIONS_DATA = [
     rewardTarget: 300,
     hollowPointCost: 100,
     testingInfo: "The sample data proves the viability of evasive actions. To bolster evasive strategies, testers are to collect further data on evasion parameters using this unlocked battle skill.",
-    objective: "Counter Lv10+ enemies a set number of times",
+    objective: "Counter Lv110+ enemies a set number of times",
     restrictions: "EVA +50% / Counter +80% / ACC -50%",
     targetMissions: "Mission rank 1 or higher",
     notes: "Added to skill list as a new battle skill."
