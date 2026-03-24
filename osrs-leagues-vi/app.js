@@ -14,11 +14,12 @@ const state = {
   tasks:           [],          // { id, area, name, task, reqs, pts, comp, done }
   taskFilter: { search: '', area: '', pts: '', status: '' },
   taskSort: 'default',
+  selectedRelics:  {},          // { [tier]: relicId }
 };
 
 // ─── Init ─────────────────────────────────────
 function init() {
-  loadTasksFromStorage();
+  loadFromStorage();
   renderRegionList();
   renderViewMode();
 
@@ -57,8 +58,26 @@ function init() {
     });
   });
 
+  // Relic image lightbox
+  document.getElementById('relic-lightbox-close').addEventListener('click', closeRelicLightbox);
+  document.getElementById('relic-lightbox-backdrop').addEventListener('click', closeRelicLightbox);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeRelicLightbox(); });
+
   // Auto-open Varlamore
   openRegion('varlamore');
+}
+
+function openRelicLightbox(src, alt) {
+  const lb = document.getElementById('relic-lightbox');
+  document.getElementById('relic-lightbox-img').src = src;
+  document.getElementById('relic-lightbox-img').alt = alt;
+  lb.removeAttribute('hidden');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeRelicLightbox() {
+  document.getElementById('relic-lightbox').setAttribute('hidden', '');
+  document.body.style.overflow = '';
 }
 
 // ─── Tab switching ────────────────────────────
@@ -73,6 +92,7 @@ function switchTab(tab) {
     el.hidden = el.id !== `tab-${tab}`;
   });
   if (tab === 'tasks') renderTaskStats();
+  if (tab === 'relics') renderRelics();
 }
 
 // ─── View mode (single / overview) ───────────
@@ -260,6 +280,75 @@ function buildDetailHTML(region) {
     `);
   }
 
+  // 7. Overview / special rules
+  if (region.overview) {
+    sections.push(`
+      <div class="detail-section">
+        <div class="detail-section-title">ℹ️ League Rules & Notes</div>
+        <p class="region-overview-text">${region.overview}</p>
+      </div>
+    `);
+  }
+
+  // 8. Start boosts (Varlamore only)
+  if (region.startBoosts?.length) {
+    sections.push(`
+      <div class="detail-section">
+        <div class="detail-section-title">⬆️ Starting Stat Boosts</div>
+        <div class="tag-list">${region.startBoosts.map(b => `<span class="tag tag-boost">${b}</span>`).join('')}</div>
+      </div>
+    `);
+  }
+
+  // 9. Auto-completed quests
+  if (region.autoQuests?.length) {
+    const label = region.id === 'varlamore'
+      ? '📜 Auto-Completed Quests <span class="section-note">(league-wide, no XP awarded)</span>'
+      : '📜 Auto-Completed Quests <span class="section-note">(no XP awarded)</span>';
+    sections.push(`
+      <div class="detail-section">
+        <div class="detail-section-title">${label}</div>
+        <div class="tag-list">${region.autoQuests.map(q => `<span class="tag tag-quest">${q}</span>`).join('')}</div>
+      </div>
+    `);
+  }
+
+  // 10. Auto-completed diary tasks
+  if (region.autoDiary?.length) {
+    const diaryGroups = region.autoDiary.map(d => `
+      <div class="diary-group">
+        <div class="diary-group-name">${d.diary} Diary</div>
+        <ul class="diary-task-list">${d.tasks.map(t => `<li>${t}</li>`).join('')}</ul>
+      </div>
+    `).join('');
+    sections.push(`
+      <div class="detail-section">
+        <div class="detail-section-title">📋 Auto-Completed Diary Tasks</div>
+        ${diaryGroups}
+      </div>
+    `);
+  }
+
+  // 11. Auto-completed combat achievements
+  if (region.autoCombatAchievements?.length) {
+    sections.push(`
+      <div class="detail-section">
+        <div class="detail-section-title">🏆 Auto-Completed Combat Achievements</div>
+        <div class="tag-list">${region.autoCombatAchievements.map(a => `<span class="tag tag-ca">${a}</span>`).join('')}</div>
+      </div>
+    `);
+  }
+
+  // 12. Key drops
+  if (region.keyDrops?.length) {
+    sections.push(`
+      <div class="detail-section">
+        <div class="detail-section-title">💰 Key Drops</div>
+        <ul class="key-drops-list">${region.keyDrops.map(d => `<li>${d}</li>`).join('')}</ul>
+      </div>
+    `);
+  }
+
   return `
     <div class="region-detail-header">
       <div class="region-detail-icon">${region.icon}</div>
@@ -403,9 +492,12 @@ function renderOverview() {
   // Echo bosses
   const echoHTML = buildEchoSection(activeRegions);
 
-  // Gear flat list
-  // Special Unlocks
-  const unlocksHTML = buildUnlocksOverview(activeRegions);
+  const unlocksHTML      = buildUnlocksOverview(activeRegions);
+  const autoQuestsHTML   = buildAutoQuestsOverview(activeRegions);
+  const autoDiaryHTML    = buildAutoDiaryOverview(activeRegions);
+  const autoCAsHTML      = buildAutoCAsOverview(activeRegions);
+  const keyDropsHTML     = buildKeyDropsOverview(activeRegions);
+  const notesHTML        = buildNotesOverview(activeRegions);
 
   panel.innerHTML = `
     <div class="overview-header">
@@ -423,6 +515,11 @@ function renderOverview() {
     ${raidsHTML}
     ${echoHTML}
     ${unlocksHTML}
+    ${autoQuestsHTML}
+    ${autoDiaryHTML}
+    ${autoCAsHTML}
+    ${keyDropsHTML}
+    ${notesHTML}
   `;
 
   // Skill hover tooltips
@@ -542,13 +639,99 @@ function buildUnlocksOverview(activeRegions) {
   `;
 }
 
+function buildAutoQuestsOverview(activeRegions) {
+  const allQuests = [...new Set(activeRegions.flatMap(r => r.autoQuests || []))];
+  if (!allQuests.length) return '';
+  return `
+    <div class="ov-section">
+      <div class="ov-section-title">📜 Auto-Completed Quests <span class="section-note">no XP awarded</span></div>
+      <div class="tag-list">${allQuests.map(q => `<span class="tag tag-quest">${q}</span>`).join('')}</div>
+    </div>
+  `;
+}
+
+function buildAutoDiaryOverview(activeRegions) {
+  const diaryMap = {};
+  activeRegions.forEach(r => {
+    r.autoDiary?.forEach(d => {
+      if (!diaryMap[d.diary]) diaryMap[d.diary] = new Set();
+      d.tasks.forEach(t => diaryMap[d.diary].add(t));
+    });
+  });
+  if (!Object.keys(diaryMap).length) return '';
+  const groups = Object.entries(diaryMap).map(([diary, tasks]) => `
+    <div class="diary-group">
+      <div class="diary-group-name">${diary} Diary</div>
+      <ul class="diary-task-list">${[...tasks].map(t => `<li>${t}</li>`).join('')}</ul>
+    </div>
+  `).join('');
+  return `
+    <div class="ov-section">
+      <div class="ov-section-title">📋 Auto-Completed Diary Tasks</div>
+      ${groups}
+    </div>
+  `;
+}
+
+function buildAutoCAsOverview(activeRegions) {
+  const allCAs = [...new Set(activeRegions.flatMap(r => r.autoCombatAchievements || []))];
+  if (!allCAs.length) return '';
+  return `
+    <div class="ov-section">
+      <div class="ov-section-title">🏆 Auto-Completed Combat Achievements</div>
+      <div class="tag-list">${allCAs.map(a => `<span class="tag tag-ca">${a}</span>`).join('')}</div>
+    </div>
+  `;
+}
+
+function buildKeyDropsOverview(activeRegions) {
+  const withDrops = activeRegions.filter(r => r.keyDrops?.length);
+  if (!withDrops.length) return '';
+  const groups = withDrops.map(r => `
+    <div class="ov-region-group">
+      <div class="ov-region-label">${r.icon} ${r.name}</div>
+      <ul class="key-drops-list">${r.keyDrops.map(d => `<li>${d}</li>`).join('')}</ul>
+    </div>
+  `).join('');
+  return `
+    <div class="ov-section">
+      <div class="ov-section-title">💰 Key Drops</div>
+      ${groups}
+    </div>
+  `;
+}
+
+function buildNotesOverview(activeRegions) {
+  const withNotes = activeRegions.filter(r => r.overview);
+  if (!withNotes.length) return '';
+  const groups = withNotes.map(r => `
+    <div class="ov-region-group">
+      <div class="ov-region-label">${r.icon} ${r.name}</div>
+      <p class="region-overview-text">${r.overview}</p>
+    </div>
+  `).join('');
+  return `
+    <div class="ov-section">
+      <div class="ov-section-title">ℹ️ League Rules & Notes</div>
+      ${groups}
+    </div>
+  `;
+}
+
 // ─── TASK LIST ────────────────────────────────
 
-function loadTasksFromStorage() {
+function loadFromStorage() {
   try {
     const saved = localStorage.getItem(LS_KEY);
     if (saved) {
-      state.tasks = JSON.parse(saved);
+      const parsed = JSON.parse(saved);
+      if (Array.isArray(parsed)) {
+        // Legacy format: just the tasks array
+        state.tasks = parsed;
+      } else {
+        state.tasks = parsed.tasks || [];
+        state.selectedRelics = parsed.selectedRelics || {};
+      }
     }
   } catch (e) {
     state.tasks = [];
@@ -558,10 +741,96 @@ function loadTasksFromStorage() {
   renderTaskStats();
 }
 
-function saveTasksToStorage() {
+function saveToStorage() {
   try {
-    localStorage.setItem(LS_KEY, JSON.stringify(state.tasks));
+    localStorage.setItem(LS_KEY, JSON.stringify({
+      tasks: state.tasks,
+      selectedRelics: state.selectedRelics,
+    }));
   } catch (e) {}
+}
+
+// ─── RELICS ───────────────────────────────────
+function renderRelics() {
+  const container = document.getElementById('relics-content');
+  container.innerHTML = RELIC_TIERS.map(tier => {
+    const selectedId = state.selectedRelics[tier.tier];
+
+    const passivesHTML = tier.passives.length
+      ? `<div class="tier-passives"><div class="tier-passives-label">Tier Passives</div><ul>${tier.passives.map(p => `<li>${p}</li>`).join('')}</ul></div>`
+      : `<div class="tier-passives tier-passives-none">No additional passives at this tier.</div>`;
+
+    const revealedCards = tier.relics.map(relic => {
+      const isSelected = selectedId === relic.id;
+      const effectsHTML = relic.effects.map(e => `<li>${e}</li>`).join('');
+      const toggleHTML = relic.toggleable
+        ? `<div class="relic-toggleable"><span class="relic-toggle-label">Toggleable:</span> ${relic.toggleable}</div>`
+        : '';
+      const giftHTML = relic.gift
+        ? `<div class="relic-gift">🎁 Receive: <strong>${relic.gift}</strong></div>`
+        : '';
+      return `
+        <div class="relic-card ${isSelected ? 'relic-selected' : ''}">
+          <div class="relic-img-wrap">
+            <img class="relic-card-img" src="${relic.image}" alt="${relic.name}">
+            <button class="relic-img-zoom" data-src="${relic.image}" data-alt="${relic.name}" title="View full size">⛶</button>
+          </div>
+          <div class="relic-card-body">
+            <div class="relic-card-name">${relic.name}</div>
+            ${giftHTML}
+            ${toggleHTML}
+            <ul class="relic-effects">${effectsHTML}</ul>
+          </div>
+          <button class="relic-select-btn ${isSelected ? 'active' : ''}" data-tier="${tier.tier}" data-relic="${relic.id}">
+            ${isSelected ? '✓ Selected' : 'Select'}
+          </button>
+        </div>
+      `;
+    }).join('');
+
+    const placeholderCount = tier.choices - tier.relics.length;
+    const placeholders = Array.from({ length: placeholderCount }, () => `
+      <div class="relic-card relic-placeholder">
+        <div class="relic-placeholder-icon">?</div>
+        <div class="relic-card-body">
+          <div class="relic-card-name">Not Yet Revealed</div>
+          <p class="relic-placeholder-text">Check back as Jagex reveals more relics before April 15th.</p>
+        </div>
+      </div>
+    `).join('');
+
+    return `
+      <div class="relic-tier">
+        <div class="relic-tier-header">
+          <span class="relic-tier-number">Tier ${tier.tier}</span>
+          <span class="relic-tier-choices">${tier.choices} choice${tier.choices !== 1 ? 's' : ''}</span>
+          ${selectedId ? `<span class="relic-tier-selected-badge">✓ ${tier.relics.find(r => r.id === selectedId)?.name || ''}</span>` : ''}
+        </div>
+        ${passivesHTML}
+        <div class="relic-cards-row">
+          ${revealedCards}${placeholders}
+        </div>
+      </div>
+    `;
+  }).join('');
+
+  container.querySelectorAll('.relic-select-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const tier = parseInt(btn.dataset.tier, 10);
+      const relicId = btn.dataset.relic;
+      if (state.selectedRelics[tier] === relicId) {
+        delete state.selectedRelics[tier];
+      } else {
+        state.selectedRelics[tier] = relicId;
+      }
+      saveToStorage();
+      renderRelics();
+    });
+  });
+
+  container.querySelectorAll('.relic-img-zoom').forEach(btn => {
+    btn.addEventListener('click', () => openRelicLightbox(btn.dataset.src, btn.dataset.alt));
+  });
 }
 
 // Parse pasted wiki task text (tab-separated rows)
@@ -628,7 +897,7 @@ function importTasks() {
     added++;
   });
 
-  saveTasksToStorage();
+  saveToStorage();
   populateAreaFilter();
   renderTaskTable();
   renderTaskStats();
@@ -684,7 +953,7 @@ function clearFilters() {
 function clearAllTasks() {
   if (!confirm('Clear all imported tasks? This cannot be undone.')) return;
   state.tasks = [];
-  saveTasksToStorage();
+  saveToStorage();
   populateAreaFilter();
   renderTaskTable();
   renderTaskStats();
@@ -770,7 +1039,7 @@ function toggleTask(id) {
   const task = state.tasks.find(t => String(t.id) === String(id));
   if (task) {
     task.done = !task.done;
-    saveTasksToStorage();
+    saveToStorage();
     renderTaskTable();
     renderTaskStats();
   }

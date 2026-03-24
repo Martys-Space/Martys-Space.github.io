@@ -19,6 +19,7 @@
       <nav class="tab-nav" role="tablist">
         <button class="tab-btn active" data-tab="picker" role="tab" aria-selected="true">🗺️ Region Picker</button>
         <button class="tab-btn" data-tab="tasks" role="tab" aria-selected="false">📋 Task List</button>
+        <button class="tab-btn" data-tab="relics" role="tab" aria-selected="false">🏆 Relics</button>
       </nav>
     </header>
 
@@ -180,6 +181,20 @@
       </div>
     </div>
 
+    <!-- ═══════════════════════════════════════
+         TAB: RELICS
+    ═══════════════════════════════════════ -->
+    <div id="tab-relics" class="tab-content" hidden>
+      <div class="relics-page">
+        <div class="relics-intro">
+          <p>Choose <strong>1 relic per tier</strong>. Tier passives are unlocked automatically as you progress. Unrevealed relics will be added as Jagex reveals them before the April 15th launch.</p>
+        </div>
+        <div class="relics-content" id="relics-content">
+          <!-- rendered by JS -->
+        </div>
+      </div>
+    </div>
+
   </div><!-- .page-wrapper -->
 
   <!-- Skill detail modal -->
@@ -187,6 +202,15 @@
     <div class="modal" id="modal">
       <button class="modal-close" id="modal-close" aria-label="Close">✕</button>
       <div id="modal-content"></div>
+    </div>
+  </div>
+
+  <!-- Relic image lightbox -->
+  <div class="relic-lightbox" id="relic-lightbox" hidden>
+    <div class="relic-lightbox-backdrop" id="relic-lightbox-backdrop"></div>
+    <div class="relic-lightbox-inner">
+      <button class="relic-lightbox-close" id="relic-lightbox-close" aria-label="Close">✕</button>
+      <img class="relic-lightbox-img" id="relic-lightbox-img" src="" alt="">
     </div>
   </div>
 
