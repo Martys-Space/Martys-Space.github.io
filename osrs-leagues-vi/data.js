@@ -41,7 +41,7 @@ const REGIONS = [
     skills: [
       { skill:'Hunter', rating:RATINGS.EXCELLENT, summary:"Hunter's Guild, moth trapping, carnivorous chinchompas",
         methods:["Hunter's Guild (fastest mid–high XP)",'Carnivorous (grey) chinchompas in Varlamore','Moth trapping near Fortis Colosseum','Herbiboar on Fossil Island — if Fremennik unlocked','Red chinchompas — if Fremennik unlocked'],
-        notes:['Chins → best Ranged XP when chinning at Catacombs (Kourend)'] },
+        notes:["Hunter's Guild shop is NOT accessible from level 1 Hunter — use Bird snares and Hunter boxes from the Civitas General Store to start",'Chins → best Ranged XP when chinning at Catacombs (Kourend)'] },
       { skill:'Agility', rating:RATINGS.GOOD, summary:'Yama\'s Lair (level 1) + Civitas illa Fortis course',
         methods:['Yama\'s Lair stepping stones — Agility from level 1 (similar XP to Draynor rooftop)','Civitas illa Fortis Agility Course (low–mid)','Colossal Wyrm Agility Course (higher levels)'],
         notes:['Yama\'s Lair bridges the gap between level 1 and the Wyrm course'] },
@@ -86,7 +86,7 @@ const REGIONS = [
     specialUnlocks: [
       { name:"Yama's Lair", desc:'Spawn area for the league. Agility training from level 1 via lava stepping stones. Home Teleport returns you here.' },
       { name:'Fortis Colosseum', desc:'Wave-based combat challenge (12 waves). Access to Sol Heredit.' },
-      { name:"Hunter's Guild", desc:'High-level hunting training, contracts, loot sacks, and rewards.' },
+      { name:"Hunter's Guild", desc:"High-level hunting training, contracts, loot sacks, and rewards. Guild shop not accessible at level 1 — use Bird snares & Hunter boxes from the Civitas General Store instead." },
       { name:'Eclipse Atoll', desc:'Area with unique resources and skilling content.' },
       { name:'Lunar Chest', desc:'Reward chest opened with Moon Boss keys.' },
     ],
@@ -129,7 +129,7 @@ const REGIONS = [
       'Tecu Salamander',
       'Antler guard from Custodian slayer creatures',
     ],
-    overview: 'Spawn in Yama\'s Lair with exit to Civitas illa Fortis. Agility training available from level 1 via lava stepping stones in Yama\'s Lair. A Dramen staff, spade, Impling jar and two Strange devices are provided at the start. The above quests are auto-completed globally at league start (no XP awarded).',
+    overview: "Spawn in Yama's Lair with exit to Civitas illa Fortis. Agility training available from level 1 via lava stepping stones in Yama's Lair. A Dramen staff, spade, Impling jar and two Strange devices are provided at the start. The above quests are auto-completed globally at league start (no XP awarded). Dizana's Quiver has ammo saving enabled by default — no Ava's device or Misthalin access required. Runecraft has no conventional early-game method in Varlamore; talismans are obtainable via the Abyss, and most other region unlocks provide better RC options.",
   },
 
   // ─── KARAMJA (free unlock) ────────────────
@@ -273,7 +273,7 @@ const REGIONS = [
         'Elite: Purchase a white 2-handed sword from Sir Vyvin',
       ]},
     ],
-    autoCombatAchievements: [],
+    autoCombatAchievements: ['The Whisperer Combat Achievements (fixed — now auto-completed with Asgarnia)'],
     keyDrops: [
       'All Defenders from Cyclops',
       'All unique rewards from Cerberus',
@@ -287,7 +287,7 @@ const REGIONS = [
       'Dragon Boots from Spiritual Mages',
       'Smouldering Stone from Hellhounds',
     ],
-    overview: 'Eligible to complete The Frozen Door if not already done (not auto-completed). Access to Catherby from White Wolf Mountain is restricted by magical barriers.',
+    overview: "Eligible to complete The Frozen Door if not already done (not auto-completed). Access to Catherby from White Wolf Mountain is restricted by magical barriers. Whisperer combat achievements previously required Kourend or the Grimoire relic — now fixed and auto-completed with Asgarnia. Beginner clue scrolls have no tasks this league but are completable for players with Asgarnia.",
   },
 
   // ─── KHARIDIAN DESERT ────────────────────
@@ -373,7 +373,7 @@ const REGIONS = [
       'Dragon Pickaxe from all sources',
       'All unique rewards from Superior Slayer Creatures',
     ],
-    overview: "Tombs of Amascut has 2 new invocations — max raid level increased to 1000. The Emir's Arena minigame is not available this league. A portal to Guardians of the Rift is placed near the Mage Training Arena entrance.",
+    overview: "Tombs of Amascut has 2 new invocations — max raid level increased to 1000. The Emir's Arena minigame is not available this league. A portal to Guardians of the Rift is placed near the Mage Training Arena entrance. Beginner clue scrolls have no tasks this league but are completable for players with Desert.",
   },
 
   // ─── FREMENNIK PROVINCES ─────────────────
@@ -453,6 +453,7 @@ const REGIONS = [
     ],
     autoCombatAchievements: ['Versatile Drainer', 'More Than Just a Ranged Weapon'],
     keyDrops: [
+      "Ava's Assembler from Vorkath (drops instead of Vorkath Head — Misthalin inaccessible)",
       'Skeletal Visages from Vorkath',
       'Draconic Visages from all sources',
       'Dragonbone Necklaces from Vorkath',
@@ -471,7 +472,7 @@ const REGIONS = [
       'All unique rewards from The Phantom Muspah',
       'All unique rewards from Superior Slayer Creatures',
     ],
-    overview: "Ice Gloves are provided upon unlocking this area and can be reclaimed from the Leagues Tutor in Yama's Lair if lost. Unlocking also grants the ability to make Super Antifire potions. Access to Kandarin via the bridge south of Rellekka is blocked by magical barriers.",
+    overview: "Ice Gloves are provided upon unlocking this area and can be reclaimed from the Leagues Tutor in Yama's Lair if lost. Unlocking also grants the ability to make Super Antifire potions. Access to Kandarin via the bridge south of Rellekka is blocked by magical barriers. Ava's Assembler drops from Vorkath instead of a Vorkath Head since Misthalin is inaccessible.",
   },
 
   // ─── KANDARIN ────────────────────────────
@@ -658,7 +659,7 @@ const REGIONS = [
       'All unique rewards from Chambers of Xeric',
       'All unique rewards from Wintertodt',
       'Dragon Thrownaxe and Dragon Knife from Drakes, Hydras and Wyrms',
-      "Hydra's Claw, Leather, Eye, Heart, Fang and Tail from Hydras",
+      "Hydra's Claw, Eye, Heart, Fang and Tail from Hydras — Hydra's Leather drops as Ferocious Gloves (completed form)",
       "Drake's Tooth and Drake's Claw from Drakes",
       'Dragon Sword and Dragon Harpoon from Wyrms',
       'Dragon Warhammer from Lizardman Shamans',
@@ -944,7 +945,7 @@ const REGIONS = [
       "Dagon'hai robes from Larran's Big Chest",
       'Smouldering Stone from Hellhounds',
     ],
-    overview: "PvP deaths are treated like PvM deaths — items move to a gravestone at your respawn location. Revenant Caves entrance is free (no 100,000 coin fee). Wilderness Agility Course is free (no 150,000 coins). Dying does not reset your lap counter in the Wilderness Agility Course. Krystilia assigns tasks like any other Slayer Master. Last Man Standing and Bounty Hunter are not accessible.",
+    overview: "PvP deaths are treated like PvM deaths — items move to a gravestone at your respawn location. Revenant Caves entrance is free (no 100,000 coin fee). Wilderness Agility Course is free (no 150,000 coins). Dying does not reset your lap counter in the Wilderness Agility Course. Krystilia assigns tasks like any other Slayer Master. Last Man Standing and Bounty Hunter are not accessible. Edgeville dungeon is not accessible this league. Ancient Warrior Equipment from Revenants is not usable outside the Wilderness. Smouldering Stone drop from Hellhounds in the Wilderness Slayer Cave is confirmed boosted.",
   },
 ];
 
@@ -977,6 +978,7 @@ const RELIC_TIERS = [
       {
         id: 'abundance',
         name: 'Abundance',
+        icon: 'images/relices/relic_abundance_t1_icon.png',
         image: 'images/relices/relic_abundance_t1.png',
         gift: null,
         toggleable: 'Coins generated will be put into your inventory.',
@@ -989,6 +991,7 @@ const RELIC_TIERS = [
       {
         id: 'barbarian-gathering',
         name: 'Barbarian Gathering',
+        icon: 'images/relices/relic_barbarian_gathering_t1_icon.png',
         image: 'images/relices/relic_barbarian_gathering_t1.png',
         gift: 'Knapsack (max 140 capacity)',
         toggleable: 'Dispose option will ask what to destroy.',
@@ -1003,6 +1006,7 @@ const RELIC_TIERS = [
       {
         id: 'endless-harvest',
         name: 'Endless Harvest',
+        icon: 'images/relices/relic_endless_harvest_t1_icon.png',
         image: 'images/relices/relic_endless_harvest_t1.png',
         gift: null,
         toggleable: 'All resources gathered will be sent to the bank.',
@@ -1066,6 +1070,7 @@ const RELIC_TIERS = [
       {
         id: 'minion',
         name: 'Minion',
+        icon: 'images/relices/relic_minion_t8_icon.png',
         image: 'images/relices/relic_minion_t8.png',
         gift: null,
         toggleable: null,

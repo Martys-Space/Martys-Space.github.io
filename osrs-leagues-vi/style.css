@@ -1142,7 +1142,7 @@ body {
 /* ── Relic cards row ── */
 .relic-cards-row {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 1px;
   background: var(--border);
 }
@@ -1483,4 +1483,178 @@ body {
   text-transform: none;
   letter-spacing: 0;
   margin-left: 0.4rem;
+}
+
+/* ─────────────────────────────────────────────
+   RELIC SUMMARY (top of Relics tab)
+   ───────────────────────────────────────────── */
+
+.relic-summary {
+  background: var(--bg-panel);
+  border: 1px solid var(--border-gold);
+  border-radius: var(--radius-lg);
+  padding: 0.75rem 1rem 1rem;
+  margin-bottom: 1.5rem;
+  box-shadow: var(--shadow-gold);
+}
+
+.relic-summary-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+}
+
+.relic-summary-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-gold);
+  letter-spacing: 0.05em;
+}
+
+.relic-summary-count {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 0.1rem 0.6rem;
+}
+
+.relic-summary-slots {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 0.5rem;
+}
+
+/* Individual tier slot */
+.rs-slot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.4rem 0.25rem 0.35rem;
+  transition: border-color 0.15s;
+  min-width: 0;
+}
+
+.rs-slot-filled {
+  border-color: var(--border-gold);
+  background: rgba(200, 168, 75, 0.06);
+}
+
+.rs-tier-label {
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.rs-slot-filled .rs-tier-label {
+  color: var(--text-gold);
+}
+
+.rs-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 2px;
+  image-rendering: pixelated;
+}
+
+.rs-empty-icon {
+  font-size: 1.4rem;
+  color: var(--text-muted);
+  line-height: 1;
+  padding: 0.15rem 0;
+  opacity: 0.4;
+}
+
+.rs-name {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  text-align: center;
+  word-break: break-word;
+  line-height: 1.2;
+}
+
+.rs-name-empty {
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+@media (max-width: 700px) {
+  .relic-summary-slots { grid-template-columns: repeat(4, 1fr); }
+}
+
+@media (max-width: 400px) {
+  .relic-summary-slots { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ─────────────────────────────────────────────
+   RELIC CARD — icon header (replaces image strip)
+   ───────────────────────────────────────────── */
+
+/* Hide the old image-strip styles */
+.relic-card-img { display: none; }
+.relic-img-wrap { display: none; }
+.relic-img-zoom { display: none; }
+
+/* New header: icon left, name + view-button right */
+.relic-card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.75rem 0.85rem 0.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.relic-card-icon {
+  width: 52px;
+  height: 52px;
+  flex-shrink: 0;
+  image-rendering: pixelated;
+}
+
+.relic-card-header-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  min-width: 0;
+}
+
+/* Override: name is now inside the header, not the body */
+.relic-card-header .relic-card-name {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-gold);
+}
+
+.relic-view-full-btn {
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text-muted);
+  font-family: inherit;
+  font-size: 0.72rem;
+  padding: 0.15rem 0.45rem;
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s;
+  align-self: flex-start;
+}
+
+.relic-view-full-btn:hover {
+  color: var(--text-gold);
+  border-color: var(--border-gold);
+}
+
+/* Summary slot — icon instead of full image */
+.rs-icon {
+  width: 40px;
+  height: 40px;
+  image-rendering: pixelated;
 }

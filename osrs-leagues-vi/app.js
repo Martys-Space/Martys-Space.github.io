@@ -751,9 +751,43 @@ function saveToStorage() {
 }
 
 // ─── RELICS ───────────────────────────────────
+function buildRelicSummary() {
+  const slots = RELIC_TIERS.map(tier => {
+    const selectedId = state.selectedRelics[tier.tier];
+    const relic = tier.relics.find(r => r.id === selectedId);
+
+    if (relic) {
+      return `
+        <div class="rs-slot rs-slot-filled" title="${relic.name}">
+          <div class="rs-tier-label">T${tier.tier}</div>
+          <img class="rs-icon" src="${relic.icon}" alt="${relic.name}">
+          <div class="rs-name">${relic.name}</div>
+        </div>`;
+    }
+    return `
+      <div class="rs-slot rs-slot-empty">
+        <div class="rs-tier-label">T${tier.tier}</div>
+        <div class="rs-empty-icon">?</div>
+        <div class="rs-name rs-name-empty">Not chosen</div>
+      </div>`;
+  }).join('');
+
+  const chosen = Object.keys(state.selectedRelics).length;
+  return `
+    <div class="relic-summary">
+      <div class="relic-summary-header">
+        <span class="relic-summary-title">Your Build</span>
+        <span class="relic-summary-count">${chosen} / ${RELIC_TIERS.length} chosen</span>
+      </div>
+      <div class="relic-summary-slots">${slots}</div>
+    </div>
+  `;
+}
+
 function renderRelics() {
   const container = document.getElementById('relics-content');
-  container.innerHTML = RELIC_TIERS.map(tier => {
+  const summaryHTML = buildRelicSummary();
+  container.innerHTML = summaryHTML + RELIC_TIERS.map(tier => {
     const selectedId = state.selectedRelics[tier.tier];
 
     const passivesHTML = tier.passives.length
@@ -771,12 +805,14 @@ function renderRelics() {
         : '';
       return `
         <div class="relic-card ${isSelected ? 'relic-selected' : ''}">
-          <div class="relic-img-wrap">
-            <img class="relic-card-img" src="${relic.image}" alt="${relic.name}">
-            <button class="relic-img-zoom" data-src="${relic.image}" data-alt="${relic.name}" title="View full size">⛶</button>
+          <div class="relic-card-header">
+            <img class="relic-card-icon" src="${relic.icon}" alt="${relic.name}">
+            <div class="relic-card-header-text">
+              <div class="relic-card-name">${relic.name}</div>
+              <button class="relic-view-full-btn" data-src="${relic.image}" data-alt="${relic.name}">View full image ↗</button>
+            </div>
           </div>
           <div class="relic-card-body">
-            <div class="relic-card-name">${relic.name}</div>
             ${giftHTML}
             ${toggleHTML}
             <ul class="relic-effects">${effectsHTML}</ul>
@@ -828,7 +864,7 @@ function renderRelics() {
     });
   });
 
-  container.querySelectorAll('.relic-img-zoom').forEach(btn => {
+  container.querySelectorAll('.relic-view-full-btn').forEach(btn => {
     btn.addEventListener('click', () => openRelicLightbox(btn.dataset.src, btn.dataset.alt));
   });
 }
