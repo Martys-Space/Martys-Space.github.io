@@ -26,6 +26,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat specified number of the target enemy",
     target: "1x Shadow Phantasm",
     time_limit: null, recommended_level: 105,
+    image: "Images/Hollow_Missions/Selvendys_Forest_Area/Selvendys_The_Shadow-Dwelling_Beast.png",
   },
   {
     id: "SF-2", region: "Selvendys_Forest_Area", type: "boss",
@@ -37,6 +38,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat specified number of the target enemy",
     target: "1x Gloryseeker the Kobold Lord",
     time_limit: "60 min", recommended_level: 151,
+    image: "Images/Hollow_Missions/Selvendys_Forest_Area/Selvendys_Lust_of_the_Young_Kobold_Lord.png",
   },
   {
     id: "SF-3", region: "Selvendys_Forest_Area", type: null,
@@ -48,6 +50,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat specified number of the target enemy",
     target: "1x Goblin Prodigy",
     time_limit: "30 min", recommended_level: 106,
+    image: "Images/Hollow_Missions/Selvendys_Forest_Area/Selvendys_Goblin_Wiles.png",
   },
   {
     id: "SF-4", region: "Selvendys_Forest_Area", type: null,
@@ -59,6 +62,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat specified number of the target enemy",
     target: "10x Goblin Thieves and 8x Goblin Thief Archers",
     time_limit: "45 min", recommended_level: 101,
+    image: "Images/Hollow_Missions/Selvendys_Forest_Area/Selvendys_Assault_of_the_Goblin_Thieves.png",
   },
   {
     id: "SF-5", region: "Selvendys_Forest_Area", type: null, part: 1,
@@ -70,6 +74,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Reach goal without being seen by any enemy",
     target: "Destination: The monsters' altar",
     time_limit: "20 min", recommended_level: 102,
+    image: "Images/Hollow_Missions/Selvendys_Forest_Area/Selvendys_Search_for_the_Beasts_Altar.png",
   },
   {
     id: "SF-6", region: "Selvendys_Forest_Area", type: null, part: 2,
@@ -81,6 +86,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Reach goal without being seen by any enemy",
     target: "Destination: Southwest exit",
     time_limit: "30 min", recommended_level: 102,
+    image: "Images/Hollow_Missions/Selvendys_Forest_Area/Selvendys_Report_on_Location_of_Altar.png",
   },
   {
     id: "SF-7", region: "Selvendys_Forest_Area", type: null,
@@ -92,6 +98,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat target/Remain unseen by specified enemy",
     target: "8x Delicious Boars",
     time_limit: "40 min", recommended_level: 130,
+    image: "Images/Hollow_Missions/Selvendys_Forest_Area/Selvendys_Prime_Cuts.png",
   },
   {
     id: "SF-8", region: "Selvendys_Forest_Area", type: null,
@@ -103,6 +110,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat targets before they respawn",
     target: "Killer Queen and Servant Bees",
     time_limit: "30 min", recommended_level: 112,
+    image: "Images/Hollow_Missions/Selvendys_Forest_Area/Selvendys_Her_Majesty_Buzzeth.png",
   },
   {
     id: "SF-9", region: "Selvendys_Forest_Area", type: "boss",
@@ -114,6 +122,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat specified number of the target enemy",
     target: "1x Queen Grenat",
     time_limit: "60 min", recommended_level: 185,
+    image: "Images/Hollow_Missions/Selvendys_Forest_Area/Selvendys_Deadly_Intent_from_Alevaste.png",
   },
   {
     id: "SF-10", region: "Selvendys_Forest_Area", type: null,
@@ -125,6 +134,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat specified number of the target enemy",
     target: "10x Love Bugs",
     time_limit: "45 min", recommended_level: 102,
+    image: "Images/Hollow_Missions/Selvendys_Forest_Area/Selvendys_Love_Is_Light.png",
   },
   {
     id: "SF-11", region: "Selvendys_Forest_Area", type: null,
@@ -136,6 +146,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Reach goal without being seen by any enemy",
     target: "Destination: Grave at edge of square furthest southwest",
     time_limit: "30 min", recommended_level: 104,
+    image: "Images/Hollow_Missions/Selvendys_Forest_Area/Selvendys_A_Flower_for_His_Grave.png",
   },
   {
     id: "SF-12", region: "Selvendys_Forest_Area", type: null,
@@ -147,6 +158,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat targets before they respawn",
     target: "Grief Screamers",
     time_limit: "30 min", recommended_level: 122,
+    image: "Images/Hollow_Missions/Selvendys_Forest_Area/Selvendys_Cries_for_Cleansing.png",
   },
   {
     id: "SF-13", region: "Selvendys_Forest_Area", type: null,
@@ -158,6 +170,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat specified number of the target enemy",
     target: "1x Twinsword Palladion",
     time_limit: "40 min", recommended_level: 134,
+    image: "Images/Hollow_Missions/Selvendys_Forest_Area/Selvendys_Uproar_of_the_Palladions.png",
   },
   {
     id: "SF-14", region: "Selvendys_Forest_Area", type: null,
@@ -169,6 +182,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat target/Leave specified enemy alive",
     target: "4x Cheerful Flowers",
     time_limit: "30 min", recommended_level: 110,
+    image: "Images/Hollow_Missions/Selvendys_Forest_Area/Selvendys_Honey_on_the_Brainstem.png",
   },
   {
     id: "SF-15", region: "Selvendys_Forest_Area", type: null,
@@ -180,6 +194,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat targets before they respawn",
     target: "Nursery Trees",
     time_limit: "30 min", recommended_level: 128,
+    image: "Images/Hollow_Missions/Selvendys_Forest_Area/Selvendys_Necessary_Deforestation.png",
   },
   {
     id: "SF-16", region: "Selvendys_Forest_Area", type: null,
@@ -191,6 +206,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat specified number of the target enemy",
     target: "1x Titan",
     time_limit: "20 min", recommended_level: 119,
+    image: "Images/Hollow_Missions/Selvendys_Forest_Area/Selvendys_In_the_Pursuit_of_Truth.png",
   },
   {
     id: "SF-17", region: "Selvendys_Forest_Area", type: null,
@@ -202,6 +218,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat specified number of the target enemy",
     target: "10x Mantis Snakes",
     time_limit: "30 min", recommended_level: 117,
+    image: "Images/Hollow_Missions/Selvendys_Forest_Area/Selvendys_The_Famished_Invaders.png",
   },
   {
     id: "SF-18", region: "Selvendys_Forest_Area", type: null,
@@ -213,6 +230,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat specified number of the target enemy",
     target: "3x Ailes Noires",
     time_limit: "45 min", recommended_level: 123,
+    image: "Images/Hollow_Missions/Selvendys_Forest_Area/Selvendys_Black-Winged_Assailants.png",
   },
   {
     id: "SF-19", region: "Selvendys_Forest_Area", type: null,
@@ -224,6 +242,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat specified number of the target enemy",
     target: "1x Hellfire Dragon",
     time_limit: "30 min", recommended_level: 138,
+    image: "Images/Hollow_Missions/Selvendys_Forest_Area/Selvendys_Draconian_Revelry.png",
   },
   {
     id: "SF-20", region: "Selvendys_Forest_Area", type: null,
@@ -235,6 +254,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat targets before they respawn",
     target: "Venomush and Foul Fungus",
     time_limit: "40 min", recommended_level: 108,
+    image: "Images/Hollow_Missions/Selvendys_Forest_Area/Selvendys_At_the_Mercy_of_Poison_Mushrooms.png",
   },
   {
     id: "SF-21", region: "Selvendys_Forest_Area", type: null,
@@ -246,6 +266,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat specified number of the target enemy",
     target: "1x Strangletree",
     time_limit: "30 min", recommended_level: 114,
+    image: "Images/Hollow_Missions/Selvendys_Forest_Area/Selvendys_Bane_of_the_Forest.png",
   },
   {
     id: "SF-22", region: "Selvendys_Forest_Area", type: null,
@@ -257,6 +278,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat specified number of the target enemy",
     target: "1x Darkness Eater",
     time_limit: "30 min", recommended_level: 126,
+    image: "Images/Hollow_Missions/Selvendys_Forest_Area/Selvendys_Devourer_of_the_Darkness.png",
   },
   {
     id: "SF-23", region: "Selvendys_Forest_Area", type: null,
@@ -268,6 +290,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat target/Leave specified enemy alive",
     target: "15x Chemical Slimes",
     time_limit: "60 min", recommended_level: 142,
+    image: "Images/Hollow_Missions/Selvendys_Forest_Area/Selvendys_Corrosive_Substance.png",
   },
   {
     id: "SF-24", region: "Selvendys_Forest_Area", type: "boss",
@@ -279,6 +302,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat specified number of the target enemy",
     target: "1x Queen Emeraude",
     time_limit: "60 min", recommended_level: 165,
+    image: "Images/Hollow_Missions/Selvendys_Forest_Area/Selvendys_Infestation_from_the_Deep_Wood.png",
   },
 
   // ─── Bastia Gate / Floating Ruins Area ───────────────────────────────────
@@ -292,6 +316,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat specified number of the target enemy",
     target: "1x Zodias the Blade Dragon",
     time_limit: null, recommended_level: 110,
+    image: "Images/Hollow_Missions/Bastia_Gate_Floating_Ruins_Area/Bastia_The_Sky_Masters_Sword.png",
   },
   {
     id: "BG-2", region: "Bastia_Gate_Floating_Ruins_Area", type: null,
@@ -303,6 +328,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat specified number of the target enemy",
     target: "15x Little Wings",
     time_limit: "30 min", recommended_level: 105,
+    image: "Images/Hollow_Missions/Bastia_Gate_Floating_Ruins_Area/Bastia_Baby_Dragon_Boom.png",
   },
   {
     id: "BG-3", region: "Bastia_Gate_Floating_Ruins_Area", type: null,
@@ -314,6 +340,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat specified number of the target enemy",
     target: "1x Mandible King and 1x Mandible Queen",
     time_limit: "40 min", recommended_level: 131,
+    image: "Images/Hollow_Missions/Bastia_Gate_Floating_Ruins_Area/Bastia_A_Nest_in_Need.png",
   },
   {
     id: "BG-4", region: "Bastia_Gate_Floating_Ruins_Area", type: null,
@@ -325,6 +352,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat specified number of the target enemy",
     target: "1x Voracious Mite",
     time_limit: "20 min", recommended_level: 113,
+    image: "Images/Hollow_Missions/Bastia_Gate_Floating_Ruins_Area/Bastia_Secret_Garden.png",
   },
   {
     id: "BG-5", region: "Bastia_Gate_Floating_Ruins_Area", type: null,
@@ -336,6 +364,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat specified number of the target enemy",
     target: "12x Swordfish",
     time_limit: "45 min", recommended_level: 110,
+    image: "Images/Hollow_Missions/Bastia_Gate_Floating_Ruins_Area/Bastia_Sky-High_Wanderlust.png",
   },
   {
     id: "BG-6", region: "Bastia_Gate_Floating_Ruins_Area", type: null,
@@ -347,6 +376,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat specified number of the target enemy",
     target: "1x Sacred Tree",
     time_limit: "30 min", recommended_level: 118,
+    image: "Images/Hollow_Missions/Bastia_Gate_Floating_Ruins_Area/Bastia_Pruning_Job.png",
   },
   {
     id: "BG-7", region: "Bastia_Gate_Floating_Ruins_Area", type: "boss",
@@ -358,6 +388,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat specified number of the target enemy",
     target: "1x Dark Incarnation",
     time_limit: "40 min", recommended_level: 176,
+    image: "Images/Hollow_Missions/Bastia_Gate_Floating_Ruins_Area/Bastia_Dark_Demon_Eviction.png",
   },
   {
     id: "BG-8", region: "Bastia_Gate_Floating_Ruins_Area", type: null,
@@ -369,6 +400,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat specified number of the target enemy",
     target: "10x Song Harpies",
     time_limit: "40 min", recommended_level: 107,
+    image: "Images/Hollow_Missions/Bastia_Gate_Floating_Ruins_Area/Bastia_Soul-Crushing_Songstresses.png",
   },
   {
     id: "BG-9", region: "Bastia_Gate_Floating_Ruins_Area", type: "boss",
@@ -380,6 +412,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat specified number of the target enemy",
     target: "1x Demolishing Reaper",
     time_limit: "40 min", recommended_level: 150,
+    image: "Images/Hollow_Missions/Bastia_Gate_Floating_Ruins_Area/Bastia_Lost_Reaper_from_the_Abyss.png",
   },
   {
     id: "BG-10", region: "Bastia_Gate_Floating_Ruins_Area", type: null, part: 1,
@@ -391,6 +424,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat targets before they respawn",
     target: "Cursed Orcs",
     time_limit: "60 min", recommended_level: 117,
+    image: "Images/Hollow_Missions/Bastia_Gate_Floating_Ruins_Area/Bastia_Beastly_Curse.png",
   },
   {
     id: "BG-11", region: "Bastia_Gate_Floating_Ruins_Area", type: null, part: 2,
@@ -402,6 +436,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat targets before they respawn",
     target: "Cursed Knight-Commander and Cursed Knights",
     time_limit: "40 min", recommended_level: 118,
+    image: "Images/Hollow_Missions/Bastia_Gate_Floating_Ruins_Area/Bastia_Order_of_Cursed_Knights.png",
   },
   {
     id: "BG-12", region: "Bastia_Gate_Floating_Ruins_Area", type: null, part: 3,
@@ -413,6 +448,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat targets before they respawn",
     target: "1x Beast Pupil",
     time_limit: "20 min", recommended_level: 120,
+    image: "Images/Hollow_Missions/Bastia_Gate_Floating_Ruins_Area/Bastia_Beastly_Intent.png",
   },
   {
     id: "BG-13", region: "Bastia_Gate_Floating_Ruins_Area", type: null,
@@ -424,6 +460,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat targets before they respawn",
     target: "Skull Creepers",
     time_limit: "30 min", recommended_level: 109,
+    image: "Images/Hollow_Missions/Bastia_Gate_Floating_Ruins_Area/Bastia_Underground_Infestation.png",
   },
   {
     id: "BG-14", region: "Bastia_Gate_Floating_Ruins_Area", type: null,
@@ -435,6 +472,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat specified number of the target enemy",
     target: "1x Mimic Guardian",
     time_limit: "30 min", recommended_level: 110,
+    image: "Images/Hollow_Missions/Bastia_Gate_Floating_Ruins_Area/Bastia_Sentinel_of_the_Giant_Chest.png",
   },
   {
     id: "BG-15", region: "Bastia_Gate_Floating_Ruins_Area", type: null,
@@ -446,6 +484,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat specified number of the target enemy",
     target: "1x Gamesh the Kobold King",
     time_limit: "20 min", recommended_level: 115,
+    image: "Images/Hollow_Missions/Bastia_Gate_Floating_Ruins_Area/Bastia_Rightful_Owner_of_the_Chest.png",
   },
   {
     id: "BG-16", region: "Bastia_Gate_Floating_Ruins_Area", type: null, part: 1,
@@ -457,6 +496,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Reach goal/Remain unseen by specified enemy",
     target: "Destination: Location of the alchemist",
     time_limit: "5 min", recommended_level: 126,
+    image: "Images/Hollow_Missions/Bastia_Gate_Floating_Ruins_Area/Bastia_The_Loony_Alchemist_Investigation.png",
   },
   {
     id: "BG-17", region: "Bastia_Gate_Floating_Ruins_Area", type: null, part: 2,
@@ -468,6 +508,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat specified number of the target enemy",
     target: "1x Alchemist Fool",
     time_limit: "30 min", recommended_level: 126,
+    image: "Images/Hollow_Missions/Bastia_Gate_Floating_Ruins_Area/Bastia_The_Loony_Alchemist_Plot.png",
   },
   {
     id: "BG-18", region: "Bastia_Gate_Floating_Ruins_Area", type: null,
@@ -479,6 +520,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat specified number of the target enemy",
     target: "1x Victorious",
     time_limit: "60 min", recommended_level: 137,
+    image: "Images/Hollow_Missions/Bastia_Gate_Floating_Ruins_Area/Bastia_The_Glory_of_the_Streak.png",
   },
 
   // ─── Graceleaf Bay Area ───────────────────────────────────────────────────
@@ -492,6 +534,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat specified number of the target enemy",
     target: "1x Detonator the Kobold Lord",
     time_limit: null, recommended_level: 115,
+    image: "Images/Hollow_Missions/Graceleaf_Bay_Area/Graceleaf_He_Who_Would_Rule_Graceleaf.png",
   },
   {
     id: "GB-2", region: "Graceleaf_Bay_Area", type: null,
@@ -503,6 +546,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat specified number of the target enemy",
     target: "1x Alphard",
     time_limit: null, recommended_level: 110,
+    image: "Images/Hollow_Missions/Graceleaf_Bay_Area/Graceleaf_Aquatic_Ruler.png",
   },
   {
     id: "GB-3", region: "Graceleaf_Bay_Area", type: "boss",
@@ -514,6 +558,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat specified number of the target enemy",
     target: "1x Queen Citrine",
     time_limit: "60 min", recommended_level: 153,
+    image: "Images/Hollow_Missions/Graceleaf_Bay_Area/Graceleaf_Spawning_along_the_Waters_Edge.png",
   },
   {
     id: "GB-4", region: "Graceleaf_Bay_Area", type: null,
@@ -525,6 +570,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat targets before they respawn",
     target: "Sahuagin Commander and Sahuagin Sergeant",
     time_limit: "45 min", recommended_level: 116,
+    image: "Images/Hollow_Missions/Graceleaf_Bay_Area/Graceleaf_Invading_Army_from_the_Sea.png",
   },
   {
     id: "GB-5", region: "Graceleaf_Bay_Area", type: null, part: 1,
@@ -536,6 +582,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Reach goal without being seen by any enemy",
     target: "Destination: Entrance to meeting location",
     time_limit: "5 min", recommended_level: 122,
+    image: "Images/Hollow_Missions/Graceleaf_Bay_Area/Graceleaf_Council_of_the_Three_Beasts.png",
   },
   {
     id: "GB-6", region: "Graceleaf_Bay_Area", type: null, part: 2,
@@ -547,6 +594,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat targets before they respawn",
     target: "All beasts and their personal guards",
     time_limit: "15 min", recommended_level: 125,
+    image: "Images/Hollow_Missions/Graceleaf_Bay_Area/Graceleaf_This_Council_is_Disbanded.png",
   },
   {
     id: "GB-7", region: "Graceleaf_Bay_Area", type: null,
@@ -558,6 +606,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat target/Leave specified enemy alive",
     target: "12x Vile Crabs",
     time_limit: "45 min", recommended_level: 117,
+    image: "Images/Hollow_Missions/Graceleaf_Bay_Area/Graceleaf_Gourmet_Crab_Entrails.png",
   },
   {
     id: "GB-8", region: "Graceleaf_Bay_Area", type: null,
@@ -569,6 +618,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat specified number of the target enemy",
     target: "1x Armored Scissors",
     time_limit: "40 min", recommended_level: 130,
+    image: "Images/Hollow_Missions/Graceleaf_Bay_Area/Graceleaf_Carapace_Metamorphosis.png",
   },
   {
     id: "GB-9", region: "Graceleaf_Bay_Area", type: null,
@@ -580,6 +630,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat specified number of the target enemy",
     target: "20x Ocean Pirates",
     time_limit: "15 min", recommended_level: 120,
+    image: "Images/Hollow_Missions/Graceleaf_Bay_Area/Graceleaf_Immortal_Band_of_Pirates.png",
   },
   {
     id: "GB-10", region: "Graceleaf_Bay_Area", type: null, part: 1,
@@ -591,6 +642,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat specified number of the target enemy",
     target: "1x Captain Drake",
     time_limit: "15 min", recommended_level: 138,
+    image: "Images/Hollow_Missions/Graceleaf_Bay_Area/Graceleaf_The_Immortal_Pirate_Captain.png",
   },
   {
     id: "GB-11", region: "Graceleaf_Bay_Area", type: null, part: 2,
@@ -602,6 +654,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat specified number of the target enemy",
     target: "1x Necro Flame Dragon",
     time_limit: "10 min", recommended_level: 139,
+    image: "Images/Hollow_Missions/Graceleaf_Bay_Area/Graceleaf_The_Captains_True_Form.png",
   },
   {
     id: "GB-12", region: "Graceleaf_Bay_Area", type: "boss",
@@ -613,6 +666,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat specified number of the target enemy",
     target: "1x Shandracul the Blade Dragon",
     time_limit: "40 min", recommended_level: 180,
+    image: "Images/Hollow_Missions/Graceleaf_Bay_Area/Graceleaf_A_Place_Fit_for_a_Dragon.png",
   },
   {
     id: "GB-13", region: "Graceleaf_Bay_Area", type: null,
@@ -624,6 +678,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat target/Remain unseen by specified enemy",
     target: "1x Whole Gazer",
     time_limit: "30 min", recommended_level: 115,
+    image: "Images/Hollow_Missions/Graceleaf_Bay_Area/Graceleaf_The_All-Seeing_Eye.png",
   },
   {
     id: "GB-14", region: "Graceleaf_Bay_Area", type: null,
@@ -635,6 +690,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat specified number of the target enemy",
     target: "1x Black Cross",
     time_limit: "15 min", recommended_level: 133,
+    image: "Images/Hollow_Missions/Graceleaf_Bay_Area/Graceleaf_Immortal_Pirates_Captain_of_War.png",
   },
   {
     id: "GB-15", region: "Graceleaf_Bay_Area", type: null,
@@ -646,6 +702,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat specified number of the target enemy",
     target: "15x Ancient Griefs",
     time_limit: "40 min", recommended_level: 109,
+    image: "Images/Hollow_Missions/Graceleaf_Bay_Area/Graceleaf_Echo_of_Resentment.png",
   },
   {
     id: "GB-16", region: "Graceleaf_Bay_Area", type: null, part: 1,
@@ -657,6 +714,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat specified no. of target enemy/Reach goal",
     target: "12x Mine Kobold Surveyors",
     time_limit: "30 min", recommended_level: 113,
+    image: "Images/Hollow_Missions/Graceleaf_Bay_Area/Graceleaf_Lost_Mine.png",
   },
   {
     id: "GB-17", region: "Graceleaf_Bay_Area", type: null, part: 2,
@@ -668,6 +726,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Reach the goal",
     target: "Destination: Entrance to abandoned mine",
     time_limit: "1 min", recommended_level: 114,
+    image: "Images/Hollow_Missions/Graceleaf_Bay_Area/Graceleaf_Escape_from_the_Abandoned_Mine.png",
   },
   {
     id: "GB-18", region: "Graceleaf_Bay_Area", type: null,
@@ -679,6 +738,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat specified number of the target enemy",
     target: "1x Rock Eater",
     time_limit: "30 min", recommended_level: 123,
+    image: "Images/Hollow_Missions/Graceleaf_Bay_Area/Graceleaf_Scorpion_King_of_the_Mine.png",
   },
   {
     id: "GB-19", region: "Graceleaf_Bay_Area", type: null,
@@ -690,6 +750,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat targets before they respawn",
     target: "Chief Navigator Sandra and Ocean Pirates",
     time_limit: "20 min", recommended_level: 135,
+    image: "Images/Hollow_Missions/Graceleaf_Bay_Area/Graceleaf_Immortal_Pirates_Scheming_Seaman.png",
   },
   {
     id: "GB-20", region: "Graceleaf_Bay_Area", type: "boss",
@@ -701,6 +762,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat specified number of the target enemy",
     target: "1x Ragnamazur the Dynast",
     time_limit: "60 min", recommended_level: 195,
+    image: "Images/Hollow_Missions/Graceleaf_Bay_Area/Graceleaf_Return_of_the_Conqueror.png",
   },
 
   // ─── Driogeer Skycaves Area ───────────────────────────────────────────────
@@ -714,6 +776,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat specified number of the target enemy",
     target: "1x Hollow Reaper",
     time_limit: null, recommended_level: 120,
+    image: "Images/Hollow_Missions/Driogeer_Skycaves_Area/Driogeer_The_Soulless_Reaper.png",
   },
   {
     id: "DS-2", region: "Driogeer_Skycaves_Area", type: null,
@@ -725,6 +788,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat targets before they respawn",
     target: "Garm Chaser and Prison Hound",
     time_limit: "40 min", recommended_level: 120,
+    image: "Images/Hollow_Missions/Driogeer_Skycaves_Area/Driogeer_Blood-Starved_Hellhounds.png",
   },
   {
     id: "DS-3", region: "Driogeer_Skycaves_Area", type: null,
@@ -736,6 +800,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat specified number of the target enemy",
     target: "12x Necro Devourers",
     time_limit: "30 min", recommended_level: 115,
+    image: "Images/Hollow_Missions/Driogeer_Skycaves_Area/Driogeer_A_Change_in_Tastes.png",
   },
   {
     id: "DS-4", region: "Driogeer_Skycaves_Area", type: null,
@@ -747,6 +812,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat specified number of the target enemy",
     target: "1x Giant Flower Eyes",
     time_limit: "20 min", recommended_level: 118,
+    image: "Images/Hollow_Missions/Driogeer_Skycaves_Area/Driogeer_Giant_Flower_Eyes.png",
   },
   {
     id: "DS-5", region: "Driogeer_Skycaves_Area", type: null,
@@ -758,6 +824,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat specified number of the target enemy",
     target: "15x Tyrant Blazes",
     time_limit: "40 min", recommended_level: 113,
+    image: "Images/Hollow_Missions/Driogeer_Skycaves_Area/Driogeer_To_See_a_Forest_Burn.png",
   },
   {
     id: "DS-6", region: "Driogeer_Skycaves_Area", type: "boss",
@@ -769,6 +836,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat specified number of the target enemy",
     target: "1x Raideen the Blade Dragon",
     time_limit: "40 min", recommended_level: 163,
+    image: "Images/Hollow_Missions/Driogeer_Skycaves_Area/Driogeer_Assault_of_the_Blade_Dragon.png",
   },
   {
     id: "DS-7", region: "Driogeer_Skycaves_Area", type: "boss",
@@ -780,6 +848,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat specified number of the target enemy",
     target: "1x Exvent the Kobold Lord",
     time_limit: "40 min", recommended_level: 178,
+    image: "Images/Hollow_Missions/Driogeer_Skycaves_Area/Driogeer_The_Uninvited_Kobold_Adventurer.png",
   },
   {
     id: "DS-8", region: "Driogeer_Skycaves_Area", type: null, part: 1,
@@ -791,6 +860,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat targets before they respawn",
     target: "Pendragon the Rebel and Round Table Knights",
     time_limit: "30 min", recommended_level: 118,
+    image: "Images/Hollow_Missions/Driogeer_Skycaves_Area/Driogeer_The_Revolt_That_Wasnt_to_Be.png",
   },
   {
     id: "DS-9", region: "Driogeer_Skycaves_Area", type: null, part: 2,
@@ -802,6 +872,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat specified number of the target enemy",
     target: "1x Lancelot",
     time_limit: "10 min", recommended_level: 120,
+    image: "Images/Hollow_Missions/Driogeer_Skycaves_Area/Driogeer_A_Knight_in_Search_of_His_Leader.png",
   },
   {
     id: "DS-10", region: "Driogeer_Skycaves_Area", type: null, part: 3,
@@ -813,6 +884,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat specified number of the target enemy",
     target: "1x Medrat the Betrayer",
     time_limit: "5 min", recommended_level: 117,
+    image: "Images/Hollow_Missions/Driogeer_Skycaves_Area/Driogeer_End_of_the_Road_for_a_Traitor.png",
   },
   {
     id: "DS-11", region: "Driogeer_Skycaves_Area", type: null,
@@ -824,6 +896,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat specified number of the target enemy",
     target: "1x Weapon of Justice",
     time_limit: "20 min", recommended_level: 136,
+    image: "Images/Hollow_Missions/Driogeer_Skycaves_Area/Driogeer_Justice_without_Fail-safes.png",
   },
   {
     id: "DS-12", region: "Driogeer_Skycaves_Area", type: null,
@@ -835,6 +908,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat targets before they respawn",
     target: "Corrosive Grease and Metal Grease",
     time_limit: "30 min", recommended_level: 110,
+    image: "Images/Hollow_Missions/Driogeer_Skycaves_Area/Driogeer_Greasy_Movements.png",
   },
   {
     id: "DS-13", region: "Driogeer_Skycaves_Area", type: null,
@@ -846,6 +920,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat specified number of the target enemy",
     target: "6x Walking Treasures",
     time_limit: "20 min", recommended_level: 117,
+    image: "Images/Hollow_Missions/Driogeer_Skycaves_Area/Driogeer_Six_Sentient_Treasures.png",
   },
   {
     id: "DS-14", region: "Driogeer_Skycaves_Area", type: null,
@@ -857,6 +932,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat specified number of the target enemy",
     target: "1x Ultimate Gene",
     time_limit: "20 min", recommended_level: 139,
+    image: "Images/Hollow_Missions/Driogeer_Skycaves_Area/Driogeer_Supreme_Life.png",
   },
   {
     id: "DS-15", region: "Driogeer_Skycaves_Area", type: null, part: 1,
@@ -868,6 +944,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat specified number of the target enemy",
     target: "1x Guard Machine Alpha and 1x Guard Machine Beta",
     time_limit: "45 min", recommended_level: 123,
+    image: "Images/Hollow_Missions/Driogeer_Skycaves_Area/Driogeer_The_Guardians_Deadly_Duty.png",
   },
   {
     id: "DS-16", region: "Driogeer_Skycaves_Area", type: null, part: 2,
@@ -879,6 +956,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat specified number of the target enemy",
     target: "1x Guard Machine Omega",
     time_limit: "20 min", recommended_level: 125,
+    image: "Images/Hollow_Missions/Driogeer_Skycaves_Area/Driogeer_Supreme_Guardian_Assembled.png",
   },
   {
     id: "DS-17", region: "Driogeer_Skycaves_Area", type: null,
@@ -890,6 +968,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat specified number of the target enemy",
     target: "1x Deadly and 1x Bloody Machine Knight",
     time_limit: "30 min", recommended_level: 129,
+    image: "Images/Hollow_Missions/Driogeer_Skycaves_Area/Driogeer_Twin_Mechanical_Knights.png",
   },
   {
     id: "DS-18", region: "Driogeer_Skycaves_Area", type: null,
@@ -901,6 +980,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat specified number of the target enemy",
     target: "1x Emperor of Insanity",
     time_limit: "20 min", recommended_level: 134,
+    image: "Images/Hollow_Missions/Driogeer_Skycaves_Area/Driogeer_A_Genocidal_Emperors_Rebirth.png",
   },
 
   // ─── Alevaste Otherworld Area ─────────────────────────────────────────────
@@ -914,6 +994,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat specified number of the target enemy",
     target: "1x Queen Amedister",
     time_limit: null, recommended_level: 125,
+    image: "Images/Hollow_Missions/Alevaste_Otherworld_Area/Alevaste_Purple_Crystal_of_Disaster.png",
   },
   {
     id: "AO-2", region: "Alevaste_Otherworld_Area", type: null,
@@ -925,6 +1006,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat specified number of the target enemy",
     target: "20x Abyss Scorpions",
     time_limit: "40 min", recommended_level: 118,
+    image: "Images/Hollow_Missions/Alevaste_Otherworld_Area/Alevaste_Chaos-Fueled_Scorpions.png",
   },
   {
     id: "AO-3", region: "Alevaste_Otherworld_Area", type: "boss",
@@ -936,6 +1018,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat specified number of the target enemy",
     target: "1x Nightmare Beast",
     time_limit: "40 min", recommended_level: 160,
+    image: "Images/Hollow_Missions/Alevaste_Otherworld_Area/Alevaste_Born_from_the_Nightmare_of_Chaos.png",
   },
   {
     id: "AO-4", region: "Alevaste_Otherworld_Area", type: "boss",
@@ -947,6 +1030,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat specified number of the target enemy",
     target: "1x Nightmare Reaper",
     time_limit: "40 min", recommended_level: 183,
+    image: "Images/Hollow_Missions/Alevaste_Otherworld_Area/Alevaste_Left_Arm_of_the_Nightmare_King.png",
   },
   {
     id: "AO-5", region: "Alevaste_Otherworld_Area", type: null, part: 1,
@@ -958,6 +1042,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat specified number of the target enemy",
     target: "1x Nightmare Gazer",
     time_limit: "30 min", recommended_level: 132,
+    image: "Images/Hollow_Missions/Alevaste_Otherworld_Area/Alevaste_Eye_of_the_Nightmare_King.png",
   },
   {
     id: "AO-6", region: "Alevaste_Otherworld_Area", type: null, part: 2,
@@ -969,6 +1054,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat specified number of the target enemy",
     target: "1x Nightmare Glance",
     time_limit: "10 min", recommended_level: 132,
+    image: "Images/Hollow_Missions/Alevaste_Otherworld_Area/Alevaste_Other_Eye_of_the_Nightmare_King.png",
   },
   {
     id: "AO-7", region: "Alevaste_Otherworld_Area", type: null,
@@ -980,9 +1066,10 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat specified number of the target enemy",
     target: "18x Lurker Crabs",
     time_limit: "35 min", recommended_level: 116,
+    image: "Images/Hollow_Missions/Alevaste_Otherworld_Area/Alevaste_From_within_the_Cracks.png",
   },
   {
-    id: "AO-8", region: "Alevaste_Otherworld_Area", type: null,
+    id: "AO-8", region: "Alevaste_Otherworld_Area", type: null, part: 1,
     name: "Grudge-Steeped Guillotine",
     location: "Guillotine of the Transgressors",
     mission_rank: "Rank 1",
@@ -991,9 +1078,10 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Reach goal without being seen by any enemy",
     target: "Destination: Guillotine",
     time_limit: "10 min", recommended_level: 120,
+    image: "Images/Hollow_Missions/Alevaste_Otherworld_Area/Alevaste_Grudge-Steeped_Guillotine.png",
   },
   {
-    id: "AO-9", region: "Alevaste_Otherworld_Area", type: null,
+    id: "AO-9", region: "Alevaste_Otherworld_Area", type: null, part: 2,
     name: "Resting Place for Nihilism",
     location: "Guillotine of the Transgressors",
     mission_rank: "Rank 1",
@@ -1002,6 +1090,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat specified number of the target enemy",
     target: "1x Deep Grudge",
     time_limit: "30 min", recommended_level: 120,
+    image: "Images/Hollow_Missions/Alevaste_Otherworld_Area/Alevaste_Resting_Place_for_Nihilism.png",
   },
   {
     id: "AO-10", region: "Alevaste_Otherworld_Area", type: null,
@@ -1013,6 +1102,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat specified number of the target enemy",
     target: "1x Headhunter Sickle",
     time_limit: "20 min", recommended_level: 130,
+    image: "Images/Hollow_Missions/Alevaste_Otherworld_Area/Alevaste_Headhunter_Sickle.png",
   },
   {
     id: "AO-11", region: "Alevaste_Otherworld_Area", type: null, part: 1,
@@ -1024,6 +1114,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat specified number of the target enemy",
     target: "1x Right Hand of the Nightmare",
     time_limit: "30 min", recommended_level: 126,
+    image: "Images/Hollow_Missions/Alevaste_Otherworld_Area/Alevaste_Grasp_of_the_Nightmare_King.png",
   },
   {
     id: "AO-12", region: "Alevaste_Otherworld_Area", type: null, part: 2,
@@ -1035,6 +1126,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat specified number of the target enemy",
     target: "1x Left Hand of the Nightmare",
     time_limit: "10 min", recommended_level: 126,
+    image: "Images/Hollow_Missions/Alevaste_Otherworld_Area/Alevaste_The_Nightmare_Continues.png",
   },
   {
     id: "AO-13", region: "Alevaste_Otherworld_Area", type: null,
@@ -1046,6 +1138,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat specified number of the target enemy",
     target: "1x Nightmare Bite",
     time_limit: "20 min", recommended_level: 138,
+    image: "Images/Hollow_Missions/Alevaste_Otherworld_Area/Alevaste_Jaw_of_the_Nightmare_King.png",
   },
   {
     id: "AO-14", region: "Alevaste_Otherworld_Area", type: null,
@@ -1057,6 +1150,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat specified number of the target enemy",
     target: "1x Misery Knight",
     time_limit: "20 min", recommended_level: 123,
+    image: "Images/Hollow_Missions/Alevaste_Otherworld_Area/Alevaste_Spellbound_by_a_Sword.png",
   },
   {
     id: "AO-15", region: "Alevaste_Otherworld_Area", type: null, part: 1,
@@ -1068,6 +1162,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat specified number of the target enemy",
     target: "15x Ruin Breakers",
     time_limit: "20 min", recommended_level: 110,
+    image: "Images/Hollow_Missions/Alevaste_Otherworld_Area/Alevaste_Ruin-Gnawing_Ants.png",
   },
   {
     id: "AO-16", region: "Alevaste_Otherworld_Area", type: null, part: 2,
@@ -1079,6 +1174,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat targets before they respawn",
     target: "Ant Valkyrie and Ruin Crushers",
     time_limit: "30 min", recommended_level: 112,
+    image: "Images/Hollow_Missions/Alevaste_Otherworld_Area/Alevaste_Attack_of_the_Female_Warrior_Ants.png",
   },
   {
     id: "AO-17", region: "Alevaste_Otherworld_Area", type: null,
@@ -1090,6 +1186,20 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat specified number of the target enemy",
     target: "1x Male Albino Insecter",
     time_limit: "20 min", recommended_level: 118,
+    image: "Images/Hollow_Missions/Alevaste_Otherworld_Area/Alevaste_Release_to_Oblivion.png",
+  },
+
+  {
+    id: "AO-18", region: "Alevaste_Otherworld_Area", type: null,
+    name: "The Nightmare King's Legacy",
+    location: "The Old Master's Training Grounds",
+    mission_rank: "Rank 1",
+    strategy: "The waste products or \"legacies\" of the Nightmare King, who lurks among the chaos, are metamorphosing into monsters one after another. Defeat as many of these shadow-born fiends as you can!",
+    summary: "Defeat 666 Vile Kobold Nightmares transformed by the Nightmare King.",
+    goal: "Defeat specified number of the target enemy",
+    target: "666x Vile Kobold Nightmares",
+    time_limit: "240 min", recommended_level: 120,
+    image: "Images/Hollow_Missions/Alevaste_Otherworld_Area/Alevaste_The_Nightmare_Kings_Legacy.png",
   },
 
   // ─── Abandoned Area ───────────────────────────────────────────────────────
@@ -1103,6 +1213,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat specified number of the target enemy",
     target: "1x Valnagia the Empress",
     time_limit: null, recommended_level: 130,
+    image: "Images/Hollow_Missions/Abandoned_Area/Abandoned_Otherworldly_Swordsmanship.png",
   },
   {
     id: "AB-2", region: "Abandoned_Area", type: "boss",
@@ -1114,6 +1225,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat specified number of the target enemy",
     target: "1x Gaiard the Volcano",
     time_limit: null, recommended_level: 110,
+    image: "Images/Hollow_Missions/Abandoned_Area/Abandoned_Prelude_to_Eruption.png",
   },
   {
     id: "AB-3", region: "Abandoned_Area", type: "boss",
@@ -1125,6 +1237,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat specified number of the target enemy",
     target: "1x Vaber the Resonator",
     time_limit: null, recommended_level: 120,
+    image: "Images/Hollow_Missions/Abandoned_Area/Abandoned_Despot_of_Tremors.png",
   },
   {
     id: "AB-4", region: "Abandoned_Area", type: "ultra_hard",
@@ -1136,6 +1249,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat specified number of the target enemy",
     target: "1x Ijelfur the Volcano",
     time_limit: null, recommended_level: 190,
+    image: "Images/Hollow_Missions/Abandoned_Area/Abandoned_Advanced_Blue_Lava_Incarnate.png",
   },
   {
     id: "AB-5", region: "Abandoned_Area", type: "ultra_hard",
@@ -1147,6 +1261,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat specified number of the target enemy",
     target: "1x Asleigeon the Resonator",
     time_limit: null, recommended_level: 190,
+    image: "Images/Hollow_Missions/Abandoned_Area/Abandoned_Advanced_Tremor_King.png",
   },
   {
     id: "AB-6", region: "Abandoned_Area", type: "ultra_hard",
@@ -1158,6 +1273,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat specified number of the target enemy",
     target: "1x Absoludia the Blade Dragon",
     time_limit: null, recommended_level: 210,
+    image: "Images/Hollow_Missions/Abandoned_Area/Abandoned_Advanced_Alpha_Blade_Dragon.png",
   },
   {
     id: "AB-7", region: "Abandoned_Area", type: "ultra_hard",
@@ -1169,6 +1285,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat specified number of the target enemy",
     target: "1x Burster the Kobold Lord",
     time_limit: null, recommended_level: 210,
+    image: "Images/Hollow_Missions/Abandoned_Area/Abandoned_Advanced_A_Soul_on_Fire.png",
   },
   {
     id: "AB-8", region: "Abandoned_Area", type: "ultra_hard",
@@ -1180,6 +1297,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat specified number of the target enemy",
     target: "1x Burning Haze",
     time_limit: null, recommended_level: 210,
+    image: "Images/Hollow_Missions/Abandoned_Area/Abandoned_Advanced_Reborn_of_Flames.png",
   },
   {
     id: "AB-9", region: "Abandoned_Area", type: "ultra_hard",
@@ -1191,6 +1309,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat specified number of the target enemy",
     target: "1x Queen Saphir",
     time_limit: null, recommended_level: 210,
+    image: "Images/Hollow_Missions/Abandoned_Area/Abandoned_Advanced_Queen_of_the_Snowcap.png",
   },
   {
     id: "AB-10", region: "Abandoned_Area", type: "ultra_hard",
@@ -1202,6 +1321,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat specified number of the target enemy",
     target: "1x Genocide Reaper",
     time_limit: null, recommended_level: 210,
+    image: "Images/Hollow_Missions/Abandoned_Area/Abandoned_Advanced_Requiem_of_Death.png",
   },
   {
     id: "AB-11", region: "Abandoned_Area", type: "ultra_hard",
@@ -1213,6 +1333,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat specified number of the target enemy",
     target: "1x Princess Ishvalca",
     time_limit: null, recommended_level: 230,
+    image: "Images/Hollow_Missions/Abandoned_Area/Abandoned_Advanced_The_White_Empress.png",
   },
   {
     id: "AB-12", region: "Abandoned_Area", type: "ultra_hard",
@@ -1224,6 +1345,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat specified number of the target enemy",
     target: "1x Exeterna the Radiant Dragon",
     time_limit: null, recommended_level: 250,
+    image: "Images/Hollow_Missions/Abandoned_Area/Abandoned_Advanced_Dragon_of_Infinite_Might.png",
   },
   {
     id: "AB-13", region: "Abandoned_Area", type: null,
@@ -1235,6 +1357,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat specified number of the target enemy",
     target: "10x Ripe Crabs",
     time_limit: "40 min", recommended_level: 104,
+    image: "Images/Hollow_Missions/Abandoned_Area/Abandoned_Boiled_Crab_Banquet.png",
   },
   {
     id: "AB-14", region: "Abandoned_Area", type: null,
@@ -1246,6 +1369,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat targets before they respawn",
     target: "Volcanic Slime and Warm Slime",
     time_limit: "40 min", recommended_level: 155,
+    image: "Images/Hollow_Missions/Abandoned_Area/Abandoned_Giant_Crimson_Goo.png",
   },
   {
     id: "AB-15", region: "Abandoned_Area", type: null,
@@ -1257,6 +1381,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat specified number of the target enemy",
     target: "20x Wild Boars",
     time_limit: "40 min", recommended_level: 183,
+    image: "Images/Hollow_Missions/Abandoned_Area/Abandoned_Food_Coma.png",
   },
   {
     id: "AB-16", region: "Abandoned_Area", type: null,
@@ -1268,6 +1393,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat specified number of the target enemy",
     target: "1x Protected Bee and 18x Hangdog Hornets",
     time_limit: "40 min", recommended_level: 120,
+    image: "Images/Hollow_Missions/Abandoned_Area/Abandoned_Protected_Species.png",
   },
   {
     id: "AB-17", region: "Abandoned_Area", type: null,
@@ -1279,6 +1405,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat specified number of the target enemy",
     target: "4x Sorrow Knights and 6x Spirits of Sorrow",
     time_limit: "40 min", recommended_level: 110,
+    image: "Images/Hollow_Missions/Abandoned_Area/Abandoned_Victims_of_the_Flames.png",
   },
   {
     id: "AB-18", region: "Abandoned_Area", type: null, part: 1,
@@ -1290,6 +1417,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Reach goal/Remain unseen by specified enemy",
     target: "Destination: Location of the queen",
     time_limit: "40 min", recommended_level: 117,
+    image: "Images/Hollow_Missions/Abandoned_Area/Abandoned_A_Tense_Situation.png",
   },
   {
     id: "AB-19", region: "Abandoned_Area", type: null, part: 2,
@@ -1301,6 +1429,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat specified number of the target enemy",
     target: "1x Bomber Mother",
     time_limit: "40 min", recommended_level: 122,
+    image: "Images/Hollow_Missions/Abandoned_Area/Abandoned_At_the_Center_of_Destruction.png",
   },
   {
     id: "AB-20", region: "Abandoned_Area", type: null, part: 1,
@@ -1312,6 +1441,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat specified number of the target enemy",
     target: "1x Mad Guardian and 1x Rage Guardian",
     time_limit: "40 min", recommended_level: 147,
+    image: "Images/Hollow_Missions/Abandoned_Area/Abandoned_Fury_of_a_Guardian_God.png",
   },
   {
     id: "AB-21", region: "Abandoned_Area", type: null, part: 2,
@@ -1323,6 +1453,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat targets before they respawn",
     target: "Chaos Origin and Dark Devil",
     time_limit: "40 min", recommended_level: 150,
+    image: "Images/Hollow_Missions/Abandoned_Area/Abandoned_Assault_of_the_Demons.png",
   },
   {
     id: "AB-22", region: "Abandoned_Area", type: null, part: 1,
@@ -1334,6 +1465,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Reach the goal",
     target: "Destination: Source of the lava flow",
     time_limit: "40 min", recommended_level: 135,
+    image: "Images/Hollow_Missions/Abandoned_Area/Abandoned_Raging_River_of_Fire.png",
   },
   {
     id: "AB-23", region: "Abandoned_Area", type: null, part: 2,
@@ -1345,6 +1477,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat specified number of the target enemy",
     target: "1x Inferno Blaze",
     time_limit: "40 min", recommended_level: 142,
+    image: "Images/Hollow_Missions/Abandoned_Area/Abandoned_Molten_Master.png",
   },
   {
     id: "AB-24", region: "Abandoned_Area", type: null, part: 1,
@@ -1356,6 +1489,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat specified number of the target enemy",
     target: "1x Despair Dragon",
     time_limit: "40 min", recommended_level: 190,
+    image: "Images/Hollow_Missions/Abandoned_Area/Abandoned_The_Return_of_Despair.png",
   },
   {
     id: "AB-25", region: "Abandoned_Area", type: null, part: 2,
@@ -1367,6 +1501,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat specified number of the target enemy",
     target: "1x Calamity Dragon",
     time_limit: "40 min", recommended_level: 200,
+    image: "Images/Hollow_Missions/Abandoned_Area/Abandoned_Calamity_Born_from_Despair.png",
   },
   {
     id: "AB-26", region: "Abandoned_Area", type: null, part: 1,
@@ -1378,6 +1513,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat specified no. of target enemy/Reach goal",
     target: "10x Bullish Hornet",
     time_limit: "40 min", recommended_level: 123,
+    image: "Images/Hollow_Missions/Abandoned_Area/Abandoned_Misplaced_Hot-Bloodedness.png",
   },
   {
     id: "AB-27", region: "Abandoned_Area", type: null, part: 2,
@@ -1389,6 +1525,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Reach goal/Remain unseen by specified enemy",
     target: "Destination: Location of the leader",
     time_limit: "10 min", recommended_level: 123,
+    image: "Images/Hollow_Missions/Abandoned_Area/Abandoned_Cool_Calm_and_Run_for_It.png",
   },
   {
     id: "AB-28", region: "Abandoned_Area", type: null, part: 3,
@@ -1400,6 +1537,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat targets before they respawn",
     target: "Protected Bees and Hangdog Hornets",
     time_limit: "40 min", recommended_level: 125,
+    image: "Images/Hollow_Missions/Abandoned_Area/Abandoned_Frozen_River_of_Blood.png",
   },
   {
     id: "AB-29", region: "Abandoned_Area", type: null, part: 1,
@@ -1411,6 +1549,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Reach the goal",
     target: "Destination: Location of seal",
     time_limit: "10 min", recommended_level: 140,
+    image: "Images/Hollow_Missions/Abandoned_Area/Abandoned_Frozen_Primeval_Fiend.png",
   },
   {
     id: "AB-30", region: "Abandoned_Area", type: null, part: 2,
@@ -1422,6 +1561,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat targets before they respawn",
     target: "Shadow Eye and Chaos Spite",
     time_limit: "40 min", recommended_level: 143,
+    image: "Images/Hollow_Missions/Abandoned_Area/Abandoned_A_Demons_Scheme.png",
   },
   {
     id: "AB-31", region: "Abandoned_Area", type: null,
@@ -1433,6 +1573,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat targets before they respawn",
     target: "Goblin Union Archer",
     time_limit: "40 min", recommended_level: 119,
+    image: "Images/Hollow_Missions/Abandoned_Area/Abandoned_A_Lesson_in_Hunting.png",
   },
   {
     id: "AB-32", region: "Abandoned_Area", type: null,
@@ -1444,6 +1585,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat targets before they respawn",
     target: "Spirits of Regret and Knights of Regret",
     time_limit: "40 min", recommended_level: 153,
+    image: "Images/Hollow_Missions/Abandoned_Area/Abandoned_Spirits_of_Overwhelming_Sadness.png",
   },
   {
     id: "AB-33", region: "Abandoned_Area", type: null,
@@ -1455,6 +1597,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat targets before they respawn",
     target: "Mastermind and Spirits of Regret",
     time_limit: "40 min", recommended_level: 158,
+    image: "Images/Hollow_Missions/Abandoned_Area/Abandoned_Hole_to_the_Otherworld.png",
   },
   {
     id: "AB-34", region: "Abandoned_Area", type: null,
@@ -1466,6 +1609,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat specified number of the target enemy",
     target: "10x Frozen Antlions",
     time_limit: "40 min", recommended_level: 111,
+    image: "Images/Hollow_Missions/Abandoned_Area/Abandoned_Conquerors_of_the_Cold.png",
   },
   {
     id: "AB-35", region: "Abandoned_Area", type: null,
@@ -1477,6 +1621,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat specified number of the target enemy",
     target: "1x Perpetual Golemworks",
     time_limit: "40 min", recommended_level: 128,
+    image: "Images/Hollow_Missions/Abandoned_Area/Abandoned_Golem_Upsurge.png",
   },
   {
     id: "AB-36", region: "Abandoned_Area", type: null,
@@ -1488,6 +1633,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat specified number of the target enemy",
     target: "1x Vagabond Maximum",
     time_limit: "40 min", recommended_level: 210,
+    image: "Images/Hollow_Missions/Abandoned_Area/Abandoned_The_Transients_Power_Grab.png",
   },
   {
     id: "AB-37", region: "Abandoned_Area", type: null, part: 1,
@@ -1499,6 +1645,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat specified number of the target enemy",
     target: "1x Calamity Dragon",
     time_limit: "40 min", recommended_level: 190,
+    image: "Images/Hollow_Missions/Abandoned_Area/Abandoned_The_Return_of_Calamity.png",
   },
   {
     id: "AB-38", region: "Abandoned_Area", type: null, part: 2,
@@ -1510,6 +1657,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat specified number of the target enemy",
     target: "1x Despair Dragon",
     time_limit: "40 min", recommended_level: 200,
+    image: "Images/Hollow_Missions/Abandoned_Area/Abandoned_Calamity-Born_Despair.png",
   },
   {
     id: "AB-39", region: "Abandoned_Area", type: null,
@@ -1521,6 +1669,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat specified number of the target enemy",
     target: "4x Brain Eyes",
     time_limit: "40 min", recommended_level: 118,
+    image: "Images/Hollow_Missions/Abandoned_Area/Abandoned_Mind-Controlled_Might.png",
   },
   {
     id: "AB-40", region: "Abandoned_Area", type: null, part: 1,
@@ -1532,6 +1681,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat specified number of the target enemy",
     target: "7x Tainted Knights",
     time_limit: "40 min", recommended_level: 120,
+    image: "Images/Hollow_Missions/Abandoned_Area/Abandoned_The_Knights_Who_Fell_to_the_Darkness.png",
   },
   {
     id: "AB-41", region: "Abandoned_Area", type: null, part: 2,
@@ -1543,6 +1693,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat targets before they respawn",
     target: "Radiant Ghost",
     time_limit: "40 min", recommended_level: 121,
+    image: "Images/Hollow_Missions/Abandoned_Area/Abandoned_A_Shadow_among_Shadows.png",
   },
   {
     id: "AB-42", region: "Abandoned_Area", type: null, part: 3,
@@ -1554,6 +1705,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat specified number of the target enemy",
     target: "13x Hades Demons and 13x Pale Soldiers",
     time_limit: "40 min", recommended_level: 128,
+    image: "Images/Hollow_Missions/Abandoned_Area/Abandoned_The_Truth_Will_Come_Out.png",
   },
   {
     id: "AB-43", region: "Abandoned_Area", type: null, part: 4,
@@ -1565,6 +1717,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat specified number of the target enemy",
     target: "1x Stain Amalgam and 3x Hades Ghosts",
     time_limit: "40 min", recommended_level: 132,
+    image: "Images/Hollow_Missions/Abandoned_Area/Abandoned_Playing_God.png",
   },
   {
     id: "AB-44", region: "Abandoned_Area", type: null, part: 5,
@@ -1576,6 +1729,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat targets before they respawn",
     target: "Dark Demise and Unhinged Fencer",
     time_limit: "40 min", recommended_level: 130,
+    image: "Images/Hollow_Missions/Abandoned_Area/Abandoned_Best_Laid_Plans_o_Monsters_and_Men.png",
   },
   {
     id: "AB-45", region: "Abandoned_Area", type: null, part: 1,
@@ -1587,6 +1741,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Reach goal without being seen by any enemy",
     target: "Destination: Small room to the southwest",
     time_limit: "40 min", recommended_level: 124,
+    image: "Images/Hollow_Missions/Abandoned_Area/Abandoned_Undercover_Investigation.png",
   },
   {
     id: "AB-46", region: "Abandoned_Area", type: null, part: 2,
@@ -1598,6 +1753,7 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat targets before they respawn",
     target: "Three Knights",
     time_limit: "40 min", recommended_level: 125,
+    image: "Images/Hollow_Missions/Abandoned_Area/Abandoned_The_Science_of_Violence.png",
   },
   {
     id: "AB-47", region: "Abandoned_Area", type: null, part: 3,
@@ -1609,6 +1765,33 @@ const HOLLOW_MISSIONS_DATA = [
     goal: "Defeat targets before they respawn",
     target: "Hades Blooms and Hades Devils",
     time_limit: "40 min", recommended_level: 127,
+    image: "Images/Hollow_Missions/Abandoned_Area/Abandoned_Classified_Flowers.png",
+  },
+
+  {
+    id: "AB-48", region: "Abandoned_Area", type: "grand_quest",
+    name: "Infestation Investigation",
+    location: "Erupting Ley Lines",
+    mission_rank: "Rank 1",
+    strategy: "An infestation of explosive bugs has occurred in the lava region, potentially due to the increased volcanic activity. Head to the northwest and investigate the infestation after exterminating a few!",
+    summary: "Exterminate Volcano Bugs and reach the northwest to investigate the infestation.",
+    goal: "Defeat specified no. of target enemy/Reach goal",
+    target: "10x Volcano Bugs",
+    time_limit: null, recommended_level: 103,
+    image: "Images/Hollow_Missions/Abandoned_Area/Abandoned_Infestation_Investigation.png",
+  },
+
+  {
+    id: "AB-49", region: "Abandoned_Area", type: "grand_quest",
+    name: "Stop the Eruptive Ceremony!",
+    location: "Strait of Ashes",
+    mission_rank: "Rank 1",
+    strategy: "Lizardmen have made the lava region their base as they offer up sacrifices to entice the volcano to erupt. Defeat the lizardmen before they finish their ceremony and the volcano erupts!",
+    summary: "Defeat the Horde of Lizardmen before they complete their eruptive ceremony.",
+    goal: "Defeat targets before they respawn",
+    target: "Horde of Lizardmen",
+    time_limit: null, recommended_level: 107,
+    image: "Images/Hollow_Missions/Abandoned_Area/Abandoned_Stop_the_Eruptive_Ceremony!.png",
   },
 
   // ─── Administration Area ──────────────────────────────────────────────────

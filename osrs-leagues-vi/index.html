@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>OSRS Leagues VI - Region Picker</title>
-  <link rel="stylesheet" href="style.css?v=20260326">
+  <link rel="stylesheet" href="style.css?v=20260327b">
 </head>
 <body>
   <div class="page-wrapper">
@@ -12,7 +12,7 @@
     <!-- Header -->
     <header class="site-header">
       <div class="header-inner">
-        <h1 class="site-title">⚔️ OSRS Leagues VI</h1>
+        <h1 class="site-title"><a href="https://oldschool.runescape.wiki/w/Demonic_Pacts_League" target="_blank" rel="noopener">⚔️ OSRS - Demonic Pacts League VI</a></h1>
         <p class="site-subtitle">Region Picker &amp; Task Tracker</p>
       </div>
       <!-- Tab Nav -->
@@ -20,6 +20,7 @@
         <button class="tab-btn active" data-tab="picker" role="tab" aria-selected="true">🗺️ Region Picker</button>
         <button class="tab-btn" data-tab="tasks" role="tab" aria-selected="false">📋 Task List</button>
         <button class="tab-btn" data-tab="relics" role="tab" aria-selected="false">🏆 Relics</button>
+        <button class="tab-btn" data-tab="skills" role="tab" aria-selected="false">⚗️ Skills</button>
       </nav>
     </header>
 
@@ -97,11 +98,54 @@
 
           <!-- Import -->
           <div class="task-import-box">
-            <h3 class="panel-heading">Import Tasks</h3>
-            <p class="import-hint">Paste tasks copied directly from the OSRS wiki task list</p>
-            <textarea id="task-paste" placeholder="Paste wiki tasks here...&#10;&#10;Format: Area&#9;Name&#9;Task&#9;Requirements&#9;Pts&#9;Comp%&#10;&#10;You can paste multiple rows at once."></textarea>
-            <button class="btn-primary" id="btn-import-tasks">Import Pasted Tasks</button>
-            <div class="import-feedback" id="import-feedback"></div>
+            <h3 class="panel-heading panel-collapse-toggle" id="import-box-toggle">
+              Import Tasks <span class="collapse-chevron" id="import-box-chevron">▾</span>
+            </h3>
+
+            <div id="import-box-body">
+              <label class="filter-label">Regions to import</label>
+              <div class="import-region-grid">
+                <label class="import-region-check import-region-all">
+                  <input type="checkbox" id="import-region-all" checked> All
+                </label>
+                <label class="import-region-check"><input type="checkbox" class="import-region-cb" value="General" checked> General</label>
+                <label class="import-region-check"><input type="checkbox" class="import-region-cb" value="Asgarnia" checked> Asgarnia</label>
+                <label class="import-region-check"><input type="checkbox" class="import-region-cb" value="Desert" checked> Desert</label>
+                <label class="import-region-check"><input type="checkbox" class="import-region-cb" value="Fremennik" checked> Fremennik</label>
+                <label class="import-region-check"><input type="checkbox" class="import-region-cb" value="Kandarin" checked> Kandarin</label>
+                <label class="import-region-check"><input type="checkbox" class="import-region-cb" value="Karamja" checked> Karamja</label>
+                <label class="import-region-check"><input type="checkbox" class="import-region-cb" value="Kourend" checked> Kourend</label>
+                <label class="import-region-check"><input type="checkbox" class="import-region-cb" value="Morytania" checked> Morytania</label>
+                <label class="import-region-check"><input type="checkbox" class="import-region-cb" value="Tirannwn" checked> Tirannwn</label>
+                <label class="import-region-check"><input type="checkbox" class="import-region-cb" value="Varlamore" checked> Varlamore</label>
+                <label class="import-region-check"><input type="checkbox" class="import-region-cb" value="Wilderness" checked> Wilderness</label>
+              </div>
+
+              <button class="btn-primary" id="btn-fetch-wiki">Import from Wiki</button>
+              <div class="import-feedback" id="import-feedback"></div>
+
+              <!-- Paste section — collapsed by default -->
+              <button class="paste-toggle-btn" id="paste-section-toggle">▸ Paste manually</button>
+              <div id="paste-section-body" hidden>
+                <p class="import-hint">Select the area below if the wiki area column is missing from your paste.</p>
+                <label class="filter-label">Area (paste fallback)</label>
+                <select class="filter-input" id="import-area">
+                  <option value="General">General</option>
+                  <option value="Asgarnia">Asgarnia</option>
+                  <option value="Desert">Desert</option>
+                  <option value="Fremennik">Fremennik</option>
+                  <option value="Kandarin">Kandarin</option>
+                  <option value="Karamja">Karamja</option>
+                  <option value="Kourend">Kourend</option>
+                  <option value="Morytania">Morytania</option>
+                  <option value="Tirannwn">Tirannwn</option>
+                  <option value="Varlamore">Varlamore</option>
+                  <option value="Wilderness">Wilderness</option>
+                </select>
+                <textarea id="task-paste" placeholder="Paste wiki tasks here...&#10;&#10;Format: Area&#9;Name&#9;Task&#9;Requirements&#9;Pts&#9;Comp%&#10;&#10;You can paste multiple rows at once."></textarea>
+                <button class="btn-secondary" id="btn-import-tasks">Import Pasted Tasks</button>
+              </div>
+            </div>
           </div>
 
           <!-- Filters -->
@@ -131,8 +175,14 @@
             <label class="filter-label">Status</label>
             <select class="filter-input" id="filter-status">
               <option value="">All</option>
+              <option value="pinned">Pinned</option>
               <option value="incomplete">Incomplete</option>
               <option value="complete">Completed</option>
+            </select>
+
+            <label class="filter-label">Skill Requirement</label>
+            <select class="filter-input" id="filter-skill">
+              <option value="">Any Skill</option>
             </select>
 
             <button class="btn-secondary" id="btn-clear-filters">Clear Filters</button>
@@ -148,8 +198,11 @@
             <div class="task-sort-controls">
               <span>Sort:</span>
               <button class="sort-btn active" data-sort="default">Default</button>
+              <button class="sort-btn" data-sort="pinned">📌 Pinned first</button>
               <button class="sort-btn" data-sort="pts-desc">Pts ↓</button>
               <button class="sort-btn" data-sort="pts-asc">Pts ↑</button>
+              <button class="sort-btn" data-sort="comp-desc">Comp% ↓</button>
+              <button class="sort-btn" data-sort="comp-asc">Comp% ↑</button>
               <button class="sort-btn" data-sort="area">Area</button>
             </div>
           </div>
@@ -163,14 +216,15 @@
                 <th class="col-task">Task</th>
                 <th class="col-reqs">Requirements</th>
                 <th class="col-pts">Pts</th>
+                <th class="col-comp">Comp%</th>
               </tr>
             </thead>
             <tbody id="task-tbody">
               <tr class="task-empty-row">
-                <td colspan="6">
+                <td colspan="7">
                   <div class="task-empty">
                     <p>No tasks yet. Paste wiki tasks in the import box to get started.</p>
-                    <p class="task-empty-hint">Go to <a href="https://oldschool.runescape.wiki/w/Raging_Echoes_League/Tasks" target="_blank" rel="noopener">wiki tasks</a>, select & copy the table rows, then paste here.</p>
+                    <p class="task-empty-hint">Go to <a href="https://oldschool.runescape.wiki/w/Demonic_Pacts_League/Tasks" target="_blank" rel="noopener">wiki tasks</a>, select & copy the table rows, then paste here.</p>
                   </div>
                 </td>
               </tr>
@@ -195,6 +249,28 @@
       </div>
     </div>
 
+    <!-- ═══════════════════════════════════════
+         TAB: SKILLS
+    ═══════════════════════════════════════ -->
+    <div id="tab-skills" class="tab-content" hidden>
+      <div class="skills-page">
+
+        <!-- Sidebar: skill list -->
+        <aside class="skills-sidebar">
+          <div class="panel-heading">All Skills</div>
+          <div class="skill-nav-list" id="skill-nav-list"></div>
+        </aside>
+
+        <!-- Skill detail -->
+        <section class="skill-detail-panel" id="skill-detail-panel">
+          <div class="detail-placeholder">
+            <p>← Select a skill to view training methods by region</p>
+          </div>
+        </section>
+
+      </div>
+    </div>
+
   </div><!-- .page-wrapper -->
 
   <!-- Skill detail modal -->
@@ -202,6 +278,38 @@
     <div class="modal" id="modal">
       <button class="modal-close" id="modal-close" aria-label="Close">✕</button>
       <div id="modal-content"></div>
+    </div>
+  </div>
+
+  <!-- Task right-click context menu -->
+  <div id="task-context-menu" class="task-context-menu" hidden>
+    <div class="ctx-close-row"><button class="ctx-close-btn" id="ctx-close">✕</button></div>
+    <div class="ctx-divider"></div>
+    <button class="ctx-item" id="ctx-pin">📌 Pin task</button>
+    <button class="ctx-item" id="ctx-toggle">Mark complete</button>
+    <button class="ctx-item" id="ctx-edit">Edit</button>
+    <button class="ctx-item ctx-danger" id="ctx-remove">Remove</button>
+  </div>
+
+  <!-- Task edit modal -->
+  <div id="task-edit-overlay" class="task-edit-overlay" hidden>
+    <div class="task-edit-modal">
+      <div class="task-edit-header">
+        <span>Edit Task</span>
+        <button class="task-edit-close" id="task-edit-close">✕</button>
+      </div>
+      <label class="filter-label">Name</label>
+      <input type="text" class="filter-input" id="edit-name">
+      <label class="filter-label">Task Description</label>
+      <input type="text" class="filter-input" id="edit-task-desc">
+      <label class="filter-label">Requirements</label>
+      <input type="text" class="filter-input" id="edit-reqs">
+      <label class="filter-label">Points</label>
+      <input type="number" class="filter-input" id="edit-pts" min="0">
+      <div class="task-edit-footer">
+        <button class="btn-primary" id="task-edit-save">Save</button>
+        <button class="btn-secondary" id="task-edit-cancel">Cancel</button>
+      </div>
     </div>
   </div>
 
@@ -214,7 +322,7 @@
     </div>
   </div>
 
-  <script src="data.js?v=20260326"></script>
-  <script src="app.js?v=20260326"></script>
+  <script src="data.js?v=20260330c"></script>
+  <script src="app.js?v=20260328f"></script>
 </body>
 </html>

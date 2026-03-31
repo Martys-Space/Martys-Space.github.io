@@ -4,6 +4,8 @@
 
 const MAX_CHOICES = 3;
 const LS_KEY = 'osrsl6_v1';
+// ↓ Swap this to 'Demonic_Pacts_League/Tasks' when League VI tasks go live
+const WIKI_TASKS_PAGE = 'Raging_Echoes_League/Tasks';
 
 // ─── State ────────────────────────────────────
 const state = {
@@ -12,10 +14,20 @@ const state = {
   selectedRegion:  null,        // id of region showing in single view
   chosenRegions:   new Set(),   // user's picked region ids
   tasks:           [],          // { id, area, name, task, reqs, pts, comp, done }
-  taskFilter: { search: '', area: '', pts: '', status: '' },
+  taskFilter: { search: '', area: '', pts: '', status: '', skill: '' },
   taskSort: 'default',
   selectedRelics:  {},          // { [tier]: relicId }
+  selectedSkill:   null,        // skill name currently shown in Skills tab
+  colWidths:       {},          // { [cls]: px } for task table columns
+  importCollapsed: false,       // whether the Import Tasks panel is collapsed
 };
+
+function applyImportCollapsed() {
+  const body    = document.getElementById('import-box-body');
+  const chevron = document.getElementById('import-box-chevron');
+  body.hidden   = state.importCollapsed;
+  chevron.textContent = state.importCollapsed ? '▸' : '▾';
+}
 
 // ─── Init ─────────────────────────────────────
 function init() {
@@ -41,12 +53,64 @@ function init() {
 
   // Task imports + filters
   document.getElementById('btn-import-tasks').addEventListener('click', importTasks);
+  document.getElementById('btn-fetch-wiki').addEventListener('click', fetchTasksFromWiki);
+
+  // Import box collapse (persisted)
+  applyImportCollapsed();
+  document.getElementById('import-box-toggle').addEventListener('click', () => {
+    state.importCollapsed = !state.importCollapsed;
+    applyImportCollapsed();
+    saveToStorage();
+  });
+
+  // Paste section collapse (not persisted — always starts collapsed)
+  document.getElementById('paste-section-toggle').addEventListener('click', () => {
+    const body    = document.getElementById('paste-section-body');
+    const btn     = document.getElementById('paste-section-toggle');
+    const open    = body.hidden;
+    body.hidden   = !open;
+    btn.textContent = (open ? '▾' : '▸') + ' Paste manually';
+  });
+
+  // "All" checkbox toggles every region checkbox
+  const allCb = document.getElementById('import-region-all');
+  allCb.addEventListener('change', () => {
+    document.querySelectorAll('.import-region-cb').forEach(cb => { cb.checked = allCb.checked; });
+  });
+  // Keep "All" in sync when individual boxes change
+  document.querySelectorAll('.import-region-cb').forEach(cb => {
+    cb.addEventListener('change', () => {
+      const all  = document.querySelectorAll('.import-region-cb');
+      const checked = document.querySelectorAll('.import-region-cb:checked');
+      allCb.checked = all.length === checked.length;
+      allCb.indeterminate = checked.length > 0 && checked.length < all.length;
+    });
+  });
   document.getElementById('btn-clear-filters').addEventListener('click', clearFilters);
   document.getElementById('btn-clear-tasks').addEventListener('click', clearAllTasks);
   document.getElementById('filter-search').addEventListener('input', applyFilters);
   document.getElementById('filter-area').addEventListener('change', applyFilters);
   document.getElementById('filter-pts').addEventListener('change', applyFilters);
   document.getElementById('filter-status').addEventListener('change', applyFilters);
+  document.getElementById('filter-skill').addEventListener('change', applyFilters);
+  populateSkillFilter();
+
+  // Context menu — stop propagation inside menu so document click doesn't fire on item clicks
+  const ctxMenu = document.getElementById('task-context-menu');
+  ctxMenu.addEventListener('click', e => e.stopPropagation());
+  document.getElementById('ctx-close').addEventListener('click', e => { e.stopPropagation(); hideContextMenu(); });
+  document.getElementById('ctx-pin').addEventListener('click', () => { if (contextTaskId) togglePin(contextTaskId); hideContextMenu(); });
+  document.getElementById('ctx-toggle').addEventListener('click', () => { if (contextTaskId) toggleTask(contextTaskId); hideContextMenu(); });
+  document.getElementById('ctx-edit').addEventListener('click', () => { if (contextTaskId) openEditModal(contextTaskId); hideContextMenu(); });
+  document.getElementById('ctx-remove').addEventListener('click', () => { if (contextTaskId) removeTask(contextTaskId); hideContextMenu(); });
+  document.addEventListener('click', hideContextMenu);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') hideContextMenu(); });
+
+  // Edit modal
+  document.getElementById('task-edit-close').addEventListener('click', closeEditModal);
+  document.getElementById('task-edit-cancel').addEventListener('click', closeEditModal);
+  document.getElementById('task-edit-save').addEventListener('click', saveEditTask);
+  document.getElementById('task-edit-overlay').addEventListener('click', e => { if (e.target === document.getElementById('task-edit-overlay')) closeEditModal(); });
 
   // Sort buttons
   document.querySelectorAll('.sort-btn').forEach(btn => {
@@ -62,6 +126,8 @@ function init() {
   document.getElementById('relic-lightbox-close').addEventListener('click', closeRelicLightbox);
   document.getElementById('relic-lightbox-backdrop').addEventListener('click', closeRelicLightbox);
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeRelicLightbox(); });
+
+  initColumnResize();
 
   // Auto-open Varlamore
   openRegion('varlamore');
@@ -93,6 +159,7 @@ function switchTab(tab) {
   });
   if (tab === 'tasks') renderTaskStats();
   if (tab === 'relics') renderRelics();
+  if (tab === 'skills') renderSkillsTab();
 }
 
 // ─── View mode (single / overview) ───────────
@@ -200,11 +267,12 @@ function openRegion(id) {
   const panel = document.getElementById('detail-panel');
   panel.innerHTML = buildDetailHTML(region);
 
-  // Skill click → modal
-  panel.querySelectorAll('.skill-card').forEach(card => {
-    card.addEventListener('click', () => {
-      const skill = region.skills.find(s => s.skill === card.dataset.skill);
-      if (skill) openSkillModal(skill);
+  // "All regions →" button in each skill block → jump to Skills tab
+  panel.querySelectorAll('.skr-view-all').forEach(btn => {
+    btn.addEventListener('click', e => {
+      e.stopPropagation();
+      switchTab('skills');
+      openSkill(btn.dataset.skill);
     });
   });
 }
@@ -255,7 +323,7 @@ function buildDetailHTML(region) {
     sections.push(`
       <div class="detail-section">
         <div class="detail-section-title">⚗️ Skills</div>
-        <div class="skills-grid">${region.skills.map(skillCardHTML).join('')}</div>
+        <div class="skills-expanded">${region.skills.map(buildRegionSkillBlock).join('')}</div>
       </div>
     `);
   }
@@ -401,18 +469,48 @@ function echoCardHTML(item) {
   `;
 }
 
-function skillCardHTML(skill) {
-  const icon = SKILL_ICONS[skill.skill] || '❓';
-  const hint = skill.summary.split('—')[0].trim();
+// ─── Shared skill block builders ──────────────
+
+// Used in Region Picker detail: skill header (name+rating) + methods + notes
+function buildRegionSkillBlock(skillEntry) {
+  const icon = SKILL_ICONS[skillEntry.skill] || '❓';
+  const methodsHTML = skillEntry.methods?.length
+    ? `<ul class="skr-methods">${skillEntry.methods.map(m => `<li>${m}</li>`).join('')}</ul>` : '';
+  const notesHTML = skillEntry.notes?.length
+    ? `<ul class="skr-notes">${skillEntry.notes.map(n => `<li>${n}</li>`).join('')}</ul>` : '';
   return `
-    <div class="skill-card rating-${skill.rating}" data-skill="${skill.skill}" title="Click for training methods">
-      <div class="skill-card-inner">
-        <span class="skill-icon">${icon}</span>
-        <span class="skill-name">${skill.skill}</span>
+    <div class="skill-region-block">
+      <div class="skr-header">
+        <span class="skr-icon">${icon}</span>
+        <span class="skr-name">${skillEntry.skill}</span>
+        <span class="skr-rating-pill rating-${skillEntry.rating}">${skillEntry.rating}</span>
+        <button class="skr-view-all" data-skill="${skillEntry.skill}">All regions ↗</button>
       </div>
-      <div class="skill-rating-bar"></div>
-      <div class="skill-rating-label">${skill.rating}</div>
-      <div class="skill-hint">${hint}</div>
+      <div class="skr-summary">${skillEntry.summary}</div>
+      ${methodsHTML}
+      ${notesHTML}
+    </div>
+  `;
+}
+
+// Used in Skills tab: region header (icon+name+type+rating) + methods + notes
+function buildSkillRegionBlock(skillEntry, region) {
+  const methodsHTML = skillEntry.methods?.length
+    ? `<ul class="skr-methods">${skillEntry.methods.map(m => `<li>${m}</li>`).join('')}</ul>` : '';
+  const notesHTML = skillEntry.notes?.length
+    ? `<ul class="skr-notes">${skillEntry.notes.map(n => `<li>${n}</li>`).join('')}</ul>` : '';
+  const typeLabel = { starter: '★ Starter', free: '✦ Free', choice: '◆ Choice' }[region.type] || region.type;
+  return `
+    <div class="skill-region-block skr-region-variant">
+      <div class="skr-header">
+        <span class="skr-icon">${region.icon}</span>
+        <span class="skr-name">${region.name}</span>
+        <span class="skr-type-tag type-${region.type}">${typeLabel}</span>
+        <span class="skr-rating-pill rating-${skillEntry.rating}">${skillEntry.rating}</span>
+      </div>
+      <div class="skr-summary">${skillEntry.summary}</div>
+      ${methodsHTML}
+      ${notesHTML}
     </div>
   `;
 }
@@ -426,33 +524,61 @@ function unlockCardHTML(unlock) {
   `;
 }
 
-// ─── Skill Modal ──────────────────────────────
-function openSkillModal(skill) {
-  const icon = SKILL_ICONS[skill.skill] || '❓';
-  const ratingColor = {
-    excellent: 'var(--rating-excellent)',
-    good:      'var(--rating-good)',
-    decent:    'var(--rating-decent)',
-    poor:      'var(--rating-poor)',
-  }[skill.rating] || '#fff';
+// ─── Skills Tab ───────────────────────────────
+function renderSkillsTab() {
+  const navEl = document.getElementById('skill-nav-list');
+  navEl.innerHTML = ALL_SKILLS.map(skillName => {
+    const icon  = SKILL_ICONS[skillName] || '❓';
+    const isActive = state.selectedSkill === skillName;
+    return `
+      <button class="skill-nav-btn ${isActive ? 'active' : ''}" data-skill="${skillName}">
+        <span class="skill-nav-icon">${icon}</span>
+        <span class="skill-nav-label">${skillName}</span>
+      </button>`;
+  }).join('');
 
-  document.getElementById('modal-content').innerHTML = `
-    <div class="modal-title">${icon} ${skill.skill}</div>
-    <div class="modal-rating" style="color:${ratingColor}">
-      ${skill.rating.toUpperCase()} — ${skill.summary}
+  navEl.querySelectorAll('.skill-nav-btn').forEach(btn => {
+    btn.addEventListener('click', () => openSkill(btn.dataset.skill));
+  });
+
+  if (state.selectedSkill) {
+    renderSkillDetail();
+  } else {
+    document.getElementById('skill-detail-panel').innerHTML =
+      `<div class="detail-placeholder"><p>← Select a skill to view training methods by region</p></div>`;
+  }
+}
+
+function openSkill(skillName) {
+  state.selectedSkill = skillName;
+  // Update active nav state if the skill nav is visible
+  document.querySelectorAll('.skill-nav-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.skill === skillName);
+  });
+  renderSkillDetail();
+}
+
+function renderSkillDetail() {
+  const skillName = state.selectedSkill;
+  if (!skillName) return;
+  const icon     = SKILL_ICONS[skillName] || '❓';
+  const wikiUrl  = `${WIKI}${encodeURIComponent(skillName)}`;
+  const regions  = REGIONS.filter(r => r.skills?.some(s => s.skill === skillName));
+
+  const blocksHTML = regions.length
+    ? regions.map(r => buildSkillRegionBlock(r.skills.find(s => s.skill === skillName), r)).join('')
+    : `<p class="skr-empty">No region-specific training data for this skill yet.</p>`;
+
+  document.getElementById('skill-detail-panel').innerHTML = `
+    <div class="skill-detail-header">
+      <span class="skill-detail-icon">${icon}</span>
+      <span class="skill-detail-title">${skillName}</span>
+      <a class="skill-wiki-link" href="${wikiUrl}" target="_blank" rel="noopener">
+        Wiki page ↗
+      </a>
     </div>
-    ${skill.methods?.length ? `
-    <div class="modal-section">
-      <h4>Training Methods</h4>
-      <ul>${skill.methods.map(m => `<li>${m}</li>`).join('')}</ul>
-    </div>` : ''}
-    ${skill.notes?.length ? `
-    <div class="modal-section">
-      <h4>Notes</h4>
-      <ul>${skill.notes.map(n => `<li>${n}</li>`).join('')}</ul>
-    </div>` : ''}
+    <div class="skill-region-list">${blocksHTML}</div>
   `;
-  document.getElementById('modal-overlay').removeAttribute('hidden');
 }
 
 function closeModal() {
@@ -522,16 +648,11 @@ function renderOverview() {
     ${notesHTML}
   `;
 
-  // Skill hover tooltips
+  // Skill cards → jump to Skills tab
   panel.querySelectorAll('.ov-skill-card[data-skill]').forEach(card => {
     card.addEventListener('click', () => {
-      const skillId = card.dataset.skill;
-      const regionId = card.dataset.region;
-      const region = REGIONS.find(r => r.id === regionId);
-      if (region) {
-        const skill = region.skills.find(s => s.skill === skillId);
-        if (skill) openSkillModal(skill);
-      }
+      switchTab('skills');
+      openSkill(card.dataset.skill);
     });
   });
 }
@@ -731,6 +852,8 @@ function loadFromStorage() {
       } else {
         state.tasks = parsed.tasks || [];
         state.selectedRelics = parsed.selectedRelics || {};
+        state.colWidths = parsed.colWidths || {};
+        state.importCollapsed = parsed.importCollapsed ?? false;
       }
     }
   } catch (e) {
@@ -746,6 +869,8 @@ function saveToStorage() {
     localStorage.setItem(LS_KEY, JSON.stringify({
       tasks: state.tasks,
       selectedRelics: state.selectedRelics,
+      colWidths: state.colWidths,
+      importCollapsed: state.importCollapsed,
     }));
   } catch (e) {}
 }
@@ -808,7 +933,7 @@ function renderRelics() {
           <div class="relic-card-header">
             <img class="relic-card-icon" src="${relic.icon}" alt="${relic.name}">
             <div class="relic-card-header-text">
-              <div class="relic-card-name">${relic.name}</div>
+              <div class="relic-card-name">${relic.wikiUrl ? `<a class="boss-wiki-link" href="${relic.wikiUrl}" target="_blank" rel="noopener">${relic.name} <span class="wiki-icon">↗</span></a>` : relic.name}</div>
               <button class="relic-view-full-btn" data-src="${relic.image}" data-alt="${relic.name}">View full image ↗</button>
             </div>
           </div>
@@ -869,6 +994,168 @@ function renderRelics() {
   });
 }
 
+function populateSkillFilter() {
+  const sel = document.getElementById('filter-skill');
+  ALL_SKILLS.forEach(s => {
+    const opt = document.createElement('option');
+    opt.value = s;
+    opt.textContent = s;
+    sel.appendChild(opt);
+  });
+}
+
+// ─── Context menu ─────────────────────────
+let contextTaskId = null;
+
+function showContextMenu(e, taskId) {
+  e.preventDefault();
+  contextTaskId = taskId;
+  const menu = document.getElementById('task-context-menu');
+  const task = state.tasks.find(t => String(t.id) === String(taskId));
+  document.getElementById('ctx-pin').textContent    = task?.pinned ? '📌 Unpin task' : '📌 Pin task';
+  document.getElementById('ctx-toggle').textContent = task?.done   ? 'Mark incomplete' : 'Mark complete';
+  menu.style.left = Math.min(e.clientX, window.innerWidth - 175) + 'px';
+  menu.style.top  = Math.min(e.clientY, window.innerHeight - 130) + 'px';
+  menu.removeAttribute('hidden');
+}
+
+function hideContextMenu() {
+  document.getElementById('task-context-menu').setAttribute('hidden', '');
+  contextTaskId = null;
+}
+
+function removeTask(id) {
+  state.tasks = state.tasks.filter(t => String(t.id) !== String(id));
+  saveToStorage();
+  populateAreaFilter();
+  renderTaskTable();
+  renderTaskStats();
+}
+
+function togglePin(id) {
+  const task = state.tasks.find(t => String(t.id) === String(id));
+  if (task) {
+    task.pinned = !task.pinned;
+    saveToStorage();
+    renderTaskTable();
+  }
+}
+
+// ─── Edit modal ───────────────────────────
+let editingTaskId = null;
+
+function openEditModal(id) {
+  const task = state.tasks.find(t => String(t.id) === String(id));
+  if (!task) return;
+  editingTaskId = id;
+  document.getElementById('edit-name').value      = task.name;
+  document.getElementById('edit-task-desc').value = task.task;
+  document.getElementById('edit-reqs').value      = task.reqs;
+  document.getElementById('edit-pts').value       = task.pts;
+  document.getElementById('task-edit-overlay').removeAttribute('hidden');
+}
+
+function closeEditModal() {
+  document.getElementById('task-edit-overlay').setAttribute('hidden', '');
+  editingTaskId = null;
+}
+
+function saveEditTask() {
+  const task = state.tasks.find(t => String(t.id) === String(editingTaskId));
+  if (!task) { closeEditModal(); return; }
+  task.name = document.getElementById('edit-name').value.trim() || task.name;
+  task.task = document.getElementById('edit-task-desc').value.trim();
+  task.reqs = document.getElementById('edit-reqs').value.trim();
+  task.pts  = parseInt(document.getElementById('edit-pts').value, 10) || 0;
+  saveToStorage();
+  renderTaskTable();
+  renderTaskStats();
+  closeEditModal();
+}
+
+// Fetch task table directly from the OSRS wiki API
+async function fetchTasksFromWiki() {
+  const btn = document.getElementById('btn-fetch-wiki');
+  const feedback = document.getElementById('import-feedback');
+
+  btn.disabled = true;
+  btn.textContent = 'Fetching…';
+  feedback.textContent = '';
+  feedback.className = 'import-feedback';
+
+  try {
+    const apiUrl = `https://oldschool.runescape.wiki/api.php?action=parse&page=${encodeURIComponent(WIKI_TASKS_PAGE)}&prop=text&format=json&origin=*`;
+    const res = await fetch(apiUrl);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+    const html = data?.parse?.text?.['*'];
+    if (!html) throw new Error('No content returned from wiki');
+
+    const doc = new DOMParser().parseFromString(html, 'text/html');
+    const tables = doc.querySelectorAll('table.wikitable');
+    if (!tables.length) throw new Error('No task tables found on wiki page');
+
+    // Collect selected regions (normalised)
+    const selectedRegions = new Set(
+      [...document.querySelectorAll('.import-region-cb:checked')].map(cb => cb.value)
+    );
+
+    let added = 0, updated = 0, skipped = 0;
+
+    tables.forEach(table => {
+      table.querySelectorAll('tr[data-lf-tier], tr[data-taskid]').forEach(row => {
+        const cells = row.querySelectorAll('td');
+        if (cells.length < 5) return;
+
+        // Area: td[0] has data-sort-value="Asgarnia" — most reliable source
+        const rawArea = cells[0].getAttribute('data-sort-value') || cells[0].textContent.trim();
+
+        const name  = cells[1].textContent.trim();
+        const task  = cells[2].textContent.trim();
+        const reqs  = cells[3].textContent.trim().replace(/\s+/g, ' ');
+        // Points: prefer data-lf-points on the row, fall back to cell text
+        const pts   = parseInt(row.getAttribute('data-lf-points') || (cells[4].textContent.trim()).replace(/\D/g, ''), 10) || 0;
+        const comp  = cells[5] ? cells[5].textContent.trim() : '';
+
+        if (!name) { skipped++; return; }
+
+        const area = normaliseArea(rawArea || 'General');
+
+        // Skip if this region isn't selected
+        if (selectedRegions.size && !selectedRegions.has(area)) { skipped++; return; }
+
+        const existing = state.tasks.find(t => t.name === name && t.area === area);
+        if (existing) {
+          existing.comp = comp; // update completion %
+          updated++;
+          return;
+        }
+
+        state.tasks.push({ id: Date.now() + Math.random(), area, name, task, reqs: reqs || 'N/A', pts, comp, done: false });
+        added++;
+      });
+    });
+
+    saveToStorage();
+    populateAreaFilter();
+    renderTaskTable();
+    renderTaskStats();
+
+    const parts = [];
+    if (added)   parts.push(`${added} imported`);
+    if (updated) parts.push(`${updated} updated`);
+    if (skipped) parts.push(`${skipped} skipped`);
+    feedback.textContent = parts.join(', ') + '.';
+    feedback.className = `import-feedback ${added > 0 || updated > 0 ? 'success' : 'error'}`;
+  } catch (err) {
+    feedback.textContent = `Could not fetch from wiki: ${err.message}`;
+    feedback.className = 'import-feedback error';
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Import from Wiki';
+  }
+}
+
 // Parse pasted wiki task text (tab-separated rows)
 function importTasks() {
   const raw = document.getElementById('task-paste').value.trim();
@@ -880,12 +1167,27 @@ function importTasks() {
     return;
   }
 
-  const lines = raw.split('\n').filter(l => l.trim());
-  let added = 0;
-  let skipped = 0;
+  // Pre-merge continuation lines: wiki cells can contain newlines, which splits
+  // one row across multiple lines. A continuation line has < 3 tab characters.
+  const rawLines = raw.split('\n').filter(l => l.trim());
+  const lines = [];
+  for (const line of rawLines) {
+    const tabCount = (line.match(/\t/g) || []).length;
+    if (tabCount < 3 && lines.length > 0) {
+      lines[lines.length - 1] += ' ' + line.trim();
+    } else {
+      lines.push(line);
+    }
+  }
+
+  let added = 0, updated = 0, skipped = 0;
 
   lines.forEach(line => {
     const cols = line.split('\t').map(c => c.trim());
+
+    // Skip the wiki table header row: Area | Name | Task | Requirements | Pts | Comp%
+    const colsLower = cols.map(c => c.toLowerCase());
+    if (colsLower[0] === 'area' && colsLower.includes('requirements') && colsLower.includes('pts')) { skipped++; return; }
 
     // Wiki format: Area | Name | Task | Requirements | Pts | Comp%
     // Some rows may be missing the Area column (general tasks start with empty)
@@ -903,8 +1205,8 @@ function importTasks() {
     if (isArea) {
       [area, name, task, reqs, pts, comp] = cols;
     } else {
-      // No area column — treat as general
-      area = 'General';
+      // No area column (wiki area is an image, copies as nothing) — use selected default area
+      area = document.getElementById('import-area').value || 'General';
       [name, task, reqs, pts, comp] = cols;
     }
 
@@ -916,9 +1218,13 @@ function importTasks() {
     // Normalise area name
     const cleanArea = normaliseArea(area || 'General');
 
-    // Check if duplicate (same name + area)
-    const isDupe = state.tasks.some(t => t.name === name && t.area === cleanArea);
-    if (isDupe) { skipped++; return; }
+    // Update comp% if task already exists, otherwise add new
+    const existing = state.tasks.find(t => t.name === name && t.area === cleanArea);
+    if (existing) {
+      existing.comp = comp || '';
+      updated++;
+      return;
+    }
 
     state.tasks.push({
       id:   Date.now() + Math.random(),
@@ -939,8 +1245,12 @@ function importTasks() {
   renderTaskStats();
 
   document.getElementById('task-paste').value = '';
-  feedback.textContent = `Imported ${added} task${added !== 1 ? 's' : ''}${skipped ? `, skipped ${skipped}` : ''}.`;
-  feedback.className = `import-feedback ${added > 0 ? 'success' : 'error'}`;
+  const parts = [];
+  if (added)   parts.push(`${added} imported`);
+  if (updated) parts.push(`${updated} updated`);
+  if (skipped) parts.push(`${skipped} skipped`);
+  feedback.textContent = parts.join(', ') + '.';
+  feedback.className = `import-feedback ${added > 0 || updated > 0 ? 'success' : 'error'}`;
 }
 
 function normaliseArea(raw) {
@@ -973,6 +1283,7 @@ function applyFilters() {
     area:   document.getElementById('filter-area').value,
     pts:    document.getElementById('filter-pts').value,
     status: document.getElementById('filter-status').value,
+    skill:  document.getElementById('filter-skill').value,
   };
   renderTaskTable();
 }
@@ -982,7 +1293,8 @@ function clearFilters() {
   document.getElementById('filter-area').value = '';
   document.getElementById('filter-pts').value = '';
   document.getElementById('filter-status').value = '';
-  state.taskFilter = { search: '', area: '', pts: '', status: '' };
+  document.getElementById('filter-skill').value = '';
+  state.taskFilter = { search: '', area: '', pts: '', status: '', skill: '' };
   renderTaskTable();
 }
 
@@ -996,13 +1308,15 @@ function clearAllTasks() {
 }
 
 function getFilteredTasks() {
-  const { search, area, pts, status } = state.taskFilter;
+  const { search, area, pts, status, skill } = state.taskFilter;
 
   let tasks = state.tasks.filter(t => {
     if (area   && t.area !== area) return false;
     if (pts    && t.pts < parseInt(pts, 10)) return false;
-    if (status === 'complete'   && !t.done) return false;
-    if (status === 'incomplete' && t.done)  return false;
+    if (status === 'complete'   && !t.done)    return false;
+    if (status === 'incomplete' && t.done)     return false;
+    if (status === 'pinned'     && !t.pinned)  return false;
+    if (skill  && !t.reqs.toLowerCase().includes(skill.toLowerCase())) return false;
     if (search) {
       const haystack = `${t.name} ${t.task} ${t.area} ${t.reqs}`.toLowerCase();
       if (!haystack.includes(search)) return false;
@@ -1011,9 +1325,12 @@ function getFilteredTasks() {
   });
 
   switch (state.taskSort) {
-    case 'pts-desc': tasks.sort((a, b) => b.pts - a.pts); break;
-    case 'pts-asc':  tasks.sort((a, b) => a.pts - b.pts); break;
-    case 'area':     tasks.sort((a, b) => a.area.localeCompare(b.area)); break;
+    case 'pts-desc':  tasks.sort((a, b) => b.pts - a.pts); break;
+    case 'pts-asc':   tasks.sort((a, b) => a.pts - b.pts); break;
+    case 'comp-desc': tasks.sort((a, b) => parseFloat(b.comp) - parseFloat(a.comp)); break;
+    case 'comp-asc':  tasks.sort((a, b) => parseFloat(a.comp) - parseFloat(b.comp)); break;
+    case 'area':      tasks.sort((a, b) => a.area.localeCompare(b.area)); break;
+    case 'pinned':    tasks.sort((a, b) => (b.pinned ? 1 : 0) - (a.pinned ? 1 : 0)); break;
     // default: insertion order
   }
 
@@ -1028,7 +1345,7 @@ function renderTaskTable() {
   if (!state.tasks.length) {
     tbody.innerHTML = `
       <tr class="task-empty-row">
-        <td colspan="6">
+        <td colspan="7">
           <div class="task-empty">
             <p>No tasks yet. Paste wiki tasks in the import box to get started.</p>
             <p class="task-empty-hint">Go to the <a href="https://oldschool.runescape.wiki/w/Raging_Echoes_League/Tasks" target="_blank" rel="noopener">wiki tasks page</a>, copy table rows, then paste here.</p>
@@ -1040,7 +1357,7 @@ function renderTaskTable() {
   }
 
   if (!tasks.length) {
-    tbody.innerHTML = `<tr class="task-empty-row"><td colspan="6"><div class="task-empty"><p>No tasks match your filters.</p></div></td></tr>`;
+    tbody.innerHTML = `<tr class="task-empty-row"><td colspan="7"><div class="task-empty"><p>No tasks match your filters.</p></div></td></tr>`;
     info.textContent = `0 of ${state.tasks.length} tasks`;
     return;
   }
@@ -1050,8 +1367,9 @@ function renderTaskTable() {
   tbody.innerHTML = tasks.map(task => {
     const areaClass = task.area === 'General' ? 'area-general' : '';
     return `
-      <tr class="${task.done ? 'completed' : ''}" data-task-id="${task.id}">
+      <tr class="${task.done ? 'completed' : ''}${task.pinned ? ' pinned' : ''}" data-task-id="${task.id}">
         <td class="col-check">
+          ${task.pinned ? '<span class="pin-indicator" title="Pinned">📌</span>' : ''}
           <div class="task-check-btn ${task.done ? 'done' : ''}" data-check-id="${task.id}" title="Mark ${task.done ? 'incomplete' : 'complete'}">
             ${task.done ? '✓' : ''}
           </div>
@@ -1061,13 +1379,15 @@ function renderTaskTable() {
         <td class="col-task">${escapeHTML(task.task)}</td>
         <td class="col-reqs">${escapeHTML(task.reqs)}</td>
         <td class="col-pts"><span class="pts-badge">${task.pts}</span></td>
+        <td class="col-comp">${task.comp ? escapeHTML(task.comp) : ''}</td>
       </tr>
     `;
   }).join('');
 
-  // Attach check listeners
-  tbody.querySelectorAll('[data-check-id]').forEach(btn => {
-    btn.addEventListener('click', () => toggleTask(btn.dataset.checkId));
+  // Left-click row to toggle complete; right-click for context menu
+  tbody.querySelectorAll('tr[data-task-id]').forEach(row => {
+    row.addEventListener('click', () => toggleTask(row.dataset.taskId));
+    row.addEventListener('contextmenu', e => showContextMenu(e, row.dataset.taskId));
   });
 }
 
@@ -1091,6 +1411,106 @@ function renderTaskStats() {
   document.getElementById('stat-completed').textContent     = completed;
   document.getElementById('stat-points-earned').textContent = pointsEarned.toLocaleString();
   document.getElementById('stat-points-total').textContent  = pointsTotal.toLocaleString();
+}
+
+// ─── Column Resizing ──────────────────────────
+// flex: true = column auto-fills remaining width (no explicit col width, no handle)
+const COL_CONFIG = [
+  { cls: 'col-check', defaultW: 32,  resizable: false, flex: false },
+  { cls: 'col-area',  defaultW: 110, resizable: true,  flex: false },
+  { cls: 'col-name',  defaultW: 150, resizable: true,  flex: false },
+  { cls: 'col-task',  defaultW: null, resizable: false, flex: true  },
+  { cls: 'col-reqs',  defaultW: 200, resizable: true,  flex: false },
+  { cls: 'col-pts',   defaultW: 58,  resizable: false, flex: false },
+  { cls: 'col-comp',  defaultW: 62,  resizable: false, flex: false },
+];
+
+function loadColWidths() {
+  return COL_CONFIG.map(c => ({
+    ...c,
+    w: c.flex ? null : (state.colWidths[c.cls] ?? c.defaultW),
+  }));
+}
+
+function saveColWidths(cols) {
+  cols.forEach(c => { if (!c.flex) state.colWidths[c.cls] = c.w; });
+  saveToStorage();
+}
+
+function initColumnResize() {
+  const table = document.getElementById('task-table');
+  if (!table || table.dataset.resizeInit) return;
+  table.dataset.resizeInit = '1';
+
+  const cols = loadColWidths();
+
+  // Inject <colgroup> — fixed-width columns get explicit px; flex column gets no width
+  const cg = document.createElement('colgroup');
+  cols.forEach(c => {
+    const col = document.createElement('col');
+    col.className = 'tcol-' + c.cls;
+    if (!c.flex) col.style.width = c.w + 'px';
+    cg.appendChild(col);
+  });
+  table.insertBefore(cg, table.firstChild);
+  table.style.tableLayout = 'fixed';
+  table.style.width = '100%';
+
+  // Add drag handles to header cells.
+  // For flex columns (col-task): the handle inversely resizes the next fixed column
+  // so dragging right makes the flex column visually grow and the next column shrink.
+  const thList = [...table.querySelectorAll('thead th')];
+  thList.forEach((th, idx) => {
+    const colDef = cols.find(c => th.classList.contains(c.cls));
+    if (!colDef) return;
+
+    let targetDef, inverse;
+    if (colDef.resizable && !colDef.flex) {
+      // Normal case: resize this column directly
+      targetDef = colDef;
+      inverse = false;
+    } else if (colDef.flex) {
+      // Flex column: find the next fixed+resizable column and resize it inversely
+      for (let i = idx + 1; i < thList.length; i++) {
+        const next = cols.find(c => thList[i].classList.contains(c.cls));
+        if (next && !next.flex && next.resizable) { targetDef = next; break; }
+      }
+      if (!targetDef) return;
+      inverse = true;
+    } else {
+      return; // not resizable, not flex — skip
+    }
+
+    const handle = document.createElement('div');
+    handle.className = 'col-resize-handle';
+    handle.title = 'Drag to resize column';
+    th.appendChild(handle);
+
+    handle.addEventListener('mousedown', e => {
+      e.preventDefault();
+      e.stopPropagation();
+      const startX = e.clientX;
+      const startW = targetDef.w;
+      const colEl  = cg.querySelector('.tcol-' + targetDef.cls);
+
+      document.body.classList.add('table-resizing');
+
+      function onMove(ev) {
+        const delta = ev.clientX - startX;
+        const newW  = Math.max(50, startW + (inverse ? -delta : delta));
+        targetDef.w = newW;
+        colEl.style.width = newW + 'px';
+      }
+      function onUp() {
+        document.body.classList.remove('table-resizing');
+        saveColWidths(cols);
+        document.removeEventListener('mousemove', onMove);
+        document.removeEventListener('mouseup', onUp);
+      }
+      document.addEventListener('mousemove', onMove);
+      document.addEventListener('mouseup', onUp);
+    });
+  });
 }
 
 // ─── Helpers ──────────────────────────────────
