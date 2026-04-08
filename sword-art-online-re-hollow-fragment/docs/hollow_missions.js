@@ -1794,6 +1794,20 @@ const HOLLOW_MISSIONS_DATA = [
     image: "Images/Hollow_Missions/Abandoned_Area/Abandoned_Stop_the_Eruptive_Ceremony!.png",
   },
 
+  {
+    id: "AB-50", region: "Abandoned_Area", type: "grand_quest",
+    name: "Stop the toxic Gas Leak!",
+    location: "Effervescent Path",
+    mission_rank: "Rank 1",
+    strategy: "Coinciding with the increased volcanic activity, monsters are on the rise and toxic gas is spewing from vents. Make your way to the vent to the norteast and cull their numbers along the way!",
+    summary: "Defeat 4 heat snakes, and reach the vent to the northeast to stop the toxic gas leak.",
+    goal: "Defeat specified no. of target enemy/Reach goal",
+    target: "4x Heat Snakes",
+    time_limit: null, recommended_level: 108,
+    image: "Images/Hollow_Missions/Abandoned_Area/Abandoned_Stop_the_toxic_Gas_Leak!.png",
+
+  }
+
   // ─── Administration Area ──────────────────────────────────────────────────
   // No missions captured yet — to be added.
 

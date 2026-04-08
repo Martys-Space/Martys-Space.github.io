@@ -1,0 +1,1506 @@
+// =============================================
+// OSRS Leagues VI — Early Game Planner
+// =============================================
+
+const EG = (() => {
+  'use strict';
+
+  // ─── Constants ────────────────────────────
+  const LS_KEY    = 'osrsl6_v1';
+  const EG_SUBKEY = 'earlyGame';
+  const REGIONS   = ['General','Asgarnia','Desert','Fremennik','Kandarin',
+                     'Karamja','Kourend','Morytania','Tirannwn','Varlamore','Wilderness'];
+
+  // ─── State ────────────────────────────────
+  let tasks    = [];
+  let phases   = []; // { id, name, collapsed }
+  let settings = {
+    completedDisplay: 'gray',
+    filters: { region: '', status: '', type: '' },
+    colors: {
+      pinLeague:          '#2980b9',
+      pinHelper:          '#8e44ad',
+      pinNext:            '#e8c35a',
+      pinComplete:        '#666666',
+      pinCompleteOpacity: 50,
+      pinSkipped:         '#e67e22',
+      line:               '#c8a84b',
+      lineOpacity:        65,
+      lineDone:           '#c8a84b',
+      lineDoneOpacity:    35,
+    },
+  };
+
+  let mapState = {
+    x: 0, y: 0, scale: 1,
+    dragging: false, dragStartX: 0, dragStartY: 0,
+    imgW: 0, imgH: 0,
+    placementMode: false,
+    initialized: false,
+  };
+
+  let panelState = {
+    open: false,
+    editingId: null,
+    waitingForPin: false,
+    formData: defaultFormData(),
+    searchQuery: '',
+  };
+
+  let dragItem = { fromIdx: -1, overIdx: -1, el: null };
+
+  let tabActivated = false;
+
+  // ─── Helpers ──────────────────────────────
+  function defaultFormData() {
+    return {
+      srcType: 'league', isLeagueTask: true, taskRef: null,
+      title: '', description: '', area: '', pin: null,
+      pts: null, phaseId: null,
+    };
+  }
+
+  function uid() {
+    return 'eg_' + Math.random().toString(36).slice(2, 9) + Date.now().toString(36);
+  }
+
+  function esc(str) {
+    return String(str ?? '')
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+
+  function nextIncompleteIdx() {
+    return tasks.findIndex(t => t.status === 'incomplete');
+  }
+
+  function getImportedTasks() {
+    if (typeof state !== 'undefined' && Array.isArray(state.tasks)) return state.tasks;
+    return [];
+  }
+
+  function hasImportedTasks() {
+    return getImportedTasks().length > 0;
+  }
+
+  function searchImported(query) {
+    const all = getImportedTasks();
+    if (!query || !query.trim()) return all.slice(0, 40);
+    const q = query.toLowerCase().trim();
+    return all.filter(t =>
+      (t.name  && t.name.toLowerCase().includes(q))  ||
+      (t.task  && t.task.toLowerCase().includes(q))  ||
+      (t.area  && t.area.toLowerCase().includes(q))
+    ).slice(0, 80);
+  }
+
+  function visibleNonSkipped() {
+    return tasks.filter(t => t.status !== 'skipped' && t.pin);
+  }
+
+  // ─── Pts / difficulty helpers ──────────────
+  function ptsBadgeClass(pts) {
+    if (pts >= 400) return 'eg-badge-master';
+    if (pts >= 200) return 'eg-badge-elite';
+    if (pts >= 80)  return 'eg-badge-hard';
+    if (pts >= 30)  return 'eg-badge-medium';
+    return 'eg-badge-easy';
+  }
+
+  function ptsBadgeLabel(pts) {
+    if (pts >= 400) return 'Master';
+    if (pts >= 200) return 'Elite';
+    if (pts >= 80)  return 'Hard';
+    if (pts >= 30)  return 'Med';
+    return 'Easy';
+  }
+
+  // ─── Storage ──────────────────────────────
+  function load() {
+    try {
+      const raw = localStorage.getItem(LS_KEY);
+      if (!raw) return;
+      const parsed = JSON.parse(raw);
+      const eg = parsed[EG_SUBKEY] || {};
+      tasks  = Array.isArray(eg.tasks)  ? eg.tasks  : [];
+      phases = Array.isArray(eg.phases) ? eg.phases : [];
+      if (eg.settings) {
+        settings.completedDisplay = eg.settings.completedDisplay || 'gray';
+        if (eg.settings.filters) {
+          settings.filters = { ...settings.filters, ...eg.settings.filters };
+        }
+        if (eg.settings.colors) {
+          settings.colors = { ...settings.colors, ...eg.settings.colors };
+        }
+      }
+    } catch (e) { tasks = []; phases = []; }
+  }
+
+  function save() {
+    try {
+      const raw = localStorage.getItem(LS_KEY);
+      const parsed = raw ? JSON.parse(raw) : {};
+      parsed[EG_SUBKEY] = { tasks, phases, settings };
+      localStorage.setItem(LS_KEY, JSON.stringify(parsed));
+    } catch (e) {}
+  }
+
+  // ─── Filters ──────────────────────────────
+  function filteredTasks() {
+    const f = settings.filters;
+    return tasks.filter(t => {
+      if (f.status  && t.status !== f.status) return false;
+      if (f.type === 'league' && !t.isLeagueTask) return false;
+      if (f.type === 'helper' &&  t.isLeagueTask) return false;
+      if (f.region  && t.area !== f.region) return false;
+      return true;
+    });
+  }
+
+  // ─── Map ──────────────────────────────────
+  function initMap() {
+    const container = document.getElementById('eg-map-container');
+    const img       = document.getElementById('eg-map-img');
+
+    function onImgLoaded() {
+      mapState.imgW = img.naturalWidth;
+      mapState.imgH = img.naturalHeight;
+      fitMap();
+      renderMapPins();
+    }
+
+    if (img.complete && img.naturalWidth > 0) {
+      onImgLoaded();
+    } else {
+      img.addEventListener('load', onImgLoaded);
+    }
+
+    container.addEventListener('mousedown', onMapMouseDown);
+    window.addEventListener('mousemove', onMapMouseMove);
+    window.addEventListener('mouseup',   onMapMouseUp);
+    container.addEventListener('wheel', onMapWheel, { passive: false });
+    container.addEventListener('contextmenu', onMapContextMenu);
+
+    document.getElementById('eg-zoom-in') .addEventListener('click', () => zoomAt(1.25, null, null));
+    document.getElementById('eg-zoom-out').addEventListener('click', () => zoomAt(0.8,  null, null));
+    document.getElementById('eg-zoom-fit').addEventListener('click', fitMap);
+  }
+
+  function applyMapTransform() {
+    const vp = document.getElementById('eg-map-viewport');
+    if (vp) vp.style.transform = `translate(${mapState.x}px, ${mapState.y}px) scale(${mapState.scale})`;
+    updatePinPositions();
+  }
+
+  function fitMap() {
+    const container = document.getElementById('eg-map-container');
+    if (!container || !mapState.imgW) return;
+    const cw = container.clientWidth;
+    const ch = container.clientHeight;
+    const s  = Math.min(cw / mapState.imgW, ch / mapState.imgH, 1);
+    mapState.scale = s;
+    mapState.x = (cw - mapState.imgW * s) / 2;
+    mapState.y = (ch - mapState.imgH * s) / 2;
+    applyMapTransform();
+  }
+
+  function zoomAt(factor, screenX, screenY) {
+    const container = document.getElementById('eg-map-container');
+    const minS = 0.04, maxS = 5;
+    const newScale = Math.max(minS, Math.min(maxS, mapState.scale * factor));
+    if (screenX === null) {
+      screenX = container.clientWidth  / 2;
+      screenY = container.clientHeight / 2;
+    }
+    const ratio = newScale / mapState.scale;
+    mapState.x = screenX - ratio * (screenX - mapState.x);
+    mapState.y = screenY - ratio * (screenY - mapState.y);
+    mapState.scale = newScale;
+    applyMapTransform();
+  }
+
+  function screenToImg(screenX, screenY) {
+    const container = document.getElementById('eg-map-container');
+    const rect = container.getBoundingClientRect();
+    const cx = screenX - rect.left;
+    const cy = screenY - rect.top;
+    return {
+      px: Math.max(0, Math.min(100, ((cx - mapState.x) / mapState.scale / mapState.imgW)  * 100)),
+      py: Math.max(0, Math.min(100, ((cy - mapState.y) / mapState.scale / mapState.imgH) * 100)),
+    };
+  }
+
+  function imgToScreen(px, py) {
+    return {
+      x: (px / 100 * mapState.imgW) * mapState.scale + mapState.x,
+      y: (py / 100 * mapState.imgH) * mapState.scale + mapState.y,
+    };
+  }
+
+  function onMapMouseDown(e) {
+    if (e.button !== 0) return;
+    if (mapState.placementMode) return;
+    mapState.dragging  = true;
+    mapState.dragStartX = e.clientX - mapState.x;
+    mapState.dragStartY = e.clientY - mapState.y;
+    e.preventDefault();
+  }
+
+  function onMapMouseMove(e) {
+    if (!mapState.dragging) return;
+    mapState.x = e.clientX - mapState.dragStartX;
+    mapState.y = e.clientY - mapState.dragStartY;
+    applyMapTransform();
+  }
+
+  function onMapMouseUp() {
+    mapState.dragging = false;
+  }
+
+  function onMapWheel(e) {
+    e.preventDefault();
+    const container = document.getElementById('eg-map-container');
+    const rect   = container.getBoundingClientRect();
+    const mx     = e.clientX - rect.left;
+    const my     = e.clientY - rect.top;
+    const factor = e.deltaY < 0 ? 1.15 : 0.87;
+    zoomAt(factor, mx, my);
+  }
+
+  function onMapContextMenu(e) {
+    e.preventDefault();
+    if (!mapState.imgW) return;
+    if (mapState.placementMode) return;
+    const pin = screenToImg(e.clientX, e.clientY);
+    openPanel(null, pin);
+  }
+
+  function startPlacementMode() {
+    mapState.placementMode   = true;
+    panelState.waitingForPin = true;
+    document.getElementById('eg-map-area').classList.add('eg-placement-active');
+    document.getElementById('eg-placement-banner').removeAttribute('hidden');
+    if (panelState.open) {
+      document.getElementById('eg-panel').classList.add('eg-panel-placing');
+    }
+    document.getElementById('eg-map-container').addEventListener('click', onPlacementClick);
+  }
+
+  function endPlacementMode() {
+    mapState.placementMode   = false;
+    panelState.waitingForPin = false;
+    document.getElementById('eg-map-area').classList.remove('eg-placement-active');
+    document.getElementById('eg-placement-banner').setAttribute('hidden', '');
+    document.getElementById('eg-panel').classList.remove('eg-panel-placing');
+    document.getElementById('eg-map-container').removeEventListener('click', onPlacementClick);
+  }
+
+  function onPlacementClick(e) {
+    if (!mapState.placementMode || !mapState.imgW) return;
+    e.stopPropagation();
+    const pin = screenToImg(e.clientX, e.clientY);
+    panelState.formData.pin = pin;
+    endPlacementMode();
+    showPanel();
+    renderPanelBody();
+  }
+
+  // ─── Map rendering ─────────────────────────
+  function renderMapPins() {
+    if (!mapState.imgW) return;
+    const linesSvg    = document.getElementById('eg-map-lines-svg');
+    const pinsOverlay = document.getElementById('eg-map-pins-overlay');
+    if (!linesSvg || !pinsOverlay) return;
+
+    linesSvg.innerHTML    = '';
+    pinsOverlay.innerHTML = '';
+
+    const nextIdx = nextIncompleteIdx();
+    const chain   = visibleNonSkipped();
+
+    for (let i = 0; i < chain.length - 1; i++) {
+      const t1 = chain[i];
+      const t2 = chain[i + 1];
+
+      if (settings.completedDisplay === 'hidden' && t2.status === 'complete') continue;
+
+      const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+      line.dataset.px1 = t1.pin.px;  line.dataset.py1 = t1.pin.py;
+      line.dataset.px2 = t2.pin.px;  line.dataset.py2 = t2.pin.py;
+      const lineColor = t1.status === 'complete' ? settings.colors.lineDone : settings.colors.line;
+      const lineAlpha = t1.status === 'complete' ? settings.colors.lineDoneOpacity / 100 : settings.colors.lineOpacity / 100;
+      line.setAttribute('stroke', lineColor);
+      line.setAttribute('stroke-width', '2.5');
+      line.setAttribute('stroke-dasharray', '12 7');
+      line.setAttribute('stroke-linecap', 'round');
+      line.setAttribute('stroke-opacity', lineAlpha);
+      linesSvg.appendChild(line);
+    }
+
+    tasks.forEach((task, idx) => {
+      if (!task.pin) return;
+
+      const isSkipped  = task.status === 'skipped';
+      const isComplete = task.status === 'complete';
+
+      if (!isSkipped && settings.completedDisplay === 'hidden' && isComplete) {
+        const next = tasks.slice(idx + 1).find(t => t.status !== 'skipped');
+        if (!next || next.status === 'complete') return;
+      }
+
+      const isNext    = idx === nextIdx;
+      const taskNum   = idx + 1;
+      const fill      = isSkipped  ? settings.colors.pinSkipped  :
+                        isComplete ? settings.colors.pinComplete :
+                        isNext     ? settings.colors.pinNext     :
+                        task.isLeagueTask ? settings.colors.pinLeague : settings.colors.pinHelper;
+      const textFill  = isNext ? '#1a1408' : '#fff';
+      const opacity   = isComplete ? settings.colors.pinCompleteOpacity / 100 : 1;
+
+      const dotColor  = task.isLeagueTask ? '#5dade2' : '#bb8fce';
+      const dotSvg    = (!isComplete && !isSkipped)
+        ? `<circle cx="9" cy="-9" r="4" fill="${dotColor}" stroke="rgba(0,0,0,0.5)" stroke-width="0.8"/>`
+        : '';
+
+      const pinDiv = document.createElement('div');
+      pinDiv.className = 'eg-map-pin' +
+        (isNext     ? ' eg-pin-next'     : '') +
+        (isComplete ? ' eg-pin-complete' : '') +
+        (isSkipped  ? ' eg-pin-skipped'  : '');
+      pinDiv.dataset.px = task.pin.px;
+      pinDiv.dataset.py = task.pin.py;
+      pinDiv.style.opacity = opacity;
+
+      pinDiv.innerHTML = `
+        <svg width="32" height="32" viewBox="-14 -14 28 28"
+             style="display:block;overflow:visible"
+             xmlns="http://www.w3.org/2000/svg">
+          <circle r="13" fill="rgba(0,0,0,0.4)"/>
+          <circle r="11" fill="${fill}" stroke="rgba(0,0,0,0.7)" stroke-width="1.5"/>
+          ${dotSvg}
+          <text x="0" y="0" text-anchor="middle" dominant-baseline="middle"
+                font-size="9" font-weight="bold" fill="${textFill}"
+                font-family="Arial,sans-serif" pointer-events="none">${taskNum}</text>
+        </svg>`;
+
+      pinDiv.addEventListener('click', (e) => {
+        e.stopPropagation();
+        showPinTooltip(task, e.clientX, e.clientY);
+      });
+
+      pinsOverlay.appendChild(pinDiv);
+    });
+
+    updatePinPositions();
+    renderPreviewPin();
+  }
+
+  function updatePinPositions() {
+    if (!mapState.imgW) return;
+
+    const pins = document.querySelectorAll('#eg-map-pins-overlay .eg-map-pin');
+    pins.forEach(pin => {
+      const sc = imgToScreen(parseFloat(pin.dataset.px), parseFloat(pin.dataset.py));
+      pin.style.left = sc.x + 'px';
+      pin.style.top  = sc.y + 'px';
+    });
+
+    const linesSvg = document.getElementById('eg-map-lines-svg');
+    if (linesSvg) {
+      linesSvg.querySelectorAll('line').forEach(line => {
+        const s1 = imgToScreen(parseFloat(line.dataset.px1), parseFloat(line.dataset.py1));
+        const s2 = imgToScreen(parseFloat(line.dataset.px2), parseFloat(line.dataset.py2));
+        line.setAttribute('x1', s1.x); line.setAttribute('y1', s1.y);
+        line.setAttribute('x2', s2.x); line.setAttribute('y2', s2.y);
+      });
+    }
+  }
+
+  function showPinTooltip(task, clientX, clientY) {
+    removeTooltip();
+    const container = document.getElementById('eg-map-container');
+    const sc        = imgToScreen(task.pin.px, task.pin.py);
+
+    const tt = document.createElement('div');
+    tt.id = 'eg-tooltip';
+    tt.className = 'eg-pin-tooltip';
+    tt.style.left = sc.x + 'px';
+    tt.style.top  = sc.y + 'px';
+
+    const typeLine = task.isLeagueTask
+      ? '<span style="color:#5dade2">⚔️ League</span>'
+      : '<span style="color:#bb8fce">🛒 Helper</span>';
+
+    const cIcon  = task.status === 'complete' ? '↩' : '✓';
+    const cLabel = task.status === 'complete' ? 'Undo' : 'Complete';
+    const sIcon  = task.status === 'skipped'  ? '↩' : '⟳';
+    const sLabel = task.status === 'skipped'  ? 'Unskip' : 'Skip';
+
+    tt.innerHTML = `
+      <div style="font-weight:700;color:var(--text-gold);margin-bottom:3px">#${tasks.indexOf(task)+1} ${esc(task.title)}</div>
+      ${task.description ? `<div style="color:var(--text-secondary);font-size:0.77rem">${esc(task.description)}</div>` : ''}
+      ${task.area ? `<div style="color:var(--text-muted);font-size:0.72rem;margin-top:2px">${esc(task.area)}</div>` : ''}
+      <div style="margin-top:3px;font-size:0.72rem">${typeLine}</div>
+      <div style="margin-top:6px;display:flex;gap:4px;">
+        <button class="eg-task-btn btn-complete eg-tooltip-btn" data-tt-action="complete" data-tid="${task.id}">${cIcon} ${cLabel}</button>
+        <button class="eg-task-btn btn-skip    eg-tooltip-btn" data-tt-action="skip"     data-tid="${task.id}">${sIcon} ${sLabel}</button>
+      </div>
+    `;
+
+    container.appendChild(tt);
+
+    tt.querySelectorAll('[data-tt-action]').forEach(btn => {
+      btn.addEventListener('click', e => {
+        e.stopPropagation();
+        if (btn.dataset.ttAction === 'complete') toggleComplete(btn.dataset.tid);
+        else if (btn.dataset.ttAction === 'skip') toggleSkip(btn.dataset.tid);
+        removeTooltip();
+      });
+    });
+
+    const handleOutside = e => {
+      const current = document.getElementById('eg-tooltip');
+      if (!current || !current.contains(e.target)) {
+        removeTooltip();
+        document.removeEventListener('click', handleOutside);
+      }
+    };
+    setTimeout(() => document.addEventListener('click', handleOutside), 0);
+  }
+
+  function removeTooltip() {
+    const el = document.getElementById('eg-tooltip');
+    if (el) el.remove();
+  }
+
+  // ─── Progress ─────────────────────────────
+  function renderProgress() {
+    const leagueTasks = tasks.filter(t => t.isLeagueTask);
+    const helperTasks = tasks.filter(t => !t.isLeagueTask);
+    const lDone  = leagueTasks.filter(t => t.status === 'complete').length;
+    const hDone  = helperTasks.filter(t => t.status === 'complete').length;
+    const total  = tasks.length;
+    const done   = lDone + hDone;
+
+    const lPct = total > 0 ? (lDone / total * 100) : 0;
+    const hPct = total > 0 ? (hDone / total * 100) : 0;
+
+    el('eg-fill-league').style.width  = lPct + '%';
+    el('eg-fill-helper').style.width  = hPct + '%';
+    el('eg-stat-done').textContent    = `${done}/${total}`;
+    el('eg-stat-league').textContent  = `${lDone}/${leagueTasks.length}`;
+    el('eg-stat-helper').textContent  = `${hDone}/${helperTasks.length}`;
+  }
+
+  // ─── Task list item HTML ───────────────────
+  function taskItemHtml(task, globalIdx, nextIdx) {
+    const isNext     = globalIdx === nextIdx;
+    const isComplete = task.status === 'complete';
+    const isSkipped  = task.status === 'skipped';
+
+    let cls = 'eg-task-item';
+    if (isNext)                                             cls += ' eg-next';
+    if (isComplete && settings.completedDisplay === 'gray') cls += ' eg-complete-gray';
+    if (isSkipped)                                          cls += ' eg-skipped';
+
+    const typeBadge = task.isLeagueTask
+      ? '<span class="eg-badge eg-badge-league" title="League Task">⚔️</span>'
+      : '<span class="eg-badge eg-badge-helper" title="Helper Task">🛒</span>';
+    const ptsBadge  = (task.isLeagueTask && task.pts)
+      ? `<span class="eg-badge ${ptsBadgeClass(task.pts)}" title="${task.pts} pts">${ptsBadgeLabel(task.pts)}</span>`
+      : '';
+    const areaBadge = task.area
+      ? `<span class="eg-badge eg-badge-area" title="${esc(task.area)}">${esc(task.area)}</span>`
+      : '';
+    const skipBadge = isSkipped ? '<span class="eg-badge eg-badge-skipped">SKIP</span>' : '';
+    const pinBadge  = task.pin
+      ? `<button class="eg-task-btn eg-btn-goto" data-action="goto" data-id="${task.id}" title="Zoom to pin on map">📍</button>`
+      : '';
+
+    const cIcon  = isComplete ? '↩' : '✓';
+    const cTitle = isComplete ? 'Mark incomplete' : 'Mark complete';
+    const sIcon  = isSkipped  ? '↩' : '⟳';
+    const sTitle = isSkipped  ? 'Unskip' : 'Skip';
+
+    return `
+      <div class="${cls}" data-id="${task.id}" data-idx="${globalIdx}" data-phase-id="${task.phaseId || ''}" draggable="true">
+        <span class="eg-drag-handle" title="Drag to reorder">⠿</span>
+        <span class="eg-task-num">${globalIdx + 1}</span>
+        <div class="eg-task-body">
+          <div class="eg-task-title" title="${esc(task.title)}">${esc(task.title)}</div>
+          <div class="eg-task-meta">${pinBadge}${typeBadge}${ptsBadge}${areaBadge}${skipBadge}</div>
+        </div>
+        <div class="eg-task-actions">
+          <button class="eg-task-btn btn-complete" data-action="complete" data-id="${task.id}" title="${cTitle}">${cIcon}</button>
+          <button class="eg-task-btn btn-skip"     data-action="skip"     data-id="${task.id}" title="${sTitle}">${sIcon}</button>
+          <button class="eg-task-btn btn-edit"     data-action="edit"     data-id="${task.id}" title="Edit">✏</button>
+          <button class="eg-task-btn btn-delete"   data-action="delete"   data-id="${task.id}" title="Remove">🗑</button>
+        </div>
+      </div>`;
+  }
+
+  function phaseHeaderHtml(phase, taskCount) {
+    const chevron = phase.collapsed ? '▸' : '▾';
+    return `
+      <div class="eg-phase-header">
+        <button class="eg-phase-collapse-btn" data-phase-action="toggle" data-phase-id="${phase.id}">${chevron}</button>
+        <span class="eg-phase-name">${esc(phase.name)}</span>
+        <span class="eg-phase-count">${taskCount}</span>
+        <button class="eg-phase-btn" data-phase-action="rename" data-phase-id="${phase.id}" title="Rename">✏</button>
+        <button class="eg-phase-btn btn-delete" data-phase-action="delete" data-phase-id="${phase.id}" title="Delete phase">🗑</button>
+      </div>`;
+  }
+
+  // ─── Task list ─────────────────────────────
+  function renderTaskList() {
+    const list    = document.getElementById('eg-task-list');
+    const visible = filteredTasks();
+    const nextIdx = nextIncompleteIdx();
+
+    el('eg-task-count-label').textContent =
+      tasks.length === 0 ? '' : `${visible.length} of ${tasks.length} task${tasks.length !== 1 ? 's' : ''}`;
+
+    if (tasks.length === 0) {
+      list.innerHTML = `
+        <div class="eg-empty-state">
+          <div class="eg-empty-icon">🗺️</div>
+          <div>No tasks planned yet</div>
+          <p>Click <strong>+ Add Task</strong> to start,<br>or right-click anywhere on the map.</p>
+        </div>`;
+      return;
+    }
+
+    if (visible.length === 0) {
+      list.innerHTML = `<div class="eg-empty-state"><div>No tasks match the current filters</div></div>`;
+      return;
+    }
+
+    if (phases.length === 0) {
+      // Flat list — no phases
+      list.innerHTML = visible.map(task => taskItemHtml(task, tasks.indexOf(task), nextIdx)).join('');
+    } else {
+      const phaseIdSet = new Set(phases.map(p => p.id));
+      let html = '';
+
+      for (const phase of phases) {
+        const phaseTasks = visible.filter(t => t.phaseId === phase.id);
+        html += phaseHeaderHtml(phase, phaseTasks.length);
+        if (!phase.collapsed) {
+          html += phaseTasks.map(t => taskItemHtml(t, tasks.indexOf(t), nextIdx)).join('');
+        }
+      }
+
+      // Ungrouped tasks
+      const ungrouped = visible.filter(t => !t.phaseId || !phaseIdSet.has(t.phaseId));
+      if (ungrouped.length > 0) {
+        html += `<div class="eg-ungrouped-header">Ungrouped (${ungrouped.length})</div>`;
+        html += ungrouped.map(t => taskItemHtml(t, tasks.indexOf(t), nextIdx)).join('');
+      }
+
+      list.innerHTML = html;
+    }
+
+    initDnD();
+    bindTaskButtons();
+    if (phases.length > 0) bindPhaseButtons();
+  }
+
+  function bindTaskButtons() {
+    document.querySelectorAll('#eg-task-list [data-action]').forEach(btn => {
+      btn.addEventListener('click', e => {
+        e.stopPropagation();
+        const { action, id } = btn.dataset;
+        if (action === 'complete') toggleComplete(id);
+        else if (action === 'skip')   toggleSkip(id);
+        else if (action === 'edit')   openPanel(id);
+        else if (action === 'delete') deleteTask(id);
+        else if (action === 'goto')   gotoTaskPin(id);
+      });
+    });
+  }
+
+  // ─── Phase management ─────────────────────
+  function addPhase() {
+    const name = prompt('Phase name:', `Phase ${phases.length + 1}`);
+    if (!name || !name.trim()) return;
+    phases.push({ id: uid(), name: name.trim(), collapsed: false });
+    save(); renderTaskList();
+  }
+
+  function renamePhase(id) {
+    const phase = phases.find(p => p.id === id);
+    if (!phase) return;
+    const name = prompt('Rename phase:', phase.name);
+    if (name === null || !name.trim()) return;
+    phase.name = name.trim();
+    save(); renderTaskList();
+  }
+
+  function deletePhase(id) {
+    const phase = phases.find(p => p.id === id);
+    if (!phase) return;
+    const count = tasks.filter(t => t.phaseId === id).length;
+    if (!confirm(`Delete "${phase.name}"?${count > 0 ? ` ${count} task(s) will become ungrouped.` : ''}`)) return;
+    tasks.forEach(t => { if (t.phaseId === id) t.phaseId = null; });
+    phases = phases.filter(p => p.id !== id);
+    save(); renderTaskList();
+  }
+
+  function togglePhaseCollapse(id) {
+    const phase = phases.find(p => p.id === id);
+    if (!phase) return;
+    phase.collapsed = !phase.collapsed;
+    save(); renderTaskList();
+  }
+
+  function bindPhaseButtons() {
+    document.querySelectorAll('[data-phase-action]').forEach(btn => {
+      btn.addEventListener('click', e => {
+        e.stopPropagation();
+        const { phaseAction, phaseId } = btn.dataset;
+        if (phaseAction === 'toggle') togglePhaseCollapse(phaseId);
+        else if (phaseAction === 'rename') renamePhase(phaseId);
+        else if (phaseAction === 'delete') deletePhase(phaseId);
+      });
+    });
+  }
+
+  // ─── Drag & drop ──────────────────────────
+  function initDnD() {
+    document.querySelectorAll('#eg-task-list .eg-task-item').forEach(item => {
+      item.addEventListener('dragstart',  onDragStart);
+      item.addEventListener('dragover',   onDragOver);
+      item.addEventListener('dragleave',  onDragLeave);
+      item.addEventListener('drop',       onDrop);
+      item.addEventListener('dragend',    onDragEnd);
+    });
+  }
+
+  function onDragStart(e) {
+    dragItem.fromIdx = parseInt(e.currentTarget.dataset.idx);
+    dragItem.el      = e.currentTarget;
+    e.dataTransfer.effectAllowed = 'move';
+    setTimeout(() => { if (dragItem.el) dragItem.el.classList.add('eg-dragging'); }, 0);
+  }
+
+  function onDragOver(e) {
+    e.preventDefault();
+    e.dataTransfer.dropEffect = 'move';
+    const toIdx = parseInt(e.currentTarget.dataset.idx);
+    if (toIdx === dragItem.overIdx) return;
+    clearDragOver();
+    dragItem.overIdx = toIdx;
+    const mid = e.currentTarget.getBoundingClientRect();
+    const cls = e.clientY < mid.top + mid.height / 2 ? 'eg-drag-over-top' : 'eg-drag-over-bottom';
+    e.currentTarget.classList.add(cls);
+  }
+
+  function onDragLeave(e) {
+    e.currentTarget.classList.remove('eg-drag-over-top', 'eg-drag-over-bottom');
+  }
+
+  function onDrop(e) {
+    e.preventDefault();
+    const toEl  = e.currentTarget;
+    const toIdx = parseInt(toEl.dataset.idx);
+    const above = e.clientY < toEl.getBoundingClientRect().top + toEl.getBoundingClientRect().height / 2;
+    const insertAt = above ? toIdx : toIdx + 1;
+    const fromIdx  = dragItem.fromIdx;
+
+    if (fromIdx !== -1 && insertAt !== fromIdx && insertAt !== fromIdx + 1) {
+      // When dragging into a different phase section, adopt that phase
+      const destPhaseId = toEl.dataset.phaseId || null;
+      const [item] = tasks.splice(fromIdx, 1);
+      item.phaseId = destPhaseId || item.phaseId; // only change if target has a phaseId
+      const adj    = insertAt > fromIdx ? insertAt - 1 : insertAt;
+      tasks.splice(adj, 0, item);
+      save();
+      render();
+    }
+  }
+
+  function onDragEnd() {
+    if (dragItem.el) dragItem.el.classList.remove('eg-dragging');
+    clearDragOver();
+    dragItem.fromIdx = -1; dragItem.overIdx = -1; dragItem.el = null;
+  }
+
+  function clearDragOver() {
+    document.querySelectorAll('.eg-drag-over-top, .eg-drag-over-bottom').forEach(e => {
+      e.classList.remove('eg-drag-over-top', 'eg-drag-over-bottom');
+    });
+  }
+
+  // ─── Task actions ─────────────────────────
+  function toggleComplete(id) {
+    const t = tasks.find(x => x.id === id);
+    if (!t) return;
+    t.status = t.status === 'complete' ? 'incomplete' : 'complete';
+    save(); render();
+  }
+
+  function toggleSkip(id) {
+    const t = tasks.find(x => x.id === id);
+    if (!t) return;
+    t.status = t.status === 'skipped' ? 'incomplete' : 'skipped';
+    save(); render();
+  }
+
+  function deleteTask(id) {
+    if (!confirm('Remove this task from the early game planner?')) return;
+    tasks = tasks.filter(x => x.id !== id);
+    save(); render();
+  }
+
+  // ─── Search helpers ────────────────────────
+  function updateSearchResults() {
+    const resultsDiv = document.getElementById('eg-search-results');
+    if (!resultsDiv) return;
+    const results = searchImported(panelState.searchQuery);
+    resultsDiv.innerHTML = results.length === 0
+      ? `<div class="eg-no-results">No matches</div>`
+      : results.map(t => `
+          <div class="eg-search-item ${panelState.formData.taskRef === t.id ? 'selected' : ''}" data-tid="${t.id}">
+            <span class="si-pts">${t.pts || 0} pts</span>
+            <div class="si-name">${esc(t.name)}</div>
+            <div class="si-detail">${esc(t.area || '')}${t.area && t.task ? ' — ' : ''}${esc(t.task || '')}</div>
+          </div>`).join('');
+    bindSearchItems();
+  }
+
+  function bindSearchItems() {
+    const resultsDiv = document.getElementById('eg-search-results');
+    if (!resultsDiv) return;
+    resultsDiv.querySelectorAll('.eg-search-item').forEach(item => {
+      item.addEventListener('mousedown', e => {
+        e.preventDefault();
+        const t = getImportedTasks().find(x => String(x.id) === item.dataset.tid);
+        if (!t) return;
+        panelState.formData.taskRef     = t.id;
+        panelState.formData.title       = t.name;
+        panelState.formData.description = t.task  || '';
+        panelState.formData.area        = t.area  || '';
+        panelState.formData.pts         = t.pts   || null;
+        panelState.searchQuery          = t.name;
+        renderPanelBody();
+      });
+    });
+  }
+
+  // ─── Panel ────────────────────────────────
+  function openPanel(taskId = null, prePin = null) {
+    panelState.editingId   = taskId;
+    panelState.searchQuery = '';
+
+    if (taskId) {
+      const t = tasks.find(x => x.id === taskId);
+      if (!t) return;
+      panelState.formData = {
+        srcType:      t.taskRef ? 'league' : 'custom',
+        isLeagueTask: t.isLeagueTask,
+        taskRef:      t.taskRef || null,
+        title:        t.title,
+        description:  t.description || '',
+        area:         t.area || '',
+        pin:          t.pin || null,
+        pts:          t.pts || null,
+        phaseId:      t.phaseId || null,
+      };
+      if (t.taskRef) panelState.searchQuery = t.title;
+    } else {
+      panelState.formData = defaultFormData();
+      if (prePin) panelState.formData.pin = prePin;
+      // Auto-assign to last phase if phases exist
+      if (phases.length > 0) panelState.formData.phaseId = phases[phases.length - 1].id;
+    }
+
+    panelState.open = true;
+    showPanel();
+    renderPanelBody();
+  }
+
+  function showPanel() {
+    panelState.open = true;
+    document.getElementById('eg-panel').classList.add('eg-panel-open');
+    document.getElementById('eg-panel-title').textContent =
+      panelState.editingId ? 'Edit Task' : 'Add Task';
+  }
+
+  function closePanel() {
+    panelState.open = false;
+    if (panelState.waitingForPin) endPlacementMode();
+    document.getElementById('eg-panel').classList.remove('eg-panel-open');
+    renderPreviewPin();
+  }
+
+  function hidePanelTemporarily() {
+    document.getElementById('eg-panel').classList.remove('eg-panel-open');
+  }
+
+  function renderPanelBody() {
+    const body      = document.getElementById('eg-panel-body');
+    const fd        = panelState.formData;
+    const hasImport = hasImportedTasks();
+
+    const selected  = fd.taskRef ? getImportedTasks().find(t => t.id === fd.taskRef) : null;
+    const results   = searchImported(panelState.searchQuery);
+
+    // Source type toggle (only if there are imported tasks)
+    const sourceHtml = hasImport ? `
+      <div class="eg-form-section">
+        <div class="eg-form-label">Task source</div>
+        <div class="eg-type-toggle">
+          <button class="eg-type-btn ${fd.srcType === 'league' ? 'active' : ''}" data-source="league">From Task List</button>
+          <button class="eg-type-btn ${fd.srcType === 'custom' ? 'active' : ''}" data-source="custom">Custom</button>
+        </div>
+      </div>` : '';
+
+    // Task picker (when "From Task List" and tasks imported)
+    const pickerHtml = (fd.srcType === 'league' && hasImport) ? `
+      <div class="eg-form-section">
+        <div class="eg-form-label">Search tasks (${getImportedTasks().length} imported)</div>
+        <div class="eg-task-search-wrap">
+          <input type="text" class="eg-form-input" id="eg-search-input"
+                 placeholder="Search by name, task, or area…"
+                 value="${esc(panelState.searchQuery)}" autocomplete="off">
+          <div class="eg-task-search-results" id="eg-search-results">
+            ${results.length === 0 ? `<div class="eg-no-results">No matches</div>` :
+              results.map(t => `
+                <div class="eg-search-item ${fd.taskRef === t.id ? 'selected' : ''}" data-tid="${t.id}">
+                  <span class="si-pts">${t.pts || 0} pts</span>
+                  <div class="si-name">${esc(t.name)}</div>
+                  <div class="si-detail">${esc(t.area || '')}${t.area && t.task ? ' — ' : ''}${esc(t.task || '')}</div>
+                </div>`).join('')
+            }
+          </div>
+        </div>
+      </div>
+      ${selected ? `
+        <div class="eg-task-preview">
+          <div class="eg-task-preview-name">${esc(selected.name)}</div>
+          ${selected.task ? `<div class="eg-task-preview-desc">${esc(selected.task)}</div>` : ''}
+          <div class="eg-task-preview-meta">${esc(selected.area || '')}${selected.pts ? ` · ${selected.pts} pts` : ''}</div>
+        </div>` : ''}` : '';
+
+    // Custom fields
+    const customHtml = (fd.srcType === 'custom' || !hasImport) ? `
+      <div class="eg-form-section">
+        <div class="eg-form-label">Title *</div>
+        <input type="text" class="eg-form-input" id="eg-f-title"
+               placeholder="What needs to be done…" value="${esc(fd.title)}">
+      </div>
+      <div class="eg-form-section">
+        <div class="eg-form-label">Description</div>
+        <input type="text" class="eg-form-input" id="eg-f-desc"
+               placeholder="Extra details…" value="${esc(fd.description)}">
+      </div>
+      <div class="eg-form-section">
+        <div class="eg-form-label">Region</div>
+        <select class="eg-form-input" id="eg-f-area">
+          <option value="">— Select Region —</option>
+          ${REGIONS.map(r =>
+            `<option value="${r}" ${fd.area === r ? 'selected' : ''}>${r}</option>`
+          ).join('')}
+        </select>
+      </div>` : '';
+
+    // Category
+    const categoryHtml = `
+      <div class="eg-form-section">
+        <div class="eg-form-label">Category</div>
+        <div class="eg-type-toggle">
+          <button class="eg-type-btn ${fd.isLeagueTask ? 'active' : ''}"  data-league="true">⚔️ League Task</button>
+          <button class="eg-type-btn ${!fd.isLeagueTask ? 'active' : ''}" data-league="false">🛒 Helper Task</button>
+        </div>
+      </div>`;
+
+    // Phase selector (only when phases exist)
+    const phaseHtml = phases.length > 0 ? `
+      <div class="eg-form-section">
+        <div class="eg-form-label">Phase</div>
+        <select class="eg-form-input" id="eg-f-phase">
+          <option value="">— Ungrouped —</option>
+          ${phases.map(p => `<option value="${p.id}" ${fd.phaseId === p.id ? 'selected' : ''}>${esc(p.name)}</option>`).join('')}
+        </select>
+      </div>` : '';
+
+    // Pin location
+    const pinBtnClass = fd.pin ? 'eg-pin-btn has-pin' : 'eg-pin-btn';
+    const pinLabel    = fd.pin ? `📍 Pin placed — click to move` : '📍 Click to place pin on map';
+    const pinHtml = `
+      <div class="eg-form-section">
+        <div class="eg-form-label">Map pin</div>
+        <button class="${pinBtnClass}" id="eg-pin-btn">${pinLabel}</button>
+        ${fd.pin ? `<button class="eg-pin-clear" id="eg-pin-clear">✕ Remove pin</button>` : ''}
+      </div>`;
+
+    // Import notice — shown when league picker selected but no tasks in Task List tab
+    const importNotice = (fd.srcType === 'league' && !hasImport) ? `
+      <div class="eg-import-notice">
+        <div>No tasks imported yet.</div>
+        <button class="btn-primary" id="eg-goto-tasklist" style="margin-top:0.45rem;font-size:0.82rem;width:100%;display:block">
+          📋 Go to Task List tab to import
+        </button>
+        <div style="margin-top:0.4rem;font-size:0.75rem;color:var(--text-muted)">
+          Or switch to <strong>Custom</strong> to create a manual task.
+        </div>
+      </div>` : '';
+
+    body.innerHTML = sourceHtml + pickerHtml + importNotice + customHtml + categoryHtml + phaseHtml + pinHtml;
+
+    // ── Bind panel events ──
+
+    // Source toggle
+    body.querySelectorAll('[data-source]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        panelState.formData.srcType = btn.dataset.source;
+        if (btn.dataset.source === 'custom') panelState.formData.taskRef = null;
+        renderPanelBody();
+      });
+    });
+
+    // Category toggle
+    body.querySelectorAll('[data-league]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        panelState.formData.isLeagueTask = btn.dataset.league === 'true';
+        renderPanelBody();
+      });
+    });
+
+    // Search input
+    const searchInput = document.getElementById('eg-search-input');
+    if (searchInput) {
+      searchInput.addEventListener('input', () => {
+        panelState.searchQuery = searchInput.value;
+        updateSearchResults();
+      });
+      if (!panelState.formData.taskRef) {
+        setTimeout(() => {
+          if (searchInput) {
+            searchInput.focus();
+            const l = searchInput.value.length;
+            searchInput.setSelectionRange(l, l);
+          }
+        }, 50);
+      }
+    }
+
+    bindSearchItems();
+
+    // Custom text fields
+    [['eg-f-title', 'title'], ['eg-f-desc', 'description']].forEach(([id, key]) => {
+      const inp = document.getElementById(id);
+      if (inp) inp.addEventListener('input', () => { panelState.formData[key] = inp.value; });
+    });
+    const areaEl = document.getElementById('eg-f-area');
+    if (areaEl) areaEl.addEventListener('change', () => { panelState.formData.area = areaEl.value; });
+
+    // Phase selector
+    const phaseEl = document.getElementById('eg-f-phase');
+    if (phaseEl) phaseEl.addEventListener('change', () => { panelState.formData.phaseId = phaseEl.value || null; });
+
+    // Pin button
+    const pinBtn = document.getElementById('eg-pin-btn');
+    if (pinBtn) pinBtn.addEventListener('click', () => { startPlacementMode(); });
+
+    // Clear pin
+    const clearPin = document.getElementById('eg-pin-clear');
+    if (clearPin) {
+      clearPin.addEventListener('click', () => {
+        panelState.formData.pin = null;
+        renderPanelBody();
+      });
+    }
+
+    // Go to Task List button
+    const gotoBtn = document.getElementById('eg-goto-tasklist');
+    if (gotoBtn) {
+      gotoBtn.addEventListener('click', () => {
+        closePanel();
+        document.querySelector('[data-tab="tasks"]').click();
+      });
+    }
+
+    renderPreviewPin();
+  }
+
+  function saveTask() {
+    const fd = panelState.formData;
+    const title = (fd.title || '').trim();
+
+    if (!title) {
+      if (fd.srcType === 'league' && !fd.taskRef) {
+        alert('Please select a task from the list.');
+      } else {
+        alert('Please enter a task title.');
+      }
+      return;
+    }
+
+    if (panelState.editingId) {
+      const t = tasks.find(x => x.id === panelState.editingId);
+      if (t) {
+        t.title        = title;
+        t.description  = (fd.description || '').trim();
+        t.area         = (fd.area || '').trim();
+        t.isLeagueTask = fd.isLeagueTask;
+        t.taskRef      = fd.taskRef || null;
+        t.pin          = fd.pin;
+        t.pts          = fd.pts || null;
+        t.phaseId      = fd.phaseId || null;
+      }
+    } else {
+      tasks.push({
+        id:           uid(),
+        taskRef:      fd.taskRef || null,
+        title,
+        description:  (fd.description || '').trim(),
+        area:         (fd.area || '').trim(),
+        isLeagueTask: fd.isLeagueTask,
+        pts:          fd.pts || null,
+        phaseId:      fd.phaseId || null,
+        status:       'incomplete',
+        pin:          fd.pin,
+      });
+    }
+
+    save();
+    closePanel();
+    render();
+  }
+
+  // ─── Full render ──────────────────────────
+  function render() {
+    renderProgress();
+    renderTaskList();
+    renderMapPins();
+  }
+
+  // ─── Go to pin (animated zoom) ────────────
+  function gotoTaskPin(id) {
+    const task = tasks.find(t => t.id === id);
+    if (!task || !task.pin || !mapState.imgW) return;
+
+    const container  = document.getElementById('eg-map-container');
+    const cw         = container.clientWidth;
+    const ch         = container.clientHeight;
+    const targetScale = Math.max(2.5, mapState.scale);
+    const targetX    = cw / 2 - (task.pin.px / 100 * mapState.imgW) * targetScale;
+    const targetY    = ch / 2 - (task.pin.py / 100 * mapState.imgH) * targetScale;
+
+    animateMapTo(targetX, targetY, targetScale);
+  }
+
+  function animateMapTo(targetX, targetY, targetScale) {
+    const startX = mapState.x, startY = mapState.y, startS = mapState.scale;
+    const duration = 380;
+    const t0 = performance.now();
+
+    function frame(now) {
+      const p    = Math.min((now - t0) / duration, 1);
+      const ease = 1 - Math.pow(1 - p, 3);
+
+      mapState.x     = startX + (targetX - startX) * ease;
+      mapState.y     = startY + (targetY - startY) * ease;
+      mapState.scale = startS + (targetScale - startS) * ease;
+
+      const vp = document.getElementById('eg-map-viewport');
+      if (vp) vp.style.transform = `translate(${mapState.x}px,${mapState.y}px) scale(${mapState.scale})`;
+      updatePinPositions();
+
+      if (p < 1) requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+  }
+
+  // ─── Preview pin ──────────────────────────
+  function renderPreviewPin() {
+    const existing = document.getElementById('eg-preview-pin');
+    if (existing) existing.remove();
+
+    if (!panelState.open || !panelState.formData.pin || !mapState.imgW) return;
+
+    const pinsOverlay = document.getElementById('eg-map-pins-overlay');
+    if (!pinsOverlay) return;
+
+    const { px, py } = panelState.formData.pin;
+    const div = document.createElement('div');
+    div.id        = 'eg-preview-pin';
+    div.className = 'eg-map-pin eg-pin-preview';
+    div.dataset.px = px;
+    div.dataset.py = py;
+
+    div.innerHTML = `
+      <svg width="32" height="32" viewBox="-14 -14 28 28"
+           style="display:block;overflow:visible" xmlns="http://www.w3.org/2000/svg">
+        <circle r="13" fill="rgba(0,0,0,0.3)"/>
+        <circle r="11" fill="rgba(232,195,90,0.3)" stroke="#e8c35a"
+                stroke-width="2.5" stroke-dasharray="4 3"/>
+        <text x="0" y="0" text-anchor="middle" dominant-baseline="middle"
+              font-size="13" fill="#e8c35a"
+              font-family="Arial,sans-serif" pointer-events="none">+</text>
+      </svg>`;
+
+    pinsOverlay.appendChild(div);
+
+    const sc = imgToScreen(px, py);
+    div.style.left = sc.x + 'px';
+    div.style.top  = sc.y + 'px';
+  }
+
+  // ─── Info overlay ─────────────────────────
+  function openInfoOverlay() {
+    document.getElementById('eg-info-overlay').removeAttribute('hidden');
+  }
+  function closeInfoOverlay() {
+    document.getElementById('eg-info-overlay').setAttribute('hidden', '');
+  }
+
+  // ─── Color settings popup ─────────────────
+  const COLOR_DEFAULTS = {
+    pinLeague: '#2980b9', pinHelper: '#8e44ad', pinNext: '#e8c35a',
+    pinComplete: '#666666', pinCompleteOpacity: 50, pinSkipped: '#e67e22',
+    line: '#c8a84b', lineOpacity: 65,
+    lineDone: '#c8a84b', lineDoneOpacity: 35,
+  };
+
+  function openColorPopup() {
+    document.getElementById('eg-color-popup').removeAttribute('hidden');
+    syncColorPopupInputs();
+  }
+
+  function closeColorPopup() {
+    document.getElementById('eg-color-popup').setAttribute('hidden', '');
+  }
+
+  function syncColorPopupInputs() {
+    const c = settings.colors;
+    const setVal = (id, val) => { const el = document.getElementById(id); if (el) el.value = val; };
+    const setDot = (id, val) => { const el = document.getElementById(id); if (el) el.style.background = val; };
+
+    const swatches = ['pinLeague','pinHelper','pinNext','pinComplete','pinSkipped','line','lineDone'];
+    swatches.forEach(k => { setVal('egc-' + k, c[k]); setDot('egc-pdot-' + k, c[k]); });
+
+    const syncRange = (id, key) => {
+      const el = document.getElementById(id);
+      const valEl = document.getElementById(id + '-val');
+      if (el) { el.value = c[key]; if (valEl) valEl.textContent = c[key] + '%'; }
+    };
+    syncRange('egc-pinCompleteOpacity', 'pinCompleteOpacity');
+    syncRange('egc-lineOpacity',        'lineOpacity');
+    syncRange('egc-lineDoneOpacity',    'lineDoneOpacity');
+  }
+
+  function bindColorPopupEvents() {
+    const popup = document.getElementById('eg-color-popup');
+    if (!popup) return;
+
+    document.getElementById('eg-color-popup-close').addEventListener('click', closeColorPopup);
+    document.getElementById('egc-reset').addEventListener('click', () => {
+      settings.colors = { ...COLOR_DEFAULTS };
+      syncColorPopupInputs();
+      save(); renderMapPins();
+    });
+
+    ['pinLeague','pinHelper','pinNext','pinComplete','pinSkipped','line','lineDone'].forEach(k => {
+      const inp = document.getElementById('egc-' + k);
+      const dot = document.getElementById('egc-pdot-' + k);
+      if (inp) inp.addEventListener('input', () => {
+        settings.colors[k] = inp.value;
+        if (dot) dot.style.background = inp.value;
+        save(); renderMapPins();
+      });
+    });
+
+    const bindRange = (id, key) => {
+      const inp = document.getElementById(id);
+      const val = document.getElementById(id + '-val');
+      if (inp) inp.addEventListener('input', () => {
+        settings.colors[key] = parseInt(inp.value);
+        if (val) val.textContent = inp.value + '%';
+        save(); renderMapPins();
+      });
+    };
+    bindRange('egc-pinCompleteOpacity', 'pinCompleteOpacity');
+    bindRange('egc-lineOpacity',        'lineOpacity');
+    bindRange('egc-lineDoneOpacity',    'lineDoneOpacity');
+  }
+
+  // ─── Fullscreen sidebar/header toggles ────
+  function initFullscreenToggles() {
+    const fsToggleSidebar = document.getElementById('eg-fs-toggle-sidebar');
+    const fsToggleHeader  = document.getElementById('eg-fs-toggle-header');
+    const page = document.querySelector('.eg-page');
+    if (fsToggleSidebar) {
+      fsToggleSidebar.addEventListener('click', () => {
+        page.classList.toggle('eg-fs-hide-sidebar');
+        setTimeout(() => fitMap(), 60);
+      });
+    }
+    if (fsToggleHeader) {
+      fsToggleHeader.addEventListener('click', () => {
+        page.classList.toggle('eg-fs-hide-header');
+        setTimeout(() => fitMap(), 60);
+      });
+    }
+  }
+
+  // ─── Fullscreen ───────────────────────────
+  function toggleFullscreen() {
+    const target = el('tab-early');
+    if (!document.fullscreenElement) {
+      target.requestFullscreen().catch(() => {});
+    } else {
+      document.exitFullscreen();
+    }
+  }
+
+  document.addEventListener('fullscreenchange', () => {
+    const btn = document.getElementById('eg-zoom-fullscreen');
+    if (!btn) return;
+    const inFs = !!document.fullscreenElement;
+    btn.title       = inFs ? 'Exit fullscreen' : 'Fullscreen';
+    btn.style.color = inFs ? 'var(--text-gold)' : '';
+    if (!inFs) {
+      const page = document.querySelector('.eg-page');
+      if (page) { page.classList.remove('eg-fs-hide-sidebar', 'eg-fs-hide-header'); }
+    }
+    setTimeout(() => { fitMap(); }, 120);
+  });
+
+  // ─── Export / Import ──────────────────────
+  function exportJSON() {
+    const data = {
+      version: 1,
+      exportedAt: new Date().toISOString(),
+      phases: phases.map(p => ({ id: p.id, name: p.name, collapsed: !!p.collapsed })),
+      tasks: tasks.map(t => ({
+        id:           t.id,
+        phaseId:      t.phaseId   || null,
+        taskRef:      t.taskRef   || null,
+        title:        t.title,
+        description:  t.description || '',
+        area:         t.area        || '',
+        isLeagueTask: t.isLeagueTask,
+        pts:          t.pts         || null,
+        status:       t.status,
+        pin:          t.pin         || null,
+      })),
+    };
+    const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+    const url  = URL.createObjectURL(blob);
+    const a    = document.createElement('a');
+    a.href     = url;
+    a.download = `osrs-league-route-${new Date().toISOString().slice(0, 10)}.json`;
+    a.click();
+    URL.revokeObjectURL(url);
+  }
+
+  function importJSON(file) {
+    const reader = new FileReader();
+    reader.onload = e => {
+      try {
+        const data = JSON.parse(e.target.result);
+        if (!data.tasks || !Array.isArray(data.tasks)) {
+          alert('Invalid file: expected { tasks: [...] }');
+          return;
+        }
+        if (tasks.length > 0 &&
+            !confirm(`Replace existing ${tasks.length} task(s) with imported data?`)) return;
+
+        phases = Array.isArray(data.phases) ? data.phases.map(p => ({
+          id:        p.id        || uid(),
+          name:      p.name      || 'Phase',
+          collapsed: !!p.collapsed,
+        })) : [];
+
+        tasks = data.tasks.map(t => ({
+          id:           t.id           || uid(),
+          phaseId:      t.phaseId      || null,
+          taskRef:      t.taskRef      || null,
+          title:        t.title        || '',
+          description:  t.description  || '',
+          area:         t.area         || '',
+          isLeagueTask: !!t.isLeagueTask,
+          pts:          t.pts          || null,
+          status:       ['complete','skipped'].includes(t.status) ? t.status : 'incomplete',
+          pin:          (t.pin && typeof t.pin.px === 'number') ? t.pin : null,
+        }));
+
+        save(); render();
+        alert(`Imported ${tasks.length} task(s) across ${phases.length} phase(s).`);
+      } catch (err) {
+        alert('Failed to read file: ' + err.message);
+      }
+    };
+    reader.readAsText(file);
+  }
+
+  function parseTXTImport(text) {
+    const lines       = text.split('\n');
+    const newPhases   = [];
+    const newTasks    = [];
+    let currentPhaseId = null;
+
+    // Leaguesplanner uses "Global" for General
+    const regionMap = { 'Global': 'General' };
+    const diffPts   = { 'Easy': 10, 'Medium': 30, 'Hard': 80, 'Elite': 200, 'Master': 400 };
+
+    for (const rawLine of lines) {
+      const line = rawLine.trim();
+      if (!line) continue;
+
+      // Skip header (═══) and summary (Total:) lines
+      if (/^[\u2550═]+/.test(line) || /^Total:/i.test(line)) continue;
+
+      // Phase header: lines bordered by ─ (U+2500) or plain dashes
+      if (/^[\u2500─\-]{2,}/.test(line) && /[\u2500─\-]{2,}\s*$/.test(line)) {
+        const stripped  = line.replace(/^[\u2500─\- ]+/, '').replace(/[\u2500─\- ]+$/, '').trim();
+        const phaseName = stripped.replace(/\s*\([^)]*\)\s*$/, '').trim();
+        if (phaseName) {
+          const phaseId = uid();
+          newPhases.push({ id: phaseId, name: phaseName, collapsed: false });
+          currentPhaseId = phaseId;
+        }
+        continue;
+      }
+
+      // Task lines start with ✅ or ⬜
+      if (!/^[✅⬜]/.test(line)) continue;
+
+      const isDone = line.startsWith('✅');
+      const rest   = line.slice(line.codePointAt(0) > 0xFFFF ? 3 : 2).trim();
+
+      if (rest.startsWith('📝')) {
+        // Helper task: "📝 title: description"
+        const content    = rest.slice(rest.codePointAt(0) > 0xFFFF ? 3 : 2).trim();
+        const colonIdx   = content.indexOf(':');
+        const title      = colonIdx !== -1 ? content.slice(0, colonIdx).trim() : content;
+        const description = colonIdx !== -1 ? content.slice(colonIdx + 1).trim() : '';
+        newTasks.push({
+          id: uid(), phaseId: currentPhaseId, taskRef: null,
+          title, description, area: '', isLeagueTask: false, pts: null,
+          status: isDone ? 'complete' : 'incomplete', pin: null,
+        });
+      } else {
+        // League task: "Title [Region] [Difficulty] 10pts"
+        const m = rest.match(/^(.+?)\s+\[([^\]]+)\]\s+\[([^\]]+)\]\s+(\d+)\s*pts?\.?$/i);
+        if (m) {
+          const title = m[1].trim();
+          const area  = regionMap[m[2].trim()] || m[2].trim();
+          const diff  = m[3].trim();
+          const pts   = parseInt(m[4]) || diffPts[diff] || 0;
+          newTasks.push({
+            id: uid(), phaseId: currentPhaseId, taskRef: null,
+            title, description: '', area, isLeagueTask: true, pts,
+            status: isDone ? 'complete' : 'incomplete', pin: null,
+          });
+        } else {
+          // Fallback: treat as helper task
+          newTasks.push({
+            id: uid(), phaseId: currentPhaseId, taskRef: null,
+            title: rest, description: '', area: '', isLeagueTask: false, pts: null,
+            status: isDone ? 'complete' : 'incomplete', pin: null,
+          });
+        }
+      }
+    }
+
+    return { phases: newPhases, tasks: newTasks };
+  }
+
+  function importTXT(file) {
+    const reader = new FileReader();
+    reader.onload = e => {
+      const { phases: newPhases, tasks: newTasks } = parseTXTImport(e.target.result);
+      if (newTasks.length === 0) { alert('No tasks found in the file.'); return; }
+      if (tasks.length > 0 &&
+          !confirm(`Replace existing ${tasks.length} task(s) with ${newTasks.length} imported task(s)?`)) return;
+      phases = newPhases;
+      tasks  = newTasks;
+      save(); render();
+      alert(`Imported ${newTasks.length} task(s) across ${newPhases.length} phase(s).`);
+    };
+    reader.readAsText(file);
+  }
+
+  function handleImportFile(file) {
+    if (!file) return;
+    const name = file.name.toLowerCase();
+    if (name.endsWith('.json'))      importJSON(file);
+    else if (name.endsWith('.txt'))  importTXT(file);
+    else alert('Please select a .json or .txt file.');
+  }
+
+  // ─── Utility ──────────────────────────────
+  function el(id) { return document.getElementById(id); }
+
+  // ─── Init ─────────────────────────────────
+  function init() {
+    load();
+
+    // Toolbar buttons
+    el('eg-add-task')         .addEventListener('click', () => openPanel());
+    el('eg-panel-close')      .addEventListener('click', closePanel);
+    el('eg-save-task')        .addEventListener('click', saveTask);
+    el('eg-cancel-task')      .addEventListener('click', closePanel);
+    el('eg-cancel-placement') .addEventListener('click', () => { endPlacementMode(); showPanel(); });
+    el('eg-zoom-fullscreen')  .addEventListener('click', toggleFullscreen);
+
+    // Add phase
+    el('eg-add-phase-btn').addEventListener('click', addPhase);
+
+    // Export / Import
+    el('eg-export-btn').addEventListener('click', exportJSON);
+    el('eg-import-file').addEventListener('change', e => {
+      handleImportFile(e.target.files[0]);
+      e.target.value = ''; // allow re-selecting same file
+    });
+
+    // Info overlay
+    el('eg-info-btn')   .addEventListener('click', openInfoOverlay);
+    el('eg-info-close') .addEventListener('click', closeInfoOverlay);
+    el('eg-info-overlay').addEventListener('click', e => {
+      if (e.target === el('eg-info-overlay')) closeInfoOverlay();
+    });
+
+    // Color settings popup
+    el('eg-color-settings-btn').addEventListener('click', openColorPopup);
+    bindColorPopupEvents();
+
+    // Fullscreen toggles
+    initFullscreenToggles();
+
+    // Filters
+    el('eg-filter-region').addEventListener('change', e => { settings.filters.region = e.target.value; save(); renderTaskList(); });
+    el('eg-filter-status').addEventListener('change', e => { settings.filters.status = e.target.value; save(); renderTaskList(); });
+    el('eg-filter-type')  .addEventListener('change', e => { settings.filters.type   = e.target.value; save(); renderTaskList(); });
+
+    // Completed display
+    el('eg-completed-display').addEventListener('change', e => {
+      settings.completedDisplay = e.target.value;
+      save(); render();
+    });
+
+    // Restore saved filter/settings values
+    el('eg-completed-display').value = settings.completedDisplay;
+    el('eg-filter-region').value     = settings.filters.region || '';
+    el('eg-filter-status').value     = settings.filters.status || '';
+    el('eg-filter-type').value       = settings.filters.type   || '';
+
+    // Map is initialised lazily when the tab is first activated
+    document.querySelector('[data-tab="early"]').addEventListener('click', () => {
+      if (!tabActivated) {
+        tabActivated = true;
+        setTimeout(() => { initMap(); render(); }, 60);
+      }
+    });
+
+    renderProgress();
+    renderTaskList();
+  }
+
+  return { init };
+})();
+
+EG.init();

@@ -1,0 +1,1308 @@
+/* =============================================
+   OSRS Leagues VI — Early Game Planner
+   ============================================= */
+
+/* ── Page layout ─────────────────────────── */
+.eg-page {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Progress section ────────────────────── */
+.eg-progress-section {
+  padding: 0.5rem 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.eg-progress-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.35rem;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  gap: 0.75rem;
+}
+
+.eg-progress-track {
+  height: 12px;
+  background: var(--bg-card);
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  overflow: hidden;
+  display: flex;
+}
+
+.eg-progress-fill-league {
+  height: 100%;
+  background: linear-gradient(90deg, #1a6699, #2980b9);
+  transition: width 0.3s ease;
+  flex-shrink: 0;
+}
+
+.eg-progress-fill-helper {
+  height: 100%;
+  background: linear-gradient(90deg, #6c3483, #8e44ad);
+  transition: width 0.3s ease;
+  flex-shrink: 0;
+}
+
+.eg-progress-stats {
+  display: flex;
+  gap: 1rem;
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  flex-shrink: 0;
+  flex-wrap: wrap;
+}
+
+.eg-progress-stats span > span {
+  color: var(--text-gold);
+  font-weight: 600;
+}
+
+/* ── Toolbar ──────────────────────────────── */
+.eg-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem 1rem;
+  border-bottom: 1px solid var(--border);
+  flex-wrap: wrap;
+}
+
+.eg-toolbar-left {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.eg-toolbar-right {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-left: auto;
+  flex-wrap: wrap;
+}
+
+.eg-filter-row {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+.eg-filter-row select,
+.eg-filter-row input[type="text"] {
+  padding: 0.25rem 0.4rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text-primary);
+  font-size: 0.78rem;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.eg-filter-row select:focus,
+.eg-filter-row input[type="text"]:focus {
+  outline: none;
+  border-color: var(--border-gold);
+}
+
+.eg-settings-row {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  border-left: 1px solid var(--border);
+  padding-left: 0.75rem;
+}
+
+.eg-settings-row select {
+  padding: 0.25rem 0.4rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text-primary);
+  font-size: 0.78rem;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.eg-task-count-label {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+/* ── Content area ─────────────────────────── */
+.eg-content {
+  display: flex;
+  height: calc(100vh - 240px);
+  min-height: 480px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ── Task sidebar ─────────────────────────── */
+.eg-task-sidebar {
+  width: 330px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.eg-task-sidebar-header {
+  padding: 0.4rem 0.75rem;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+  font-style: italic;
+}
+
+.eg-task-list {
+  flex: 1;
+  overflow-y: auto;
+}
+
+/* ── Task items ───────────────────────────── */
+.eg-task-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.4rem;
+  padding: 0.45rem 0.6rem;
+  border-bottom: 1px solid var(--border);
+  cursor: default;
+  transition: background 0.12s;
+  position: relative;
+  user-select: none;
+}
+
+.eg-task-item:hover {
+  background: var(--bg-card-hover);
+}
+
+.eg-task-item.eg-next {
+  background: rgba(200, 168, 75, 0.07);
+  border-left: 3px solid var(--border-gold);
+}
+
+.eg-task-item.eg-complete-gray {
+  opacity: 0.45;
+}
+
+.eg-task-item.eg-skipped {
+  opacity: 0.55;
+}
+
+.eg-task-item.eg-drag-over-top {
+  border-top: 2px solid var(--border-gold);
+}
+
+.eg-task-item.eg-drag-over-bottom {
+  border-bottom: 2px solid var(--border-gold);
+}
+
+.eg-task-item.eg-dragging {
+  opacity: 0.35;
+}
+
+.eg-drag-handle {
+  cursor: grab;
+  color: var(--text-muted);
+  font-size: 1rem;
+  padding-top: 3px;
+  user-select: none;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.eg-drag-handle:active {
+  cursor: grabbing;
+}
+
+.eg-task-num {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--bg-selected);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  flex-shrink: 0;
+  color: var(--text-secondary);
+  margin-top: 2px;
+}
+
+.eg-task-item.eg-next .eg-task-num {
+  background: var(--border-gold);
+  border-color: var(--text-gold);
+  color: #1a1408;
+  font-weight: 700;
+}
+
+.eg-task-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.eg-task-title {
+  font-size: 0.85rem;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.3;
+}
+
+.eg-task-item.eg-skipped .eg-task-title {
+  text-decoration: line-through;
+  color: var(--text-muted);
+}
+
+.eg-task-meta {
+  display: flex;
+  gap: 0.3rem;
+  margin-top: 0.2rem;
+  flex-wrap: nowrap;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* Icon-only type badges */
+.eg-badge-league,
+.eg-badge-helper {
+  padding: 1px 3px;
+  flex-shrink: 0;
+}
+
+/* Truncate long area names */
+.eg-badge-area {
+  max-width: 70px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Skip badge abbreviated */
+.eg-badge-skipped {
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.eg-badge {
+  font-size: 0.7rem;
+  padding: 1px 5px;
+  border-radius: 3px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  line-height: 1.4;
+}
+
+.eg-badge-league {
+  background: rgba(41, 128, 185, 0.2);
+  color: #5dade2;
+  border: 1px solid rgba(41, 128, 185, 0.5);
+}
+
+.eg-badge-helper {
+  background: rgba(142, 68, 173, 0.2);
+  color: #bb8fce;
+  border: 1px solid rgba(142, 68, 173, 0.5);
+}
+
+.eg-badge-skipped {
+  background: rgba(230, 126, 34, 0.2);
+  color: #e59866;
+  border: 1px solid rgba(230, 126, 34, 0.5);
+}
+
+.eg-badge-area {
+  background: rgba(74, 63, 40, 0.3);
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+}
+
+.eg-badge-pin {
+  color: #4caf50;
+  font-size: 0.85rem;
+}
+
+/* Pin goto button in task list */
+.eg-btn-goto {
+  font-size: 0.9rem !important;
+  color: #4caf50 !important;
+}
+
+.eg-btn-goto:hover {
+  border-color: #4caf50 !important;
+  color: #4caf50 !important;
+  background: rgba(76, 175, 80, 0.1) !important;
+}
+
+.eg-task-actions {
+  display: flex;
+  gap: 2px;
+  flex-shrink: 0;
+  align-items: center;
+  margin-top: 1px;
+}
+
+.eg-task-btn {
+  background: none;
+  border: 1px solid transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  width: 26px;
+  height: 26px;
+  border-radius: var(--radius);
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.12s;
+  flex-shrink: 0;
+}
+
+.eg-task-btn:hover {
+  border-color: var(--border);
+  color: var(--text-secondary);
+  background: var(--bg-card);
+}
+
+.eg-task-btn.btn-complete:hover {
+  border-color: #27ae60;
+  color: #27ae60;
+}
+
+.eg-task-btn.btn-skip:hover {
+  border-color: #e67e22;
+  color: #e67e22;
+}
+
+.eg-task-btn.btn-edit:hover {
+  border-color: var(--border-gold);
+  color: var(--text-gold);
+}
+
+.eg-task-btn.btn-delete:hover {
+  border-color: #e74c3c;
+  color: #e74c3c;
+}
+
+/* ── Task list empty state ────────────────── */
+.eg-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  min-height: 200px;
+  color: var(--text-muted);
+  font-size: 0.88rem;
+  text-align: center;
+  gap: 0.5rem;
+  padding: 1.5rem;
+}
+
+.eg-empty-icon {
+  font-size: 2.5rem;
+  opacity: 0.5;
+}
+
+.eg-empty-state p {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+
+/* ── Map area ─────────────────────────────── */
+.eg-map-area {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  background: #080706;
+  cursor: grab;
+}
+
+.eg-map-area:active {
+  cursor: grabbing;
+}
+
+.eg-map-area.eg-placement-active {
+  cursor: crosshair !important;
+}
+
+.eg-map-area.eg-placement-active:active {
+  cursor: crosshair !important;
+}
+
+.eg-map-container {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.eg-map-viewport {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform-origin: 0 0;
+  will-change: transform;
+}
+
+.eg-map-img {
+  display: block;
+  user-select: none;
+  -webkit-user-drag: none;
+  pointer-events: none;
+  max-width: none;
+}
+
+/* ── Screen-space overlays (outside the scaled viewport) ── */
+.eg-map-lines-svg {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  overflow: visible;
+}
+
+.eg-map-pins-overlay {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  overflow: visible;
+}
+
+/* ── Individual pin ── */
+.eg-map-pin {
+  position: absolute;
+  /* center the 32x32 svg on the coordinate point */
+  transform: translate(-50%, -50%);
+  pointer-events: all;
+  cursor: pointer;
+  user-select: none;
+  z-index: 5;
+}
+
+.eg-map-pin svg {
+  display: block;
+  filter: drop-shadow(0 1px 3px rgba(0,0,0,0.6));
+  transition: filter 0.1s ease, transform 0.1s ease;
+}
+
+.eg-map-pin:hover svg {
+  transform: scale(1.25);
+  filter: drop-shadow(0 2px 5px rgba(0,0,0,0.7));
+}
+
+/* "Next" task pin pulses subtly */
+.eg-pin-next {
+  z-index: 10;
+}
+
+@keyframes eg-pulse {
+  0%, 100% { transform: scale(1); }
+  50%       { transform: scale(1.12); }
+}
+
+.eg-pin-next svg {
+  animation: eg-pulse 1.8s ease-in-out infinite;
+}
+
+.eg-pin-next:hover svg {
+  animation: none;
+  transform: scale(1.25);
+}
+
+/* Preview pin shown while panel is open with a placed pin */
+.eg-pin-preview {
+  z-index: 15;
+  pointer-events: none;
+  opacity: 0.85;
+}
+
+.eg-pin-preview svg {
+  animation: eg-pulse 1.2s ease-in-out infinite;
+  filter: drop-shadow(0 0 6px rgba(232, 195, 90, 0.6));
+}
+
+/* ── Placement banner ─────────────────────── */
+.eg-placement-banner {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(10, 8, 5, 0.93);
+  border: 1px solid var(--border-gold);
+  border-radius: var(--radius-lg);
+  padding: 0.45rem 1rem;
+  font-size: 0.88rem;
+  color: var(--text-gold);
+  z-index: 25;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  white-space: nowrap;
+  box-shadow: var(--shadow-gold);
+}
+
+.eg-placement-banner[hidden] {
+  display: none;
+}
+
+/* ── Map zoom controls ────────────────────── */
+.eg-map-controls {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  z-index: 10;
+}
+
+.eg-map-ctrl-btn {
+  width: 28px;
+  height: 28px;
+  background: rgba(10, 8, 5, 0.88);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  cursor: pointer;
+  border-radius: var(--radius);
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.12s;
+  font-family: monospace;
+}
+
+.eg-map-ctrl-btn:hover {
+  border-color: var(--border-gold);
+  color: var(--text-gold);
+  background: rgba(20, 16, 8, 0.95);
+}
+
+/* ── Pin tooltip ──────────────────────────── */
+.eg-pin-tooltip {
+  position: absolute;
+  background: rgba(10, 8, 5, 0.96);
+  border: 1px solid var(--border-gold);
+  border-radius: var(--radius);
+  padding: 0.45rem 0.65rem;
+  font-size: 0.82rem;
+  color: var(--text-primary);
+  pointer-events: none;
+  z-index: 20;
+  max-width: 220px;
+  white-space: normal;
+  transform: translate(-50%, calc(-100% - 14px));
+  box-shadow: var(--shadow);
+  line-height: 1.4;
+}
+
+.eg-pin-tooltip::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 6px solid var(--border-gold);
+}
+
+/* ── Slide-in panel ───────────────────────── */
+.eg-panel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 360px;
+  height: 100%;
+  background: var(--bg-panel);
+  border-right: 2px solid var(--border-gold);
+  box-shadow: 4px 0 24px rgba(0, 0, 0, 0.6);
+  display: flex;
+  flex-direction: column;
+  transform: translateX(-100%);
+  transition: transform 0.22s ease;
+  z-index: 30;
+}
+
+.eg-panel.eg-panel-open {
+  transform: translateX(0);
+}
+
+/* Panel during pin placement — always click-through so the full map is accessible */
+.eg-panel.eg-panel-placing {
+  pointer-events: none;
+  transition: transform 0.22s ease, opacity 0.15s ease;
+}
+
+/* Only dim visually in fullscreen when the sidebar is hidden (panel then overlaps the visible map area) */
+:fullscreen .eg-page.eg-fs-hide-sidebar .eg-panel.eg-panel-placing,
+:-webkit-full-screen .eg-page.eg-fs-hide-sidebar .eg-panel.eg-panel-placing {
+  opacity: 0.35;
+}
+
+.eg-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.7rem 1rem;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.eg-panel-title {
+  font-size: 1rem;
+  color: var(--text-gold);
+  font-weight: 600;
+}
+
+.eg-panel-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0.85rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.eg-panel-footer {
+  flex-shrink: 0;
+  padding: 0.65rem 1rem;
+  border-top: 1px solid var(--border);
+  display: flex;
+  gap: 0.5rem;
+}
+
+/* ── Panel form fields ────────────────────── */
+.eg-form-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.eg-form-label {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+}
+
+.eg-type-toggle {
+  display: flex;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.eg-type-btn {
+  flex: 1;
+  padding: 0.4rem 0.5rem;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 0.82rem;
+  font-family: inherit;
+  transition: all 0.12s;
+}
+
+.eg-type-btn:hover {
+  color: var(--text-secondary);
+  background: var(--bg-card);
+}
+
+.eg-type-btn.active {
+  background: var(--bg-selected);
+  color: var(--text-gold);
+  font-weight: 600;
+}
+
+.eg-form-input {
+  width: 100%;
+  padding: 0.4rem 0.6rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text-primary);
+  font-size: 0.85rem;
+  font-family: inherit;
+  transition: border-color 0.12s;
+}
+
+.eg-form-input:focus {
+  outline: none;
+  border-color: var(--border-gold);
+}
+
+/* ── Task search results ──────────────────── */
+.eg-task-search-wrap {
+  display: flex;
+  flex-direction: column;
+}
+
+.eg-task-search-results {
+  max-height: 200px;
+  overflow-y: auto;
+  border: 1px solid var(--border);
+  border-top: none;
+  border-radius: 0 0 var(--radius) var(--radius);
+  background: var(--bg-card);
+}
+
+.eg-search-item {
+  padding: 0.4rem 0.6rem;
+  cursor: pointer;
+  font-size: 0.8rem;
+  border-bottom: 1px solid var(--border);
+  transition: background 0.1s;
+}
+
+.eg-search-item:last-child {
+  border-bottom: none;
+}
+
+.eg-search-item:hover {
+  background: var(--bg-card-hover);
+}
+
+.eg-search-item.selected {
+  background: var(--bg-selected);
+}
+
+.eg-search-item .si-name {
+  color: var(--text-primary);
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.eg-search-item .si-detail {
+  color: var(--text-muted);
+  font-size: 0.72rem;
+  margin-top: 1px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.eg-search-item .si-pts {
+  float: right;
+  color: var(--text-gold);
+  font-size: 0.72rem;
+  margin-left: 0.5rem;
+}
+
+.eg-no-results {
+  padding: 0.6rem;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+/* ── Selected task preview ────────────────── */
+.eg-task-preview {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.5rem 0.65rem;
+}
+
+.eg-task-preview-name {
+  color: var(--text-gold);
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.eg-task-preview-desc {
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  margin-top: 2px;
+}
+
+.eg-task-preview-meta {
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  margin-top: 2px;
+}
+
+/* ── Pin location button ──────────────────── */
+.eg-pin-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.7rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text-secondary);
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-family: inherit;
+  transition: all 0.12s;
+  width: 100%;
+  text-align: left;
+}
+
+.eg-pin-btn:hover {
+  border-color: var(--border-gold);
+  color: var(--text-gold);
+}
+
+.eg-pin-btn.has-pin {
+  border-color: #27ae60;
+  color: #27ae60;
+}
+
+.eg-pin-clear {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 0.75rem;
+  margin-top: 0.2rem;
+  padding: 0;
+  transition: color 0.12s;
+}
+
+.eg-pin-clear:hover {
+  color: #e74c3c;
+}
+
+/* ── Import needed notice ─────────────────── */
+.eg-import-notice {
+  background: rgba(41, 128, 185, 0.08);
+  border: 1px solid rgba(41, 128, 185, 0.3);
+  border-radius: var(--radius);
+  padding: 0.5rem 0.7rem;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+/* ── Task count label ─────────────────────── */
+.eg-task-count-label {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* ── Add Task button vertical centering ────── */
+#eg-add-task {
+  align-self: center;
+  margin: 0;
+}
+
+/* ── Icon buttons (info / color settings) ─── */
+.eg-icon-btn {
+  background: none;
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  color: var(--text-muted);
+  cursor: pointer;
+  width: 26px;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  transition: all 0.12s;
+  flex-shrink: 0;
+}
+.eg-icon-btn:hover {
+  border-color: var(--border-gold);
+  color: var(--text-gold);
+  background: var(--bg-card);
+}
+
+/* ── Task number column (number + pin goto stacked) ── */
+.eg-task-num-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  flex-shrink: 0;
+}
+
+/* Remove old margin-top; fix vertical centering with explicit font */
+.eg-task-num {
+  margin-top: 0 !important;
+  font-family: Arial, Helvetica, sans-serif !important;
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  line-height: 1 !important;
+  padding-top: 1px !important; /* optical centering for digit shapes */
+}
+
+/* ── Fullscreen layout ────────────────────── */
+.eg-fs-only {
+  display: none !important;
+}
+
+:fullscreen .eg-fs-only,
+:-webkit-full-screen .eg-fs-only {
+  display: flex !important;
+}
+
+:fullscreen #tab-early {
+  background: var(--bg-primary, #0d0b07);
+  overflow: hidden;
+}
+
+:fullscreen .eg-page,
+:-webkit-full-screen .eg-page {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+:fullscreen .eg-content,
+:-webkit-full-screen .eg-content {
+  flex: 1 !important;
+  height: auto !important;
+  min-height: 0;
+}
+
+/* Fullscreen sidebar/header toggles */
+:fullscreen .eg-page.eg-fs-hide-sidebar .eg-task-sidebar,
+:-webkit-full-screen .eg-page.eg-fs-hide-sidebar .eg-task-sidebar {
+  display: none;
+}
+
+:fullscreen .eg-page.eg-fs-hide-header .eg-progress-section,
+:fullscreen .eg-page.eg-fs-hide-header .eg-toolbar,
+:-webkit-full-screen .eg-page.eg-fs-hide-header .eg-progress-section,
+:-webkit-full-screen .eg-page.eg-fs-hide-header .eg-toolbar {
+  display: none;
+}
+
+/* ── Pin tooltip — allow pointer events for action buttons ── */
+.eg-pin-tooltip {
+  pointer-events: all;
+  cursor: default;
+}
+
+/* Action buttons inside pin tooltip */
+.eg-tooltip-btn {
+  width: auto !important;
+  padding: 2px 8px !important;
+  font-size: 0.78rem !important;
+  height: 22px !important;
+  white-space: nowrap;
+}
+
+/* ── Info overlay ─────────────────────────── */
+/* position:fixed inside a fullscreen element = relative to fullscreen viewport */
+.eg-info-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  z-index: 9000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.eg-info-overlay[hidden] { display: none; }
+
+.eg-info-box {
+  position: relative; /* anchors the absolute-positioned modal-close button */
+  background: var(--bg-panel);
+  border: 1px solid var(--border-gold);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-gold);
+  width: min(560px, 92vw);
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.eg-info-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--border);
+  font-weight: 600;
+  color: var(--text-gold);
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.eg-info-body {
+  padding: 1rem 1.1rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.eg-info-body p {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+  margin: 0;
+}
+
+.eg-info-body strong { color: var(--text-primary); }
+.eg-info-body em     { color: var(--text-gold); font-style: normal; }
+
+/* ── Color settings popup ─────────────────── */
+/* position:fixed inside fullscreen = relative to fullscreen viewport */
+.eg-color-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--bg-panel);
+  border: 1px solid var(--border-gold);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-gold);
+  width: min(440px, 94vw);
+  max-height: 88vh;
+  display: flex;
+  flex-direction: column;
+  z-index: 9100;
+}
+
+.eg-color-popup[hidden] { display: none; }
+
+.eg-color-popup-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.7rem 1rem;
+  border-bottom: 1px solid var(--border);
+  font-weight: 600;
+  color: var(--text-gold);
+  font-size: 0.95rem;
+  flex-shrink: 0;
+}
+
+.eg-color-popup-body {
+  padding: 0.85rem 1rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.egc-section-title {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 0.2rem;
+}
+
+.egc-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.egc-label {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  width: 100px;
+  flex-shrink: 0;
+}
+
+.egc-swatch {
+  width: 34px;
+  height: 26px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  cursor: pointer;
+  padding: 1px;
+  background: none;
+  flex-shrink: 0;
+}
+
+.egc-preview-dot {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1px solid rgba(0,0,0,0.4);
+  flex-shrink: 0;
+  transition: background 0.1s;
+}
+
+.egc-row-opacity {
+  flex-wrap: wrap;
+  gap: 0.4rem 0.5rem;
+}
+
+.egc-opacity-lbl {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+.egc-range {
+  flex: 1;
+  min-width: 60px;
+  max-width: 100px;
+  accent-color: var(--border-gold);
+}
+
+.egc-val {
+  font-size: 0.75rem;
+  color: var(--text-gold);
+  width: 34px;
+  flex-shrink: 0;
+}
+
+.eg-color-popup-footer {
+  padding: 0.6rem 1rem;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: flex-end;
+  flex-shrink: 0;
+}
+
+/* ── Difficulty pts badges ────────────────── */
+.eg-badge-easy {
+  background: rgba(39, 174, 96, 0.18);
+  color: #58d68d;
+  border: 1px solid rgba(39, 174, 96, 0.4);
+}
+.eg-badge-medium {
+  background: rgba(241, 196, 15, 0.18);
+  color: #f4d03f;
+  border: 1px solid rgba(241, 196, 15, 0.4);
+}
+.eg-badge-hard {
+  background: rgba(230, 126, 34, 0.18);
+  color: #eb984e;
+  border: 1px solid rgba(230, 126, 34, 0.4);
+}
+.eg-badge-elite {
+  background: rgba(142, 68, 173, 0.22);
+  color: #c39bd3;
+  border: 1px solid rgba(142, 68, 173, 0.45);
+}
+.eg-badge-master {
+  background: rgba(192, 57, 43, 0.18);
+  color: #ec7063;
+  border: 1px solid rgba(192, 57, 43, 0.4);
+}
+
+/* ── Phase headers in task list ───────────── */
+.eg-phase-header {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.35rem 0.5rem;
+  background: rgba(200, 168, 75, 0.07);
+  border-bottom: 1px solid var(--border);
+  border-top: 2px solid rgba(200, 168, 75, 0.35);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--text-gold);
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  user-select: none;
+}
+
+.eg-phase-header:first-child {
+  border-top: 1px solid var(--border);
+}
+
+.eg-phase-collapse-btn {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 0.72rem;
+  padding: 1px 4px;
+  border-radius: var(--radius);
+  transition: color 0.12s;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.eg-phase-collapse-btn:hover {
+  color: var(--text-gold);
+}
+
+.eg-phase-name {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.eg-phase-count {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  font-weight: 400;
+  flex-shrink: 0;
+  margin-right: 2px;
+}
+
+.eg-phase-btn {
+  background: none;
+  border: 1px solid transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  width: 22px;
+  height: 22px;
+  border-radius: var(--radius);
+  font-size: 0.72rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.12s;
+  opacity: 0;
+  flex-shrink: 0;
+}
+
+.eg-phase-header:hover .eg-phase-btn {
+  opacity: 1;
+}
+
+.eg-phase-btn:hover {
+  border-color: var(--border);
+  color: var(--text-secondary);
+  background: var(--bg-card);
+}
+
+.eg-phase-btn.btn-delete:hover {
+  border-color: #e74c3c;
+  color: #e74c3c;
+}
+
+/* ── Ungrouped tasks label ────────────────── */
+.eg-ungrouped-header {
+  display: flex;
+  align-items: center;
+  padding: 0.3rem 0.6rem;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--border);
+  border-top: 2px solid rgba(200, 168, 75, 0.2);
+  font-style: italic;
+  background: var(--bg-card);
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}

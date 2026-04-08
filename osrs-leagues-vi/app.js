@@ -919,7 +919,34 @@ function renderRelics() {
       ? `<div class="tier-passives"><div class="tier-passives-label">Tier Passives</div><ul>${tier.passives.map(p => `<li>${p}</li>`).join('')}</ul></div>`
       : `<div class="tier-passives tier-passives-none">No additional passives at this tier.</div>`;
 
-    const revealedCards = tier.relics.map(relic => {
+    const placeholder = `
+      <div class="relic-card relic-placeholder">
+        <div class="relic-placeholder-icon">?</div>
+        <div class="relic-card-body">
+          <div class="relic-card-name">Not Yet Revealed</div>
+          <p class="relic-placeholder-text">Check back as Jagex reveals more relics before April 15th.</p>
+        </div>
+      </div>
+    `;
+
+    // Build column slots — relics with a `column` field go into that position (1-based);
+    // relics without fill left-to-right from remaining slots.
+    const slots = Array.from({ length: tier.choices }, () => null);
+    const unpositioned = [];
+    tier.relics.forEach(relic => {
+      if (relic.column && relic.column <= tier.choices) {
+        slots[relic.column - 1] = relic;
+      } else {
+        unpositioned.push(relic);
+      }
+    });
+    unpositioned.forEach(relic => {
+      const idx = slots.indexOf(null);
+      if (idx !== -1) slots[idx] = relic;
+    });
+
+    const cardsHTML = slots.map(relic => {
+      if (!relic) return placeholder;
       const isSelected = selectedId === relic.id;
       const effectsHTML = relic.effects.map(e => `<li>${e}</li>`).join('');
       const toggleHTML = relic.toggleable
@@ -949,17 +976,6 @@ function renderRelics() {
       `;
     }).join('');
 
-    const placeholderCount = tier.choices - tier.relics.length;
-    const placeholders = Array.from({ length: placeholderCount }, () => `
-      <div class="relic-card relic-placeholder">
-        <div class="relic-placeholder-icon">?</div>
-        <div class="relic-card-body">
-          <div class="relic-card-name">Not Yet Revealed</div>
-          <p class="relic-placeholder-text">Check back as Jagex reveals more relics before April 15th.</p>
-        </div>
-      </div>
-    `).join('');
-
     return `
       <div class="relic-tier">
         <div class="relic-tier-header">
@@ -969,7 +985,7 @@ function renderRelics() {
         </div>
         ${passivesHTML}
         <div class="relic-cards-row">
-          ${revealedCards}${placeholders}
+          ${cardsHTML}
         </div>
       </div>
     `;

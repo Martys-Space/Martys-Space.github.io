@@ -66,9 +66,16 @@ const REGIONS = [
         ], notes:[] },
       { skill:'Thieving', rating:RATINGS.DECENT, summary:'Pickpocketing Varlamore citizens and nobles',
         methods:['Pickpocketing Noblewoman/Merchant in Civitas illa Fortis'], notes:[] },
-      { skill:'Ranged', rating:RATINGS.DECENT, summary:'Grey chinchompas from Hunter',
-        methods:['Grey (carnivorous) chinchompas caught in Varlamore'],
-        notes:[] },
+      { skill:'Ranged', rating:RATINGS.GOOD, summary:'Gemstone Crabs AFK + grey chinchompas + Tonalztics of Ralos',
+        methods:[
+          'Gemstone Crabs (Tlati Rainforest) — AFK Ranged; infinite HP, moves every ~9 minutes; Children of the Sun (auto-completed)',
+          'Grey (carnivorous) chinchompas — caught in Varlamore Hunter spots; use to chin in multi-combat areas for fast XP',
+          'Tonalztics of Ralos (from Hueycoatl) — unique prayer-fuelled Ranged weapon; alternates between ranged attacks and prayer restoration',
+        ], notes:[] },
+      { skill:'Runecrafting', rating:RATINGS.POOR, summary:'No dedicated Runecrafting content in Varlamore',
+        methods:[
+          'Varlamore has no rune altars or RC-specific content',
+        ], notes:['Use the Abyss (Wilderness) or altars in other regions for Runecrafting training'] },
       { skill:'Slayer', rating:RATINGS.DECENT, summary:'Varlamore dungeon creatures',
         methods:['Varlamore dungeon Slayer creatures'], notes:[] },
       { skill:'Melee', rating:RATINGS.GOOD, summary:'Gemstone Crabs + Sulphur Nagas',
@@ -235,6 +242,18 @@ const REGIONS = [
           'Jogre bones (Jogres, level 53/58) — 15 base XP, same as big bones',
           'Shaikahan bones (The Shaikahan) — 25 base XP; requires Tai Bwo Wannai Trio (not auto-completed)',
         ], notes:['Karamja has no altar; use bones at the Gilded Altar (Varlamore POH) or Chaos Altar (Wilderness)'] },
+      { skill:'Ranged', rating:RATINGS.EXCELLENT, summary:'Maniacal Monkeys chinning — best Ranged XP in game',
+        methods:[
+          "Maniacal Monkeys (Kruk's Dungeon, Ape Atoll) — 45 Ranged, Monkey Madness II (auto-completed in Kandarin); 290,000–1,030,000 XP/hr with chinchompas",
+          'Chinning Skeletal Monkeys (Ape Atoll Dungeon) — Monkey Madness I (auto-completed in Kandarin); Salve amulet (undead) applies for bonus accuracy/damage',
+          'Venator bow on Maniacal Monkeys — 80 Ranged; 140,000–270,000 XP/hr; cheaper alternative to chinchompas',
+        ], notes:['Monkey Madness I & II are auto-completed in Kandarin — Kandarin unlock required to access Kruk\'s Dungeon here'] },
+      { skill:'Runecrafting', rating:RATINGS.GOOD, summary:'Nature Altar — profitable double natures at 91+',
+        methods:[
+          'Nature Altar (Karamja, accessible via Fairy Ring CKR near Shilo Village — auto-completed) — 44 RC; nature runes are always in high demand',
+          'Double Nature runes at 91+ RC — craft two runes per essence; one of the best profit methods in the game',
+          'Abyss route (Wilderness) or Fairy Ring CKR from Shilo Village are the two fastest access routes',
+        ], notes:['Nature runes are used in High Alchemy — constant player demand makes this highly profitable'] },
     ],
 
     bosses: [
@@ -317,6 +336,18 @@ const REGIONS = [
           'Dragon bones from Blue Dragons (Taverley Dungeon) — 72 base XP, no quest required',
           "Infernal ashes from K'ril Tsutsaroth (Zamorak GWD) — 110 base XP; use Demonic Offering or Ash Sanctifier",
         ], notes:['Use bones at the Gilded Altar (POH in Aldarin, Varlamore) for 3.5x XP, or Chaos Altar (Wilderness) for best GP/XP'] },
+      { skill:'Ranged', rating:RATINGS.DECENT, summary:"Pest Control Void armour + Kree'arra (Armadyl GWD)",
+        methods:[
+          "Pest Control (Void Knights' Outpost, Port Sarim) — 70+ combat; earns Void Knight equipment (void ranged helm, top, bottom + gloves = accuracy + damage bonus)",
+          "Kree'arra (Armadyl GWD) — 70 Ranged; drops Armadyl helmet, chestplate, chainskirt, crossbow (best crossbow outside raids)",
+          'Dwarf Multicannon in Taverley Dungeon — fast early Ranged XP on Hellhounds or Blue Dragons',
+        ], notes:[] },
+      { skill:'Runecrafting', rating:RATINGS.GOOD, summary:'Lava Runes at Fire Altar — best RC XP/hr 23–99',
+        methods:[
+          'Lava Runes (Fire Altar, between Falador and Draynor) — 23 RC; combine earth runes + pure essence; 43,200–102,100 XP/hr; requires Binding Necklace or Magic Imbue (Lunar Diplomacy, auto in Fremennik)',
+          'Air/Body Altar (Asgarnia) — early low-level RC before lava runes',
+          'Law Altar (Entrana, Port Sarim) — 54 RC; profitable; no weapons or armour allowed on Entrana',
+        ], notes:['Lava runes are the fastest solo RC method in the game; Magic Imbue from Lunar Diplomacy (auto in Fremennik) removes the Binding Necklace requirement'] },
       { skill:'Agility', rating:RATINGS.DECENT, summary:'Falador Rooftop Course',
         methods:[
           'Falador Rooftop Course — 50 Agility',
@@ -478,6 +509,16 @@ const REGIONS = [
         methods:[
           'Big bones from Kalphites and general Desert enemies — 15 base XP',
         ], notes:['Desert has no prayer altar; Chaos Altar is in Wilderness, not Desert; use Gilded Altar (Varlamore POH) for bones collected here'] },
+      { skill:'Ranged', rating:RATINGS.DECENT, summary:'Bandit Camp AFK Ranged + Kalphite tasks',
+        methods:[
+          'Bandit Camp (Kharidian Desert) — bandits attack on sight; fully AFK Ranged training with Protect from Melee; wear Zamorak or Saradomin items to keep aggro',
+          'Kalphite tasks — Ranged viable against Kalphites and Kalphite Queen',
+          'Smoke Dungeon — Smoke Devils (93 Slayer) for high-level Ranged Slayer tasks',
+        ], notes:['Bandits are the desert equivalent of Sand Crabs — infinite aggro, no resetting required'] },
+      { skill:'Runecrafting', rating:RATINGS.POOR, summary:'No Runecrafting content in Desert',
+        methods:[
+          'Desert has no rune altars or RC-specific training spots',
+        ], notes:['Use the Abyss (Wilderness) or Fire Altar (Asgarnia) for Runecrafting; bring runes crafted elsewhere for Desert content'] },
     ],
 
     bosses: [
@@ -593,6 +634,20 @@ const REGIONS = [
           'Dagannoth Kings (Rex/Prime/Supreme) — Dagannoth bones (125 base XP); Elite Fremennik Diary grants noted drops',
           'Wyvern bones from Fossil Island Wyverns — 72 base XP, Bone Voyage (auto-completed)',
         ], notes:['Superior dragon bones at the Gilded Altar (Varlamore POH) give 525 XP each — among the fastest methods in game'] },
+      { skill:'Ranged', rating:RATINGS.EXCELLENT, summary:"Ava's Accumulator auto + Vorkath + Archers ring from Dagannoth Supreme",
+        methods:[
+          "Animal Magnetism (auto-completed) — Ava's Accumulator from the very start; saves ~72% of ammunition automatically",
+          'Ice Trolls north of Jatizso — cannon training spot; The Fremennik Trials (auto-completed); fast early Ranged XP',
+          'Vorkath — Dragon Slayer II (auto-completed); best general Ranged boss; use blowpipe or Dragon Hunter Crossbow',
+          'Dagannoth Supreme — drops Archers ring (BIS Ranged ring for non-raid content)',
+          'Fossil Island Wyverns — 72 Slayer, Bone Voyage (auto-completed); Ranged/Magic viable; drop Wyvern bones',
+        ], notes:["Animal Magnetism being auto-completed is a major advantage — Ava's Accumulator is BiS ammo-saving before Ava's Assembler"] },
+      { skill:'Runecrafting', rating:RATINGS.EXCELLENT, summary:'Astral Altar (Lunar Isle) — best profit RC method',
+        methods:[
+          'Astral Altar (Lunar Isle) — 82 RC, Lunar Diplomacy (auto-completed); craft astral runes with no talisman needed',
+          'Double Astral Runes at 82+ RC — two runes per essence; 42,000–55,000 XP/hr; ~877,000–1,922,000 coins/hr profit',
+          'Teleport: Moonclan Teleport (Lunar spellbook, auto via Lunar Diplomacy) → run to altar → craft → repeat',
+        ], notes:['Astral runes are used by the Lunar spellbook — consistent demand; Lunar Diplomacy auto-completion makes this immediately accessible without any extra questing'] },
       { skill:'Agility', rating:RATINGS.DECENT, summary:'Rellekka Rooftop Course',
         methods:[
           'Rellekka Rooftop Course — 80 Agility',
@@ -658,9 +713,9 @@ const REGIONS = [
     raids: [],
 
     echoBosses: [
-      { name:'Dagannoth Kings (Echo)', icon:'🦈', difficulty:'Master · Unconfirmed',
+      { name:'Dagannoth Kings (Echo)', icon:'🦈', difficulty:'Master · Confirmed',
         wikiUrl:`${WIKI}Dagannoth_Kings_(echo)`,
-        drops:['Amulet of the monarchs','Emperor ring'] },
+        drops:['Best-in-slot Viking helmet (echo drop, with a special twist)'] },
     ],
 
     specialUnlocks: [
@@ -821,6 +876,19 @@ const REGIONS = [
           'Fayrg/Raurg bones (Ogre Coffins) — 84–96 base XP; same quest requirement',
           'Big bones from Ogres (Feldip Hills) — 15 base XP, no quest required',
         ], notes:['Zogre Flesh Eaters (auto in Morytania) unlocks the high-value Ogre Coffin bones in Feldip Hills'] },
+      { skill:'Ranged', rating:RATINGS.EXCELLENT, summary:'Monkey Madness I + II auto → Maniacal Monkeys; DS2 auto → Vorkath',
+        methods:[
+          'Monkey Madness I + II (both auto-completed) — unlocks Kruk\'s Dungeon in Karamja for Maniacal Monkey chinning (best Ranged XP in game)',
+          'Dragon Slayer II (auto-completed) — unlocks Vorkath (Fremennik region); best consistent Ranged boss money-maker',
+          "Ranging Guild (Catherby) — Ranged supplies shop; target minigame for Ranged XP and ammo",
+          'Big Chinchompa D&D (Gnome Stronghold) — Ranged-based activity granting Hunter XP and chinchompas',
+          'Enchanted crossbow bolts — all gem bolt enchantments (Opal through Diamond) are accessible in Kandarin',
+        ], notes:['Kandarin auto-quests unlock the best Ranged training spots in other regions — key for players planning a Ranged build'] },
+      { skill:'Runecrafting', rating:RATINGS.DECENT, summary:'Ourania Altar — AFK mixed runes + Cosmic Altar (Zanaris)',
+        methods:[
+          'Ourania Altar (south Kandarin) — 71 Magic (Ourania Teleport, Lunar Diplomacy); converts essence to random rune mix; ~350,000–400,000 coins/hr profit; low effort',
+          'Cosmic Altar (Zanaris) — 27 RC, Lost City; double cosmics at 59+; decent early profit',
+        ], notes:['Ourania is the lowest-effort profitable RC method — good for players who want GP without click-intensive methods'] },
     ],
 
     bosses: [
@@ -928,6 +996,12 @@ const REGIONS = [
           'Ash Sanctifier (Hard Kourend & Kebos Diary) — auto-purifies demonic ashes during Slayer; Elite diary for full XP',
           'Sinister Offering (Arceuus, 92 Magic) — A Kingdom Divided (auto-completed); converts 3 bones to XP + 180 Magic XP per cast',
         ], notes:['Ensouled Heads simultaneously train Prayer + Magic + Combat — excellent XP efficiency'] },
+      { skill:'Ranged', rating:RATINGS.GOOD, summary:'Sand Crabs AFK (best 1-70) + Chambers of Xeric Twisted bow',
+        methods:[
+          'Sand Crabs (Hosidius coast) — best AFK Ranged 1-70; ~25,000 XP/hr; no quest or level required',
+          'Shayzien soldiers (Shayzien area) — mid-level Ranged training; drop Shayzien armour (tier 1–5)',
+          'Chambers of Xeric (Kebos Lowlands) — drops Twisted bow (BIS Ranged weapon vs high-defence bosses like Jad, Bandos, Chaos Elemental)',
+        ], notes:['Sand Crabs are the most popular AFK Ranged method in the game; no requirements make them ideal for any Kourend player'] },
       { skill:'Farming', rating:RATINGS.EXCELLENT, summary:'Farming Guild (all patch types) + disease-free Hosidius herb',
         methods:[
           'Farming Guild (45 Farming) — herb, allotment, tree, bush, cactus, flower patches',
@@ -956,9 +1030,13 @@ const REGIONS = [
       { skill:'Woodcutting', rating:RATINGS.GOOD, summary:'Woodcutting Guild, Redwood trees at 90+',
         methods:['Woodcutting Guild (+7 invisible boost)','Redwood Trees at 90+ (best AFK Woodcutting XP)'],
         notes:['Guild invisible boost helps cut higher logs earlier'] },
-      { skill:'Runecrafting', rating:RATINGS.DECENT, summary:'Blood Altar + Soul Altar (AFK no banking)',
-        methods:['Blood Rune Altar (77+ RC, AFK, no banking)','Soul Rune Altar (90+ RC, great GP)'],
-        notes:['Blood Altar is excellent AFK RC — no banking needed'] },
+      { skill:'Runecrafting', rating:RATINGS.EXCELLENT, summary:'Blood + Soul Altar AFK (no banking) — best AFK RC',
+        methods:[
+          'Blood Altar (Zeah) — 77 RC; mine dense essence → use on Dark Altar → chisel → craft blood runes; no banking; ~34,500 XP/hr + passive Mining + Crafting XP; ~402,000–944,000 coins/hr',
+          'Soul Altar (Zeah) — 90 RC; same process as Blood; higher GP and XP; up to ~44,000 RC XP/hr',
+          'Dense Essence Mine (Arceuus) — 38 Mining + 38 Crafting + chisel + pickaxe; mine, mine, use on Dark Altar, chisel into small fragments',
+          'Medium Kourend & Kebos Diary — 5% chance to mine two dense essence blocks at once',
+        ], notes:['Blood/Soul Altar require no banking — fully AFK up to 1 minute; one of the few RC methods that trains Mining and Crafting simultaneously'] },
       { skill:'Melee', rating:RATINGS.DECENT, summary:'Sand Crabs + Moss Giants in Catacombs',
         methods:[
           'Sand Crabs (Hosidius coast) — no requirements',
@@ -1091,6 +1169,12 @@ const REGIONS = [
           "Shades of Mort'ton — Zealot's Robes (5% per shard saved at Libation Bowl); Shade Catacomb keys as bonus",
           'Urium Remains cremation (95 Firemaking) — 120.5 Prayer XP each; Hard Morytania Diary upgrades to 180.7 XP',
         ], notes:['Ectofuntus gives highest multiplier (4x) but is slow; Bonecrusher is passive and works everywhere once obtained'] },
+      { skill:'Ranged', rating:RATINGS.DECENT, summary:"Barrows (Karil's crossbow) + Cave Horrors (Black mask)",
+        methods:[
+          "Barrows — Karil's crossbow as notable drop (bolt crossbow, best mid-game ranged weapon before raids/endgame)",
+          'Zogre Flesh Eaters (auto-completed) — composite ogre bow usable for Zogre Slayer tasks; bone bolts / broad bolts supported',
+          'Cave Horrors (Mos Le\'Harmless) — 58 Slayer, Cabin Fever (auto-completed); drops Black mask (15% accuracy + damage boost on Slayer tasks)',
+        ], notes:['Black mask from Cave Horrors significantly boosts Ranged Slayer efficiency and is required for the Slayer helmet upgrade'] },
       { skill:'Thieving', rating:RATINGS.GOOD, summary:'Vyrewatch Sentinel — best high-level Thieving',
         methods:['Vyrewatch Sentinel (best XP, requires Sins of the Father)','Pyramid Plunder — if Desert unlocked'],
         notes:[] },
@@ -1103,9 +1187,11 @@ const REGIONS = [
       { skill:'Slayer', rating:RATINGS.GOOD, summary:'Slayer Tower + Araxyte Hive — strong monster variety',
         methods:['Bloodvelds (Slayer Tower — great XP, Mutated variant at level 50 Slayer)','Gargoyles (Slayer Tower — 75 Slayer)','Abyssal Demons (Slayer Tower — 85 Slayer, best melee XP)','Araxytes (Araxyte Hive — requires Araxxor fight + high Slayer)','Nechryael (Slayer Tower — 80 Slayer, good drops)','Cave Horrors (Mos Le\'Harmless — 58 Slayer, Black mask)'],
         notes:['Slayer Master: Mazchna (Canifis) — assigns mid-level tasks in Morytania','Vannaka also assigns Morytania tasks (found in Edgeville Dungeon)'] },
-      { skill:'Runecrafting', rating:RATINGS.DECENT, summary:'True Blood Altar — AFK blood rune crafting',
-        methods:['True Blood Altar in Ver Sinhaza (requires Sins of the Father)','Daeyalt essence from Meiyerditch mines — gives bonus Runecrafting XP'],
-        notes:['Blood runes are always in demand — good passive income'] },
+      { skill:'Runecrafting', rating:RATINGS.DECENT, summary:'True Blood Altar (Ver Sinhaza) + Daeyalt essence',
+        methods:[
+          'True Blood Altar (Ver Sinhaza) — requires Sins of the Father; alternative blood rune crafting location within Morytania',
+          'Daeyalt essence (Meiyerditch mines) — 60 Mining, Sins of the Father; provides 50% bonus Runecrafting XP when used at any altar; ~4,400 shards/hr mining',
+        ], notes:['Daeyalt essence grants 50% more RC XP — combine with Blood/Soul Altar (Kourend) for boosted rates; Sins of the Father not auto-completed'] },
       { skill:'Firemaking', rating:RATINGS.DECENT, summary:"Shades of Mort'ton pyres + Blisterwood logs",
         methods:[
           "Shades of Mort'ton — pyre logs grant Firemaking + Prayer XP, Shades of Mort'ton quest (not auto-completed)",
@@ -1289,6 +1375,19 @@ const REGIONS = [
           'Ensouled Elf heads (fresh from Elf Warriors/Archers) — 754 Prayer XP per head, 41 Magic to reanimate; reanimates at kill location',
           'Dragon bones from Zulrah drops — use at Gilded Altar (Varlamore POH) for 252 XP each',
         ], notes:[] },
+      { skill:'Ranged', rating:RATINGS.EXCELLENT, summary:'Bow of Faerdhinen (BIS) + Crystal armour from Gauntlet + Zulrah',
+        methods:[
+          'Song of the Elves (auto-completed) — Crystal equipment accessible from the start; crystal bow and crystal armour available',
+          'Bow of Faerdhinen (Corrupted Gauntlet) — BIS Ranged weapon for most content; uses crystal shards for charges',
+          'Crystal armour (Gauntlet crystal armour seeds) — BIS Ranged armour for DPS; further boosts Bow of Faerdhinen',
+          'Zulrah — top Ranged boss; drops Tanzanite fang (Toxic blowpipe component), Zulrah scales, Magic fang',
+          'Dark Beasts (Mourning\'s End Part II, auto-completed) — 90 Slayer; Ranged viable; drop Dark bow',
+        ], notes:["Bow of Faerdhinen + Crystal armour is the best DPS Ranged setup for most mid-game content; Song of the Elves auto-completion makes it immediately accessible"] },
+      { skill:'Runecrafting', rating:RATINGS.DECENT, summary:'Zalcano passive RC XP + Wrath Altar',
+        methods:[
+          'Zalcano (Prifddinas) — 70 Mining, Song of the Elves (auto-completed); passively grants Runecrafting XP alongside Mining + Smithing XP per kill',
+          'Wrath Altar (south of Ape Atoll) — 95 RC; only accessible via Abyss; highest-level altar; Wrath runes used for God spells',
+        ], notes:['Zalcano is not a dedicated RC method but provides free RC XP alongside other skills — efficient for players training multiple skills at once'] },
     ],
 
     bosses: [
@@ -1358,9 +1457,14 @@ const REGIONS = [
     description:'Best Runecrafting via the Abyss, Wilderness bosses with unique rings/weapons, Imbued God Cape, and highest Slayer point rate.',
 
     skills: [
-      { skill:'Runecrafting', rating:RATINGS.EXCELLENT, summary:'Abyss — fastest Runecrafting XP',
-        methods:['Abyss (bypass walking to any altar — best RC XP)','Blood/Death/Nature Runes via Abyss (GP + XP)'],
-        notes:['In Leagues PvP risk is reduced — Abyss is very safe'] },
+      { skill:'Runecrafting', rating:RATINGS.EXCELLENT, summary:'Abyss — access any altar instantly; best RC XP',
+        methods:[
+          'Abyss (level 5 Wilderness, north of Edgeville) — Enter the Abyss miniquest (auto-completed); teleports you inside the Abyss to reach any altar instantly; bypasses walking entirely',
+          'Nature runes via Abyss (44 RC) — most profitable low/mid method; access Nature Altar (Karamja) in seconds',
+          'Death runes via Abyss (65 RC) — consistent profit; Death Altar only reachable via Abyss',
+          'Chaos runes via Abyss (35 RC) — good early method; Chaos Altar deep in Wilderness',
+          'Double Nature runes (91 RC) / Double Death runes (65+ RC) — maximize profit per trip',
+        ], notes:['Enter the Abyss miniquest is auto-completed in Wilderness — the Abyss is the backbone of efficient Runecrafting; PKer risk is minimal in leagues'] },
       { skill:'Slayer', rating:RATINGS.GOOD, summary:'Krystilia — highest Slayer point rate',
         methods:['Krystilia (Ferox Enclave) — Wilderness-only tasks, highest Slayer points per task','Wilderness Slayer Cave (safe from PvP, Slayer targets drop Larran\'s keys)','Revenants as Slayer task'],
         notes:['Krystilia only assigns Wilderness Slayer tasks — gives the most Slayer points per task in the game'] },
@@ -1406,6 +1510,13 @@ const REGIONS = [
           'Cemetery Teleport (71 Magic, Arceuus) or Burning Amulet for fast access',
           'Lava Dragon Isle — lava dragon bones (85 base XP); burying ON the isle tiles gives 340 XP (matches Ectofuntus rate)',
         ], notes:['Chaos Altar is the best GP/XP Prayer method — PKer risk is manageable with the suicide method'] },
+      { skill:'Ranged', rating:RATINGS.DECENT, summary:'Venenatis/Spindel weak to Ranged + black chinchompa hunting',
+        methods:[
+          'Venenatis / Spindel (level 32–36 Wilderness) — highly weak to Ranged; drops Treasonous ring, Dragon pickaxe, Voidwaker piece',
+          'Callisto / Artio — Ranged viable; cannon usable at Artio (lower Wilderness)',
+          'Chaos Elemental (level 50 Wilderness) — Ranged viable; drops Dragon pickaxe, Dragon 2h sword',
+          'Black chinchompa hunting (Boneyard, 73 Hunter) — catch chins to chin at Ape Atoll (Karamja) for best Ranged XP',
+        ], notes:["Craws bow (from revenants) provides a 50% Ranged accuracy and damage boost in the Wilderness — best in slot for Wilderness Ranged"] },
     ],
 
     bosses: [
@@ -1432,9 +1543,9 @@ const REGIONS = [
     raids: [],
 
     echoBosses: [
-      { name:'King Black Dragon (Echo)', icon:'🐲', difficulty:'Elite · Unconfirmed',
+      { name:'King Black Dragon (Echo)', icon:'🐲', difficulty:'Elite · Confirmed',
         wikiUrl:`${WIKI}King_Black_Dragon_(echo)`,
-        drops:['Thunder khopesh','Thousand-dragon ward'] },
+        drops:['Echo crossbow (double hit counts as one; ice barrage-like freeze effects)'] },
     ],
 
     specialUnlocks: [
@@ -1566,8 +1677,30 @@ const RELIC_TIERS = [
     passives: ['XP multiplier increases from <strong>5x → 8x</strong>'],
     relics: [
       {
+        id: 'hotfoot',
+        name: 'Hotfoot',
+        column: 3,
+        icon: "images/relices/relic_hotfoot_t2_icon.png",
+        image: "images/relices/relic_hotfoot_t2.png",
+        wikiUrl: `${WIKI}Hotfoot_(Demonic_Pacts_League)`,
+        gift: 'Searing boots',
+        toggleable: null,
+        effects: [
+          '<strong>Searing boots</strong>: Agility XP is gained based on your Agility level while you run.',
+          '<strong>Searing boots</strong>: Caught fish are automatically cooked.',
+          '<strong>Searing boots</strong>: Mined ore is automatically smelted.',
+          'Picking up termites or a mark of grace from a course <strong>automatically completes the lap</strong>, granting completion XP and <strong>10,000 coins</strong>.',
+          'Marks of grace always have a <strong>33% chance to spawn</strong> on all rooftop courses.',
+          'Completing a course grants <strong>two completion count</strong> and <strong>25% bonus experience</strong>.',
+          '<strong>100% success rate</strong> on all Agility and Cooking actions.',
+          'Receive <strong>2x termites</strong> from the Colossal Wyrm Agility Course.',
+          'Receive <strong>10x crystal shards</strong> from the Prifddinas Agility Course.',
+        ],
+      },
+      {
         id: 'woodsman',
         name: 'Woodsman',
+        column: 1,
         icon: 'images/relices/relic_woodsman_t2_icon.png',
         image: 'images/relices/relic_woodsman_t2.png',
         wikiUrl: `${WIKI}Woodsman_(Demonic_Pacts_League)`,
@@ -1599,6 +1732,7 @@ const RELIC_TIERS = [
       {
         id: 'evil-eye',
         name: 'Evil Eye',
+        column: 2,
         icon: 'images/relices/relic_evil_eye_t3_icon.png',
         image: 'images/relices/relic_evil_eye_t3.png',
         wikiUrl: `${WIKI}Evil_Eye_(Demonic_Pacts_League)`,
@@ -1622,6 +1756,7 @@ const RELIC_TIERS = [
       {
         id: 'conniving-clues',
         name: 'Conniving Clues',
+        column: 2,
         icon: 'images/relices/relic_conniving_clues_t4_icon.png',
         image: 'images/relices/relic_conniving_clues_t4.png',
         wikiUrl: `${WIKI}Conniving_Clues_(Demonic_Pacts_League)`,
@@ -1642,7 +1777,27 @@ const RELIC_TIERS = [
     tier: 5,
     choices: 3,
     passives: ['XP multiplier increases from <strong>8x → 12x</strong>'],
-    relics: [],
+    relics: [
+      {
+        id: 'natures-accord',
+        name: "Nature's Accord",
+        column: 3,
+        icon: "images/relices/relic_nature's_accord_t5_icon.png",
+        image: "images/relices/relic_nature's_accord_t5.png",
+        wikiUrl: `${WIKI}Nature%27s_Accord_(Demonic_Pacts_League)`,
+        gift: 'Fairy mushroom',
+        toggleable: null,
+        effects: [
+          'Farming patches have <strong>no level requirements</strong> to harvest, plant, or make.',
+          'Receive <strong>10x yield</strong> from all farming patches — automatically noted.',
+          'XP is granted for all additional resources gathered.',
+          'Your plants will <strong>never die</strong>.',
+          '<strong>20% chance</strong> to not consume a seed or sapling when planting.',
+          'The <strong>fairy mushroom</strong> teleports you to any fairy ring, spirit tree, or tool leprechaun — ignores Wilderness teleport restrictions; cannot teleport to locked regions.',
+          'Unlocks the <strong>Tree Gnome Village</strong> quest automatically.',
+        ],
+      },
+    ],
   },
   {
     tier: 6,
@@ -1681,8 +1836,25 @@ const RELIC_TIERS = [
     passives: [],
     relics: [
       {
+        id: 'flask-of-fervour',
+        name: 'Flask of Fervour',
+        column: 1,
+        icon: 'images/relices/relic_flask_of_fervour_t8_icon.png',
+        image: 'images/relices/relic_flask_of_fervour_t8.png',
+        wikiUrl: `${WIKI}Flask_of_Fervour_(Demonic_Pacts_League)`,
+        gift: 'Flask of Fervour',
+        toggleable: null,
+        effects: [
+          'When consumed: restores <strong>Hitpoints, Prayer, and Special Attack</strong> to full.',
+          'Over the next 2.4 seconds: triggers <strong>three explosions</strong> dealing 60% of base Prayer level as typeless damage to all enemies within 3 tiles (30% in PvP); not against Yama.',
+          'Reduces <strong>all damage taken to 0</strong> during the effect.',
+          'Base cooldown of <strong>3 minutes</strong>; every 10 damage dealt in a single hit reduces cooldown by <strong>0.6 seconds</strong>.',
+        ],
+      },
+      {
         id: 'minion',
         name: 'Minion',
+        column: 2,
         icon: 'images/relices/relic_minion_t8_icon.png',
         image: 'images/relices/relic_minion_t8.png',
         wikiUrl: `${WIKI}Minion_(Demonic_Pacts_League)`,

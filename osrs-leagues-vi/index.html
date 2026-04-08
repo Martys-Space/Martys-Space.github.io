@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>OSRS Leagues VI - Region Picker</title>
   <link rel="stylesheet" href="style.css?v=20260327b">
+  <link rel="stylesheet" href="early_game.css?v=20260409a">
 </head>
 <body>
   <div class="page-wrapper">
@@ -21,6 +22,7 @@
         <button class="tab-btn" data-tab="tasks" role="tab" aria-selected="false">📋 Task List</button>
         <button class="tab-btn" data-tab="relics" role="tab" aria-selected="false">🏆 Relics</button>
         <button class="tab-btn" data-tab="skills" role="tab" aria-selected="false">⚗️ Skills</button>
+        <button class="tab-btn" data-tab="early"  role="tab" aria-selected="false">🗺️ Early Game</button>
       </nav>
     </header>
 
@@ -271,6 +273,210 @@
       </div>
     </div>
 
+    <!-- ═══════════════════════════════════════
+         TAB: EARLY GAME
+    ═══════════════════════════════════════ -->
+    <div id="tab-early" class="tab-content" hidden>
+      <div class="eg-page">
+
+        <!-- Progress bar -->
+        <div class="eg-progress-section">
+          <div class="eg-progress-header">
+            <span>Route Progress</span>
+            <div class="eg-progress-stats">
+              <span>Total: <span id="eg-stat-done">0/0</span></span>
+              <span>⚔️ League: <span id="eg-stat-league">0/0</span></span>
+              <span>🛒 Helper: <span id="eg-stat-helper">0/0</span></span>
+            </div>
+          </div>
+          <div class="eg-progress-track">
+            <div class="eg-progress-fill-league" id="eg-fill-league" style="width:0%"></div>
+            <div class="eg-progress-fill-helper" id="eg-fill-helper" style="width:0%"></div>
+          </div>
+        </div>
+
+        <!-- Toolbar -->
+        <div class="eg-toolbar">
+          <div class="eg-toolbar-left">
+            <button class="btn-primary" id="eg-add-task" style="display:flex;align-items:center">+ Add Task</button>
+            <button class="btn-secondary" id="eg-add-phase-btn" style="font-size:0.8rem;padding:0.3rem 0.65rem">+ Phase</button>
+            <span class="eg-task-count-label" id="eg-task-count-label"></span>
+            <button class="eg-icon-btn" id="eg-info-btn" title="How early game routing works">ℹ</button>
+            <button class="eg-icon-btn" id="eg-export-btn" title="Export route to JSON">⬇</button>
+            <label  class="eg-icon-btn" title="Import route (JSON or leaguesplanner TXT)" style="cursor:pointer;position:relative">⬆<input type="file" id="eg-import-file" accept=".json,.txt" style="position:absolute;width:0;height:0;opacity:0;pointer-events:none"></label>
+          </div>
+          <div class="eg-toolbar-right">
+            <div class="eg-filter-row">
+              <label>Region:</label>
+              <select id="eg-filter-region">
+                <option value="">All</option>
+                <option>General</option>
+                <option>Asgarnia</option>
+                <option>Desert</option>
+                <option>Fremennik</option>
+                <option>Kandarin</option>
+                <option>Karamja</option>
+                <option>Kourend</option>
+                <option>Morytania</option>
+                <option>Tirannwn</option>
+                <option>Varlamore</option>
+                <option>Wilderness</option>
+              </select>
+            </div>
+            <div class="eg-filter-row">
+              <label>Status:</label>
+              <select id="eg-filter-status">
+                <option value="">All</option>
+                <option value="incomplete">Incomplete</option>
+                <option value="complete">Complete</option>
+                <option value="skipped">Skipped</option>
+              </select>
+            </div>
+            <div class="eg-filter-row">
+              <label>Type:</label>
+              <select id="eg-filter-type">
+                <option value="">All</option>
+                <option value="league">⚔️ League</option>
+                <option value="helper">🛒 Helper</option>
+              </select>
+            </div>
+            <div class="eg-settings-row">
+              <label>On complete:</label>
+              <select id="eg-completed-display">
+                <option value="gray">Gray out</option>
+                <option value="hidden">Hide when next done</option>
+              </select>
+            </div>
+            <div class="eg-settings-row">
+              <button class="eg-icon-btn" id="eg-color-settings-btn" title="Pin & line colors">🎨</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Main content -->
+        <div class="eg-content">
+
+          <!-- Task list sidebar -->
+          <aside class="eg-task-sidebar">
+            <div class="eg-task-list" id="eg-task-list"></div>
+          </aside>
+
+          <!-- Interactive map -->
+          <div class="eg-map-area" id="eg-map-area">
+            <div class="eg-map-container" id="eg-map-container">
+              <div class="eg-map-viewport" id="eg-map-viewport">
+                <img src="images/other/Old_School_RuneScape_world_map_2026.png"
+                     id="eg-map-img" class="eg-map-img"
+                     alt="OSRS World Map" draggable="false">
+              </div>
+              <!-- Screen-space overlays — NOT inside the scaled viewport -->
+              <svg  class="eg-map-lines-svg"   id="eg-map-lines-svg"></svg>
+              <div class="eg-map-pins-overlay" id="eg-map-pins-overlay"></div>
+            </div>
+
+            <!-- Placement mode banner -->
+            <div class="eg-placement-banner" id="eg-placement-banner" hidden>
+              📍 Click anywhere on the map to place the pin
+              <button class="btn-secondary" id="eg-cancel-placement"
+                      style="padding:0.2rem 0.6rem;font-size:0.8rem;pointer-events:all">Cancel</button>
+            </div>
+
+            <!-- Zoom controls -->
+            <div class="eg-map-controls">
+              <button class="eg-map-ctrl-btn" id="eg-zoom-in"         title="Zoom in">+</button>
+              <button class="eg-map-ctrl-btn" id="eg-zoom-out"        title="Zoom out">−</button>
+              <button class="eg-map-ctrl-btn" id="eg-zoom-fit"        title="Fit to screen"
+                      style="font-size:0.65rem;letter-spacing:-0.5px">FIT</button>
+              <button class="eg-map-ctrl-btn" id="eg-zoom-fullscreen" title="Fullscreen"
+                      style="font-size:0.9rem">⛶</button>
+              <button class="eg-map-ctrl-btn eg-fs-only" id="eg-fs-toggle-sidebar" title="Toggle task list" style="font-size:0.75rem;letter-spacing:-0.5px">◫</button>
+              <button class="eg-map-ctrl-btn eg-fs-only" id="eg-fs-toggle-header"  title="Toggle top bar"   style="font-size:0.75rem">⊟</button>
+            </div>
+          </div>
+
+          <!-- Slide-in panel (absolute over .eg-content) -->
+          <div class="eg-panel" id="eg-panel">
+            <div class="eg-panel-header">
+              <span class="eg-panel-title" id="eg-panel-title">Add Task</span>
+              <button class="modal-close" id="eg-panel-close" aria-label="Close">✕</button>
+            </div>
+            <div class="eg-panel-body" id="eg-panel-body"></div>
+            <div class="eg-panel-footer">
+              <button class="btn-primary"   id="eg-save-task">Save Task</button>
+              <button class="btn-secondary" id="eg-cancel-task">Cancel</button>
+            </div>
+          </div>
+
+        </div><!-- .eg-content -->
+      </div><!-- .eg-page -->
+
+      <!-- Info overlay — inside #tab-early so it appears in fullscreen -->
+      <div id="eg-info-overlay" class="eg-info-overlay" hidden>
+        <div class="eg-info-box">
+          <div class="eg-info-header">
+            <span>How Early Game Routing Works</span>
+            <button id="eg-info-close" class="modal-close" aria-label="Close">✕</button>
+          </div>
+          <div class="eg-info-body">
+            <p><strong>1. Add tasks</strong> — Click <em>+ Add Task</em> or right-click the map to place a task at any location. Choose from imported league tasks or create custom helper tasks.</p>
+            <p><strong>2. Place map pins</strong> — Each task can have a pin on the map. The gold pulsing pin is your <em>next</em> task. Dashed lines connect tasks in order.</p>
+            <p><strong>3. Order your route</strong> — Drag the ⠿ handle in the task list to reorder tasks. The route lines update live.</p>
+            <p><strong>4. Track progress</strong> — Click ✓ to complete or ⟳ to skip a task. You can also click pins on the map to complete/skip directly. Progress bar shows league vs helper completion separately.</p>
+            <p><strong>5. Navigate</strong> — Click 📍 in the task row to zoom the map to that pin. Right-click anywhere on the map to quickly add a task at that spot.</p>
+            <p><strong>Pin colors:</strong> 🔵 Blue = League task · 🟣 Purple = Helper · 🟡 Gold = Next up · ⚫ Grey = Complete · 🟠 Orange = Skipped</p>
+            <p><strong>League tasks</strong> come from the <em>Task List</em> tab — import tasks there first, then they appear in the search when adding a task here.</p>
+            <p><strong>Phases</strong> are collapsible groups (e.g. "Varlamore phase", "Karamja phase"). Click <em>+ Phase</em> in the toolbar to create one, then assign tasks when adding or editing.</p>
+            <p><strong>Export / Import</strong> — use ⬇ to save your route as JSON, ⬆ to reload it. You can also import a <em>leaguesplanner.com</em> .txt export — phases and task names are preserved.</p>
+            <p><strong>Customize</strong> colors via the 🎨 button in the toolbar. In fullscreen, use ◫ to toggle the task panel and ⊟ to toggle the top bar.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Color settings popup — inside #tab-early so it appears in fullscreen -->
+      <div id="eg-color-popup" class="eg-color-popup" hidden>
+        <div class="eg-color-popup-header">
+          <span>Pin &amp; Line Colors</span>
+          <button id="eg-color-popup-close" class="modal-close" aria-label="Close">✕</button>
+        </div>
+        <div class="eg-color-popup-body">
+          <div class="egc-section-title">Pin Colors</div>
+          <div class="egc-row"><label class="egc-label">League task</label>   <input type="color" class="egc-swatch" id="egc-pinLeague">   <div class="egc-preview-dot" id="egc-pdot-pinLeague"></div></div>
+          <div class="egc-row"><label class="egc-label">Helper task</label>   <input type="color" class="egc-swatch" id="egc-pinHelper">   <div class="egc-preview-dot" id="egc-pdot-pinHelper"></div></div>
+          <div class="egc-row"><label class="egc-label">Next task</label>     <input type="color" class="egc-swatch" id="egc-pinNext">     <div class="egc-preview-dot" id="egc-pdot-pinNext"></div></div>
+          <div class="egc-row egc-row-opacity">
+            <label class="egc-label">Complete</label>
+            <input type="color" class="egc-swatch" id="egc-pinComplete">
+            <div class="egc-preview-dot" id="egc-pdot-pinComplete"></div>
+            <label class="egc-opacity-lbl">Opacity</label>
+            <input type="range" class="egc-range" id="egc-pinCompleteOpacity" min="0" max="100">
+            <span class="egc-val" id="egc-pinCompleteOpacity-val">50%</span>
+          </div>
+          <div class="egc-row"><label class="egc-label">Skipped</label>       <input type="color" class="egc-swatch" id="egc-pinSkipped">  <div class="egc-preview-dot" id="egc-pdot-pinSkipped"></div></div>
+          <div class="egc-section-title" style="margin-top:0.75rem">Dashed Lines</div>
+          <div class="egc-row egc-row-opacity">
+            <label class="egc-label">Line color</label>
+            <input type="color" class="egc-swatch" id="egc-line">
+            <div class="egc-preview-dot" id="egc-pdot-line"></div>
+            <label class="egc-opacity-lbl">Opacity</label>
+            <input type="range" class="egc-range" id="egc-lineOpacity" min="0" max="100">
+            <span class="egc-val" id="egc-lineOpacity-val">65%</span>
+          </div>
+          <div class="egc-row egc-row-opacity">
+            <label class="egc-label">Completed line</label>
+            <input type="color" class="egc-swatch" id="egc-lineDone">
+            <div class="egc-preview-dot" id="egc-pdot-lineDone"></div>
+            <label class="egc-opacity-lbl">Opacity</label>
+            <input type="range" class="egc-range" id="egc-lineDoneOpacity" min="0" max="100">
+            <span class="egc-val" id="egc-lineDoneOpacity-val">35%</span>
+          </div>
+        </div>
+        <div class="eg-color-popup-footer">
+          <button class="btn-secondary" id="egc-reset" style="font-size:0.8rem">Reset defaults</button>
+        </div>
+      </div>
+
+    </div><!-- #tab-early -->
+
   </div><!-- .page-wrapper -->
 
   <!-- Skill detail modal -->
@@ -322,7 +528,8 @@
     </div>
   </div>
 
-  <script src="data.js?v=20260330c"></script>
-  <script src="app.js?v=20260328f"></script>
+  <script src="data.js?v=20260401d"></script>
+  <script src="app.js?v=20260401a"></script>
+  <script src="early_game.js?v=20260409a"></script>
 </body>
 </html>
