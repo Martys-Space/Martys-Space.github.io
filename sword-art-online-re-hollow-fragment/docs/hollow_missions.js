@@ -1576,7 +1576,7 @@ const HOLLOW_MISSIONS_DATA = [
     image: "Images/Hollow_Missions/Abandoned_Area/Abandoned_A_Lesson_in_Hunting.png",
   },
   {
-    id: "AB-32", region: "Abandoned_Area", type: null,
+    id: "AB-32", region: "Abandoned_Area", type: null, part: 1,
     name: "Spirits of Overwhelming Sadness",
     location: "Crematorium of Souls",
     mission_rank: "Rank 2",
@@ -1588,7 +1588,7 @@ const HOLLOW_MISSIONS_DATA = [
     image: "Images/Hollow_Missions/Abandoned_Area/Abandoned_Spirits_of_Overwhelming_Sadness.png",
   },
   {
-    id: "AB-33", region: "Abandoned_Area", type: null,
+    id: "AB-33", region: "Abandoned_Area", type: null, part: 2,
     name: "Hole to the Otherworld",
     location: "Crematorium of Souls",
     mission_rank: "Rank 2",
