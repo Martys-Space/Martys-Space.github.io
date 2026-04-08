@@ -1805,7 +1805,19 @@ const HOLLOW_MISSIONS_DATA = [
     target: "4x Heat Snakes",
     time_limit: null, recommended_level: 108,
     image: "Images/Hollow_Missions/Abandoned_Area/Abandoned_Stop_the_toxic_Gas_Leak!.png",
+  },
 
+  {
+    id: "AB-51", region: "Abandoned_Area", type: "grand_quest",
+    name: "Frozen Tree Cull",
+    location: "Site of the Black ritual",
+    mission_rank: "Rank 1",
+    strategy: "Tree monsters that extinguish heat in the surrounding area are increasing in number. At this pace, the entire ruins will be frozen in ice. Crush the ice trees before that happens!",
+    summary: "Defeat the Resonant Ice Trees to prevent the area from being frozen over.",
+    goal: "Defeat target enemy before they respawn",
+    target: "Resonant Ice Trees",
+    time_limit: null, recommended_level: 112,
+    image: "Images/Hollow_Missions/Abandoned_Area/Abandoned_Frozen_Tree_Cull.png",
   }
 
   // ─── Administration Area ──────────────────────────────────────────────────
