@@ -1769,7 +1769,7 @@ const HOLLOW_MISSIONS_DATA = [
   },
 
   {
-    id: "AB-48", region: "Abandoned_Area", type: "grand_quest", Part: 1,
+    id: "AB-48", region: "Abandoned_Area", type: "grand_quest", part: 1,
     name: "Infestation Investigation",
     location: "Erupting Ley Lines",
     mission_rank: "Rank 1",
@@ -1782,7 +1782,7 @@ const HOLLOW_MISSIONS_DATA = [
   },
 
   {
-    id: "AB-49", region: "Abandoned_Area", type: "grand_quest", Part: 2,
+    id: "AB-49", region: "Abandoned_Area", type: "grand_quest", part: 2,
     name: "Stop the Eruptive Ceremony!",
     location: "Strait of Ashes",
     mission_rank: "Rank 1",
@@ -1795,7 +1795,7 @@ const HOLLOW_MISSIONS_DATA = [
   },
 
   {
-    id: "AB-50", region: "Abandoned_Area", type: "grand_quest", Part: 3,
+    id: "AB-50", region: "Abandoned_Area", type: "grand_quest", part: 3,
     name: "Stop the toxic Gas Leak!",
     location: "Effervescent Path",
     mission_rank: "Rank 1",
@@ -1808,7 +1808,7 @@ const HOLLOW_MISSIONS_DATA = [
   },
 
   {
-    id: "AB-51", region: "Abandoned_Area", type: "grand_quest", Part: 1,
+    id: "AB-51", region: "Abandoned_Area", type: "grand_quest", part: 1,
     name: "Frozen Tree Cull",
     location: "Site of the Black ritual",
     mission_rank: "Rank 1",
@@ -1821,7 +1821,7 @@ const HOLLOW_MISSIONS_DATA = [
   },
 
   {
-    id: "AB-52", region: "Abandoned_Area", type: "grand_quest", Part: 2,
+    id: "AB-52", region: "Abandoned_Area", type: "grand_quest", part: 2,
     name: "Snowy Mystery",
     location: "Icetomb Road",
     mission_rank: "Rank 1",
