@@ -1216,7 +1216,7 @@ const HOLLOW_MISSIONS_DATA = [
     image: "Images/Hollow_Missions/Abandoned_Area/Abandoned_Otherworldly_Swordsmanship.png",
   },
   {
-    id: "AB-2", region: "Abandoned_Area", type: "boss",
+    id: "AB-2", region: "Abandoned_Area", type: "area_boss",
     name: "Prelude to Eruption",
     location: "The Flaming Manse",
     mission_rank: "Rank 2",
@@ -1228,7 +1228,7 @@ const HOLLOW_MISSIONS_DATA = [
     image: "Images/Hollow_Missions/Abandoned_Area/Abandoned_Prelude_to_Eruption.png",
   },
   {
-    id: "AB-3", region: "Abandoned_Area", type: "boss",
+    id: "AB-3", region: "Abandoned_Area", type: "area_boss",
     name: "Despot of Tremors",
     location: "Hoarfrost Grove of Sacrifice",
     mission_rank: "Rank 2",
