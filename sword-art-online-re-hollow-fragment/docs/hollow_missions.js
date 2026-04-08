@@ -1831,6 +1831,19 @@ const HOLLOW_MISSIONS_DATA = [
     target: "Frost Shell Stinger",
     time_limit: null, recommended_level: 115,
     image: "Images/Hollow_Missions/Abandoned_Area/Abandoned_Snowy_Mystery.png",
+  },
+
+  {
+    id: "AB-53", region: "Abandoned_Area", type: "grand_quest", part: 3,
+    name: "Silence Restoration Project",
+    location: "Glacial Channel",
+    mission_rank: "Rank 1",
+    strategy: "Sound-dampening demons are using a unique crystal's resonance to gain power over the mountain. Crush these demons and halt the crystal's sonic effect!",
+    summary: "Stop the sound-dampening demons from corrupting the crystal and restoring silence to the area.",
+    goal: "Wipe out targets/Reach goal",
+    target: "Fearfreeze Eyes and Sieg Degrader",
+    time_limit: null, recommended_level: 117,
+    image: "Images/Hollow_Missions/Abandoned_Area/Abandoned_Silence_Restoration_Project.png",
   }
 
   // ─── Administration Area ──────────────────────────────────────────────────
