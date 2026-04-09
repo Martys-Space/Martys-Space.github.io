@@ -9,7 +9,7 @@ const WIKI_TASKS_PAGE = 'Raging_Echoes_League/Tasks';
 
 // ─── State ────────────────────────────────────
 const state = {
-  activeTab:       'picker',
+  activeTab:       null,
   viewMode:        'single',    // 'single' | 'overview'
   selectedRegion:  null,        // id of region showing in single view
   chosenRegions:   new Set(),   // user's picked region ids
@@ -131,6 +131,11 @@ function init() {
 
   // Auto-open Varlamore
   openRegion('varlamore');
+
+  // Restore last active tab — visual-only switch, no storage write, EG handles its own activation
+  if (state.activeTab && state.activeTab !== 'picker') {
+    restoreTab(state.activeTab);
+  }
 }
 
 function openRelicLightbox(src, alt) {
@@ -147,8 +152,31 @@ function closeRelicLightbox() {
 }
 
 // ─── Tab switching ────────────────────────────
+
+// restoreTab: visual-only, called once on load from saved state.
+// Does not save to storage, does not trigger EG.activateTab (EG.init handles that itself).
+function restoreTab(tab) {
+  state.activeTab = tab;
+  // Remove the pre-paint style fix now that real classes are being applied
+  const fix = document.getElementById('init-tab-fix');
+  if (fix) fix.remove();
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.tab === tab);
+    btn.setAttribute('aria-selected', btn.dataset.tab === tab);
+  });
+  document.querySelectorAll('.tab-content').forEach(el => {
+    el.classList.toggle('active', el.id === `tab-${tab}`);
+    el.hidden = el.id !== `tab-${tab}`;
+  });
+  if (tab === 'tasks')  renderTaskStats();
+  if (tab === 'relics') renderRelics();
+  if (tab === 'skills') renderSkillsTab();
+  // 'early' tab: EG.init() detects the active tab itself and calls activateEarlyTab()
+}
+
 function switchTab(tab) {
   state.activeTab = tab;
+  saveToStorage();
   document.querySelectorAll('.tab-btn').forEach(btn => {
     btn.classList.toggle('active', btn.dataset.tab === tab);
     btn.setAttribute('aria-selected', btn.dataset.tab === tab);
@@ -160,6 +188,7 @@ function switchTab(tab) {
   if (tab === 'tasks') renderTaskStats();
   if (tab === 'relics') renderRelics();
   if (tab === 'skills') renderSkillsTab();
+  if (tab === 'early' && typeof EG !== 'undefined' && EG?.activateTab) EG.activateTab();
 }
 
 // ─── View mode (single / overview) ───────────
@@ -854,6 +883,7 @@ function loadFromStorage() {
         state.selectedRelics = parsed.selectedRelics || {};
         state.colWidths = parsed.colWidths || {};
         state.importCollapsed = parsed.importCollapsed ?? false;
+        if (parsed.activeTab && parsed.activeTab !== 'picker') state.activeTab = parsed.activeTab;
       }
     }
   } catch (e) {
@@ -866,12 +896,15 @@ function loadFromStorage() {
 
 function saveToStorage() {
   try {
-    localStorage.setItem(LS_KEY, JSON.stringify({
-      tasks: state.tasks,
-      selectedRelics: state.selectedRelics,
-      colWidths: state.colWidths,
-      importCollapsed: state.importCollapsed,
-    }));
+    // Merge into existing object so other modules' subkeys (e.g. earlyGame) are preserved
+    const raw    = localStorage.getItem(LS_KEY);
+    const parsed = (raw && !Array.isArray(JSON.parse(raw))) ? JSON.parse(raw) : {};
+    parsed.tasks           = state.tasks;
+    parsed.selectedRelics  = state.selectedRelics;
+    parsed.colWidths       = state.colWidths;
+    parsed.importCollapsed = state.importCollapsed;
+    parsed.activeTab       = state.activeTab || 'picker';
+    localStorage.setItem(LS_KEY, JSON.stringify(parsed));
   } catch (e) {}
 }
 
@@ -1153,6 +1186,7 @@ async function fetchTasksFromWiki() {
     });
 
     saveToStorage();
+    document.dispatchEvent(new CustomEvent('osrsl6:tasksImported'));
     populateAreaFilter();
     renderTaskTable();
     renderTaskStats();
@@ -1256,6 +1290,7 @@ function importTasks() {
   });
 
   saveToStorage();
+  document.dispatchEvent(new CustomEvent('osrsl6:tasksImported'));
   populateAreaFilter();
   renderTaskTable();
   renderTaskStats();

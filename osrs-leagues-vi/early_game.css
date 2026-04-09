@@ -52,8 +52,16 @@
   gap: 1rem;
   font-size: 0.78rem;
   color: var(--text-secondary);
-  flex-shrink: 0;
+  flex: 1;
   flex-wrap: wrap;
+}
+
+.eg-progress-actions {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  flex-shrink: 0;
+  margin-left: 0.5rem;
 }
 
 .eg-progress-stats span > span {
@@ -902,8 +910,9 @@
   flex-shrink: 0;
 }
 
-/* ── Add Task button vertical centering ────── */
-#eg-add-task {
+/* ── Toolbar primary buttons ────────────────── */
+#eg-add-task,
+#eg-add-phase-btn {
   align-self: center;
   margin: 0;
 }
@@ -949,11 +958,12 @@
   padding-top: 1px !important; /* optical centering for digit shapes */
 }
 
-/* ── Fullscreen layout ────────────────────── */
+/* ── Fullscreen / expanded layout ─────────── */
 .eg-fs-only {
   display: none !important;
 }
 
+/* OS fullscreen */
 :fullscreen .eg-fs-only,
 :-webkit-full-screen .eg-fs-only {
   display: flex !important;
@@ -979,7 +989,6 @@
   min-height: 0;
 }
 
-/* Fullscreen sidebar/header toggles */
 :fullscreen .eg-page.eg-fs-hide-sidebar .eg-task-sidebar,
 :-webkit-full-screen .eg-page.eg-fs-hide-sidebar .eg-task-sidebar {
   display: none;
@@ -990,6 +999,46 @@
 :-webkit-full-screen .eg-page.eg-fs-hide-header .eg-progress-section,
 :-webkit-full-screen .eg-page.eg-fs-hide-header .eg-toolbar {
   display: none;
+}
+
+/* Windowed expanded (covers browser viewport, not OS fullscreen) */
+#tab-early.eg-windowed-fs {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 9500 !important;
+  background: var(--bg-primary, #0d0b07);
+  overflow: hidden;
+  display: block !important;
+}
+
+#tab-early.eg-windowed-fs .eg-fs-only {
+  display: flex !important;
+}
+
+#tab-early.eg-windowed-fs .eg-page {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+#tab-early.eg-windowed-fs .eg-content {
+  flex: 1 !important;
+  height: auto !important;
+  min-height: 0;
+}
+
+#tab-early.eg-windowed-fs .eg-page.eg-fs-hide-sidebar .eg-task-sidebar {
+  display: none;
+}
+
+#tab-early.eg-windowed-fs .eg-page.eg-fs-hide-header .eg-progress-section,
+#tab-early.eg-windowed-fs .eg-page.eg-fs-hide-header .eg-toolbar {
+  display: none;
+}
+
+#tab-early.eg-windowed-fs .eg-page.eg-fs-hide-sidebar .eg-panel.eg-panel-placing {
+  opacity: 0.35;
 }
 
 /* ── Pin tooltip — allow pointer events for action buttons ── */
@@ -1217,14 +1266,29 @@
   font-size: 0.78rem;
   font-weight: 700;
   color: var(--text-gold);
-  position: sticky;
-  top: 0;
-  z-index: 2;
   user-select: none;
 }
 
 .eg-phase-header:first-child {
   border-top: 1px solid var(--border);
+}
+
+.eg-phase-drag-handle {
+  cursor: grab;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  line-height: 1;
+  flex-shrink: 0;
+  opacity: 0;
+  transition: opacity 0.12s;
+}
+
+.eg-phase-header:hover .eg-phase-drag-handle {
+  opacity: 1;
+}
+
+.eg-phase-drag-handle:active {
+  cursor: grabbing;
 }
 
 .eg-phase-collapse-btn {
@@ -1302,7 +1366,105 @@
   border-top: 2px solid rgba(200, 168, 75, 0.2);
   font-style: italic;
   background: var(--bg-card);
-  position: sticky;
-  top: 0;
-  z-index: 2;
+}
+
+/* ── Phase drop target highlight ─────────── */
+.eg-phase-drop-active {
+  background: rgba(200, 168, 75, 0.18) !important;
+  border-top-color: var(--border-gold) !important;
+  outline: 2px dashed var(--border-gold);
+  outline-offset: -2px;
+}
+
+/* ── Add Task button min-width ──────────── */
+#eg-add-task {
+  min-width: 80px;
+}
+
+/* ── Phase / Confirm modal overlay ───────── */
+.eg-confirm-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  z-index: 9200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.eg-confirm-overlay[hidden] { display: none; }
+
+/* Phase modal sits above confirm dialog */
+#eg-phase-modal    { z-index: 9300; }
+#eg-confirm-dialog { z-index: 9200; }
+
+.eg-confirm-box {
+  background: var(--bg-panel);
+  border: 1px solid var(--border-gold);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-gold);
+  width: min(420px, 92vw);
+  display: flex;
+  flex-direction: column;
+}
+
+.eg-confirm-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--border);
+  font-weight: 600;
+  color: var(--text-gold);
+  font-size: 0.95rem;
+  flex-shrink: 0;
+}
+
+.eg-confirm-body {
+  padding: 1rem 1.1rem;
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.eg-confirm-body p {
+  margin: 0;
+}
+
+.eg-confirm-footer {
+  padding: 0.65rem 1rem;
+  border-top: 1px solid var(--border);
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-end;
+}
+
+/* ── Mini import section in add-task panel ── */
+.eg-mini-import {
+  background: rgba(41, 128, 185, 0.07);
+  border: 1px solid rgba(41, 128, 185, 0.3);
+  border-radius: var(--radius);
+  padding: 0.75rem 0.85rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.eg-mini-import-title {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.eg-mini-import-desc {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin: 0;
+  line-height: 1.45;
+}
+
+.eg-mini-import-status {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  min-height: 1.1em;
 }

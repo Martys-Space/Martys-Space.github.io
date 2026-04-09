@@ -6,6 +6,30 @@
   <title>OSRS Leagues VI - Region Picker</title>
   <link rel="stylesheet" href="style.css?v=20260327b">
   <link rel="stylesheet" href="early_game.css?v=20260409a">
+  <script>
+    /* Prevent flash of Region Picker when restoring a saved tab.
+       Runs synchronously in <head> (after CSS, before first paint). */
+    (function () {
+      var VALID = ['skills', 'relics', 'tasks', 'early'];
+      try {
+        var raw = localStorage.getItem('osrsl6_v1');
+        var d   = raw ? JSON.parse(raw) : null;
+        var tab = (d && !Array.isArray(d)) ? d.activeTab : null;
+        if (!tab || VALID.indexOf(tab) === -1) return;
+        var s = document.createElement('style');
+        s.id  = 'init-tab-fix';
+        s.textContent =
+          /* strip active look from the picker button */
+          '.tab-btn[data-tab="picker"].active{background:var(--bg-card)!important;color:var(--text-muted)!important;border-color:var(--border)!important;border-bottom-style:none!important;z-index:auto!important}' +
+          /* give active look to the target button (without the .active class yet) */
+          '.tab-btn[data-tab="' + tab + '"]{background:var(--bg-dark)!important;color:var(--text-gold)!important;border-color:var(--border-gold)!important;border-bottom-color:var(--bg-dark)!important;z-index:1!important}' +
+          /* hide picker content, show target content */
+          '#tab-picker.tab-content.active{display:none!important}' +
+          '#tab-' + tab + '.tab-content{display:block!important}';
+        document.head.appendChild(s);
+      } catch (e) {}
+    })();
+  </script>
 </head>
 <body>
   <div class="page-wrapper">
@@ -19,9 +43,9 @@
       <!-- Tab Nav -->
       <nav class="tab-nav" role="tablist">
         <button class="tab-btn active" data-tab="picker" role="tab" aria-selected="true">🗺️ Region Picker</button>
-        <button class="tab-btn" data-tab="tasks" role="tab" aria-selected="false">📋 Task List</button>
-        <button class="tab-btn" data-tab="relics" role="tab" aria-selected="false">🏆 Relics</button>
         <button class="tab-btn" data-tab="skills" role="tab" aria-selected="false">⚗️ Skills</button>
+        <button class="tab-btn" data-tab="relics" role="tab" aria-selected="false">🏆 Relics</button>
+        <button class="tab-btn" data-tab="tasks"  role="tab" aria-selected="false">📋 Task List</button>
         <button class="tab-btn" data-tab="early"  role="tab" aria-selected="false">🗺️ Early Game</button>
       </nav>
     </header>
@@ -284,9 +308,15 @@
           <div class="eg-progress-header">
             <span>Route Progress</span>
             <div class="eg-progress-stats">
+              <span>⭐ Pts: <span id="eg-stat-pts">—</span></span>
               <span>Total: <span id="eg-stat-done">0/0</span></span>
               <span>⚔️ League: <span id="eg-stat-league">0/0</span></span>
               <span>🛒 Helper: <span id="eg-stat-helper">0/0</span></span>
+            </div>
+            <div class="eg-progress-actions">
+              <button class="eg-icon-btn" id="eg-info-btn" title="How early game routing works">ℹ</button>
+              <button class="eg-icon-btn" id="eg-export-btn" title="Export route to JSON">⬇</button>
+              <label class="eg-icon-btn" title="Import route (JSON or leaguesplanner TXT)" style="cursor:pointer;position:relative">⬆<input type="file" id="eg-import-file" accept=".json,.txt" style="position:absolute;width:0;height:0;opacity:0;pointer-events:none"></label>
             </div>
           </div>
           <div class="eg-progress-track">
@@ -298,12 +328,9 @@
         <!-- Toolbar -->
         <div class="eg-toolbar">
           <div class="eg-toolbar-left">
-            <button class="btn-primary" id="eg-add-task" style="display:flex;align-items:center">+ Add Task</button>
-            <button class="btn-secondary" id="eg-add-phase-btn" style="font-size:0.8rem;padding:0.3rem 0.65rem">+ Phase</button>
+            <button class="btn-primary" id="eg-add-task">+ Task</button>
+            <button class="btn-secondary" id="eg-add-phase-btn">+ Phase</button>
             <span class="eg-task-count-label" id="eg-task-count-label"></span>
-            <button class="eg-icon-btn" id="eg-info-btn" title="How early game routing works">ℹ</button>
-            <button class="eg-icon-btn" id="eg-export-btn" title="Export route to JSON">⬇</button>
-            <label  class="eg-icon-btn" title="Import route (JSON or leaguesplanner TXT)" style="cursor:pointer;position:relative">⬆<input type="file" id="eg-import-file" accept=".json,.txt" style="position:absolute;width:0;height:0;opacity:0;pointer-events:none"></label>
           </div>
           <div class="eg-toolbar-right">
             <div class="eg-filter-row">
@@ -344,7 +371,7 @@
               <label>On complete:</label>
               <select id="eg-completed-display">
                 <option value="gray">Gray out</option>
-                <option value="hidden">Hide when next done</option>
+                <option value="hidden">Hide</option>
               </select>
             </div>
             <div class="eg-settings-row">
@@ -387,7 +414,7 @@
               <button class="eg-map-ctrl-btn" id="eg-zoom-out"        title="Zoom out">−</button>
               <button class="eg-map-ctrl-btn" id="eg-zoom-fit"        title="Fit to screen"
                       style="font-size:0.65rem;letter-spacing:-0.5px">FIT</button>
-              <button class="eg-map-ctrl-btn" id="eg-zoom-fullscreen" title="Fullscreen"
+              <button class="eg-map-ctrl-btn" id="eg-zoom-fullscreen" title="Expand to window"
                       style="font-size:0.9rem">⛶</button>
               <button class="eg-map-ctrl-btn eg-fs-only" id="eg-fs-toggle-sidebar" title="Toggle task list" style="font-size:0.75rem;letter-spacing:-0.5px">◫</button>
               <button class="eg-map-ctrl-btn eg-fs-only" id="eg-fs-toggle-header"  title="Toggle top bar"   style="font-size:0.75rem">⊟</button>
@@ -418,16 +445,16 @@
             <button id="eg-info-close" class="modal-close" aria-label="Close">✕</button>
           </div>
           <div class="eg-info-body">
-            <p><strong>1. Add tasks</strong> — Click <em>+ Add Task</em> or right-click the map to place a task at any location. Choose from imported league tasks or create custom helper tasks.</p>
-            <p><strong>2. Place map pins</strong> — Each task can have a pin on the map. The gold pulsing pin is your <em>next</em> task. Dashed lines connect tasks in order.</p>
-            <p><strong>3. Order your route</strong> — Drag the ⠿ handle in the task list to reorder tasks. The route lines update live.</p>
-            <p><strong>4. Track progress</strong> — Click ✓ to complete or ⟳ to skip a task. You can also click pins on the map to complete/skip directly. Progress bar shows league vs helper completion separately.</p>
-            <p><strong>5. Navigate</strong> — Click 📍 in the task row to zoom the map to that pin. Right-click anywhere on the map to quickly add a task at that spot.</p>
+            <p><strong>1. Add tasks</strong> — Click <em>+ Task</em> in the toolbar or right-click anywhere on the map to place a task at that spot. Choose from imported league tasks or create custom helper tasks.</p>
+            <p><strong>2. Place map pins</strong> — Each task can have a pin on the map. The gold pulsing pin is your <em>next</em> task. Dashed lines connect tasks in route order.</p>
+            <p><strong>3. Order your route</strong> — Drag the ⠿ handle in the task list to reorder tasks. The map lines and pin numbers update live.</p>
+            <p><strong>4. Track progress</strong> — Click ✓ to complete or ⟳ to skip a task. You can also click pins on the map to complete/skip directly. The progress bar tracks league vs helper completion and total points earned.</p>
+            <p><strong>5. Navigate</strong> — Click 📍 in a task row to zoom the map to that pin.</p>
             <p><strong>Pin colors:</strong> 🔵 Blue = League task · 🟣 Purple = Helper · 🟡 Gold = Next up · ⚫ Grey = Complete · 🟠 Orange = Skipped</p>
-            <p><strong>League tasks</strong> come from the <em>Task List</em> tab — import tasks there first, then they appear in the search when adding a task here.</p>
-            <p><strong>Phases</strong> are collapsible groups (e.g. "Varlamore phase", "Karamja phase"). Click <em>+ Phase</em> in the toolbar to create one, then assign tasks when adding or editing.</p>
-            <p><strong>Export / Import</strong> — use ⬇ to save your route as JSON, ⬆ to reload it. You can also import a <em>leaguesplanner.com</em> .txt export — phases and task names are preserved.</p>
-            <p><strong>Customize</strong> colors via the 🎨 button in the toolbar. In fullscreen, use ◫ to toggle the task panel and ⊟ to toggle the top bar.</p>
+            <p><strong>League tasks</strong> come from the <em>Task List</em> tab — import tasks there first, then they appear in the search when adding a task here. Already-added tasks are hidden from the search.</p>
+            <p><strong>Phases</strong> are collapsible groups (e.g. "Varlamore", "Karamja"). Click <em>+ Phase</em> to create one. Assign tasks to a phase when adding/editing, or drag a task row onto a phase header. Drag the ⠿ handle on a phase header to reorder phases.</p>
+            <p><strong>Export / Import</strong> — ⬇ saves your route as JSON, ⬆ reloads it. You can also import a <em>leaguesplanner.com</em> .txt export — phases and task names are preserved. Both buttons are in the progress bar row.</p>
+            <p><strong>Customize</strong> pin and line colors via the 🎨 button in the toolbar. In fullscreen, use ◫ to toggle the task panel and ⊟ to toggle the top bar.</p>
           </div>
         </div>
       </div>
@@ -472,6 +499,40 @@
         </div>
         <div class="eg-color-popup-footer">
           <button class="btn-secondary" id="egc-reset" style="font-size:0.8rem">Reset defaults</button>
+        </div>
+      </div>
+
+      <!-- Phase name modal — inside #tab-early so it appears in fullscreen -->
+      <div id="eg-phase-modal" class="eg-confirm-overlay" hidden>
+        <div class="eg-confirm-box">
+          <div class="eg-confirm-header">
+            <span id="eg-phase-modal-title">New Phase</span>
+            <button class="modal-close" id="eg-phase-modal-x" aria-label="Close">✕</button>
+          </div>
+          <div class="eg-confirm-body">
+            <input type="text" id="eg-phase-modal-input" class="eg-form-input" placeholder="Phase name…" style="width:100%">
+          </div>
+          <div class="eg-confirm-footer">
+            <button class="btn-primary"   id="eg-phase-modal-ok">OK</button>
+            <button class="btn-secondary" id="eg-phase-modal-cancel">Cancel</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Confirm / alert dialog — inside #tab-early so it appears in fullscreen -->
+      <div id="eg-confirm-dialog" class="eg-confirm-overlay" hidden>
+        <div class="eg-confirm-box">
+          <div class="eg-confirm-header">
+            <span id="eg-confirm-title">Confirm</span>
+            <button class="modal-close" id="eg-confirm-x" aria-label="Close">✕</button>
+          </div>
+          <div class="eg-confirm-body">
+            <p id="eg-confirm-message"></p>
+          </div>
+          <div class="eg-confirm-footer">
+            <button class="btn-primary"   id="eg-confirm-ok">OK</button>
+            <button class="btn-secondary" id="eg-confirm-cancel">Cancel</button>
+          </div>
         </div>
       </div>
 
