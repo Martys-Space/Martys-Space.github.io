@@ -1865,7 +1865,7 @@ const HOLLOW_MISSIONS_DATA = [
     location: "Odium Palace - Central Corridor",
     mission_rank: "Rank 1",
     strategy: "Defeat the four indomitable guards that block the way, unlock the central room door, and crush the Force of the Empress, who awaits your arrival at the end of the floor!",
-    summary: "Defeat the four guards, and reach the end of the floor to defeat the Force of the Empress.",
+    summary: "Defeat the four guards, and reach the center of the floor to defeat the Force of the Empress.",
     goal: "Defeat specified number of the target enemy",
     target: "1x Force of the Empress",
     time_limit: null, recommended_level: 126,
