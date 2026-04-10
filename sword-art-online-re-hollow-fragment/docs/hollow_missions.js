@@ -1696,7 +1696,7 @@ const HOLLOW_MISSIONS_DATA = [
     image: "Images/Hollow_Missions/Abandoned_Area/Abandoned_A_Shadow_among_Shadows.png",
   },
   {
-    id: "AB-42", region: "Abandoned_Area", type: null, part: 3,
+    id: "AB-42", region: "Abandoned_Area", type: null, part: 1,
     name: "The Truth Will Come Out",
     location: "Odium Palace - Central Corridor",
     mission_rank: "Rank 2",
@@ -1708,7 +1708,7 @@ const HOLLOW_MISSIONS_DATA = [
     image: "Images/Hollow_Missions/Abandoned_Area/Abandoned_The_Truth_Will_Come_Out.png",
   },
   {
-    id: "AB-43", region: "Abandoned_Area", type: null, part: 4,
+    id: "AB-43", region: "Abandoned_Area", type: null, part: 2,
     name: "Playing God",
     location: "Odium Palace - Central Corridor",
     mission_rank: "Rank 2",
@@ -1720,7 +1720,7 @@ const HOLLOW_MISSIONS_DATA = [
     image: "Images/Hollow_Missions/Abandoned_Area/Abandoned_Playing_God.png",
   },
   {
-    id: "AB-44", region: "Abandoned_Area", type: null, part: 5,
+    id: "AB-44", region: "Abandoned_Area", type: null, part: 3,
     name: "Best Laid Plans o' Monsters and Men",
     location: "Odium Palace - Central Corridor",
     mission_rank: "Rank 2",
