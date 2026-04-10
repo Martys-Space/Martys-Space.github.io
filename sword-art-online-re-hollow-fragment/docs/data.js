@@ -303,7 +303,7 @@ const ACHIEVEMENTS_DATA = [
   { key: 'senior_test_player',  name: 'Senior test player',                        description: 'Complete 100 Implements' },
   { key: 'memories',            name: 'Memories',                                  description: 'Complete Gallery Lists' },
   { key: 'lisbeth_customer',    name: "Lisbeth Smith Shop's most loyal customer!",  description: 'Upgrade weapons 200 times' },
-  { key: 'complete_debug',      name: 'Complete debug',                            description: 'Complete Hollow Missions (100 required)' },
+  { key: 'complete_debug',      name: 'Complete debug',                            description: 'Complete Hollow Missions (120 required)' },
   { key: 'collect_all',         name: 'Collect all achievements',                  description: 'Unlock all achievements' },
   { key: 'not_for_fun',         name: 'This game is not for fun',                  description: 'Defeat 100 HNMs in multiplayer mode' },
 ];

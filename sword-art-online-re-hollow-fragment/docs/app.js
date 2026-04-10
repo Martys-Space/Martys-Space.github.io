@@ -635,10 +635,10 @@ function updateAchInlineTrackers() {
   }
   const debug = document.getElementById('ach-tracker-debug');
   if (debug) {
-    const v = Math.min(completedMissions(), 100);
-    debug.querySelector('.ach-inline-val').textContent = `${v} / 100`;
-    debug.querySelector('.ach-tracker-fill').style.width = v + '%';
-    debug.classList.toggle('complete', v >= 100);
+    const v = Math.min(completedMissions(), 120);
+    debug.querySelector('.ach-inline-val').textContent = `${v} / 120`;
+    debug.querySelector('.ach-tracker-fill').style.width = (v / 120 * 100) + '%';
+    debug.classList.toggle('complete', v >= 120);
   }
   const dcd = document.getElementById('ach-tracker-dcd');
   if (dcd) {
@@ -671,11 +671,11 @@ function renderAchievements() {
         <span class="ach-inline-val">${v} / 100</span>
       </div>`;
     } else if (ach.key === 'complete_debug') {
-      const v = Math.min(completedMissions(), 100);
-      inlineTracker = `<div class="ach-inline-tracker${v >= 100 ? ' complete' : ''}" id="ach-tracker-debug">
+      const v = Math.min(completedMissions(), 120);
+      inlineTracker = `<div class="ach-inline-tracker${v >= 120 ? ' complete' : ''}" id="ach-tracker-debug">
         <span class="ach-inline-label">Missions</span>
-        <div class="ach-tracker-bar ach-tracker-bar-inline"><div class="ach-tracker-fill" style="width:${v}%"></div></div>
-        <span class="ach-inline-val">${v} / 100</span>
+        <div class="ach-tracker-bar ach-tracker-bar-inline"><div class="ach-tracker-fill" style="width:${(v / 120 * 100)}%"></div></div>
+        <span class="ach-inline-val">${v} / 120</span>
       </div>`;
     } else if (ach.key === 'dont_cheat_daddy') {
       const v = dontCheatCount(), t = DONT_CHEAT_TOTAL();
