@@ -5,26 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>OSRS Leagues VI - Region Picker</title>
   <link rel="stylesheet" href="style.css?v=20260327b">
-  <link rel="stylesheet" href="early_game.css?v=20260409a">
+  <link rel="stylesheet" href="early_game.css?v=20260410a">
   <script>
-    /* Prevent flash of Region Picker when restoring a saved tab.
+    /* Show the correct tab immediately before JS runs (prevents flash of empty content).
        Runs synchronously in <head> (after CSS, before first paint). */
     (function () {
-      var VALID = ['skills', 'relics', 'tasks', 'early'];
+      var VALID = ['picker', 'skills', 'relics', 'tasks', 'early'];
       try {
         var raw = localStorage.getItem('osrsl6_v1');
         var d   = raw ? JSON.parse(raw) : null;
         var tab = (d && !Array.isArray(d)) ? d.activeTab : null;
-        if (!tab || VALID.indexOf(tab) === -1) return;
+        if (!tab || VALID.indexOf(tab) === -1) tab = 'relics';
         var s = document.createElement('style');
         s.id  = 'init-tab-fix';
         s.textContent =
-          /* strip active look from the picker button */
-          '.tab-btn[data-tab="picker"].active{background:var(--bg-card)!important;color:var(--text-muted)!important;border-color:var(--border)!important;border-bottom-style:none!important;z-index:auto!important}' +
-          /* give active look to the target button (without the .active class yet) */
+          /* make the target tab button look active */
           '.tab-btn[data-tab="' + tab + '"]{background:var(--bg-dark)!important;color:var(--text-gold)!important;border-color:var(--border-gold)!important;border-bottom-color:var(--bg-dark)!important;z-index:1!important}' +
-          /* hide picker content, show target content */
-          '#tab-picker.tab-content.active{display:none!important}' +
+          /* show legacy tab buttons if saved tab is picker or skills */
+          ((tab === 'picker' || tab === 'skills') ? '#tab-btn-picker,#tab-btn-skills{display:inline-flex!important}' : '') +
+          /* show target tab content */
           '#tab-' + tab + '.tab-content{display:block!important}';
         document.head.appendChild(s);
       } catch (e) {}
@@ -36,24 +35,28 @@
 
     <!-- Header -->
     <header class="site-header">
-      <div class="header-inner">
+      <!--<div class="header-inner">
         <h1 class="site-title"><a href="https://oldschool.runescape.wiki/w/Demonic_Pacts_League" target="_blank" rel="noopener">⚔️ OSRS - Demonic Pacts League VI</a></h1>
-        <p class="site-subtitle">Region Picker &amp; Task Tracker</p>
-      </div>
+      </div> -->
       <!-- Tab Nav -->
       <nav class="tab-nav" role="tablist">
-        <button class="tab-btn active" data-tab="picker" role="tab" aria-selected="true">🗺️ Region Picker</button>
-        <button class="tab-btn" data-tab="skills" role="tab" aria-selected="false">⚗️ Skills</button>
         <button class="tab-btn" data-tab="relics" role="tab" aria-selected="false">🏆 Relics</button>
         <button class="tab-btn" data-tab="tasks"  role="tab" aria-selected="false">📋 Task List</button>
         <button class="tab-btn" data-tab="early"  role="tab" aria-selected="false">🗺️ Early Game</button>
+        <button class="tab-legacy-toggle" id="btn-legacy-toggle" title="Show incomplete tabs">⚠ More</button>
+        <button class="tab-btn tab-btn-hidden" data-tab="picker" role="tab" aria-selected="false" id="tab-btn-picker">🗺️ Region Picker</button>
+        <button class="tab-btn tab-btn-hidden" data-tab="skills" role="tab" aria-selected="false" id="tab-btn-skills">⚗️ Skills</button>
       </nav>
     </header>
 
     <!-- ═══════════════════════════════════════
          TAB: REGION PICKER
     ═══════════════════════════════════════ -->
-    <div id="tab-picker" class="tab-content active">
+    <div id="tab-picker" class="tab-content">
+      <div class="incomplete-banner" id="incomplete-banner-picker">
+        <span>⚠ This tab is incomplete — it may contain missing, incorrect, or unfinished information. It will not be completed.</span>
+        <button class="incomplete-banner-close" data-banner="incomplete-banner-picker" aria-label="Dismiss">✕</button>
+      </div>
       <div class="main-content">
 
         <!-- Sidebar: region list -->
@@ -98,6 +101,7 @@
     <div id="tab-tasks" class="tab-content" hidden>
 
       <!-- Task stats bar -->
+      <div class="task-stats-wrap">
       <div class="task-stats-bar">
         <div class="task-stat">
           <span class="task-stat-value" id="stat-total">0</span>
@@ -116,6 +120,7 @@
           <span class="task-stat-label">Total Points</span>
         </div>
       </div>
+      </div><!-- .task-stats-wrap -->
 
       <div class="task-layout">
 
@@ -269,6 +274,7 @@
         <div class="relics-intro">
           <p>Choose <strong>1 relic per tier</strong>. Tier passives are unlocked automatically as you progress. Unrevealed relics will be added as Jagex reveals them before the April 15th launch.</p>
         </div>
+        <div id="relic-summary-wrap" class="relic-summary-wrap"></div>
         <div class="relics-content" id="relics-content">
           <!-- rendered by JS -->
         </div>
@@ -279,6 +285,10 @@
          TAB: SKILLS
     ═══════════════════════════════════════ -->
     <div id="tab-skills" class="tab-content" hidden>
+      <div class="incomplete-banner" id="incomplete-banner-skills">
+        <span>⚠ This tab is incomplete — it may contain missing, incorrect, or unfinished information. It will not be completed.</span>
+        <button class="incomplete-banner-close" data-banner="incomplete-banner-skills" aria-label="Dismiss">✕</button>
+      </div>
       <div class="skills-page">
 
         <!-- Sidebar: skill list -->
@@ -396,7 +406,7 @@
                      id="eg-map-img" class="eg-map-img"
                      alt="OSRS World Map" draggable="false">
               </div>
-              <!-- Screen-space overlays — NOT inside the scaled viewport -->
+              <!-- Screen-space overlays — rendered as crisp vector at any zoom level -->
               <svg  class="eg-map-lines-svg"   id="eg-map-lines-svg"></svg>
               <div class="eg-map-pins-overlay" id="eg-map-pins-overlay"></div>
             </div>
@@ -531,6 +541,7 @@
           </div>
           <div class="eg-confirm-footer">
             <button class="btn-primary"   id="eg-confirm-ok">OK</button>
+            <button class="btn-secondary" id="eg-confirm-alt" hidden>Alt</button>
             <button class="btn-secondary" id="eg-confirm-cancel">Cancel</button>
           </div>
         </div>
@@ -580,6 +591,18 @@
     </div>
   </div>
 
+  <!-- Reloaded relic picker -->
+  <div class="rp-overlay" id="reloaded-picker" hidden>
+    <div class="rp-backdrop" id="reloaded-picker-backdrop"></div>
+    <div class="rp-box">
+      <div class="rp-header">
+        <span>Choose your bonus relic (Reloaded)</span>
+        <button class="modal-close" id="reloaded-picker-close" aria-label="Close">✕</button>
+      </div>
+      <div class="rp-body" id="reloaded-picker-body"></div>
+    </div>
+  </div>
+
   <!-- Relic image lightbox -->
   <div class="relic-lightbox" id="relic-lightbox" hidden>
     <div class="relic-lightbox-backdrop" id="relic-lightbox-backdrop"></div>
@@ -589,8 +612,25 @@
     </div>
   </div>
 
+  <!-- Global confirm dialog (used by Task List tab etc.) -->
+  <div id="app-confirm-dialog" class="eg-confirm-overlay" hidden>
+    <div class="eg-confirm-box">
+      <div class="eg-confirm-header">
+        <span id="app-confirm-title">Confirm</span>
+        <button class="modal-close" id="app-confirm-x" aria-label="Close">✕</button>
+      </div>
+      <div class="eg-confirm-body">
+        <p id="app-confirm-message"></p>
+      </div>
+      <div class="eg-confirm-footer">
+        <button class="btn-primary"   id="app-confirm-ok">OK</button>
+        <button class="btn-secondary" id="app-confirm-cancel">Cancel</button>
+      </div>
+    </div>
+  </div>
+
   <script src="data.js?v=20260401d"></script>
   <script src="app.js?v=20260401a"></script>
-  <script src="early_game.js?v=20260409a"></script>
+  <script src="early_game.js?v=20260410a"></script>
 </body>
 </html>

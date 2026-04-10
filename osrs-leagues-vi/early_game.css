@@ -10,7 +10,7 @@
 
 /* ── Progress section ────────────────────── */
 .eg-progress-section {
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 0.5rem;
   border-bottom: 1px solid var(--border);
 }
 
@@ -74,7 +74,7 @@
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 0.5rem;
   border-bottom: 1px solid var(--border);
   flex-wrap: wrap;
 }
@@ -484,6 +484,7 @@
   overflow: visible;
 }
 
+/* ── Pins — screen-space (outside viewport, always crisp) ── */
 .eg-map-pins-overlay {
   position: absolute;
   top: 0; left: 0;
@@ -495,8 +496,8 @@
 /* ── Individual pin ── */
 .eg-map-pin {
   position: absolute;
-  /* center the 32x32 svg on the coordinate point */
-  transform: translate(-50%, -50%);
+  left: 0; top: 0;
+  /* positioned via style.transform in JS — avoids layout on every pan/zoom */
   pointer-events: all;
   cursor: pointer;
   user-select: none;
@@ -1368,6 +1369,14 @@
   background: var(--bg-card);
 }
 
+.eg-ungrouped-header .eg-phase-btn {
+  margin-left: auto;
+}
+
+.eg-ungrouped-header:hover .eg-phase-btn {
+  opacity: 1;
+}
+
 /* ── Phase drop target highlight ─────────── */
 .eg-phase-drop-active {
   background: rgba(200, 168, 75, 0.18) !important;
@@ -1378,7 +1387,7 @@
 
 /* ── Add Task button min-width ──────────── */
 #eg-add-task {
-  min-width: 80px;
+  min-width: 70px;
 }
 
 /* ── Phase / Confirm modal overlay ───────── */

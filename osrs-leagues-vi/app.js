@@ -4,8 +4,7 @@
 
 const MAX_CHOICES = 3;
 const LS_KEY = 'osrsl6_v1';
-// ↓ Swap this to 'Demonic_Pacts_League/Tasks' when League VI tasks go live
-const WIKI_TASKS_PAGE = 'Raging_Echoes_League/Tasks';
+const WIKI_TASKS_PAGE = 'Demonic_Pacts_League/Tasks';
 
 // ─── State ────────────────────────────────────
 const state = {
@@ -17,6 +16,7 @@ const state = {
   taskFilter: { search: '', area: '', pts: '', status: '', skill: '' },
   taskSort: 'default',
   selectedRelics:  {},          // { [tier]: relicId }
+  reloadedRelicId: null,        // bonus relic chosen via Reloaded (T7)
   selectedSkill:   null,        // skill name currently shown in Skills tab
   colWidths:       {},          // { [cls]: px } for task table columns
   importCollapsed: false,       // whether the Import Tasks panel is collapsed
@@ -102,7 +102,18 @@ function init() {
   document.getElementById('ctx-pin').addEventListener('click', () => { if (contextTaskId) togglePin(contextTaskId); hideContextMenu(); });
   document.getElementById('ctx-toggle').addEventListener('click', () => { if (contextTaskId) toggleTask(contextTaskId); hideContextMenu(); });
   document.getElementById('ctx-edit').addEventListener('click', () => { if (contextTaskId) openEditModal(contextTaskId); hideContextMenu(); });
-  document.getElementById('ctx-remove').addEventListener('click', () => { if (contextTaskId) removeTask(contextTaskId); hideContextMenu(); });
+  document.getElementById('ctx-remove').addEventListener('click', () => {
+    if (!contextTaskId) return;
+    const id = contextTaskId;
+    const task = state.tasks.find(t => String(t.id) === String(id));
+    hideContextMenu();
+    showAppConfirm(
+      'Remove Task',
+      `Remove "${task ? task.name : 'this task'}"?`,
+      () => removeTask(id),
+      'Remove'
+    );
+  });
   document.addEventListener('click', hideContextMenu);
   document.addEventListener('keydown', e => { if (e.key === 'Escape') hideContextMenu(); });
 
@@ -111,6 +122,12 @@ function init() {
   document.getElementById('task-edit-cancel').addEventListener('click', closeEditModal);
   document.getElementById('task-edit-save').addEventListener('click', saveEditTask);
   document.getElementById('task-edit-overlay').addEventListener('click', e => { if (e.target === document.getElementById('task-edit-overlay')) closeEditModal(); });
+
+  // Global confirm dialog
+  document.getElementById('app-confirm-ok').addEventListener('click', () => closeAppConfirm(true));
+  document.getElementById('app-confirm-cancel').addEventListener('click', () => closeAppConfirm(false));
+  document.getElementById('app-confirm-x').addEventListener('click', () => closeAppConfirm(false));
+  document.getElementById('app-confirm-dialog').addEventListener('click', e => { if (e.target === document.getElementById('app-confirm-dialog')) closeAppConfirm(false); });
 
   // Sort buttons
   document.querySelectorAll('.sort-btn').forEach(btn => {
@@ -122,19 +139,60 @@ function init() {
     });
   });
 
+  // Close build popup when clicking outside the summary wrap
+  document.addEventListener('click', e => {
+    if (_rsActiveRelicId && !e.target.closest('#relic-summary-wrap')) closeRsPopup();
+  });
+
+  // Reloaded relic picker
+  document.getElementById('reloaded-picker-close')   .addEventListener('click', closeReloadedPicker);
+  document.getElementById('reloaded-picker-backdrop').addEventListener('click', closeReloadedPicker);
+
   // Relic image lightbox
   document.getElementById('relic-lightbox-close').addEventListener('click', closeRelicLightbox);
   document.getElementById('relic-lightbox-backdrop').addEventListener('click', closeRelicLightbox);
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeRelicLightbox(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeRelicLightbox(); closeReloadedPicker(); closeAppConfirm(false); } });
+  initLightboxZoom();
 
   initColumnResize();
+  window.addEventListener('resize', updateTaskStickyOffsets);
+
+  // Legacy tabs toggle (Region Picker + Skills)
+  document.getElementById('btn-legacy-toggle').addEventListener('click', () => {
+    const isHidden = document.getElementById('tab-btn-picker').classList.contains('tab-btn-hidden');
+    ['tab-btn-picker', 'tab-btn-skills'].forEach(id => {
+      document.getElementById(id).classList.toggle('tab-btn-hidden', !isHidden);
+    });
+    document.getElementById('btn-legacy-toggle').textContent = isHidden ? '✕ Hide' : '⚠ More';
+    // If hiding and currently on a legacy tab, go back to Relics
+    if (!isHidden && (state.activeTab === 'picker' || state.activeTab === 'skills')) {
+      switchTab('relics');
+    }
+  });
+
+  // Incomplete banner dismiss
+  document.querySelectorAll('.incomplete-banner-close').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.getElementById(btn.dataset.banner).hidden = true;
+    });
+  });
 
   // Auto-open Varlamore
   openRegion('varlamore');
 
-  // Restore last active tab — visual-only switch, no storage write, EG handles its own activation
-  if (state.activeTab && state.activeTab !== 'picker') {
-    restoreTab(state.activeTab);
+  // Default to Relics tab if no saved tab; restore saved tab otherwise
+  const savedTab = state.activeTab;
+  if (!savedTab || savedTab === 'picker') {
+    restoreTab('relics');
+  } else {
+    restoreTab(savedTab);
+  }
+  // Show legacy tabs in nav if saved tab was one of them
+  if (savedTab === 'picker' || savedTab === 'skills') {
+    ['tab-btn-picker', 'tab-btn-skills'].forEach(id => {
+      document.getElementById(id).classList.remove('tab-btn-hidden');
+    });
+    document.getElementById('btn-legacy-toggle').textContent = '✕ Hide';
   }
 }
 
@@ -144,11 +202,97 @@ function openRelicLightbox(src, alt) {
   document.getElementById('relic-lightbox-img').alt = alt;
   lb.removeAttribute('hidden');
   document.body.style.overflow = 'hidden';
+  resetLightboxZoom();
 }
 
 function closeRelicLightbox() {
   document.getElementById('relic-lightbox').setAttribute('hidden', '');
   document.body.style.overflow = '';
+  resetLightboxZoom();
+}
+
+// ─── Lightbox zoom & pan ──────────────────────
+let _lbScale = 1, _lbPanX = 0, _lbPanY = 0;
+let _lbDragging = false, _lbDragMoved = false, _lbDragX = 0, _lbDragY = 0, _lbDragPanX = 0, _lbDragPanY = 0;
+const LB_MIN = 1, LB_MAX = 8;
+
+function applyLightboxTransform() {
+  const img = document.getElementById('relic-lightbox-img');
+  img.style.transform = `translateX(${_lbPanX}px) translateY(${_lbPanY}px) scale(${_lbScale})`;
+  img.style.cursor = _lbScale > 1 ? (_lbDragging ? 'grabbing' : 'grab') : 'zoom-in';
+}
+
+function resetLightboxZoom() {
+  _lbScale = 1; _lbPanX = 0; _lbPanY = 0; _lbDragging = false;
+  const img = document.getElementById('relic-lightbox-img');
+  if (img) { img.style.transform = ''; img.style.cursor = 'zoom-in'; }
+}
+
+function initLightboxZoom() {
+  const img = document.getElementById('relic-lightbox-img');
+
+  // Scroll to zoom, centered on cursor
+  img.addEventListener('wheel', e => {
+    e.preventDefault();
+    const factor   = e.deltaY < 0 ? 1.15 : 1 / 1.15;
+    const newScale = Math.min(LB_MAX, Math.max(LB_MIN, _lbScale * factor));
+    if (newScale === _lbScale) return;
+
+    // Compute cursor position relative to the element's layout center.
+    // getBoundingClientRect gives visual rect (includes current transform).
+    // Visual center = layout center + (_lbPanX, _lbPanY), so:
+    const rect = img.getBoundingClientRect();
+    const visCX = rect.left + rect.width  / 2;
+    const visCY = rect.top  + rect.height / 2;
+    const cx = e.clientX - (visCX - _lbPanX); // cursor relative to layout center
+    const cy = e.clientY - (visCY - _lbPanY);
+
+    _lbPanX = cx - (cx - _lbPanX) * newScale / _lbScale;
+    _lbPanY = cy - (cy - _lbPanY) * newScale / _lbScale;
+    _lbScale = newScale;
+    applyLightboxTransform();
+  }, { passive: false });
+
+  // Drag to pan / click to zoom in
+  img.addEventListener('mousedown', e => {
+    if (e.button !== 0) return;
+    e.preventDefault();
+    _lbDragging = true;
+    _lbDragMoved = false;
+    _lbDragX = e.clientX; _lbDragY = e.clientY;
+    _lbDragPanX = _lbPanX; _lbDragPanY = _lbPanY;
+    if (_lbScale > 1) img.style.cursor = 'grabbing';
+  });
+
+  document.addEventListener('mousemove', e => {
+    if (!_lbDragging) return;
+    const dx = e.clientX - _lbDragX, dy = e.clientY - _lbDragY;
+    if (!_lbDragMoved && (Math.abs(dx) > 4 || Math.abs(dy) > 4)) _lbDragMoved = true;
+    if (_lbDragMoved && _lbScale > 1) {
+      _lbPanX = _lbDragPanX + dx;
+      _lbPanY = _lbDragPanY + dy;
+      applyLightboxTransform();
+    }
+  });
+
+  document.addEventListener('mouseup', e => {
+    if (!_lbDragging) return;
+    _lbDragging = false;
+    if (!_lbDragMoved) {
+      // Click — zoom in centered on cursor (or reset if already at max)
+      const newScale = Math.min(LB_MAX, _lbScale * 1.75);
+      const rect = img.getBoundingClientRect();
+      const cx = e.clientX - (rect.left + rect.width  / 2 - _lbPanX);
+      const cy = e.clientY - (rect.top  + rect.height / 2 - _lbPanY);
+      _lbPanX = cx - (cx - _lbPanX) * newScale / _lbScale;
+      _lbPanY = cy - (cy - _lbPanY) * newScale / _lbScale;
+      _lbScale = newScale;
+    }
+    applyLightboxTransform();
+  });
+
+  // Double-click to reset zoom
+  img.addEventListener('dblclick', resetLightboxZoom);
 }
 
 // ─── Tab switching ────────────────────────────
@@ -168,7 +312,7 @@ function restoreTab(tab) {
     el.classList.toggle('active', el.id === `tab-${tab}`);
     el.hidden = el.id !== `tab-${tab}`;
   });
-  if (tab === 'tasks')  renderTaskStats();
+  if (tab === 'tasks')  { renderTaskStats(); requestAnimationFrame(updateTaskStickyOffsets); }
   if (tab === 'relics') renderRelics();
   if (tab === 'skills') renderSkillsTab();
   // 'early' tab: EG.init() detects the active tab itself and calls activateEarlyTab()
@@ -185,7 +329,7 @@ function switchTab(tab) {
     el.classList.toggle('active', el.id === `tab-${tab}`);
     el.hidden = el.id !== `tab-${tab}`;
   });
-  if (tab === 'tasks') renderTaskStats();
+  if (tab === 'tasks') { renderTaskStats(); requestAnimationFrame(updateTaskStickyOffsets); }
   if (tab === 'relics') renderRelics();
   if (tab === 'skills') renderSkillsTab();
   if (tab === 'early' && typeof EG !== 'undefined' && EG?.activateTab) EG.activateTab();
@@ -880,7 +1024,8 @@ function loadFromStorage() {
         state.tasks = parsed;
       } else {
         state.tasks = parsed.tasks || [];
-        state.selectedRelics = parsed.selectedRelics || {};
+        state.selectedRelics  = parsed.selectedRelics  || {};
+        state.reloadedRelicId = parsed.reloadedRelicId || null;
         state.colWidths = parsed.colWidths || {};
         state.importCollapsed = parsed.importCollapsed ?? false;
         if (parsed.activeTab && parsed.activeTab !== 'picker') state.activeTab = parsed.activeTab;
@@ -901,6 +1046,7 @@ function saveToStorage() {
     const parsed = (raw && !Array.isArray(JSON.parse(raw))) ? JSON.parse(raw) : {};
     parsed.tasks           = state.tasks;
     parsed.selectedRelics  = state.selectedRelics;
+    parsed.reloadedRelicId = state.reloadedRelicId;
     parsed.colWidths       = state.colWidths;
     parsed.importCollapsed = state.importCollapsed;
     parsed.activeTab       = state.activeTab || 'picker';
@@ -915,11 +1061,17 @@ function buildRelicSummary() {
     const relic = tier.relics.find(r => r.id === selectedId);
 
     if (relic) {
+      let bonusHTML = '';
+      if (relic.id === 'reloaded' && state.reloadedRelicId) {
+        const bonusRelic = RELIC_TIERS.flatMap(t => t.relics).find(r => r.id === state.reloadedRelicId);
+        if (bonusRelic) bonusHTML = `<div class="rs-bonus"><img class="rs-bonus-icon" src="${bonusRelic.icon}" alt="${bonusRelic.name}"><span>+ ${bonusRelic.name}</span></div>`;
+      }
       return `
-        <div class="rs-slot rs-slot-filled" title="${relic.name}">
+        <div class="rs-slot rs-slot-filled" data-relic-id="${relic.id}" title="${relic.name}">
           <div class="rs-tier-label">T${tier.tier}</div>
           <img class="rs-icon" src="${relic.icon}" alt="${relic.name}">
           <div class="rs-name">${relic.name}</div>
+          ${bonusHTML}
         </div>`;
     }
     return `
@@ -942,10 +1094,16 @@ function buildRelicSummary() {
   `;
 }
 
+let _rsActiveRelicId = null;
+
 function renderRelics() {
+  // Summary in its own sticky wrap
+  const summaryWrap = document.getElementById('relic-summary-wrap');
+  summaryWrap.innerHTML = buildRelicSummary() +
+    '<div id="rs-detail-popup" class="rs-detail-popup"></div>';
+
   const container = document.getElementById('relics-content');
-  const summaryHTML = buildRelicSummary();
-  container.innerHTML = summaryHTML + RELIC_TIERS.map(tier => {
+  container.innerHTML = RELIC_TIERS.map(tier => {
     const selectedId = state.selectedRelics[tier.tier];
 
     const passivesHTML = tier.passives.length
@@ -1009,6 +1167,28 @@ function renderRelics() {
       `;
     }).join('');
 
+    let reloadedBonusHTML = '';
+    if (tier.tier === 7 && selectedId === 'reloaded') {
+      if (state.reloadedRelicId) {
+        const bonusRelic = RELIC_TIERS.flatMap(t => t.relics).find(r => r.id === state.reloadedRelicId);
+        const bonusTierNum = RELIC_TIERS.find(t => t.relics.some(r => r.id === state.reloadedRelicId))?.tier;
+        if (bonusRelic) {
+          reloadedBonusHTML = `
+            <div class="reloaded-bonus-bar">
+              <img class="reloaded-bonus-icon" src="${bonusRelic.icon}" alt="${bonusRelic.name}">
+              <span>Bonus relic (T${bonusTierNum}): <strong>${bonusRelic.name}</strong></span>
+              <button class="reloaded-bonus-change">Change</button>
+            </div>`;
+        }
+      } else {
+        reloadedBonusHTML = `
+          <div class="reloaded-bonus-bar reloaded-bonus-empty">
+            <span>⚠ No bonus relic chosen yet —</span>
+            <button class="reloaded-bonus-change">Choose now</button>
+          </div>`;
+      }
+    }
+
     return `
       <div class="relic-tier">
         <div class="relic-tier-header">
@@ -1017,9 +1197,10 @@ function renderRelics() {
           ${selectedId ? `<span class="relic-tier-selected-badge">✓ ${tier.relics.find(r => r.id === selectedId)?.name || ''}</span>` : ''}
         </div>
         ${passivesHTML}
-        <div class="relic-cards-row">
+        <div class="relic-cards-row" data-cols="${tier.choices}">
           ${cardsHTML}
         </div>
+        ${reloadedBonusHTML}
       </div>
     `;
   }).join('');
@@ -1030,17 +1211,141 @@ function renderRelics() {
       const relicId = btn.dataset.relic;
       if (state.selectedRelics[tier] === relicId) {
         delete state.selectedRelics[tier];
+        if (relicId === 'reloaded') state.reloadedRelicId = null;
       } else {
         state.selectedRelics[tier] = relicId;
+        if (relicId === 'reloaded') openReloadedPicker();
       }
       saveToStorage();
       renderRelics();
     });
   });
 
+  container.querySelectorAll('.reloaded-bonus-change').forEach(btn => {
+    btn.addEventListener('click', openReloadedPicker);
+  });
+
   container.querySelectorAll('.relic-view-full-btn').forEach(btn => {
     btn.addEventListener('click', () => openRelicLightbox(btn.dataset.src, btn.dataset.alt));
   });
+
+  bindSummarySlots();
+  // Re-open popup for the same relic if one was active before re-render
+  if (_rsActiveRelicId) openRsPopup(_rsActiveRelicId);
+}
+
+function bindSummarySlots() {
+  document.querySelectorAll('.rs-slot-filled').forEach(slot => {
+    slot.addEventListener('click', e => {
+      e.stopPropagation();
+      const relicId = slot.dataset.relicId;
+      if (_rsActiveRelicId === relicId) {
+        closeRsPopup();
+      } else {
+        _rsActiveRelicId = relicId;
+        document.querySelectorAll('.rs-slot').forEach(s => s.classList.remove('rs-slot-active'));
+        slot.classList.add('rs-slot-active');
+        openRsPopup(relicId);
+      }
+    });
+  });
+}
+
+function openRsPopup(relicId) {
+  const relic    = RELIC_TIERS.flatMap(t => t.relics).find(r => r.id === relicId);
+  const popup    = document.getElementById('rs-detail-popup');
+  if (!relic || !popup) return;
+
+  const tierNum    = RELIC_TIERS.find(t => t.relics.some(r => r.id === relicId))?.tier;
+  const effectsHTML = relic.effects.map(e => `<li>${e}</li>`).join('');
+  const giftHTML    = relic.gift      ? `<div class="relic-gift">🎁 Receive: <strong>${relic.gift}</strong></div>` : '';
+  const toggleHTML  = relic.toggleable
+    ? `<div class="relic-toggleable"><span class="relic-toggle-label">Toggleable:</span> ${relic.toggleable}</div>` : '';
+
+  let bonusHTML = '';
+  if (relicId === 'reloaded' && state.reloadedRelicId) {
+    const bonus     = RELIC_TIERS.flatMap(t => t.relics).find(r => r.id === state.reloadedRelicId);
+    const bonusTier = RELIC_TIERS.find(t => t.relics.some(r => r.id === state.reloadedRelicId))?.tier;
+    if (bonus) {
+      const bonusEffectsHTML  = bonus.effects.map(e => `<li>${e}</li>`).join('');
+      const bonusGiftHTML     = bonus.gift      ? `<div class="relic-gift">🎁 Receive: <strong>${bonus.gift}</strong></div>` : '';
+      const bonusToggleHTML   = bonus.toggleable
+        ? `<div class="relic-toggleable"><span class="relic-toggle-label">Toggleable:</span> ${bonus.toggleable}</div>` : '';
+      bonusHTML = `
+        <div class="rs-bonus-section">
+          <div class="rs-bonus-section-head">
+            <img class="rs-popup-icon" src="${bonus.icon}" alt="${bonus.name}">
+            <div>
+              <div class="rs-popup-name">${bonus.name}</div>
+              <div class="rs-popup-tier">Bonus relic — Tier ${bonusTier}</div>
+            </div>
+          </div>
+          ${bonusGiftHTML}${bonusToggleHTML}
+          <ul class="relic-effects">${bonusEffectsHTML}</ul>
+        </div>`;
+    }
+  }
+
+  popup.innerHTML = `
+    <div class="rs-popup-inner">
+      <div class="rs-popup-head">
+        <img class="rs-popup-icon" src="${relic.icon}" alt="${relic.name}">
+        <div>
+          <div class="rs-popup-name">${relic.name}</div>
+          <div class="rs-popup-tier">Tier ${tierNum}</div>
+        </div>
+      </div>
+      ${giftHTML}${toggleHTML}
+      <ul class="relic-effects">${effectsHTML}</ul>
+      ${bonusHTML}
+    </div>`;
+  popup.classList.add('rs-popup-open');
+}
+
+function closeRsPopup() {
+  const popup = document.getElementById('rs-detail-popup');
+  if (popup) popup.classList.remove('rs-popup-open');
+  document.querySelectorAll('.rs-slot').forEach(s => s.classList.remove('rs-slot-active'));
+  _rsActiveRelicId = null;
+}
+
+// ─── Reloaded relic picker ────────────────────
+function openReloadedPicker() {
+  const overlay = document.getElementById('reloaded-picker');
+  const body    = document.getElementById('reloaded-picker-body');
+
+  // Build list of all relics from T1–T6 excluding the one already chosen for each tier
+  let html = '';
+  RELIC_TIERS.filter(t => t.tier <= 6).forEach(tier => {
+    const available = tier.relics.filter(r => r.id !== state.selectedRelics[tier.tier]);
+    if (!available.length) return;
+    html += `<div class="rp-tier-label">Tier ${tier.tier}</div>`;
+    available.forEach(r => {
+      const chosen = r.id === state.reloadedRelicId;
+      html += `
+        <button class="rp-row${chosen ? ' rp-row-selected' : ''}" data-relic-id="${r.id}">
+          <img class="rp-row-icon" src="${r.icon}" alt="${r.name}">
+          <span class="rp-row-name">${r.name}</span>
+          ${chosen ? '<span class="rp-check">✓</span>' : ''}
+        </button>`;
+    });
+  });
+  body.innerHTML = html;
+
+  body.querySelectorAll('.rp-row').forEach(btn => {
+    btn.addEventListener('click', () => {
+      state.reloadedRelicId = btn.dataset.relicId;
+      saveToStorage();
+      closeReloadedPicker();
+      renderRelics();
+    });
+  });
+
+  overlay.removeAttribute('hidden');
+}
+
+function closeReloadedPicker() {
+  document.getElementById('reloaded-picker').setAttribute('hidden', '');
 }
 
 function populateSkillFilter() {
@@ -1349,13 +1654,35 @@ function clearFilters() {
   renderTaskTable();
 }
 
+let _appConfirmOkCb = null;
+
+function showAppConfirm(title, message, onOk, okLabel = 'OK') {
+  _appConfirmOkCb = onOk;
+  document.getElementById('app-confirm-title').textContent   = title;
+  document.getElementById('app-confirm-message').textContent = message;
+  document.getElementById('app-confirm-ok').textContent      = okLabel;
+  document.getElementById('app-confirm-dialog').removeAttribute('hidden');
+}
+
+function closeAppConfirm(confirmed) {
+  document.getElementById('app-confirm-dialog').setAttribute('hidden', '');
+  if (confirmed && _appConfirmOkCb) _appConfirmOkCb();
+  _appConfirmOkCb = null;
+}
+
 function clearAllTasks() {
-  if (!confirm('Clear all imported tasks? This cannot be undone.')) return;
-  state.tasks = [];
-  saveToStorage();
-  populateAreaFilter();
-  renderTaskTable();
-  renderTaskStats();
+  showAppConfirm(
+    'Clear All Tasks',
+    'Clear all imported tasks? This cannot be undone.',
+    () => {
+      state.tasks = [];
+      saveToStorage();
+      populateAreaFilter();
+      renderTaskTable();
+      renderTaskStats();
+    },
+    'Clear All'
+  );
 }
 
 function getFilteredTasks() {
@@ -1399,7 +1726,7 @@ function renderTaskTable() {
         <td colspan="7">
           <div class="task-empty">
             <p>No tasks yet. Paste wiki tasks in the import box to get started.</p>
-            <p class="task-empty-hint">Go to the <a href="https://oldschool.runescape.wiki/w/Raging_Echoes_League/Tasks" target="_blank" rel="noopener">wiki tasks page</a>, copy table rows, then paste here.</p>
+            <p class="task-empty-hint">Go to the <a href="https://oldschool.runescape.wiki/w/Demonic_Pacts_League/Tasks" target="_blank" rel="noopener">wiki tasks page</a>, copy table rows, then paste here.</p>
           </div>
         </td>
       </tr>`;
@@ -1462,6 +1789,16 @@ function renderTaskStats() {
   document.getElementById('stat-completed').textContent     = completed;
   document.getElementById('stat-points-earned').textContent = pointsEarned.toLocaleString();
   document.getElementById('stat-points-total').textContent  = pointsTotal.toLocaleString();
+}
+
+function updateTaskStickyOffsets() {
+  const wrap = document.querySelector('.task-stats-wrap');
+  if (!wrap) return;
+  const h = wrap.getBoundingClientRect().height;
+  const headerRow = document.querySelector('.task-table-header-row');
+  const headerRowH = headerRow ? headerRow.getBoundingClientRect().height : 43;
+  document.documentElement.style.setProperty('--task-table-sticky-top', h + 'px');
+  document.documentElement.style.setProperty('--task-thead-sticky-top', (h + headerRowH) + 'px');
 }
 
 // ─── Column Resizing ──────────────────────────

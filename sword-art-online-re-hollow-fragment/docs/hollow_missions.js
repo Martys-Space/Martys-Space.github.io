@@ -1844,6 +1844,45 @@ const HOLLOW_MISSIONS_DATA = [
     target: "Fearfreeze Eyes and Sieg Degrader",
     time_limit: null, recommended_level: 117,
     image: "Images/Hollow_Missions/Abandoned_Area/Abandoned_Silence_Restoration_Project.png",
+  },
+
+  {
+    id: "AB-54", region: "Abandoned_Area", type: "grand_quest", part: 1,
+    name: "1st Trial: Trap of the Guardian Knights",
+    location: "Odium Palace - Entrance",
+    mission_rank: "Rank 1",
+    strategy: "Defeat the guardians and their traps that protect the door and crush Palace Guardian Titan who awaits your arrival at the end of the floor!",
+    summary: "Defeat the guardians and traps, and reach the end of the floor to defeat Palace Guardian Titan.",
+    goal: "Defeat specified no. of the target enemy",
+    target: "1x Palace Guardian Titan",
+    time_limit: null, recommended_level: 125,
+    image: "Images/Hollow_Missions/Abandoned_Area/Abandoned_1st_Trial_Trap_of_the_Guardian_Knights.png",
+  }, 
+
+  {
+    id: "AB-55", region: "Abandoned_Area", type: "grand_quest", part: 2,
+    name: "2nd Trial: Room with Four Guards",
+    location: "Odium Palace - Central Corridor",
+    mission_rank: "Rank 1",
+    strategy: "Defeat the four indomitable guards that block the way, unlock the central room door, and crush the Force of the Empress, who awaits your arrival at the end of the floor!",
+    summary: "Defeat the four guards, and reach the end of the floor to defeat the Force of the Empress.",
+    goal: "Defeat specified number of the target enemy",
+    target: "1x Force of the Empress",
+    time_limit: null, recommended_level: 126,
+    image: "Images/Hollow_Missions/Abandoned_Area/Abandoned_2nd_Trial_Room_with_Four_Guards.png",
+  },
+
+  {
+    id: "AB-56", region: "Abandoned_Area", type: "grand_quest", part: 3,
+    name: "3rd Trial: At the Mercy of Authority",
+    location: "Odium Palace - Court",
+    mission_rank: "Rank 1",
+    strategy: "Ancient Glory patrols the floor's corridor with a large force of underlings in tow. Crush the well-guarded Ancient Glory!",
+    summary: "Defeat the well-guarded Ancient Glory.",
+    goal: "Defeat specified number of the target enemy",
+    target: "1x Ancient Glory",
+    time_limit: null, recommended_level: 128,
+    image: "Images/Hollow_Missions/Abandoned_Area/Abandoned_3rd_Trial_At_the_Mercy_of_Authority.png",
   }
 
   // ─── Administration Area ──────────────────────────────────────────────────

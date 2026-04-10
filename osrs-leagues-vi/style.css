@@ -131,6 +131,53 @@ body {
   z-index: 1;
 }
 
+/* Legacy tabs hidden by default, toggle button separates them */
+.tab-btn-hidden { display: none; }
+
+.tab-legacy-toggle {
+  padding: 0.55rem 0.9rem;
+  background: var(--bg-card);
+  border: 1px solid #5a3e1b;
+  border-bottom: none;
+  border-radius: var(--radius) var(--radius) 0 0;
+  color: #c0832a;
+  font-family: 'Crimson Text', Georgia, serif;
+  font-size: 0.82rem;
+  cursor: pointer;
+  position: relative;
+  bottom: -2px;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+  margin-left: 0.5rem;
+}
+.tab-legacy-toggle:hover { color: var(--text-gold); border-color: var(--border-gold); background: var(--bg-card-hover); }
+
+/* Incomplete banner */
+.incomplete-banner {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: rgba(180, 100, 20, 0.12);
+  border: 1px solid #7a4a10;
+  border-radius: var(--radius);
+  padding: 0.6rem 0.9rem;
+  margin-bottom: 1.25rem;
+  font-size: 0.85rem;
+  color: #c8913a;
+}
+.incomplete-banner span { flex: 1; }
+.incomplete-banner-close {
+  background: none;
+  border: none;
+  color: #c8913a;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 0 0.2rem;
+  line-height: 1;
+  flex-shrink: 0;
+  opacity: 0.7;
+}
+.incomplete-banner-close:hover { opacity: 1; }
+
 /* ---------- Tab Content ---------- */
 .tab-content { display: none; }
 .tab-content.active { display: block; }
@@ -723,6 +770,14 @@ body {
 ───────────────────────────────── */
 
 /* Stats bar */
+.task-stats-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--bg-primary, #0d0b07);
+  padding-bottom: 1rem;
+}
+
 .task-stats-bar {
   display: flex;
   gap: 1rem;
@@ -730,7 +785,7 @@ body {
   background: var(--bg-panel);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
-  margin-bottom: 1.25rem;
+  margin-bottom: 0;
   flex-wrap: wrap;
 }
 
@@ -940,7 +995,6 @@ body {
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow);
-  overflow-x: auto;
 }
 
 .task-table-header-row {
@@ -952,7 +1006,7 @@ body {
   flex-wrap: wrap;
   gap: 0.5rem;
   position: sticky;
-  top: 0;
+  top: var(--task-table-sticky-top, 0px);
   z-index: 5;
   background: var(--bg-panel);
 }
@@ -1001,7 +1055,7 @@ body {
   white-space: nowrap;
   overflow: hidden;
   position: sticky;
-  top: 43px;
+  top: var(--task-thead-sticky-top, 43px);
   z-index: 4;
 }
 
@@ -1255,6 +1309,10 @@ body.table-resizing .col-resize-handle {
   background: var(--border);
 }
 
+.relic-cards-row[data-cols="2"] {
+  grid-template-columns: repeat(2, 1fr);
+}
+
 /* ── Individual relic card ── */
 .relic-card {
   display: flex;
@@ -1450,6 +1508,7 @@ body.table-resizing .col-resize-handle {
   flex-direction: column;
   align-items: flex-end;
   gap: 0.4rem;
+  overflow: visible;
 }
 
 .relic-lightbox-close {
@@ -1475,7 +1534,146 @@ body.table-resizing .col-resize-handle {
   border-radius: var(--radius-lg);
   box-shadow: 0 8px 40px rgba(0,0,0,0.8);
   display: block;
-  image-rendering: pixelated; /* keeps OSRS pixel art crisp */
+  image-rendering: auto;
+  transform-origin: center center;
+  cursor: zoom-in;
+  user-select: none;
+}
+
+/* ─────────────────────────────────────────────
+   RELOADED RELIC PICKER
+   ───────────────────────────────────────────── */
+.rp-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.rp-overlay[hidden] { display: none; }
+
+.rp-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  cursor: pointer;
+}
+
+.rp-box {
+  position: relative;
+  z-index: 1;
+  width: min(420px, 92vw);
+  max-height: 80vh;
+  background: var(--bg-panel);
+  border: 1px solid var(--border-gold);
+  border-radius: var(--radius-lg);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.rp-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.65rem 0.9rem;
+  border-bottom: 1px solid var(--border);
+  font-weight: 600;
+  color: var(--text-gold);
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+
+.rp-body {
+  overflow-y: auto;
+  padding: 0.4rem 0;
+}
+
+.rp-tier-label {
+  padding: 0.35rem 0.9rem 0.15rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  border-top: 1px solid var(--border);
+  margin-top: 0.2rem;
+}
+.rp-tier-label:first-child { border-top: none; margin-top: 0; }
+
+.rp-row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  width: 100%;
+  padding: 0.4rem 0.9rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-secondary);
+  text-align: left;
+  transition: background 0.1s;
+}
+.rp-row:hover { background: var(--bg-card-hover); }
+.rp-row-selected { background: rgba(200,168,75,0.08); color: var(--text-gold); }
+.rp-row-selected:hover { background: rgba(200,168,75,0.14); }
+
+.rp-row-icon {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+.rp-row-name { flex: 1; font-size: 0.875rem; }
+.rp-check { color: var(--text-gold); font-weight: 700; flex-shrink: 0; }
+
+/* Bonus relic bar shown below T7 cards */
+.reloaded-bonus-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.5rem 0.9rem;
+  background: rgba(200,168,75,0.06);
+  border-top: 1px solid var(--border-gold);
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+.reloaded-bonus-bar.reloaded-bonus-empty {
+  background: rgba(231,76,60,0.06);
+  border-top-color: #e74c3c;
+  color: #e74c3c;
+}
+.reloaded-bonus-icon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+.reloaded-bonus-change {
+  margin-left: auto;
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  padding: 0.15rem 0.5rem;
+  cursor: pointer;
+}
+.reloaded-bonus-change:hover { border-color: var(--border-gold); color: var(--text-gold); }
+
+/* Summary bonus relic sub-entry */
+.rs-bonus {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.65rem;
+  color: var(--text-gold);
+  margin-top: 0.2rem;
+}
+.rs-bonus-icon {
+  width: 14px;
+  height: 14px;
+  object-fit: contain;
 }
 
 /* ─────────────────────────────────────────────
@@ -1597,13 +1795,87 @@ body.table-resizing .col-resize-handle {
    RELIC SUMMARY (top of Relics tab)
    ───────────────────────────────────────────── */
 
+/* Sticky wrapper — summary sticks to top while scrolling */
+.relic-summary-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--bg-primary, #0d0b07);
+  padding-bottom: 1.5rem;
+  margin-bottom: 0;
+}
+
 .relic-summary {
   background: var(--bg-panel);
   border: 1px solid var(--border-gold);
   border-radius: var(--radius-lg);
   padding: 0.75rem 1rem 1rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 0;
   box-shadow: var(--shadow-gold);
+}
+
+/* Expanding detail popup — drops below summary without pushing content */
+.rs-detail-popup {
+  position: absolute;
+  top: calc(100% - 1.5rem); /* sits flush below the summary card */
+  left: 0;
+  right: 0;
+  z-index: 99;
+  background: var(--bg-panel);
+  border: 1px solid var(--border-gold);
+  border-top: none;
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.28s ease;
+}
+.rs-detail-popup.rs-popup-open { max-height: 600px; }
+
+.rs-popup-inner {
+  padding: 0.85rem 1rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.rs-popup-head {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin-bottom: 0.2rem;
+}
+.rs-popup-icon {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+.rs-popup-name {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-gold);
+}
+.rs-popup-tier {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.rs-bonus-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  margin-top: 0.6rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--border-gold);
+}
+
+.rs-bonus-section-head {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
 }
 
 .relic-summary-header {
@@ -1652,6 +1924,15 @@ body.table-resizing .col-resize-handle {
 .rs-slot-filled {
   border-color: var(--border-gold);
   background: rgba(200, 168, 75, 0.06);
+  cursor: pointer;
+}
+.rs-slot-filled:hover {
+  background: rgba(200, 168, 75, 0.13);
+}
+.rs-slot-active {
+  outline: 2px solid var(--text-gold);
+  outline-offset: 1px;
+  background: rgba(200, 168, 75, 0.16) !important;
 }
 
 .rs-tier-label {

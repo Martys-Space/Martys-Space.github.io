@@ -51,9 +51,17 @@ const EG = (() => {
   let phaseDrag = { fromId: null };
   let tabActivated = false;
 
+  // ─── Overlay render caches (screen-space, updated via rAF) ──
+  let _pinPositions = []; // [{ el, px, py }]             — rebuilt by renderMapPins
+  let _lineSegs     = []; // [{ px1,py1, px2,py2, isDone }] — rebuilt by renderMapPins
+  let _donePathEl   = null; // single <path> for completed segments
+  let _activePathEl = null; // single <path> for active segments
+  let _rafPending   = false;
+
   // ─── Modal state ──────────────────────────
   let phaseModalCallback = null;
   let confirmOkCallback  = null;
+  let confirmAltCallback = null;
 
   // ─── Helpers ──────────────────────────────
   function defaultFormData() {
@@ -206,8 +214,13 @@ const EG = (() => {
 
   function applyMapTransform() {
     const vp = document.getElementById('eg-map-viewport');
-    if (vp) vp.style.transform = `translate(${mapState.x}px, ${mapState.y}px) scale(${mapState.scale})`;
-    updatePinPositions();
+    if (!vp) return;
+    vp.style.transform = `translate(${mapState.x}px, ${mapState.y}px) scale(${mapState.scale})`;
+    // Throttle overlay repositioning to one DOM write-pass per animation frame
+    if (!_rafPending) {
+      _rafPending = true;
+      requestAnimationFrame(() => { _rafPending = false; updatePinPositions(); });
+    }
   }
 
   function fitMap() {
@@ -317,23 +330,33 @@ const EG = (() => {
     const nextIdx = nextIncompleteIdx();
     const chain   = visibleNonSkipped();
 
+    // Two shared path elements — one attribute write per frame covers all segments
+    function makePathEl(color, opacity) {
+      const p = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+      p.setAttribute('stroke', color);
+      p.setAttribute('stroke-width', '2.5');
+      p.setAttribute('stroke-dasharray', '12 7');
+      p.setAttribute('stroke-linecap', 'round');
+      p.setAttribute('stroke-opacity', opacity);
+      p.setAttribute('fill', 'none');
+      return p;
+    }
+    _donePathEl   = makePathEl(settings.colors.lineDone, settings.colors.lineDoneOpacity / 100);
+    _activePathEl = makePathEl(settings.colors.line,     settings.colors.lineOpacity / 100);
+    linesSvg.appendChild(_donePathEl);
+    linesSvg.appendChild(_activePathEl);
+
+    const lineSegs = [];
     for (let i = 0; i < chain.length - 1; i++) {
       const t1 = chain[i], t2 = chain[i + 1];
       if (settings.completedDisplay === 'hidden' && t2.status === 'complete') continue;
-      const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-      line.dataset.px1 = t1.pin.px; line.dataset.py1 = t1.pin.py;
-      line.dataset.px2 = t2.pin.px; line.dataset.py2 = t2.pin.py;
-      const lineColor = t1.status === 'complete' ? settings.colors.lineDone : settings.colors.line;
-      const lineAlpha = t1.status === 'complete' ? settings.colors.lineDoneOpacity / 100 : settings.colors.lineOpacity / 100;
-      line.setAttribute('stroke', lineColor);
-      line.setAttribute('stroke-width', '2.5');
-      line.setAttribute('stroke-dasharray', '12 7');
-      line.setAttribute('stroke-linecap', 'round');
-      line.setAttribute('stroke-opacity', lineAlpha);
-      linesSvg.appendChild(line);
+      lineSegs.push({ px1: t1.pin.px, py1: t1.pin.py, px2: t2.pin.px, py2: t2.pin.py,
+                      isDone: t1.status === 'complete' });
     }
+    _lineSegs = lineSegs;
 
     const displayNums = buildDisplayNums();
+    const pinPositions = [];
     tasks.forEach((task, idx) => {
       if (!task.pin) return;
       const isSkipped  = task.status === 'skipped';
@@ -360,8 +383,6 @@ const EG = (() => {
         (isNext     ? ' eg-pin-next'     : '') +
         (isComplete ? ' eg-pin-complete' : '') +
         (isSkipped  ? ' eg-pin-skipped'  : '');
-      pinDiv.dataset.px = task.pin.px;
-      pinDiv.dataset.py = task.pin.py;
       pinDiv.style.opacity = opacity;
       pinDiv.innerHTML = `
         <svg width="32" height="32" viewBox="-14 -14 28 28"
@@ -375,26 +396,38 @@ const EG = (() => {
         </svg>`;
       pinDiv.addEventListener('click', e => { e.stopPropagation(); showPinTooltip(task, e.clientX, e.clientY); });
       pinsOverlay.appendChild(pinDiv);
+      pinPositions.push({ el: pinDiv, px: task.pin.px, py: task.pin.py });
     });
 
+    _pinPositions = pinPositions;
     updatePinPositions();
     renderPreviewPin();
   }
 
   function updatePinPositions() {
-    if (!mapState.imgW) return;
-    document.querySelectorAll('#eg-map-pins-overlay .eg-map-pin').forEach(pin => {
-      const sc = imgToScreen(parseFloat(pin.dataset.px), parseFloat(pin.dataset.py));
-      pin.style.left = sc.x + 'px'; pin.style.top = sc.y + 'px';
-    });
-    const linesSvg = document.getElementById('eg-map-lines-svg');
-    if (linesSvg) {
-      linesSvg.querySelectorAll('line').forEach(line => {
-        const s1 = imgToScreen(parseFloat(line.dataset.px1), parseFloat(line.dataset.py1));
-        const s2 = imgToScreen(parseFloat(line.dataset.px2), parseFloat(line.dataset.py2));
-        line.setAttribute('x1', s1.x); line.setAttribute('y1', s1.y);
-        line.setAttribute('x2', s2.x); line.setAttribute('y2', s2.y);
+    // Lines: build two path strings, then write 2 attributes total (vs N×4 before)
+    if (_donePathEl || _activePathEl) {
+      let donePath = '', activePath = '';
+      _lineSegs.forEach(({ px1, py1, px2, py2, isDone }) => {
+        const s1 = imgToScreen(px1, py1);
+        const s2 = imgToScreen(px2, py2);
+        const seg = `M${s1.x},${s1.y}L${s2.x},${s2.y}`;
+        if (isDone) donePath   += seg;
+        else        activePath += seg;
       });
+      if (_donePathEl)   _donePathEl.setAttribute('d',   donePath   || 'M0,0');
+      if (_activePathEl) _activePathEl.setAttribute('d', activePath || 'M0,0');
+    }
+    // Pins: style.transform bypasses layout (compositor path), left/top would trigger it
+    _pinPositions.forEach(({ el, px, py }) => {
+      const sc = imgToScreen(px, py);
+      el.style.transform = `translate(${sc.x - 16}px,${sc.y - 16}px)`;
+    });
+    // Preview pin
+    const preview = document.getElementById('eg-preview-pin');
+    if (preview && preview.dataset.px) {
+      const sc = imgToScreen(parseFloat(preview.dataset.px), parseFloat(preview.dataset.py));
+      preview.style.transform = `translate(${sc.x - 16}px,${sc.y - 16}px)`;
     }
   }
 
@@ -577,7 +610,7 @@ const EG = (() => {
       }
       const ungrouped = visible.filter(t => !t.phaseId || !phaseIdSet.has(t.phaseId));
       if (ungrouped.length > 0) {
-        html += `<div class="eg-ungrouped-header">Ungrouped (${ungrouped.length})</div>`;
+        html += `<div class="eg-ungrouped-header">Ungrouped (${ungrouped.length})<button class="eg-phase-btn btn-delete" data-phase-action="delete-ungrouped" title="Delete all ungrouped tasks">🗑</button></div>`;
         html += ungrouped.map(t => taskItemHtml(t, tasks.indexOf(t), nextIdx, displayNums.get(t.id))).join('');
       }
       list.innerHTML = html;
@@ -640,11 +673,42 @@ const EG = (() => {
     const phase = phases.find(p => p.id === id);
     if (!phase) return;
     const count = tasks.filter(t => t.phaseId === id).length;
-    showConfirmDialog('Delete Phase',
-      `Delete "${phase.name}"?${count > 0 ? ` ${count} task(s) will become ungrouped.` : ''}`,
-      { okLabel: 'Delete', onOk: () => {
-        tasks.forEach(t => { if (t.phaseId === id) t.phaseId = null; });
-        phases = phases.filter(p => p.id !== id);
+    if (count === 0) {
+      showConfirmDialog('Delete Phase', `Delete "${phase.name}"?`, {
+        okLabel: 'Delete', onOk: () => {
+          phases = phases.filter(p => p.id !== id);
+          save(); render();
+        }
+      });
+    } else {
+      showConfirmDialog('Delete Phase',
+        `"${phase.name}" has ${count} task(s). What would you like to do?`,
+        {
+          okLabel:  'Delete phase & tasks',
+          onOk:     () => {
+            tasks  = tasks.filter(t => t.phaseId !== id);
+            phases = phases.filter(p => p.id !== id);
+            save(); render();
+          },
+          altLabel: 'Ungroup tasks',
+          onAlt:    () => {
+            tasks.forEach(t => { if (t.phaseId === id) t.phaseId = null; });
+            phases = phases.filter(p => p.id !== id);
+            save(); render();
+          }
+        });
+    }
+  }
+
+  function deleteUngroupedTasks() {
+    const phaseIdSet = new Set(phases.map(p => p.id));
+    const ungrouped  = tasks.filter(t => !t.phaseId || !phaseIdSet.has(t.phaseId));
+    if (ungrouped.length === 0) return;
+    showConfirmDialog('Delete Ungrouped',
+      `Delete all ${ungrouped.length} ungrouped task(s)? This cannot be undone.`,
+      { okLabel: 'Delete all', onOk: () => {
+        const ids = new Set(ungrouped.map(t => t.id));
+        tasks = tasks.filter(t => !ids.has(t.id));
         save(); render();
       }});
   }
@@ -663,8 +727,9 @@ const EG = (() => {
         e.stopPropagation();
         const { phaseAction, phaseId } = btn.dataset;
         if (phaseAction === 'toggle') togglePhaseCollapse(phaseId);
-        else if (phaseAction === 'rename') renamePhase(phaseId);
-        else if (phaseAction === 'delete') deletePhase(phaseId);
+        else if (phaseAction === 'rename')          renamePhase(phaseId);
+        else if (phaseAction === 'delete')          deletePhase(phaseId);
+        else if (phaseAction === 'delete-ungrouped') deleteUngroupedTasks();
       });
     });
 
@@ -806,7 +871,7 @@ const EG = (() => {
   // ─── Confirm dialog ───────────────────────
   // Items 6 & 7: shared styled confirm/alert dialog
   function showConfirmDialog(title, message, opts) {
-    const o = { okLabel: 'OK', cancelLabel: 'Cancel', onOk: null, showCancel: true, ...opts };
+    const o = { okLabel: 'OK', cancelLabel: 'Cancel', onOk: null, showCancel: true, altLabel: null, onAlt: null, ...opts };
     document.getElementById('eg-confirm-title').textContent   = title;
     document.getElementById('eg-confirm-message').textContent = message;
     document.getElementById('eg-confirm-ok').textContent      = o.okLabel;
@@ -817,16 +882,29 @@ const EG = (() => {
     } else {
       cancelBtn.setAttribute('hidden', '');
     }
+    const altBtn = document.getElementById('eg-confirm-alt');
+    if (o.altLabel) {
+      altBtn.textContent = o.altLabel;
+      altBtn.removeAttribute('hidden');
+      confirmAltCallback = o.onAlt;
+    } else {
+      altBtn.setAttribute('hidden', '');
+      confirmAltCallback = null;
+    }
     confirmOkCallback = o.onOk;
     document.getElementById('eg-confirm-dialog').removeAttribute('hidden');
   }
 
-  function closeConfirmDialog(confirmed) {
+  function closeConfirmDialog(confirmed, alt) {
     document.getElementById('eg-confirm-dialog').setAttribute('hidden', '');
     document.getElementById('eg-confirm-cancel').removeAttribute('hidden');
-    const cb = confirmOkCallback;
-    confirmOkCallback = null;
-    if (confirmed && cb) cb();
+    document.getElementById('eg-confirm-alt').setAttribute('hidden', '');
+    const cb    = confirmOkCallback;
+    const altCb = confirmAltCallback;
+    confirmOkCallback  = null;
+    confirmAltCallback = null;
+    if (alt && altCb) altCb();
+    else if (confirmed && cb) cb();
   }
 
   // ─── Search helpers ────────────────────────
@@ -1125,6 +1203,12 @@ const EG = (() => {
         t.phaseId      = fd.phaseId  || null;
       }
     } else {
+      let phaseId = fd.phaseId || null;
+      if (tasks.length === 0 && phases.length === 0) {
+        const newPhase = { id: uid(), name: 'Phase 1', collapsed: false };
+        phases.push(newPhase);
+        phaseId = newPhase.id;
+      }
       tasks.push({
         id:           uid(),
         taskRef:      fd.taskRef   || null,
@@ -1133,7 +1217,7 @@ const EG = (() => {
         area:         (fd.area || '').trim(),
         isLeagueTask: fd.isLeagueTask,
         pts:          fd.pts        || null,
-        phaseId:      fd.phaseId   || null,
+        phaseId,
         status:       'incomplete',
         pin:          fd.pin,
       });
@@ -1201,7 +1285,7 @@ const EG = (() => {
       </svg>`;
     pinsOverlay.appendChild(div);
     const sc = imgToScreen(px, py);
-    div.style.left = sc.x + 'px'; div.style.top = sc.y + 'px';
+    div.style.transform = `translate(${sc.x - 16}px,${sc.y - 16}px)`;
   }
 
   // ─── Info overlay ─────────────────────────
@@ -1508,6 +1592,7 @@ const EG = (() => {
 
     // Confirm dialog (Items 6 & 7)
     el('eg-confirm-ok')    .addEventListener('click', () => closeConfirmDialog(true));
+    el('eg-confirm-alt')   .addEventListener('click', () => closeConfirmDialog(false, true));
     el('eg-confirm-cancel').addEventListener('click', () => closeConfirmDialog(false));
     el('eg-confirm-x')     .addEventListener('click', () => closeConfirmDialog(false));
     el('eg-confirm-dialog').addEventListener('click', e => { if (e.target === el('eg-confirm-dialog')) closeConfirmDialog(false); });
