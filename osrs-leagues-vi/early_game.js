@@ -6,8 +6,9 @@ const EG = (() => {
   'use strict';
 
   // ─── Constants ────────────────────────────
-  const LS_KEY    = 'osrsl6_v1';
-  const EG_SUBKEY = 'earlyGame';
+  const LS_KEY          = 'osrsl6_v1';
+  const EG_SUBKEY       = 'earlyGame';
+  const MYROUTE_VERSION = '20260411a'; // bump this whenever myroute.json is updated
   const REGIONS   = ['General','Asgarnia','Desert','Fremennik','Kandarin',
                      'Karamja','Kourend','Morytania','Tirannwn','Varlamore','Wilderness'];
 
@@ -1472,7 +1473,7 @@ const EG = (() => {
   }
 
   function importMyRoute() {
-    fetch('myroute.json?_=' + Date.now())
+    fetch('myroute.json?v=' + MYROUTE_VERSION)
       .then(r => {
         if (!r.ok) throw new Error('HTTP ' + r.status);
         return r.json();
