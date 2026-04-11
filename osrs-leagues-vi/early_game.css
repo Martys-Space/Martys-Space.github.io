@@ -940,6 +940,45 @@
   background: var(--bg-card);
 }
 
+/* ── Info button first-visit pulse ──────── */
+@keyframes eg-info-pulse {
+  0%,100% { box-shadow: 0 0 0 0   rgba(232,195,90,0.7); border-color: var(--border-gold); color: var(--text-gold); }
+  50%      { box-shadow: 0 0 0 6px rgba(232,195,90,0);   border-color: var(--border-gold); color: var(--text-gold); }
+}
+.eg-icon-btn-pulse {
+  animation: eg-info-pulse 1.4s ease-in-out infinite;
+  border-color: var(--border-gold) !important;
+  color: var(--text-gold) !important;
+}
+
+/* ── Map loading overlay ─────────────────── */
+.eg-map-loader {
+  position: absolute;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(13,11,7,0.82);
+  gap: 0.75rem;
+  pointer-events: none;
+}
+.eg-map-loader[hidden] { display: none; }
+.eg-map-loader-spinner {
+  width: 36px; height: 36px;
+  border: 3px solid rgba(232,195,90,0.2);
+  border-top-color: var(--text-gold, #e8c35a);
+  border-radius: 50%;
+  animation: eg-spin 0.8s linear infinite;
+}
+@keyframes eg-spin { to { transform: rotate(360deg); } }
+.eg-map-loader-text {
+  font-size: 0.8rem;
+  color: var(--text-muted, #9a8f70);
+  letter-spacing: 0.04em;
+}
+
 /* ── Task number column (number + pin goto stacked) ── */
 .eg-task-num-col {
   display: flex;

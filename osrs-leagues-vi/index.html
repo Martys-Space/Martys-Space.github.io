@@ -327,6 +327,7 @@
               <button class="eg-icon-btn" id="eg-info-btn" title="How early game routing works">ℹ</button>
               <button class="eg-icon-btn" id="eg-export-btn" title="Export route to JSON">⬇</button>
               <label class="eg-icon-btn" title="Import route (JSON or leaguesplanner TXT)" style="cursor:pointer;position:relative">⬆<input type="file" id="eg-import-file" accept=".json,.txt" style="position:absolute;width:0;height:0;opacity:0;pointer-events:none"></label>
+              <button class="eg-icon-btn" id="eg-import-myroute-btn" title="Load My Route preset">🗺</button>
             </div>
           </div>
           <div class="eg-progress-track">
@@ -400,6 +401,10 @@
 
           <!-- Interactive map -->
           <div class="eg-map-area" id="eg-map-area">
+            <div id="eg-map-loader" class="eg-map-loader">
+              <div class="eg-map-loader-spinner"></div>
+              <span class="eg-map-loader-text">Loading map…</span>
+            </div>
             <div class="eg-map-container" id="eg-map-container">
               <div class="eg-map-viewport" id="eg-map-viewport">
                 <img src="images/other/Old_School_RuneScape_world_map_2026.png"
@@ -464,6 +469,7 @@
             <p><strong>League tasks</strong> come from the <em>Task List</em> tab — import tasks there first, then they appear in the search when adding a task here. Already-added tasks are hidden from the search.</p>
             <p><strong>Phases</strong> are collapsible groups (e.g. "Varlamore", "Karamja"). Click <em>+ Phase</em> to create one. Assign tasks to a phase when adding/editing, or drag a task row onto a phase header. Drag the ⠿ handle on a phase header to reorder phases.</p>
             <p><strong>Export / Import</strong> — ⬇ saves your route as JSON, ⬆ reloads it. You can also import a <em>leaguesplanner.com</em> .txt export — phases and task names are preserved. Both buttons are in the progress bar row.</p>
+            <p><strong>My Route preset</strong> — 🗺 loads a pre-built starter route directly without needing a file. Great if you don't want to plan from scratch. It will ask before replacing any existing tasks.</p>
             <p><strong>Customize</strong> pin and line colors via the 🎨 button in the toolbar. In fullscreen, use ◫ to toggle the task panel and ⊟ to toggle the top bar.</p>
           </div>
         </div>

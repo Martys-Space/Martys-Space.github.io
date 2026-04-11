@@ -128,12 +128,9 @@ const REGIONS = [
     raids: [],
 
     echoBosses: [
-      { name:'Amoxliatl Echo', icon:'🦕', difficulty:'Confirmed',
+      { name:'Amoxliatl (Echo)', icon:'🦕', difficulty:'',
         wikiUrl:`${WIKI}Amoxliatl_(Echo)`,
-        drops:['Fused echo weapon (combined stats of three weapons)'] },
-      { name:'Sol Heredit (Echo)', icon:'🏟️', difficulty:'Grandmaster · Unconfirmed',
-        wikiUrl:`${WIKI}Sol_Heredit_(echo)`,
-        drops:['Sunlight spear','Sunlit bracers'] },
+        drops:['Infernal tecpatl (1/30) — 2h melee, hits twice in all styles (+72 stab/slash/crush), 10% demonbane. Spec (50%): 4 hits at 25% increased accuracy & max hit.'] },
     ],
 
     specialUnlocks: [
@@ -409,9 +406,9 @@ const REGIONS = [
     raids: [],
 
     echoBosses: [
-      { name:'Cerberus (Echo)', icon:'🐕', difficulty:'Master · Unconfirmed',
+      { name:'Cerberus (Echo)', icon:'🐕', difficulty:'',
         wikiUrl:`${WIKI}Cerberus_(echo)`,
-        drops:['The dogsword'] },
+        drops:['Fang of the hound (1/25) — 1h dagger (+60 stab/slash, +20 str, 3t). 5% chance on hit to cast Flames of Cerberus (fire spell, base max 10). Spec (50%): instant-hit + guaranteed Flames of Cerberus.'] },
     ],
 
     specialUnlocks: [
@@ -538,9 +535,9 @@ const REGIONS = [
     ],
 
     echoBosses: [
-      { name:'Kalphite Queen (Echo)', icon:'🐛', difficulty:'Elite · Unconfirmed',
+      { name:'Kalphite Queen (Echo)', icon:'🐛', difficulty:'',
         wikiUrl:`${WIKI}Kalphite_Queen_(echo)`,
-        drops:['Drygore blowpipe'] },
+        drops:['Drygore blowpipe (1/20) — 2h light ranged (+50 ranged, +10 str when loaded). Dual accuracy rolls like Osmumten\'s fang. 25% chance to inflict burn. 2t rapid speed.'] },
     ],
 
     specialUnlocks: [
@@ -713,9 +710,9 @@ const REGIONS = [
     raids: [],
 
     echoBosses: [
-      { name:'Dagannoth Kings (Echo)', icon:'🦈', difficulty:'Master · Confirmed',
+      { name:'Dagannoth Kings (Echo)', icon:'🦈', difficulty:'',
         wikiUrl:`${WIKI}Dagannoth_Kings_(echo)`,
-        drops:['Best-in-slot Viking helmet (echo drop, with a special twist)'] },
+        drops:["V's helm (1/25) — helmet (+40 all def, +8 str, +8 magic atk, +12 ranged atk, +3% magic dmg). 5% chance to reduce incoming hit to 0 (next spec costs no energy). Counts as imbued slayer helm."] },
     ],
 
     specialUnlocks: [
@@ -901,9 +898,12 @@ const REGIONS = [
     raids: [],
 
     echoBosses: [
-      { name:'Thermonuclear Smoke Devil (Echo)', icon:'💨', difficulty:'Elite · Confirmed',
+      { name:'Thermonuclear smoke devil (Echo)', icon:'💨', difficulty:'Elite',
         wikiUrl:`${WIKI}Thermonuclear_Smoke_Devil_(echo)`,
-        drops:['Echo four-pronged main hand (magic)', 'Echo off-hand (magic)'] },
+        drops:[
+          "Devil's element (1/25) — offhand magic (+20 magic atk, +6% magic dmg, +3 prayer). Passive: adds 30% elemental weakness to all elements.",
+          "Shadowflame quadrant (1/25) — staff (+25 magic atk, +15% magic dmg). Auto-fires a 2nd spell at 40% damage; always uses target's weakest element. Infinite air/water/earth/fire runes.",
+        ] },
     ],
 
     specialUnlocks: [
@@ -1100,9 +1100,9 @@ const REGIONS = [
     ],
 
     echoBosses: [
-      { name:'Hespori (Echo)', icon:'🌿', difficulty:'Elite · Confirmed',
+      { name:'Hespori (Echo)', icon:'🌿', difficulty:'',
         wikiUrl:`${WIKI}Hespori_(echo)`,
-        drops:['Tangled root shortbow (ranged, restores prayer + HP on hit)'] },
+        drops:["Nature's recurve (1/15) — 2h shortbow (+95 ranged atk, +4 ranged str). 50% chance on hit to restore 10% of damage dealt as HP and prayer points. Shoots all arrows."] },
     ],
 
     specialUnlocks: [
@@ -1241,9 +1241,9 @@ const REGIONS = [
     ],
 
     echoBosses: [
-      { name:'Grotesque Guardians (Echo)', icon:'🗿', difficulty:'Elite · Unconfirmed',
+      { name:'Grotesque Guardians (Echo)', icon:'🗿', difficulty:'Elite',
         wikiUrl:`${WIKI}Grotesque_Guardians_(echo)`,
-        drops:['Gloves of the damned'] },
+        drops:['Lithic sceptre (1/25) — 1h magic powered sceptre (+25 magic atk). Gains up to 14 shatter stacks per hit. Spec: consume 5 stacks for 130% max hit magic + up to 65% typeless to 12 enemies within 3 tiles.'] },
     ],
 
     specialUnlocks: [
@@ -1404,9 +1404,9 @@ const REGIONS = [
     raids: [],
 
     echoBosses: [
-      { name:'Corrupted Hunllef (Echo)', icon:'💎', difficulty:'Master · Unconfirmed',
+      { name:'Corrupted Hunllef (Echo)', icon:'💎', difficulty:'',
         wikiUrl:`${WIKI}Corrupted_Hunllef_(echo)`,
-        drops:['Crystal blessing'] },
+        drops:['Crystal blessing (1/15) — ammo slot (+5 prayer). Extends crystal armour acc/dmg bonus to all melee & powered staves. Each crystal piece also gives +2% magic damage and +20 magic attack.'] },
     ],
 
     specialUnlocks: [
@@ -1543,9 +1543,9 @@ const REGIONS = [
     raids: [],
 
     echoBosses: [
-      { name:'King Black Dragon (Echo)', icon:'🐲', difficulty:'Elite · Confirmed',
+      { name:'King Black Dragon (Echo)', icon:'🐲', difficulty:'',
         wikiUrl:`${WIKI}King_Black_Dragon_(echo)`,
-        drops:['Echo crossbow (double hit counts as one; ice barrage-like freeze effects)'] },
+        drops:["King's barrage (1/25) — 1h crossbow (+130 ranged atk, +14 ranged str). Always fires 2 bolts: first normal crossbow hit, second always freezes target for 24 ticks. Freeze toggleable. Full damage to Corp Beast."] },
     ],
 
     specialUnlocks: [

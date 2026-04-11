@@ -149,11 +149,14 @@ const EG = (() => {
   }
 
   // ─── Storage ──────────────────────────────
+  let _firstVisit = false;
+
   function load() {
     try {
       const raw = localStorage.getItem(LS_KEY);
-      if (!raw) return;
+      if (!raw) { _firstVisit = true; return; }
       const parsed = JSON.parse(raw);
+      if (!parsed.seenEgInfo) _firstVisit = true;
       const eg = parsed[EG_SUBKEY] || {};
       tasks  = Array.isArray(eg.tasks)  ? eg.tasks  : [];
       phases = Array.isArray(eg.phases) ? eg.phases : [];
@@ -162,7 +165,19 @@ const EG = (() => {
         if (eg.settings.filters) settings.filters = { ...settings.filters, ...eg.settings.filters };
         if (eg.settings.colors)  settings.colors  = { ...settings.colors,  ...eg.settings.colors  };
       }
-    } catch (e) { tasks = []; phases = []; }
+    } catch (e) { tasks = []; phases = []; _firstVisit = true; }
+  }
+
+  function markInfoSeen() {
+    if (!_firstVisit) return;
+    _firstVisit = false;
+    document.getElementById('eg-info-btn').classList.remove('eg-icon-btn-pulse');
+    try {
+      const raw    = localStorage.getItem(LS_KEY);
+      const parsed = raw ? JSON.parse(raw) : {};
+      parsed.seenEgInfo = true;
+      localStorage.setItem(LS_KEY, JSON.stringify(parsed));
+    } catch (e) {}
   }
 
   function save() {
@@ -190,16 +205,24 @@ const EG = (() => {
   function initMap() {
     const container = document.getElementById('eg-map-container');
     const img       = document.getElementById('eg-map-img');
+    const loader    = document.getElementById('eg-map-loader');
 
     function onImgLoaded() {
+      if (loader) loader.hidden = true;
       mapState.imgW = img.naturalWidth;
       mapState.imgH = img.naturalHeight;
       fitMap();
       renderMapPins();
     }
 
-    if (img.complete && img.naturalWidth > 0) onImgLoaded();
-    else img.addEventListener('load', onImgLoaded);
+    if (img.complete && img.naturalWidth > 0) {
+      onImgLoaded();
+    } else {
+      img.addEventListener('load', onImgLoaded);
+      img.addEventListener('error', () => {
+        if (loader) { loader.querySelector('.eg-map-loader-text').textContent = 'Failed to load map'; }
+      });
+    }
 
     container.addEventListener('mousedown', onMapMouseDown);
     window.addEventListener('mousemove', onMapMouseMove);
@@ -1289,7 +1312,10 @@ const EG = (() => {
   }
 
   // ─── Info overlay ─────────────────────────
-  function openInfoOverlay()  { document.getElementById('eg-info-overlay').removeAttribute('hidden'); }
+  function openInfoOverlay()  {
+    markInfoSeen();
+    document.getElementById('eg-info-overlay').removeAttribute('hidden');
+  }
   function closeInfoOverlay() { document.getElementById('eg-info-overlay').setAttribute('hidden', ''); }
 
   // ─── Color settings popup ─────────────────
@@ -1442,6 +1468,55 @@ const EG = (() => {
     reader.readAsText(file);
   }
 
+  function importMyRoute() {
+    fetch('myroute.json?_=' + Date.now())
+      .then(r => {
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        return r.json();
+      })
+      .then(data => {
+        if (!data.tasks || !Array.isArray(data.tasks)) {
+          showConfirmDialog('Import Error', 'myroute.json has an invalid format.', { showCancel: false });
+          return;
+        }
+        const newCount  = data.tasks.length;
+        const newPhases = Array.isArray(data.phases) ? data.phases.length : 0;
+        const existing  = tasks.length;
+
+        const doImport = () => {
+          phases = Array.isArray(data.phases) ? data.phases.map(p => ({
+            id: p.id || uid(), name: p.name || 'Phase', collapsed: !!p.collapsed,
+          })) : [];
+          tasks = data.tasks.map(t => ({
+            id: t.id || uid(), phaseId: t.phaseId || null, taskRef: t.taskRef || null,
+            title: t.title || '', description: t.description || '', area: t.area || '',
+            isLeagueTask: !!t.isLeagueTask, pts: t.pts || null,
+            status: ['complete','skipped'].includes(t.status) ? t.status : 'incomplete',
+            pin: (t.pin && typeof t.pin.px === 'number') ? t.pin : null,
+          }));
+          save(); render();
+          showConfirmDialog('Import Complete',
+            'Loaded ' + tasks.length + ' task(s) across ' + phases.length + ' phase(s).',
+            { showCancel: false });
+        };
+
+        showConfirmDialog('Load My Route Preset',
+          'Load the preset route? (' + newCount + ' task(s), ' + newPhases + ' phase(s))',
+          { okLabel: 'Load', onOk: () => {
+            if (existing > 0) {
+              showConfirmDialog('Replace Existing Tasks',
+                'This will replace your ' + existing + ' existing task(s). This cannot be undone.',
+                { okLabel: 'Replace & Load', onOk: doImport });
+            } else {
+              doImport();
+            }
+          }});
+      })
+      .catch(err => {
+        showConfirmDialog('Import Error', 'Could not load myroute.json: ' + err.message, { showCancel: false });
+      });
+  }
+
   function parseTXTImport(text) {
     const lines = text.split('\n');
     const newPhases = [], newTasks = [];
@@ -1568,13 +1643,17 @@ const EG = (() => {
     el('eg-cancel-placement') .addEventListener('click', () => { endPlacementMode(); showPanel(); });
     el('eg-zoom-fullscreen')  .addEventListener('click', toggleFullscreen);
     el('eg-add-phase-btn')    .addEventListener('click', addPhase);
-    el('eg-export-btn')       .addEventListener('click', exportJSON);
-    el('eg-import-file')      .addEventListener('change', e => { handleImportFile(e.target.files[0]); e.target.value = ''; });
+    el('eg-export-btn')            .addEventListener('click', exportJSON);
+    el('eg-import-file')           .addEventListener('change', e => { handleImportFile(e.target.files[0]); e.target.value = ''; });
+    el('eg-import-myroute-btn')    .addEventListener('click', importMyRoute);
 
     // Info overlay
     el('eg-info-btn')   .addEventListener('click', openInfoOverlay);
     el('eg-info-close') .addEventListener('click', closeInfoOverlay);
     el('eg-info-overlay').addEventListener('click', e => { if (e.target === el('eg-info-overlay')) closeInfoOverlay(); });
+
+    // First-visit pulse on info button
+    if (_firstVisit) el('eg-info-btn').classList.add('eg-icon-btn-pulse');
 
     // Color popup
     el('eg-color-settings-btn').addEventListener('click', openColorPopup);

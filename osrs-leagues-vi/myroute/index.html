@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Route Planner — League VI</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="rp-header">
+    <a href="../index.html" class="rp-back">← Back to main</a>
+    <h1>Route Planner <span class="rp-subtitle">Demonic Pacts League</span></h1>
+    <span id="save-status" class="save-status"></span>
+  </header>
+
+  <main class="rp-layout">
+
+    <!-- ─── LEFT SIDEBAR ─────────────────────── -->
+    <aside class="rp-sidebar">
+
+      <!-- Relics -->
+      <section class="rp-panel">
+        <div class="rp-panel-header">Relics <span class="rp-panel-sub">1 per tier</span></div>
+        <div id="relic-list"></div>
+      </section>
+
+      <!-- Regions -->
+      <section class="rp-panel">
+        <div class="rp-panel-header">Regions <span class="rp-panel-sub">pick 3</span></div>
+        <div id="region-list"></div>
+      </section>
+
+    </aside>
+
+    <!-- ─── MAIN CONTENT ──────────────────────── -->
+    <div class="rp-main">
+
+      <!-- Skills -->
+      <section class="rp-panel">
+        <div class="rp-panel-header">Skills</div>
+        <div class="rp-table-scroll">
+          <table class="rp-table" id="skills-table">
+            <thead>
+              <tr>
+                <th class="col-skill">Skill</th>
+                <th class="col-status">Status</th>
+                <th class="col-method">Primary Method</th>
+                <th class="col-xp">XP / hr</th>
+                <th class="col-xp16">×16 XP / hr</th>
+                <th class="col-note">Notes</th>
+              </tr>
+            </thead>
+            <tbody id="skills-tbody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Echo Bosses -->
+      <section class="rp-panel">
+        <div class="rp-panel-header">Echo Bosses <span class="rp-panel-sub">unique drops & notes</span></div>
+        <div id="echo-list"></div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Skill detail popup -->
+  <div id="skill-popup" class="popup-overlay" hidden>
+    <div class="popup-box popup-box-skill">
+      <div class="popup-header">
+        <span id="skill-popup-title"></span>
+        <button class="popup-close" id="skill-popup-close">✕</button>
+      </div>
+      <div class="skill-popup-body">
+        <div class="skill-popup-stats">
+          <div class="skill-popup-stat-row">
+            <span class="skill-popup-stat-label">Status</span>
+            <button id="skill-popup-status" class="status-btn status-unsolved">Unsolved</button>
+          </div>
+          <div class="skill-popup-stat-row">
+            <span class="skill-popup-stat-label">Method</span>
+            <input id="skill-popup-method" class="cell-input" type="text" placeholder="Primary method…">
+          </div>
+          <div class="skill-popup-stat-row">
+            <span class="skill-popup-stat-label">XP / hr</span>
+            <input id="skill-popup-xphr" class="cell-input xp-input" type="text" placeholder="e.g. 50k" style="width:90px">
+            <span class="skill-popup-xp16-label">×16:</span>
+            <span id="skill-popup-xp16" class="skill-popup-xp16-val">—</span>
+          </div>
+          <div class="skill-popup-stat-row">
+            <span class="skill-popup-stat-label">Notes</span>
+            <input id="skill-popup-note" class="cell-input" type="text" placeholder="Short note…">
+          </div>
+        </div>
+        <div class="skill-popup-plan-area">
+          <div class="skill-popup-plan-label">Step-by-step training plan</div>
+          <textarea id="skill-popup-textarea" class="skill-detail-textarea" placeholder="Write your step-by-step training plan here…&#10;&#10;e.g.&#10;1. 1-30: Quests (Waterfall Quest etc.)&#10;2. 30-60: Crabs&#10;3. 60-99: Nmz"></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Echo boss popup -->
+  <div id="echo-popup" class="popup-overlay" hidden>
+    <div class="popup-box">
+      <div class="popup-header">
+        <span id="echo-popup-title"></span>
+        <button class="popup-close" id="echo-popup-close">✕</button>
+      </div>
+      <div class="popup-body" id="echo-popup-body"></div>
+    </div>
+  </div>
+
+  <!-- Relic info popup -->
+  <div id="relic-popup" class="popup-overlay" hidden>
+    <div class="popup-box">
+      <div class="popup-header">
+        <span id="popup-title"></span>
+        <button class="popup-close" id="popup-close">✕</button>
+      </div>
+      <div class="popup-body" id="popup-body"></div>
+    </div>
+  </div>
+
+  <script src="../data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
