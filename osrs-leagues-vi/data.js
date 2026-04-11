@@ -1954,6 +1954,18 @@ const RELIC_TIERS = [
           'Unlocks access to <strong>all prayers and spells</strong> regardless of area, quest, or diary requirements.',
         ],
       },
+      {
+        id: 'eternal-sustenance',
+        name: 'Eternal Sustenance',
+        icon: 'images/relices/relic_eternal_sustenance_t6_icon.png',
+        image: 'images/relices/relic_eternal_sustenance_t6.png',
+        wikiUrl: `${WIKI}Eternal_Sustenance_(Demonic_Pacts_League)`,
+        gift: null,
+        toggleable: null,
+        effects: [
+          'Food is <strong>no longer consumed</strong> when eaten.',
+        ],
+      },
     ],
   },
   {
