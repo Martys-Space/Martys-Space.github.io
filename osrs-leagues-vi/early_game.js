@@ -208,11 +208,14 @@ const EG = (() => {
     const loader    = document.getElementById('eg-map-loader');
 
     function onImgLoaded() {
-      if (loader) loader.hidden = true;
       mapState.imgW = img.naturalWidth;
       mapState.imgH = img.naturalHeight;
       fitMap();
       renderMapPins();
+      // Wait for fitMap's transform to be painted before revealing
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        if (loader) loader.hidden = true;
+      }));
     }
 
     if (img.complete && img.naturalWidth > 0) {
