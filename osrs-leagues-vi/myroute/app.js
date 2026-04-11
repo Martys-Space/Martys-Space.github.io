@@ -220,9 +220,9 @@ function renderRegions() {
     const selectedId = state.regions[i]     || '';
     const note       = state.regionNotes[i] || '';
 
-    const options = REGIONS.map(r => {
-      const tag = r.type === 'starter' ? ' (starter)' : r.type === 'free' ? ' (free)' : '';
-      return `<option value="${esc(r.id)}" ${r.id === selectedId ? 'selected' : ''}>${r.icon} ${esc(r.name)}${tag}</option>`;
+    const ALWAYS_ON = new Set(['varlamore', 'karamja']);
+    const options = REGIONS.filter(r => !ALWAYS_ON.has(r.id)).map(r => {
+      return `<option value="${esc(r.id)}" ${r.id === selectedId ? 'selected' : ''}>${r.icon} ${esc(r.name)}</option>`;
     }).join('');
 
     const row = document.createElement('div');
@@ -364,20 +364,17 @@ function parseDropName(str) {
   return idx !== -1 ? str.slice(0, idx) : str;
 }
 
+const ALWAYS_ON_REGIONS = new Set(['varlamore', 'karamja']);
+
 function renderEcho() {
   const container = document.getElementById('echo-list');
   container.innerHTML = '';
 
   const selectedRegionIds = new Set(state.regions.filter(Boolean));
 
-  if (selectedRegionIds.size === 0) {
-    container.innerHTML = '<p style="padding:0.6rem 0.75rem; color:var(--text-muted); font-size:0.8rem;">Select regions above to see their echo bosses.</p>';
-    return;
-  }
-
   const bossesToShow = [];
   REGIONS.forEach(r => {
-    if (selectedRegionIds.has(r.id)) {
+    if (ALWAYS_ON_REGIONS.has(r.id) || selectedRegionIds.has(r.id)) {
       (r.echoBosses || []).forEach(b => {
         bossesToShow.push({ ...b, regionName: r.name, regionIcon: r.icon });
       });
@@ -385,7 +382,7 @@ function renderEcho() {
   });
 
   if (!bossesToShow.length) {
-    container.innerHTML = '<p style="padding:0.6rem 0.75rem; color:var(--text-muted); font-size:0.8rem;">No echo bosses for the selected regions.</p>';
+    container.innerHTML = '<p style="padding:0.6rem 0.75rem; color:var(--text-muted); font-size:0.8rem;">Select regions above to see their echo bosses.</p>';
     return;
   }
 
