@@ -568,18 +568,31 @@ function renderPactTasks() {
         row.classList.toggle('pact-complete', !!state.pactDone[key]);
         row.querySelector('.pact-done-btn').classList.toggle('done', !!state.pactDone[key]);
         updatePactCounter();
+        updatePactDiffSummary();
         // Update region header done count
         const regionDone = tasks.filter(t2 => state.pactDone[regionId + '::' + t2.task]).length;
         header.querySelector('.pact-region-pts').textContent = `${regionDone}/${tasks.length} done`;
         scheduleSave();
       });
 
-      row.querySelector('.pact-diff-badge').addEventListener('click', e => {
+      const diffBtn = row.querySelector('.pact-diff-badge');
+      diffBtn.addEventListener('click', e => {
         const cur  = state.pactDifficulty[key] || '';
         const next = PACT_DIFFICULTIES[(PACT_DIFFICULTIES.indexOf(cur) + 1) % PACT_DIFFICULTIES.length];
         state.pactDifficulty[key] = next;
         e.target.textContent = PACT_DIFF_LABELS[next];
         e.target.className   = `pact-diff-badge pact-diff-${next || 'none'}`;
+        updatePactDiffSummary();
+        scheduleSave();
+      });
+      diffBtn.addEventListener('contextmenu', e => {
+        e.preventDefault();
+        const cur  = state.pactDifficulty[key] || '';
+        const len  = PACT_DIFFICULTIES.length;
+        const prev = PACT_DIFFICULTIES[(PACT_DIFFICULTIES.indexOf(cur) - 1 + len) % len];
+        state.pactDifficulty[key] = prev;
+        e.target.textContent = PACT_DIFF_LABELS[prev];
+        e.target.className   = `pact-diff-badge pact-diff-${prev || 'none'}`;
         updatePactDiffSummary();
         scheduleSave();
       });
