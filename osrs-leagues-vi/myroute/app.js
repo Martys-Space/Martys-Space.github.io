@@ -4,12 +4,15 @@
 const LS_KEY = 'osrsl6_route_v1';
 
 const state = {
-  relics:      {},   // tier (number) -> relicId
-  relicNotes:  {},   // tier (number) -> note string
-  regions:     ['', '', ''],   // 3 selected region ids
-  regionNotes: ['', '', ''],   // 3 note strings
-  skills:      {},   // skillName -> { status, method, xphr, note }
-  echoNotes:   {},   // bossName -> note string
+  relics:          {},   // tier (number) -> relicId
+  relicNotes:      {},   // tier (number) -> note string
+  regions:         ['', '', ''],   // 3 selected region ids
+  regionNotes:     ['', '', ''],   // 3 note strings
+  skills:          {},   // skillName -> { status, method, xphr, note }
+  echoNotes:       {},   // bossName -> note string
+  pactNotes:       {},   // 'region::task' -> note string
+  pactDone:        {},   // 'region::task' -> boolean
+  pactDifficulty:  {},   // 'region::task' -> ''|'easy'|'medium'|'hard'|'elite'|'master'
 };
 
 // ─── Persistence ──────────────────────────────
@@ -243,6 +246,7 @@ function renderRegions() {
     row.querySelector('select').addEventListener('change', e => {
       state.regions[i] = e.target.value;
       renderEcho();
+      renderPactTasks();
       scheduleSave();
     });
     row.querySelector('input').addEventListener('input', e => {
@@ -358,6 +362,243 @@ function closeSkillDetail() {
   _skillPopupSkill = null;
 }
 
+// ─── PACT TASKS ───────────────────────────────
+const PACT_TASKS = [
+  // Global (always shown)
+  { region: 'global', task: 'Complete the Leagues Tutorial',    pts: 10 },
+  { region: 'global', task: 'Open the Leagues Menu',            pts: 10 },
+  { region: 'global', task: 'Defeat a Hill Giant',              pts: 10 },
+  { region: 'global', task: 'Reach Combat Level 50',            pts: 30 },
+  { region: 'global', task: 'Use the Protect from Melee Prayer',pts: 30 },
+  { region: 'global', task: 'Kill 1 unique Echo Boss',          pts: 80,  extra: '+ Pact Reset' },
+  { region: 'global', task: 'Kill 2 unique Echo Bosses',        pts: 80,  extra: '+ Pact Reset' },
+  { region: 'global', task: 'Kill 3 unique Echo Bosses',        pts: 80,  extra: '+ Pact Reset' },
+  { region: 'global', task: 'Kill 4 unique Echo Bosses',        pts: 200 },
+  // Varlamore (always shown)
+  { region: 'varlamore', task: '1 Hueycoatl Kill',                           pts: 80 },
+  { region: 'varlamore', task: 'Complete Wave 12 of Fortis Colosseum',        pts: 200 },
+  { region: 'varlamore', task: 'Defeat Awakened Vardorvis',                   pts: 200 },
+  { region: 'varlamore', task: 'Equip Avernic Treads',                        pts: 200 },
+  // Karamja (always shown)
+  { region: 'karamja', task: 'Defeat a Steel Dragon on Karamja',              pts: 30 },
+  { region: 'karamja', task: 'Defeat a TzHaar',                               pts: 30 },
+  { region: 'karamja', task: "Complete Tzhaar-Ket-Rek's third challenge",     pts: 80 },
+  { region: 'karamja', task: 'Equip a Fire Cape',                             pts: 200 },
+  { region: 'karamja', task: "Complete Tzhaar-Ket-Rek's Special challenge",   pts: 400 },
+  { region: 'karamja', task: 'Equip an Infernal Cape',                        pts: 400 },
+  // Asgarnia
+  { region: 'asgarnia', task: 'Defeat a Troll in Asgarnia',    pts: 10 },
+  { region: 'asgarnia', task: 'Defeat the Royal Titans solo',  pts: 80 },
+  { region: 'asgarnia', task: 'Equip a Dragon Defender',        pts: 80 },
+  { region: 'asgarnia', task: 'Defeat Awakened Whisperer',      pts: 200 },
+  { region: 'asgarnia', task: 'Equip a Godsword',               pts: 200 },
+  { region: 'asgarnia', task: 'Equip the Bellator Ring',         pts: 200 },
+  { region: 'asgarnia', task: 'Defeat Nex Solo',                pts: 400 },
+  // Desert
+  { region: 'desert', task: 'Set a mummy ablaze',                                      pts: 10 },
+  { region: 'desert', task: 'Cast Ice Barrage',                                         pts: 200 },
+  { region: 'desert', task: 'Defeat Awakened Leviathan',                                pts: 200 },
+  { region: 'desert', task: 'Equip a Dragon Chainbody in the Kharidian Desert',         pts: 200 },
+  { region: 'desert', task: 'Equip a Piece of Masori Armour',                           pts: 200 },
+  { region: 'desert', task: 'Equip the Venator Ring',                                   pts: 200 },
+  { region: 'desert', task: "Equip Osmumten's Fang (or)",                               pts: 400 },
+  // Fremennik
+  { region: 'fremennik', task: 'Defeat a Cockatrice in the Fremennik Province',         pts: 10 },
+  { region: 'fremennik', task: 'Kill 8 penguins within 5 seconds',                      pts: 30 },
+  { region: 'fremennik', task: 'Defeat Phantom Muspah',                                 pts: 80 },
+  { region: 'fremennik', task: 'Defeat Basilisk Knight',                                pts: 80 },
+  { region: 'fremennik', task: 'Defeat Awakened Duke Sucellus',                         pts: 200 },
+  { region: 'fremennik', task: 'Defeat Vorkath 5 Times Without Special Damage',         pts: 200 },
+  { region: 'fremennik', task: 'Equip the Magus Ring',                                  pts: 200 },
+  // Kandarin
+  { region: 'kandarin', task: 'Defeat a Demonic Gorilla',       pts: 80 },
+  { region: 'kandarin', task: 'Defeat a Mithril Dragon',        pts: 80 },
+  { region: 'kandarin', task: 'Defeat the Kraken Boss 50 Times',pts: 80 },
+  { region: 'kandarin', task: 'Equip a Trident of the Seas',    pts: 80 },
+  { region: 'kandarin', task: 'Equip Some Zenyte Jewelry',       pts: 200 },
+  { region: 'kandarin', task: 'Equip an Abyssal Tentacle',       pts: 200 },
+  { region: 'kandarin', task: 'Equip an Occult Necklace',        pts: 200 },
+  // Kourend
+  { region: 'kourend', task: 'Open 1 Grubby Chest',              pts: 10 },
+  { region: 'kourend', task: '150 Lizardmen Shaman Kills',        pts: 30 },
+  { region: 'kourend', task: '1 Skotizo Kill',                    pts: 80 },
+  { region: 'kourend', task: '25 Chambers of Xeric',              pts: 80 },
+  { region: 'kourend', task: 'Equip a Dragon Hunter Lance',       pts: 200 },
+  { region: 'kourend', task: 'Equip a piece of Radiant Oathplate',pts: 200 },
+  { region: 'kourend', task: 'Equip any Ancestral Piece',         pts: 200 },
+  // Morytania
+  { region: 'morytania', task: 'Defeat a Werewolf in Morytania',          pts: 10 },
+  { region: 'morytania', task: '1 Araxxor Kill',                           pts: 80 },
+  { region: 'morytania', task: 'Assemble a Slayer Helm',                   pts: 80 },
+  { region: 'morytania', task: 'Create an Amulet of Blood Fury',           pts: 80 },
+  { region: 'morytania', task: 'Equip any Full Barrows Armour Set',        pts: 80 },
+  { region: 'morytania', task: 'Complete the Theatre of Blood 25 Times',   pts: 200 },
+  { region: 'morytania', task: "Defeat Phosani's Nightmare",               pts: 200 },
+  // Tirannwn
+  { region: 'tirannwn', task: 'Kill a Black Dragon in Tirannwn',                       pts: 30 },
+  { region: 'tirannwn', task: 'Complete the Corrupted Gauntlet',                        pts: 80 },
+  { region: 'tirannwn', task: 'Defeat Zalcano',                                         pts: 80 },
+  { region: 'tirannwn', task: 'Equip a Dark Bow in Tirannwn',                          pts: 80 },
+  { region: 'tirannwn', task: 'Craft a Toxic Blowpipe',                                pts: 200 },
+  { region: 'tirannwn', task: 'Use a prayer altar to restore 90 prayer in Prifddinas', pts: 200 },
+  { region: 'tirannwn', task: 'Equip a Corrupted Weapon',                              pts: 400 },
+  // Wilderness
+  { region: 'wilderness', task: 'Defeat a Chaos Dwarf in the Wilderness',        pts: 10 },
+  { region: 'wilderness', task: 'Defeat the Corporeal Beast',                     pts: 80 },
+  { region: 'wilderness', task: 'Equip a Dragon 2-Handed Sword in the Wilderness',pts: 80 },
+  { region: 'wilderness', task: 'Equip a Malediction Ward',                       pts: 80 },
+  { region: 'wilderness', task: "Equip a Piece of the Dagon'Hai Set",            pts: 200 },
+  { region: 'wilderness', task: 'Equip the Voidwaker',                            pts: 200 },
+  { region: 'wilderness', task: 'Imbue a God Cape',                               pts: 200 },
+];
+
+// Build region display info from REGIONS + special global entry
+const PACT_REGION_INFO = { global: { name: 'Global', icon: '🌍' } };
+REGIONS.forEach(r => { PACT_REGION_INFO[r.id] = { name: r.name, icon: r.icon }; });
+
+const PACT_ALWAYS_ON = new Set(['global', 'varlamore', 'karamja']);
+
+const PACT_DIFFICULTIES = ['', 'easy', 'medium', 'hard', 'elite', 'master'];
+const PACT_DIFF_LABELS  = { '': 'Difficulty', easy: 'Easy', medium: 'Medium', hard: 'Hard', elite: 'Elite', master: 'Master' };
+
+function updatePactDiffSummary() {
+  const el = document.getElementById('pact-diff-summary');
+  if (!el) return;
+
+  const selectedRegionIds = new Set(state.regions.filter(Boolean));
+  const regionOrder = ['global', 'varlamore', 'karamja',
+    ...REGIONS.filter(r => !PACT_ALWAYS_ON.has(r.id)).map(r => r.id)];
+  const visibleRegions = regionOrder.filter(id => PACT_ALWAYS_ON.has(id) || selectedRegionIds.has(id));
+
+  // Count total and done tasks per difficulty (skip unrated '')
+  const countByDiff = {}; // diff -> { total, done }
+  PACT_DIFFICULTIES.filter(d => d !== '').forEach(d => { countByDiff[d] = { total: 0, done: 0 }; });
+
+  visibleRegions.forEach(regionId => {
+    PACT_TASKS.filter(t => t.region === regionId).forEach(t => {
+      const key  = regionId + '::' + t.task;
+      const diff = state.pactDifficulty[key] || '';
+      if (!diff) return;
+      countByDiff[diff].total++;
+      if (state.pactDone[key]) countByDiff[diff].done++;
+    });
+  });
+
+  const chips = PACT_DIFFICULTIES.filter(d => d !== '').map(d => {
+    const c = countByDiff[d];
+    if (!c.total) return '';
+    return `<span class="pact-dsumm-chip pact-diff-${d}">${PACT_DIFF_LABELS[d]} <strong>${c.done}/${c.total}</strong></span>`;
+  }).filter(Boolean).join('');
+
+  el.innerHTML = chips;
+}
+
+function updatePactCounter() {
+  const counter = document.getElementById('pact-counter');
+  if (!counter) return;
+  const selectedRegionIds = new Set(state.regions.filter(Boolean));
+  const regionOrder = ['global', 'varlamore', 'karamja',
+    ...REGIONS.filter(r => !PACT_ALWAYS_ON.has(r.id)).map(r => r.id)];
+  const visibleRegions = regionOrder.filter(id => PACT_ALWAYS_ON.has(id) || selectedRegionIds.has(id));
+  let total = 0, done = 0;
+  visibleRegions.forEach(regionId => {
+    (PACT_TASKS.filter(t => t.region === regionId)).forEach(t => {
+      total++;
+      if (state.pactDone[regionId + '::' + t.task]) done++;
+    });
+  });
+  counter.textContent = `${done} / ${total}`;
+}
+
+function renderPactTasks() {
+  const container = document.getElementById('pact-list');
+  container.innerHTML = '';
+
+  const selectedRegionIds = new Set(state.regions.filter(Boolean));
+
+  // Determine which regions to show (always-on + selected), in source order
+  const regionOrder = ['global', 'varlamore', 'karamja',
+    ...REGIONS.filter(r => !PACT_ALWAYS_ON.has(r.id)).map(r => r.id)];
+  const visibleRegions = regionOrder.filter(id =>
+    PACT_ALWAYS_ON.has(id) || selectedRegionIds.has(id)
+  );
+
+  // Group tasks by region
+  const tasksByRegion = {};
+  PACT_TASKS.forEach(t => {
+    if (!tasksByRegion[t.region]) tasksByRegion[t.region] = [];
+    tasksByRegion[t.region].push(t);
+  });
+
+  visibleRegions.forEach(regionId => {
+    const tasks    = tasksByRegion[regionId] || [];
+    const info     = PACT_REGION_INFO[regionId] || { name: regionId, icon: '•' };
+    const alwaysOn = PACT_ALWAYS_ON.has(regionId);
+    const doneCnt  = tasks.filter(t => state.pactDone[regionId + '::' + t.task]).length;
+
+    // Region sub-header
+    const header = document.createElement('div');
+    header.className = 'rp-pact-region-header' + (alwaysOn ? ' rp-pact-always' : '');
+    header.innerHTML = `
+      <span class="pact-region-icon">${info.icon}</span>
+      <span class="pact-region-name">${esc(info.name)}</span>
+      <span class="pact-region-pts">${doneCnt}/${tasks.length} done</span>
+    `;
+    container.appendChild(header);
+
+    tasks.forEach(t => {
+      const key   = regionId + '::' + t.task;
+      const note  = state.pactNotes[key]      || '';
+      const done  = !!state.pactDone[key];
+      const diff  = state.pactDifficulty[key] || '';
+
+      const row = document.createElement('div');
+      row.className = 'rp-pact-row' + (done ? ' pact-complete' : '');
+      row.innerHTML = `
+        <button class="pact-done-btn${done ? ' done' : ''}" title="Mark complete">✓</button>
+        <span class="pact-pts-badge">${t.pts}</span>
+        <span class="pact-task-name">${esc(t.task)}${t.extra ? `<span class="pact-task-extra">${esc(t.extra)}</span>` : ''}</span>
+        <button class="pact-diff-badge pact-diff-${diff || 'none'}">${esc(PACT_DIFF_LABELS[diff])}</button>
+        <input class="rp-note pact-note" type="text" placeholder="Notes…" value="${esc(note)}">
+      `;
+      container.appendChild(row);
+
+      row.querySelector('.pact-done-btn').addEventListener('click', () => {
+        state.pactDone[key] = !state.pactDone[key];
+        row.classList.toggle('pact-complete', !!state.pactDone[key]);
+        row.querySelector('.pact-done-btn').classList.toggle('done', !!state.pactDone[key]);
+        updatePactCounter();
+        // Update region header done count
+        const regionDone = tasks.filter(t2 => state.pactDone[regionId + '::' + t2.task]).length;
+        header.querySelector('.pact-region-pts').textContent = `${regionDone}/${tasks.length} done`;
+        scheduleSave();
+      });
+
+      row.querySelector('.pact-diff-badge').addEventListener('click', e => {
+        const cur  = state.pactDifficulty[key] || '';
+        const next = PACT_DIFFICULTIES[(PACT_DIFFICULTIES.indexOf(cur) + 1) % PACT_DIFFICULTIES.length];
+        state.pactDifficulty[key] = next;
+        e.target.textContent = PACT_DIFF_LABELS[next];
+        e.target.className   = `pact-diff-badge pact-diff-${next || 'none'}`;
+        updatePactDiffSummary();
+        scheduleSave();
+      });
+
+      row.querySelector('input').addEventListener('input', e => {
+        state.pactNotes[key] = e.target.value;
+        scheduleSave();
+      });
+    });
+  });
+
+  if (!container.children.length) {
+    container.innerHTML = '<p style="padding:0.6rem 0.75rem; color:var(--text-muted); font-size:0.8rem;">Select regions above to see their pact tasks.</p>';
+  }
+
+  updatePactCounter();
+  updatePactDiffSummary();
+}
+
 // ─── ECHO BOSSES ──────────────────────────────
 function parseDropName(str) {
   const idx = str.indexOf(' — ');
@@ -457,6 +698,7 @@ function init() {
   renderRegions();
   renderSkills();
   renderEcho();
+  renderPactTasks();
 
   // Relic popup
   document.getElementById('popup-close').addEventListener('click', closePopup);
