@@ -704,6 +704,67 @@ function closePopup() {
   document.getElementById('relic-popup').setAttribute('hidden', '');
 }
 
+// ─── EXPORT / IMPORT ──────────────────────────
+function exportState() {
+  const payload = JSON.stringify({ _version: 1, ...state }, null, 2);
+  const blob    = new Blob([payload], { type: 'application/json' });
+  const url     = URL.createObjectURL(blob);
+  const a       = document.createElement('a');
+  const date    = new Date().toISOString().slice(0, 10);
+  a.href        = url;
+  a.download    = `route-planner-${date}.json`;
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+function importStateFromFile(file) {
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = e => {
+    let parsed;
+    try {
+      parsed = JSON.parse(e.target.result);
+    } catch {
+      alert('Invalid JSON file — could not parse.');
+      return;
+    }
+
+    // Basic validation
+    if (typeof parsed !== 'object' || parsed === null) {
+      alert('Invalid file format.');
+      return;
+    }
+
+    const hasData = Object.keys(state.relics).length
+      || state.regions.some(Boolean)
+      || Object.keys(state.skills).length
+      || Object.keys(state.pactDone).length;
+
+    if (hasData && !confirm('This will replace all your current planner data. Continue?')) return;
+
+    // Merge imported fields into state, keeping defaults for missing keys
+    const defaults = {
+      relics: {}, relicNotes: {}, regions: ['','',''], regionNotes: ['','',''],
+      skills: {}, echoNotes: {}, pactNotes: {}, pactDone: {}, pactDifficulty: {},
+    };
+    Object.assign(state, defaults);
+    const allowed = Object.keys(defaults);
+    allowed.forEach(k => {
+      if (parsed[k] !== undefined) state[k] = parsed[k];
+    });
+    if (!Array.isArray(state.regions))     state.regions     = ['', '', ''];
+    if (!Array.isArray(state.regionNotes)) state.regionNotes = ['', '', ''];
+
+    saveState();
+    renderRelics();
+    renderRegions();
+    renderSkills();
+    renderEcho();
+    renderPactTasks();
+  };
+  reader.readAsText(file);
+}
+
 // ─── INIT ─────────────────────────────────────
 function init() {
   loadState();
@@ -783,6 +844,13 @@ function init() {
   document.getElementById('echo-popup-close').addEventListener('click', closeEchoPopup);
   document.getElementById('echo-popup').addEventListener('click', e => {
     if (e.target === document.getElementById('echo-popup')) closeEchoPopup();
+  });
+
+  // Export / Import
+  document.getElementById('rp-export-btn').addEventListener('click', exportState);
+  document.getElementById('rp-import-file').addEventListener('change', e => {
+    importStateFromFile(e.target.files[0]);
+    e.target.value = '';  // reset so the same file can be re-imported
   });
 
   document.addEventListener('keydown', e => {

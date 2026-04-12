@@ -12,6 +12,13 @@
     <a href="../index.html" class="rp-back">← Back to main</a>
     <h1>Route Planner <span class="rp-subtitle">Demonic Pacts League</span></h1>
     <span id="save-status" class="save-status"></span>
+    <div class="rp-header-actions">
+      <button class="rp-action-btn" id="rp-export-btn" title="Export planner to JSON">⬇ Export</button>
+      <label  class="rp-action-btn" title="Import planner from JSON" style="cursor:pointer">
+        ⬆ Import
+        <input type="file" id="rp-import-file" accept=".json" style="position:absolute;width:0;height:0;opacity:0;pointer-events:none">
+      </label>
+    </div>
   </header>
 
   <main class="rp-layout">
