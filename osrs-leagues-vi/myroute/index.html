@@ -10,11 +10,16 @@
 
   <header class="rp-header">
     <a href="../index.html" class="rp-back">← Back to main</a>
-    <h1>Route Planner <span class="rp-subtitle">Demonic Pacts League</span></h1>
-    <span id="save-status" class="save-status"></span>
+    <h1>Route Planner <span class="rp-subtitle">Demonic Pacts League</span> <span class="rp-build-divider">—</span> <span id="rp-current-build-name">Build 1</span></h1>
+    <div class="rp-build-controls">
+      <select id="rp-build-select" class="rp-build-select" title="Switch build"></select>
+      <button id="rp-build-add"    class="rp-build-btn" title="Add new build">+</button>
+      <button id="rp-build-rename" class="rp-build-btn" title="Rename current build">✎</button>
+      <button id="rp-build-delete" class="rp-build-btn rp-build-btn-danger" title="Delete current build">🗑</button>
+    </div>
     <div class="rp-header-actions">
-      <button class="rp-action-btn" id="rp-export-btn" title="Export planner to JSON">⬇ Export</button>
-      <label  class="rp-action-btn" title="Import planner from JSON" style="cursor:pointer">
+      <button class="rp-action-btn" id="rp-export-btn" title="Export builds to JSON">⬇ Export</button>
+      <label  class="rp-action-btn" title="Import builds from JSON" style="cursor:pointer">
         ⬆ Import
         <input type="file" id="rp-import-file" accept=".json" style="position:absolute;width:0;height:0;opacity:0;pointer-events:none">
       </label>
@@ -138,6 +143,84 @@
         <button class="popup-close" id="popup-close">✕</button>
       </div>
       <div class="popup-body" id="popup-body"></div>
+    </div>
+  </div>
+
+  <!-- ─── Build Delete Confirmation ─── -->
+  <div id="build-delete-popup" class="popup-overlay" hidden>
+    <div class="popup-box popup-box-sm">
+      <div class="popup-header">
+        <span>Delete Build</span>
+        <button class="popup-close" id="build-delete-close">✕</button>
+      </div>
+      <div class="popup-body">
+        <p>Delete <strong id="build-delete-name"></strong>?</p>
+        <p style="margin-top:0.45rem;color:var(--text-muted);font-size:0.79rem;">All data in this build will be permanently lost.</p>
+      </div>
+      <div class="popup-footer">
+        <button class="rp-action-btn" id="build-delete-cancel">Cancel</button>
+        <button class="rp-action-btn rp-btn-danger" id="build-delete-confirm">Delete</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── Export Popup ─── -->
+  <div id="export-popup" class="popup-overlay" hidden>
+    <div class="popup-box popup-box-sm">
+      <div class="popup-header">
+        <span>Export Builds</span>
+        <button class="popup-close" id="export-popup-close">✕</button>
+      </div>
+      <div class="popup-body">
+        <p style="margin-bottom:0.6rem;color:var(--text-dim);font-size:0.81rem;">Select builds to include in the export file:</p>
+        <div id="export-build-list"></div>
+      </div>
+      <div class="popup-footer">
+        <button class="rp-action-btn" id="export-popup-cancel">Cancel</button>
+        <button class="rp-action-btn rp-btn-primary" id="export-popup-confirm">⬇ Export Selected</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── Import Popup ─── -->
+  <div id="import-popup" class="popup-overlay" hidden>
+    <div class="popup-box popup-box-import">
+      <div class="popup-header">
+        <span>Import Builds</span>
+        <button class="popup-close" id="import-popup-close">✕</button>
+      </div>
+      <div class="popup-body">
+        <p class="import-section-header">Found <strong id="import-build-count">0</strong> build(s) in file.</p>
+
+        <div class="import-replace-section">
+          <p class="import-desc"><strong>Replace All</strong> — deletes all your current builds and replaces with the imported ones.</p>
+          <p class="import-warns">Current builds that will be removed: <span id="import-delete-list"></span></p>
+          <button class="rp-action-btn rp-btn-danger" id="import-replace-all-btn">Replace All</button>
+        </div>
+
+        <div class="import-advanced-toggle-wrap">
+          <button class="import-advanced-toggle" id="import-advanced-toggle">&#9654; Advanced — choose how to import</button>
+        </div>
+
+        <div id="import-advanced-body" hidden class="import-advanced-body">
+          <div class="import-adv-grid">
+            <div class="import-adv-col">
+              <div class="import-adv-title">From file</div>
+              <div id="import-from-list"></div>
+            </div>
+            <div class="import-adv-col">
+              <div class="import-adv-title">Result preview</div>
+              <div id="import-to-list"></div>
+            </div>
+          </div>
+          <div class="import-adv-footer">
+            <button class="rp-action-btn rp-btn-primary" id="import-adv-confirm">Apply Import</button>
+          </div>
+        </div>
+      </div>
+      <div class="popup-footer">
+        <button class="rp-action-btn" id="import-popup-cancel">Cancel</button>
+      </div>
     </div>
   </div>
 

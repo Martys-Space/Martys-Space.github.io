@@ -1,35 +1,66 @@
 // =============================================
 // Route Planner — League VI
 // =============================================
-const LS_KEY = 'osrsl6_route_v1';
+const LS_KEY_BUILDS = 'osrsl6_route_builds_v1';
+const LS_KEY_LEGACY = 'osrsl6_route_v1';
+const MAX_BUILDS        = 5;
+const MAX_BUILD_NAME_LEN = 30;
 
-const state = {
-  relics:          {},   // tier (number) -> relicId
-  relicNotes:      {},   // tier (number) -> note string
-  regions:         ['', '', ''],   // 3 selected region ids
-  regionNotes:     ['', '', ''],   // 3 note strings
-  skills:          {},   // skillName -> { status, method, xphr, note }
-  echoNotes:       {},   // bossName -> note string
-  pactNotes:       {},   // 'region::task' -> note string
-  pactDone:        {},   // 'region::task' -> boolean
-  pactDifficulty:  {},   // 'region::task' -> ''|'easy'|'medium'|'hard'|'elite'|'master'
-};
+function makeEmptyBuildData() {
+  return {
+    relics:         {},
+    relicNotes:     {},
+    regions:        ['', '', ''],
+    regionNotes:    ['', '', ''],
+    skills:         {},
+    echoNotes:      {},
+    pactNotes:      {},
+    pactDone:       {},
+    pactDifficulty: {},
+  };
+}
+
+let builds = [];          // [{ name, data }]
+let activeBuildIdx = 0;
+let state = makeEmptyBuildData(); // always references builds[activeBuildIdx].data
 
 // ─── Persistence ──────────────────────────────
 function loadState() {
   try {
-    const raw = localStorage.getItem(LS_KEY);
-    if (!raw) return;
-    const saved = JSON.parse(raw);
-    Object.assign(state, saved);
+    const raw = localStorage.getItem(LS_KEY_BUILDS);
+    if (raw) {
+      const saved = JSON.parse(raw);
+      builds = Array.isArray(saved.builds) && saved.builds.length
+        ? saved.builds
+        : [{ name: 'Build 1', data: makeEmptyBuildData() }];
+      activeBuildIdx = (typeof saved.activeBuildIdx === 'number' && saved.activeBuildIdx < builds.length)
+        ? saved.activeBuildIdx : 0;
+    } else {
+      // Migrate old flat format
+      const legacy = localStorage.getItem(LS_KEY_LEGACY);
+      if (legacy) {
+        const old = JSON.parse(legacy);
+        const data = Object.assign(makeEmptyBuildData(), old);
+        if (!Array.isArray(data.regions))     data.regions     = ['', '', ''];
+        if (!Array.isArray(data.regionNotes)) data.regionNotes = ['', '', ''];
+        builds = [{ name: 'Build 1', data }];
+      } else {
+        builds = [{ name: 'Build 1', data: makeEmptyBuildData() }];
+      }
+      activeBuildIdx = 0;
+    }
+    state = builds[activeBuildIdx].data;
     if (!Array.isArray(state.regions))     state.regions     = ['', '', ''];
     if (!Array.isArray(state.regionNotes)) state.regionNotes = ['', '', ''];
-  } catch (e) { /* ignore corrupt data */ }
+  } catch (e) {
+    builds = [{ name: 'Build 1', data: makeEmptyBuildData() }];
+    activeBuildIdx = 0;
+    state = builds[0].data;
+  }
 }
 
 function saveState() {
-  localStorage.setItem(LS_KEY, JSON.stringify(state));
-  showSaved();
+  localStorage.setItem(LS_KEY_BUILDS, JSON.stringify({ builds, activeBuildIdx }));
 }
 
 let _saveTimer;
@@ -44,6 +75,106 @@ function showSaved() {
   el.classList.add('visible');
   clearTimeout(el._hideTimer);
   el._hideTimer = setTimeout(() => { el.classList.remove('visible'); }, 2000);
+}
+
+// ─── Build Management ─────────────────────────
+function renderAll() {
+  renderRelics();
+  renderRegions();
+  renderSkills();
+  renderEcho();
+  renderPactTasks();
+}
+
+function fixStateArrays() {
+  if (!Array.isArray(state.regions))     state.regions     = ['', '', ''];
+  if (!Array.isArray(state.regionNotes)) state.regionNotes = ['', '', ''];
+}
+
+function switchBuild(idx) {
+  if (idx < 0 || idx >= builds.length) return;
+  // Close any open popups before switching
+  closePopup(); closeSkillDetail(); closeEchoPopup();
+  activeBuildIdx = idx;
+  state = builds[idx].data;
+  fixStateArrays();
+  renderAll();
+  saveState();
+  updateBuildUI();
+}
+
+function addBuild() {
+  if (builds.length >= MAX_BUILDS) return;
+  builds.push({ name: `Build ${builds.length + 1}`, data: makeEmptyBuildData() });
+  switchBuild(builds.length - 1);
+}
+
+function deleteBuildAt(idx) {
+  if (builds.length <= 1) return;
+  builds.splice(idx, 1);
+  if (activeBuildIdx >= builds.length) activeBuildIdx = builds.length - 1;
+  state = builds[activeBuildIdx].data;
+  fixStateArrays();
+  renderAll();
+  saveState();
+  updateBuildUI();
+}
+
+function updateBuildUI() {
+  const select = document.getElementById('rp-build-select');
+  if (select) {
+    select.innerHTML = builds.map((b, i) =>
+      `<option value="${i}"${i === activeBuildIdx ? ' selected' : ''}>${esc(b.name)}</option>`
+    ).join('');
+  }
+  const nameEl = document.getElementById('rp-current-build-name');
+  if (nameEl) nameEl.textContent = builds[activeBuildIdx].name;
+
+  const addBtn = document.getElementById('rp-build-add');
+  if (addBtn) {
+    addBtn.disabled = builds.length >= MAX_BUILDS;
+    addBtn.title = builds.length >= MAX_BUILDS ? 'Maximum 5 builds reached' : 'Add new build';
+  }
+  const delBtn = document.getElementById('rp-build-delete');
+  if (delBtn) delBtn.disabled = builds.length <= 1;
+}
+
+function startRename() {
+  const nameSpan = document.getElementById('rp-current-build-name');
+  if (!nameSpan) return;
+  const currentName = builds[activeBuildIdx].name;
+
+  const input = document.createElement('input');
+  input.type = 'text';
+  input.value = currentName;
+  input.maxLength = MAX_BUILD_NAME_LEN;
+  input.className = 'rp-build-name-input';
+  input.spellcheck = false;
+  nameSpan.replaceWith(input);
+  input.focus();
+  input.select();
+
+  let done = false;
+  const finish = () => {
+    if (done) return;
+    done = true;
+    const newName = input.value.trim() || currentName;
+    builds[activeBuildIdx].name = newName;
+    nameSpan.textContent = newName;
+    input.replaceWith(nameSpan);
+    updateBuildUI();
+    scheduleSave();
+  };
+  const cancel = () => {
+    if (done) return;
+    done = true;
+    input.replaceWith(nameSpan);
+  };
+  input.addEventListener('keydown', e => {
+    if (e.key === 'Enter')  { e.preventDefault(); finish(); }
+    if (e.key === 'Escape') { cancel(); }
+  });
+  input.addEventListener('blur', finish);
 }
 
 // ─── Helpers ──────────────────────────────────
@@ -704,17 +835,66 @@ function closePopup() {
   document.getElementById('relic-popup').setAttribute('hidden', '');
 }
 
-// ─── EXPORT / IMPORT ──────────────────────────
-function exportState() {
-  const payload = JSON.stringify({ _version: 1, ...state }, null, 2);
+// ─── EXPORT ───────────────────────────────────
+function openExportPopup() {
+  const listEl = document.getElementById('export-build-list');
+  listEl.innerHTML = '';
+
+  const allRow = document.createElement('div');
+  allRow.className = 'export-check-row export-check-row-all';
+  allRow.innerHTML = `<label class="export-check-label"><input type="checkbox" id="export-check-all" checked> All builds</label>`;
+  listEl.appendChild(allRow);
+
+  builds.forEach((b, i) => {
+    const row = document.createElement('div');
+    row.className = 'export-check-row';
+    row.innerHTML = `<label class="export-check-label"><input type="checkbox" class="export-build-check" data-idx="${i}" checked> ${esc(b.name)}</label>`;
+    listEl.appendChild(row);
+  });
+
+  const allCheck = document.getElementById('export-check-all');
+  const syncAll = () => {
+    const cbs = [...document.querySelectorAll('.export-build-check')];
+    allCheck.checked = cbs.every(c => c.checked);
+    allCheck.indeterminate = !allCheck.checked && cbs.some(c => c.checked);
+  };
+  allCheck.addEventListener('change', () => {
+    document.querySelectorAll('.export-build-check').forEach(cb => { cb.checked = allCheck.checked; });
+    allCheck.indeterminate = false;
+  });
+  document.querySelectorAll('.export-build-check').forEach(cb => cb.addEventListener('change', syncAll));
+
+  document.getElementById('export-popup').removeAttribute('hidden');
+}
+
+function doExport() {
+  const selected = [...document.querySelectorAll('.export-build-check')]
+    .filter(cb => cb.checked)
+    .map(cb => parseInt(cb.dataset.idx));
+  if (!selected.length) return;
+
+  const selectedBuilds = selected.map(i => builds[i]);
+  const payload = JSON.stringify({ _version: 2, builds: selectedBuilds }, null, 2);
   const blob    = new Blob([payload], { type: 'application/json' });
   const url     = URL.createObjectURL(blob);
   const a       = document.createElement('a');
   const date    = new Date().toISOString().slice(0, 10);
-  a.href        = url;
-  a.download    = `route-planner-${date}.json`;
+  a.href = url; a.download = `route-planner-${date}.json`;
   a.click();
   URL.revokeObjectURL(url);
+  closeExportPopup();
+}
+
+function closeExportPopup() {
+  document.getElementById('export-popup').setAttribute('hidden', '');
+}
+
+// ─── IMPORT ───────────────────────────────────
+let _importBuilds = [];
+let _importSlotMap = {}; // importIdx -> slot 1-5, or 0 = skip
+
+function showSaveError(msg) {
+  console.warn('[Route Planner Import]', msg);
 }
 
 function importStateFromFile(file) {
@@ -722,47 +902,163 @@ function importStateFromFile(file) {
   const reader = new FileReader();
   reader.onload = e => {
     let parsed;
-    try {
-      parsed = JSON.parse(e.target.result);
-    } catch {
-      alert('Invalid JSON file — could not parse.');
-      return;
-    }
-
-    // Basic validation
-    if (typeof parsed !== 'object' || parsed === null) {
-      alert('Invalid file format.');
-      return;
-    }
-
-    const hasData = Object.keys(state.relics).length
-      || state.regions.some(Boolean)
-      || Object.keys(state.skills).length
-      || Object.keys(state.pactDone).length;
-
-    if (hasData && !confirm('This will replace all your current planner data. Continue?')) return;
-
-    // Merge imported fields into state, keeping defaults for missing keys
-    const defaults = {
-      relics: {}, relicNotes: {}, regions: ['','',''], regionNotes: ['','',''],
-      skills: {}, echoNotes: {}, pactNotes: {}, pactDone: {}, pactDifficulty: {},
-    };
-    Object.assign(state, defaults);
-    const allowed = Object.keys(defaults);
-    allowed.forEach(k => {
-      if (parsed[k] !== undefined) state[k] = parsed[k];
-    });
-    if (!Array.isArray(state.regions))     state.regions     = ['', '', ''];
-    if (!Array.isArray(state.regionNotes)) state.regionNotes = ['', '', ''];
-
-    saveState();
-    renderRelics();
-    renderRegions();
-    renderSkills();
-    renderEcho();
-    renderPactTasks();
+    try { parsed = JSON.parse(e.target.result); }
+    catch { showSaveError('Invalid JSON — could not parse.'); return; }
+    if (typeof parsed !== 'object' || parsed === null) { showSaveError('Invalid file format.'); return; }
+    openImportPopup(parsed);
   };
   reader.readAsText(file);
+}
+
+function openImportPopup(parsed) {
+  if (Array.isArray(parsed.builds) && parsed.builds.length) {
+    _importBuilds = parsed.builds.map(b => ({
+      name: (typeof b.name === 'string' && b.name.trim()) ? b.name.trim().slice(0, MAX_BUILD_NAME_LEN) : 'Imported Build',
+      data: Object.assign(makeEmptyBuildData(), b.data || {}),
+    }));
+  } else {
+    // v1 flat format
+    const d = Object.assign(makeEmptyBuildData(), parsed);
+    delete d._version;
+    _importBuilds = [{ name: 'Imported Build', data: d }];
+  }
+  _importBuilds.forEach(b => {
+    if (!Array.isArray(b.data.regions))     b.data.regions     = ['', '', ''];
+    if (!Array.isArray(b.data.regionNotes)) b.data.regionNotes = ['', '', ''];
+  });
+
+  document.getElementById('import-build-count').textContent = _importBuilds.length;
+  document.getElementById('import-delete-list').textContent = builds.map(b => `"${b.name}"`).join(', ');
+
+  // Reset advanced section
+  const advBody = document.getElementById('import-advanced-body');
+  advBody.setAttribute('hidden', '');
+  const toggle = document.getElementById('import-advanced-toggle');
+  toggle.classList.remove('open');
+  toggle.innerHTML = '&#9654; Advanced — choose how to import';
+
+  renderImportAdvanced();
+  document.getElementById('import-popup').removeAttribute('hidden');
+}
+
+function renderImportAdvanced() {
+  _importSlotMap = {};
+  _importBuilds.forEach((_, i) => { _importSlotMap[i] = 0; });
+
+  const fromList = document.getElementById('import-from-list');
+  fromList.innerHTML = '';
+  _importBuilds.forEach((ib, i) => {
+    const row = document.createElement('div');
+    row.className = 'import-adv-row';
+    row.innerHTML = `
+      <span class="import-adv-build-name" title="${esc(ib.name)}">${esc(ib.name)}</span>
+      <span class="import-adv-arrow">→</span>
+      <select class="import-adv-slot-select rp-select" data-import-idx="${i}">
+        <option value="0">Skip</option>
+        ${[1,2,3,4,5].map(s => `<option value="${s}">Slot ${s}</option>`).join('')}
+      </select>`;
+    fromList.appendChild(row);
+    row.querySelector('select').addEventListener('change', e => {
+      _importSlotMap[i] = parseInt(e.target.value);
+      refreshImportDropdowns();
+      updateImportPreview();
+    });
+  });
+  updateImportPreview();
+}
+
+function refreshImportDropdowns() {
+  const used = new Set(Object.values(_importSlotMap).filter(v => v > 0));
+  document.querySelectorAll('.import-adv-slot-select').forEach(sel => {
+    const mySlot = _importSlotMap[parseInt(sel.dataset.importIdx)] || 0;
+    Array.from(sel.options).forEach(opt => {
+      const v = parseInt(opt.value);
+      opt.hidden = v > 0 && used.has(v) && v !== mySlot;
+    });
+  });
+}
+
+function updateImportPreview() {
+  const slotToImport = {};
+  Object.entries(_importSlotMap).forEach(([idx, slot]) => {
+    if (slot > 0) slotToImport[slot] = _importBuilds[parseInt(idx)];
+  });
+  const importSlotNums = Object.keys(slotToImport).map(Number);
+  const maxSlot = Math.min(MAX_BUILDS, Math.max(builds.length, ...importSlotNums, 1));
+  const toList = document.getElementById('import-to-list');
+  toList.innerHTML = '';
+  for (let slot = 1; slot <= maxSlot; slot++) {
+    const cur = builds[slot - 1];
+    const imp = slotToImport[slot];
+    const row = document.createElement('div');
+    row.className = 'import-preview-row';
+    if (imp && cur) {
+      row.innerHTML = `<span class="import-preview-slot">Slot ${slot}:</span> <span class="import-preview-incoming">${esc(imp.name)}</span> <span class="import-preview-overwrite">(replaces "${esc(cur.name)}")</span>`;
+    } else if (imp) {
+      row.innerHTML = `<span class="import-preview-slot">Slot ${slot}:</span> <span class="import-preview-incoming">${esc(imp.name)}</span> <span class="import-preview-tag">(new)</span>`;
+    } else if (cur) {
+      row.innerHTML = `<span class="import-preview-slot">Slot ${slot}:</span> <span class="import-preview-kept">${esc(cur.name)}</span> <span class="import-preview-tag">(kept)</span>`;
+    } else {
+      row.innerHTML = `<span class="import-preview-slot">Slot ${slot}:</span> <span class="import-preview-empty">(empty)</span>`;
+    }
+    toList.appendChild(row);
+  }
+}
+
+function doImportReplaceAll() {
+  builds = _importBuilds.map(b => ({ name: b.name, data: Object.assign(makeEmptyBuildData(), b.data) }));
+  if (!builds.length) builds = [{ name: 'Build 1', data: makeEmptyBuildData() }];
+  activeBuildIdx = 0;
+  state = builds[0].data;
+  finalizeImport();
+}
+
+function doImportAdvanced() {
+  const slotToImport = {};
+  Object.entries(_importSlotMap).forEach(([idx, slot]) => {
+    if (slot > 0) slotToImport[slot] = _importBuilds[parseInt(idx)];
+  });
+  const importSlotNums = Object.keys(slotToImport).map(Number);
+  const maxSlot = Math.min(MAX_BUILDS, Math.max(builds.length, ...importSlotNums, 0));
+  const newBuilds = [];
+  for (let slot = 1; slot <= maxSlot; slot++) {
+    if (slotToImport[slot]) {
+      newBuilds.push({ name: slotToImport[slot].name, data: Object.assign(makeEmptyBuildData(), slotToImport[slot].data) });
+    } else if (builds[slot - 1]) {
+      newBuilds.push(builds[slot - 1]);
+    }
+  }
+  if (!newBuilds.length) newBuilds.push({ name: 'Build 1', data: makeEmptyBuildData() });
+  builds = newBuilds;
+  if (activeBuildIdx >= builds.length) activeBuildIdx = 0;
+  state = builds[activeBuildIdx].data;
+  finalizeImport();
+}
+
+function finalizeImport() {
+  fixStateArrays();
+  saveState();
+  renderAll();
+  updateBuildUI();
+  closeImportPopup();
+}
+
+function closeImportPopup() {
+  document.getElementById('import-popup').setAttribute('hidden', '');
+}
+
+// ─── DELETE CONFIRM POPUP ─────────────────────
+let _deleteBuildIdx = -1;
+
+function openDeleteConfirm(idx) {
+  _deleteBuildIdx = idx;
+  document.getElementById('build-delete-name').textContent = builds[idx].name;
+  document.getElementById('build-delete-popup').removeAttribute('hidden');
+}
+
+function closeDeleteConfirm() {
+  document.getElementById('build-delete-popup').setAttribute('hidden', '');
+  _deleteBuildIdx = -1;
 }
 
 // ─── INIT ─────────────────────────────────────
@@ -846,15 +1142,61 @@ function init() {
     if (e.target === document.getElementById('echo-popup')) closeEchoPopup();
   });
 
-  // Export / Import
-  document.getElementById('rp-export-btn').addEventListener('click', exportState);
+  // ── Build controls ──
+  document.getElementById('rp-build-select').addEventListener('change', e => switchBuild(parseInt(e.target.value)));
+  document.getElementById('rp-build-add').addEventListener('click', addBuild);
+  document.getElementById('rp-build-rename').addEventListener('click', startRename);
+  document.getElementById('rp-build-delete').addEventListener('click', () => openDeleteConfirm(activeBuildIdx));
+  updateBuildUI();
+
+  // ── Delete confirm popup ──
+  document.getElementById('build-delete-confirm').addEventListener('click', () => {
+    deleteBuildAt(_deleteBuildIdx);
+    closeDeleteConfirm();
+  });
+  document.getElementById('build-delete-cancel').addEventListener('click', closeDeleteConfirm);
+  document.getElementById('build-delete-close').addEventListener('click', closeDeleteConfirm);
+  document.getElementById('build-delete-popup').addEventListener('click', e => {
+    if (e.target === document.getElementById('build-delete-popup')) closeDeleteConfirm();
+  });
+
+  // ── Export popup ──
+  document.getElementById('rp-export-btn').addEventListener('click', openExportPopup);
+  document.getElementById('export-popup-close').addEventListener('click', closeExportPopup);
+  document.getElementById('export-popup-cancel').addEventListener('click', closeExportPopup);
+  document.getElementById('export-popup-confirm').addEventListener('click', doExport);
+  document.getElementById('export-popup').addEventListener('click', e => {
+    if (e.target === document.getElementById('export-popup')) closeExportPopup();
+  });
+
+  // ── Import popup ──
   document.getElementById('rp-import-file').addEventListener('change', e => {
     importStateFromFile(e.target.files[0]);
-    e.target.value = '';  // reset so the same file can be re-imported
+    e.target.value = '';
+  });
+  document.getElementById('import-popup-close').addEventListener('click', closeImportPopup);
+  document.getElementById('import-popup-cancel').addEventListener('click', closeImportPopup);
+  document.getElementById('import-popup').addEventListener('click', e => {
+    if (e.target === document.getElementById('import-popup')) closeImportPopup();
+  });
+  document.getElementById('import-replace-all-btn').addEventListener('click', doImportReplaceAll);
+  document.getElementById('import-adv-confirm').addEventListener('click', doImportAdvanced);
+  document.getElementById('import-advanced-toggle').addEventListener('click', () => {
+    const body   = document.getElementById('import-advanced-body');
+    const toggle = document.getElementById('import-advanced-toggle');
+    const open   = !body.hidden;
+    body.hidden  = open;
+    toggle.classList.toggle('open', !open);
+    toggle.innerHTML = open
+      ? '&#9654; Advanced — choose how to import'
+      : '&#9660; Advanced — choose how to import';
   });
 
   document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') { closePopup(); closeSkillDetail(); closeEchoPopup(); }
+    if (e.key === 'Escape') {
+      closePopup(); closeSkillDetail(); closeEchoPopup();
+      closeExportPopup(); closeImportPopup(); closeDeleteConfirm();
+    }
   });
 }
 
