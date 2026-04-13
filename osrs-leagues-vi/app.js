@@ -1061,17 +1061,16 @@ function buildRelicSummary() {
     const relic = tier.relics.find(r => r.id === selectedId);
 
     if (relic) {
-      let bonusHTML = '';
+      let displayRelic = relic;
       if (relic.id === 'reloaded' && state.reloadedRelicId) {
         const bonusRelic = RELIC_TIERS.flatMap(t => t.relics).find(r => r.id === state.reloadedRelicId);
-        if (bonusRelic) bonusHTML = `<div class="rs-bonus"><img class="rs-bonus-icon" src="${bonusRelic.icon}" alt="${bonusRelic.name}"><span>+ ${bonusRelic.name}</span></div>`;
+        if (bonusRelic) displayRelic = bonusRelic;
       }
       return `
-        <div class="rs-slot rs-slot-filled" data-relic-id="${relic.id}" title="${relic.name}">
+        <div class="rs-slot rs-slot-filled" data-relic-id="${relic.id}" title="${displayRelic.name}">
           <div class="rs-tier-label">T${tier.tier}</div>
-          <img class="rs-icon" src="${relic.icon}" alt="${relic.name}">
-          <div class="rs-name">${relic.name}</div>
-          ${bonusHTML}
+          <img class="rs-icon" src="${displayRelic.icon}" alt="${displayRelic.name}">
+          <div class="rs-name">${displayRelic.name}</div>
         </div>`;
     }
     return `

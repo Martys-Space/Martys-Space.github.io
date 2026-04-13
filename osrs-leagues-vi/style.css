@@ -1937,7 +1937,7 @@ body.table-resizing .col-resize-handle {
 }
 
 .rs-tier-label {
-  font-size: 0.65rem;
+  font-size: 0.72rem;
   font-weight: 600;
   color: var(--text-muted);
   text-transform: uppercase;
@@ -1965,7 +1965,7 @@ body.table-resizing .col-resize-handle {
 }
 
 .rs-name {
-  font-size: 0.75rem;
+  font-size: 0.82rem;
   color: var(--text-secondary);
   text-align: center;
   word-break: break-word;
