@@ -501,16 +501,20 @@ const PACT_TASKS = [
   { region: 'global', task: 'Defeat a Hill Giant',              pts: 10 },
   { region: 'global', task: 'Reach Combat Level 50',            pts: 30 },
   { region: 'global', task: 'Use the Protect from Melee Prayer',pts: 30 },
+  { region: 'global', task: 'Equip one unique echo item',       pts: 80 },
   { region: 'global', task: 'Kill 1 unique Echo Boss',          pts: 80,  extra: '+ Pact Reset' },
   { region: 'global', task: 'Kill 2 unique Echo Bosses',        pts: 80,  extra: '+ Pact Reset' },
   { region: 'global', task: 'Kill 3 unique Echo Bosses',        pts: 80,  extra: '+ Pact Reset' },
   { region: 'global', task: 'Kill 4 unique Echo Bosses',        pts: 200 },
   // Varlamore (always shown)
-  { region: 'varlamore', task: '1 Hueycoatl Kill',                           pts: 80 },
+  { region: 'varlamore', task: 'Equip any piece of armour from the Blood, Frost, or Eclipse moon set', pts: 30 },
+  { region: 'varlamore', task: 'Defeat Hueycoatl 1 time',                     pts: 80,  extra: '+ Pact Reset' },
   { region: 'varlamore', task: 'Complete Wave 12 of Fortis Colosseum',        pts: 200 },
   { region: 'varlamore', task: 'Defeat Awakened Vardorvis',                   pts: 200 },
   { region: 'varlamore', task: 'Equip Avernic Treads',                        pts: 200 },
+  { region: 'varlamore', task: 'Defeat the Doom of Mokhaiotl at delve level 8',                  pts: 200 },
   // Karamja (always shown)
+  { region: 'karamja', task: 'Equip an Obsidian Cape',                        pts: 30 },
   { region: 'karamja', task: 'Defeat a Steel Dragon on Karamja',              pts: 30 },
   { region: 'karamja', task: 'Defeat a TzHaar',                               pts: 30 },
   { region: 'karamja', task: "Complete Tzhaar-Ket-Rek's third challenge",     pts: 80 },
@@ -555,7 +559,7 @@ const PACT_TASKS = [
   { region: 'kourend', task: '1 Skotizo Kill',                    pts: 80 },
   { region: 'kourend', task: '25 Chambers of Xeric',              pts: 80 },
   { region: 'kourend', task: 'Equip a Dragon Hunter Lance',       pts: 200 },
-  { region: 'kourend', task: 'Equip a piece of Radiant Oathplate',pts: 200 },
+  { region: 'kourend', task: 'Equip an Oathplate helm, chest, and legs',pts: 200 },
   { region: 'kourend', task: 'Equip any Ancestral Piece',         pts: 200 },
   // Morytania
   { region: 'morytania', task: 'Defeat a Werewolf in Morytania',          pts: 10 },
@@ -638,7 +642,7 @@ function updatePactCounter() {
       if (state.pactDone[regionId + '::' + t.task]) done++;
     });
   });
-  counter.textContent = `${done} / ${total}`;
+  counter.textContent = `${done} / ${Math.min(total, 40)}`;
 }
 
 function renderPactTasks() {
