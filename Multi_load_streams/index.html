@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Multi Stream Viewer</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="app-header">
+    <div class="header-left">
+      <h1 class="app-title">Multi Stream</h1>
+      <span class="window-count" id="window-count">0 / 10</span>
+    </div>
+    <div class="header-right">
+      <button class="btn btn-secondary" id="btn-manage-urls">&#9776; URL List</button>
+      <button class="btn btn-primary" id="btn-add-window">+ Add Stream</button>
+    </div>
+  </header>
+
+  <main class="stream-grid" id="stream-grid"></main>
+
+  <!-- URL Manager Modal -->
+  <div class="modal-backdrop" id="url-manager-modal">
+    <div class="modal">
+      <div class="modal-header">
+        <h2>Saved URL List</h2>
+        <button class="btn-icon" id="btn-close-url-manager" title="Close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="url-add-form">
+          <input type="text" id="url-tag-input" placeholder="Tag / Label" maxlength="30">
+          <input type="text" id="url-url-input" placeholder="https://...">
+          <button class="btn btn-primary" id="btn-add-url">Add</button>
+        </div>
+
+        <div class="bulk-section">
+          <button class="bulk-toggle" id="btn-bulk-toggle">&#9660; Bulk Add</button>
+          <div class="bulk-body" id="bulk-body">
+            <p class="bulk-hint">One entry per line &mdash; <code>Tag | URL</code> or just <code>URL</code> (tag auto-generated). Lines starting with <code>#</code> are skipped.</p>
+            <textarea
+              id="bulk-input"
+              placeholder="MyStream | https://player.twitch.tv/?channel=...&#10;https://www.youtube.com/embed/...&#10;# This line is a comment"></textarea>
+            <div class="bulk-footer">
+              <button class="btn btn-primary" id="btn-bulk-add">Add All</button>
+              <span class="bulk-result" id="bulk-result"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="url-list-header">
+          <span>Saved URLs</span>
+        </div>
+        <div class="url-list" id="url-list">
+          <p class="empty-msg">No saved URLs yet.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Fullscreen Overlay -->
+  <div class="overlay" id="overlay">
+    <div class="overlay-bar">
+      <span class="overlay-label" id="overlay-label"></span>
+      <button class="btn btn-secondary" id="btn-close-overlay">&#10005; Close</button>
+    </div>
+    <iframe
+      id="overlay-iframe"
+      src="about:blank"
+      frameborder="0"
+      allow="autoplay; fullscreen; picture-in-picture; encrypted-media"
+      allowfullscreen
+    ></iframe>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

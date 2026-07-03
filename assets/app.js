@@ -5,13 +5,23 @@ const PROJECTS = [
     category: "Games",
     items: [
       {
+        icon: "🎮",
+        title: "Zeryndra",
+        subtitle: "Solo-developed pixel art RPG",
+        desc: "A top-down tile-based open world RPG in early development. Features story, progression, combat, skilling, and management systems. Built in Godot with pixel art created in Aseprite.",
+        status: "wip",
+        statusLabel: "In Development",
+        updated: null,
+        href: "/Zeryndra/",
+      },
+      {
         icon: "⛏️",
         title: "Idle Worker",
         subtitle: "Browser idle/incremental game",
         desc: "Manage a team of workers assigned to skilling jobs (woodcutting, fishing, mining, cooking…) or combat. Level up workers and global skills, craft gear to boost performance, and progress through equipment tiers from bronze to godtier.",
-        status: "active",
-        statusLabel: "Active",
-        updated: "2026-03-18",
+        status: "paused",
+        statusLabel: "On Hold",
+        updated: null,
         href: "/idleworker/",
       },
       {
@@ -36,7 +46,7 @@ const PROJECTS = [
         desc: "A completion tracker for SAO Re: Hollow Fragment. Track hollow missions, floor bosses, character affection, implementations, and all 54 Steam achievements.",
         status: "completed",
         statusLabel: "Completed",
-        updated: "2026-03-18",
+        updated: null,
         href: "/sword-art-online-re-hollow-fragment/docs/",
       },
       {
@@ -49,21 +59,21 @@ const PROJECTS = [
         updated: null,
         href: "/osrsbosstracker/",
       },
+    ],
+  },
+  {
+    category: "Archived",
+    items: [
       {
         icon: "🏆",
         title: "OSRS Leagues VI",
         subtitle: "Old School RuneScape — Seasonal (Apr–Jun 2026)",
-        desc: "A tracker and helper built for OSRS Leagues 6. Covers league-specific tasks, point tracking, and planning tools for the duration of the season. Temporary project — active while the league runs.",
-        status: "seasonal",
-        statusLabel: "Seasonal",
+        desc: "A tracker and helper built for OSRS Leagues 6. Covers league-specific tasks, point tracking, and planning tools for the duration of the season. Temporary project — active while the league ran.",
+        status: "abandoned",
+        statusLabel: "Ended",
         updated: null,
         href: "/osrs-leagues-vi/",
       },
-    ],
-  },
-  {
-    category: "Tools",
-    items: [
       {
         icon: "⚙️",
         title: "HySkills Builder",

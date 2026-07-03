@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zeryndra — Pixel Art RPG</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:         #0c0a14;
+      --bg2:        #131022;
+      --bg3:        #1c1730;
+      --card:       #16112a;
+      --card-hov:   #1e1838;
+      --border:     rgba(168,85,247,0.22);
+      --border-hov: rgba(168,85,247,0.55);
+      --accent:     #a855f7;
+      --accent2:    #7c3aed;
+      --text:       #e2d9f3;
+      --text-dim:   #8b7aa8;
+      --radius:     12px;
+      --radius-sm:  6px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+
+    /* ── HEADER ── */
+    header {
+      position: relative;
+      overflow: hidden;
+      padding: 72px 24px 56px;
+      text-align: center;
+      background: linear-gradient(160deg, #1a0a2e 0%, #0c0a14 60%);
+      border-bottom: 1px solid var(--border);
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 50% at 50% 0%, rgba(168,85,247,0.18) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .back-link {
+      position: absolute;
+      top: 24px;
+      left: 24px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 14px;
+      border-radius: 99px;
+      font-size: 13px;
+      font-weight: 500;
+      text-decoration: none;
+      color: var(--text-dim);
+      border: 1px solid var(--border);
+      background: rgba(168,85,247,0.06);
+      transition: color 0.2s, border-color 0.2s, background 0.2s;
+      z-index: 1;
+    }
+    .back-link:hover {
+      color: var(--accent);
+      border-color: var(--border-hov);
+      background: rgba(168,85,247,0.12);
+    }
+
+    .game-icon {
+      font-size: 4rem;
+      margin-bottom: 16px;
+      position: relative;
+    }
+
+    .site-title {
+      font-size: clamp(2.2rem, 6vw, 3.6rem);
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      background: linear-gradient(135deg, #d8b4fe 0%, #a855f7 50%, #7c3aed 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      position: relative;
+    }
+
+    .site-subtitle {
+      margin-top: 10px;
+      font-size: 1rem;
+      color: var(--text-dim);
+      position: relative;
+    }
+
+    .header-badges {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      position: relative;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 4px 11px;
+      border-radius: 99px;
+      letter-spacing: 0.03em;
+    }
+    .badge-wip {
+      background: rgba(245,158,11,0.12);
+      color: #fbbf24;
+      border: 1px solid rgba(245,158,11,0.3);
+    }
+    .badge-tag {
+      background: rgba(168,85,247,0.14);
+      color: #c084fc;
+      border: 1px solid rgba(168,85,247,0.3);
+    }
+
+    /* ── MAIN ── */
+    main {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 52px 20px 80px;
+    }
+
+    /* ── SECTION ── */
+    section {
+      margin-bottom: 48px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .section-title {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      white-space: nowrap;
+    }
+
+    .section-line {
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* ── PROSE CARD ── */
+    .prose-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px 30px;
+      font-size: 14px;
+      color: var(--text-dim);
+      line-height: 1.75;
+    }
+
+    .prose-card p + p { margin-top: 12px; }
+
+    .prose-card .highlight {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    /* ── INFO GRID ── */
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 14px;
+    }
+
+    .info-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px 22px;
+    }
+
+    .info-card-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+
+    .info-card-value {
+      font-size: 14px;
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .info-card-sub {
+      font-size: 12px;
+      color: var(--text-dim);
+      margin-top: 3px;
+    }
+
+    /* ── FEATURE LIST ── */
+    .feature-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 12px;
+    }
+
+    .feature-item {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px 20px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .feature-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      background: rgba(168,85,247,0.12);
+      border: 1px solid rgba(168,85,247,0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 17px;
+      flex-shrink: 0;
+    }
+
+    .feature-text { flex: 1; }
+
+    .feature-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.3;
+    }
+
+    .feature-desc {
+      font-size: 12px;
+      color: var(--text-dim);
+      margin-top: 3px;
+      line-height: 1.5;
+    }
+
+    /* ── TOOL TABLE ── */
+    .tool-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 12px;
+    }
+
+    .tool-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .tool-category-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .dot-engine   { background: #a855f7; }
+    .dot-art      { background: #f59e0b; }
+    .dot-animation{ background: #f59e0b; }
+    .dot-overworld{ background: #22c55e; }
+    .dot-code     { background: #3b82f6; }
+    .dot-sound    { background: #06b6d4; }
+    .dot-music    { background: #06b6d4; }
+    .dot-docs     { background: #8b5cf6; }
+
+    .tool-info { flex: 1; }
+
+    .tool-name {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .tool-role {
+      font-size: 11px;
+      color: var(--text-dim);
+      margin-top: 2px;
+    }
+
+    .tool-tag {
+      font-size: 10px;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 99px;
+      background: rgba(168,85,247,0.12);
+      color: #c084fc;
+      border: 1px solid rgba(168,85,247,0.25);
+      white-space: nowrap;
+    }
+
+    /* ── UNDECIDED CARD ── */
+    .undecided-card {
+      background: var(--card);
+      border: 1px dashed rgba(168,85,247,0.3);
+      border-radius: var(--radius);
+      padding: 22px 28px;
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+    }
+
+    .undecided-icon {
+      font-size: 24px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .undecided-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+
+    .undecided-body {
+      font-size: 13px;
+      color: var(--text-dim);
+      line-height: 1.65;
+    }
+
+    /* ── SOCIAL LINKS ── */
+    .social-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 12px;
+    }
+
+    .social-card {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px 20px;
+      text-decoration: none;
+      color: inherit;
+      transition: border-color 0.2s, background 0.2s, transform 0.15s;
+    }
+    .social-card:hover {
+      border-color: var(--border-hov);
+      background: var(--card-hov);
+      transform: translateY(-2px);
+    }
+
+    .social-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+      background: rgba(168,85,247,0.12);
+      border: 1px solid rgba(168,85,247,0.25);
+    }
+
+    .social-name {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .social-handle {
+      font-size: 12px;
+      color: var(--text-dim);
+      margin-top: 2px;
+    }
+
+    .social-arrow {
+      margin-left: auto;
+      color: var(--text-dim);
+      font-size: 16px;
+    }
+
+    /* ── DEV NOTE ── */
+    .dev-note {
+      background: rgba(168,85,247,0.06);
+      border: 1px solid rgba(168,85,247,0.22);
+      border-left: 3px solid var(--accent);
+      border-radius: var(--radius);
+      padding: 18px 22px;
+      font-size: 13px;
+      color: var(--text-dim);
+      line-height: 1.7;
+    }
+
+    .dev-note strong {
+      color: var(--text);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 24px;
+      font-size: 12px;
+      color: var(--text-dim);
+      border-top: 1px solid var(--border);
+    }
+    footer a { color: var(--accent); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      header { padding: 64px 16px 40px; }
+      main { padding: 36px 14px 60px; }
+      .back-link { font-size: 12px; padding: 5px 10px; }
+      .prose-card { padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <a class="back-link" href="/">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" width="12" height="12">
+      <path d="M19 12H5M12 5l-7 7 7 7"/>
+    </svg>
+    Back
+  </a>
+
+  <div class="game-icon">🎮</div>
+  <h1 class="site-title">Zeryndra</h1>
+  <p class="site-subtitle">Pixel Art RPG &mdash; Solo Development &mdash; Early Stage</p>
+
+  <div class="header-badges">
+    <span class="badge badge-wip">◑ In Development</span>
+    <span class="badge badge-tag">Pixel Art</span>
+    <span class="badge badge-tag">Top-Down</span>
+    <span class="badge badge-tag">Open World</span>
+    <span class="badge badge-tag">Godot</span>
+    <span class="badge badge-tag">Solo Dev</span>
+  </div>
+</header>
+
+<main>
+
+  <!-- ABOUT -->
+  <section>
+    <div class="section-header">
+      <span class="section-title">About</span>
+      <span class="section-line"></span>
+    </div>
+    <div class="prose-card">
+      <p>
+        <span class="highlight">Zeryndra</span> is a top-down tile-based open world RPG being built from the ground up by a single developer.
+        The game aims to combine classic RPG elements — exploration, story, and progression — with skilling and management systems inspired by games like Old School RuneScape and classic JRPGs.
+      </p>
+      <p>
+        The world of Zeryndra is an open world with hand-crafted regions to explore, each with its own feel, encounters, and secrets.
+        Players will be able to choose their path: pursue the main story, grind skills, manage resources, or simply explore.
+      </p>
+      <p>
+        Everything is being built from scratch in <span class="highlight">Godot</span>, with all art created in <span class="highlight">Aseprite</span>.
+        As a solo developer, the scope is intentionally kept manageable — but the ambition is high.
+      </p>
+    </div>
+  </section>
+
+  <!-- PLANNED FEATURES -->
+  <section>
+    <div class="section-header">
+      <span class="section-title">Planned Features</span>
+      <span class="section-line"></span>
+    </div>
+    <div class="feature-list">
+      <div class="feature-item">
+        <div class="feature-icon">🗺️</div>
+        <div class="feature-text">
+          <div class="feature-title">Open World</div>
+          <div class="feature-desc">A hand-crafted tile-based world with multiple regions, secrets, and areas to discover at your own pace.</div>
+        </div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">📖</div>
+        <div class="feature-text">
+          <div class="feature-title">Story &amp; Progression</div>
+          <div class="feature-desc">A narrative-driven experience with character development and quests. The story follows a single timeline — no branching choices, just a focused narrative.</div>
+        </div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">⚔️</div>
+        <div class="feature-text">
+          <div class="feature-title">Combat</div>
+          <div class="feature-desc">Combat system currently in design — deciding between turn-based and live-action approaches.</div>
+        </div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">🪓</div>
+        <div class="feature-text">
+          <div class="feature-title">Skilling</div>
+          <div class="feature-desc">Train a variety of skills — gathering, crafting, and more — to grow stronger and unlock new content.</div>
+        </div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">🏗️</div>
+        <div class="feature-text">
+          <div class="feature-title">Management Systems</div>
+          <div class="feature-desc">Build, upgrade, and manage structures or systems that support your progression and world-building.</div>
+        </div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">🎨</div>
+        <div class="feature-text">
+          <div class="feature-title">Hand-Crafted Pixel Art</div>
+          <div class="feature-desc">All sprites, tiles, and animations created from scratch using Aseprite. Targeting a consistent 32×32 tile pixel art style throughout.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OPEN QUESTIONS -->
+  <section>
+    <div class="section-header">
+      <span class="section-title">Open Design Decisions</span>
+      <span class="section-line"></span>
+    </div>
+    <div class="undecided-card">
+      <div class="undecided-icon">🤔</div>
+      <div>
+        <div class="undecided-title">Combat System: Turn-Based vs. Live Action</div>
+        <div class="undecided-body">
+          One of the biggest open questions in early development. <strong>Turn-based combat</strong> fits the classic RPG feel and is more approachable to design solo,
+          while <strong>live-action combat</strong> would feel more dynamic and immersive but adds significant complexity to both design and implementation.
+          This decision will shape a lot of downstream systems and will be made once the core world movement and tilemap systems are stable.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DEVELOPMENT OVERVIEW -->
+  <section>
+    <div class="section-header">
+      <span class="section-title">Development Overview</span>
+      <span class="section-line"></span>
+    </div>
+    <div class="info-grid">
+      <div class="info-card">
+        <div class="info-card-label">Developer</div>
+        <div class="info-card-value">Solo</div>
+        <div class="info-card-sub">One person doing everything</div>
+      </div>
+      <div class="info-card">
+        <div class="info-card-label">Stage</div>
+        <div class="info-card-value">Early Development</div>
+        <div class="info-card-sub">Core systems, world design, art learning</div>
+      </div>
+      <div class="info-card">
+        <div class="info-card-label">Game Engine</div>
+        <div class="info-card-value">Godot</div>
+        <div class="info-card-sub">Open source, GDScript</div>
+      </div>
+      <div class="info-card">
+        <div class="info-card-label">Platform Target</div>
+        <div class="info-card-value">PC (Desktop)</div>
+        <div class="info-card-sub">Windows &amp; Linux via Godot export</div>
+      </div>
+      <div class="info-card">
+        <div class="info-card-label">Art Style</div>
+        <div class="info-card-value">Pixel Art</div>
+        <div class="info-card-sub">Top-down tile-based, retro-inspired</div>
+      </div>
+      <div class="info-card">
+        <div class="info-card-label">Learning Goals</div>
+        <div class="info-card-value">Pixel Art &amp; Animation</div>
+        <div class="info-card-sub">New skills being developed alongside the game</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TOOLCHAIN -->
+  <section>
+    <div class="section-header">
+      <span class="section-title">Toolchain</span>
+      <span class="section-line"></span>
+    </div>
+    <div class="tool-grid">
+      <div class="tool-card">
+        <div class="tool-category-dot dot-engine"></div>
+        <div class="tool-info">
+          <div class="tool-name">Godot</div>
+          <div class="tool-role">Game Engine</div>
+        </div>
+        <span class="tool-tag">Engine</span>
+      </div>
+      <div class="tool-card">
+        <div class="tool-category-dot dot-code"></div>
+        <div class="tool-info">
+          <div class="tool-name">VS Code</div>
+          <div class="tool-role">Code Editor</div>
+        </div>
+        <span class="tool-tag">Code</span>
+      </div>
+      <div class="tool-card">
+        <div class="tool-category-dot dot-art"></div>
+        <div class="tool-info">
+          <div class="tool-name">Aseprite</div>
+          <div class="tool-role">Pixel Art &amp; Animation</div>
+        </div>
+        <span class="tool-tag">Art</span>
+      </div>
+      <div class="tool-card">
+        <div class="tool-category-dot dot-art"></div>
+        <div class="tool-info">
+          <div class="tool-name">Lospec</div>
+          <div class="tool-role">Colour Palettes</div>
+        </div>
+        <span class="tool-tag">Art</span>
+      </div>
+      <div class="tool-card">
+        <div class="tool-category-dot dot-animation"></div>
+        <div class="tool-info">
+          <div class="tool-name">Smack Studio</div>
+          <div class="tool-role">Animation</div>
+        </div>
+        <span class="tool-tag">Animation</span>
+      </div>
+      <div class="tool-card">
+        <div class="tool-category-dot dot-overworld"></div>
+        <div class="tool-info">
+          <div class="tool-name">Inkarnate</div>
+          <div class="tool-role">Overworld Drafting</div>
+        </div>
+        <span class="tool-tag">World</span>
+      </div>
+      <div class="tool-card">
+        <div class="tool-category-dot dot-sound"></div>
+        <div class="tool-info">
+          <div class="tool-name">BeepBox</div>
+          <div class="tool-role">SFX &amp; Music</div>
+        </div>
+        <span class="tool-tag">Audio</span>
+      </div>
+      <div class="tool-card">
+        <div class="tool-category-dot dot-sound"></div>
+        <div class="tool-info">
+          <div class="tool-name">Bfxr</div>
+          <div class="tool-role">Sound Effects</div>
+        </div>
+        <span class="tool-tag">Audio</span>
+      </div>
+      <div class="tool-card">
+        <div class="tool-category-dot dot-sound"></div>
+        <div class="tool-info">
+          <div class="tool-name">Klystrack</div>
+          <div class="tool-role">Chiptune SFX</div>
+        </div>
+        <span class="tool-tag">Audio</span>
+      </div>
+      <div class="tool-card">
+        <div class="tool-category-dot dot-music"></div>
+        <div class="tool-info">
+          <div class="tool-name">Famitracker</div>
+          <div class="tool-role">Chiptune Music</div>
+        </div>
+        <span class="tool-tag">Music</span>
+      </div>
+      <div class="tool-card">
+        <div class="tool-category-dot dot-docs"></div>
+        <div class="tool-info">
+          <div class="tool-name">Notion</div>
+          <div class="tool-role">Documentation &amp; Planning</div>
+        </div>
+        <span class="tool-tag">Docs</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- DEV JOURNEY -->
+  <section>
+    <div class="section-header">
+      <span class="section-title">The Developer Journey</span>
+      <span class="section-line"></span>
+    </div>
+    <div class="dev-note">
+      <strong>This is a learning project as much as a game project.</strong> Building Zeryndra means picking up new skills along the way —
+      pixel art from scratch, animation principles, world design, and Godot's GDScript ecosystem.
+      The scope is kept intentionally lean at this stage: get the core loop working, learn the tools, and let the design evolve naturally.
+      <br><br>
+      Progress, art previews, and devlogs will be shared on Discord, YouTube, and X/Twitter as development moves forward.
+    </div>
+  </section>
+
+  <!-- FOLLOW DEVELOPMENT -->
+  <section>
+    <div class="section-header">
+      <span class="section-title">Follow Development</span>
+      <span class="section-line"></span>
+    </div>
+    <div class="social-grid">
+      <a class="social-card" href="https://discord.gg/MhvUHAwU" target="_blank" rel="noopener">
+        <div class="social-icon">💬</div>
+        <div>
+          <div class="social-name">Discord</div>
+          <div class="social-handle">discord.gg/MhvUHAwU</div>
+        </div>
+        <span class="social-arrow">↗</span>
+      </a>
+      <a class="social-card" href="https://www.youtube.com/@Zeryndra" target="_blank" rel="noopener">
+        <div class="social-icon">▶️</div>
+        <div>
+          <div class="social-name">YouTube</div>
+          <div class="social-handle">@Zeryndra</div>
+        </div>
+        <span class="social-arrow">↗</span>
+      </a>
+      <a class="social-card" href="https://x.com/ZeryndraGames" target="_blank" rel="noopener">
+        <div class="social-icon">✦</div>
+        <div>
+          <div class="social-name">X / Twitter</div>
+          <div class="social-handle">@ZeryndraGames</div>
+        </div>
+        <span class="social-arrow">↗</span>
+      </a>
+      <a class="social-card" href="https://no.pinterest.com/zeryndra" target="_blank" rel="noopener">
+        <div class="social-icon">📌</div>
+        <div>
+          <div class="social-name">Pinterest</div>
+          <div class="social-handle">pinterest.com/zeryndra</div>
+        </div>
+        <span class="social-arrow">↗</span>
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  Zeryndra &mdash; A <a href="/">Marty's Space</a> Project &mdash; Solo Development
+</footer>
+
+</body>
+</html>
