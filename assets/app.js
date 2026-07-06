@@ -40,6 +40,16 @@ const PROJECTS = [
     category: "Game Trackers",
     items: [
       {
+        icon: "🎲",
+        title: "OSRS Loot Simulator",
+        subtitle: "Old School RuneScape",
+        desc: "Simulate boss kills and see what loot you could have gotten. Roll drop tables using real OSRS Wiki rates, hunt for rare uniques, and share your luck. Boss support now, with raids, clues, minigames, and skilling pets planned.",
+        status: "active",
+        statusLabel: "Active",
+        updated: null,
+        href: "/osrslootsim/",
+      },
+      {
         icon: "🗡️",
         title: "SAO Re: Hollow Fragment Tracker",
         subtitle: "Sword Art Online Re: Hollow Fragment",
