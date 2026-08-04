@@ -1,0 +1,44 @@
+[
+  {
+    "id": "unlock_mining",
+    "label": "Unlock Mining",
+    "category": "unlock",
+    "graph": {
+      "rootPosition": { "x": 560, "y": 160 },
+      "nodes": [
+        { "id": "n1", "kind": "leaf", "leaf": "card:bronze_pickaxe", "x": 40, "y": 20 },
+        { "id": "n2", "kind": "leaf", "leaf": "card:iron_pickaxe", "x": 40, "y": 120 },
+        { "id": "n3", "kind": "leaf", "leaf": "card:steel_pickaxe", "x": 40, "y": 220 },
+        { "id": "n4", "kind": "leaf", "leaf": "skill:mining:6", "x": 40, "y": 320 },
+        { "id": "n5", "kind": "group", "label": "", "x": 300, "y": 270 }
+      ],
+      "edges": [
+        { "source": "n1", "target": "root" },
+        { "source": "n2", "target": "root" },
+        { "source": "n3", "target": "n5" },
+        { "source": "n4", "target": "n5" },
+        { "source": "n5", "target": "root" }
+      ]
+    }
+  },
+  {
+    "id": "collect_all_pickaxes",
+    "label": "Collect all pickaxe cards",
+    "category": "goal",
+    "graph": {
+      "rootPosition": { "x": 560, "y": 160 },
+      "nodes": [
+        { "id": "n1", "kind": "leaf", "leaf": "card:bronze_pickaxe", "x": 40, "y": 20 },
+        { "id": "n2", "kind": "leaf", "leaf": "card:iron_pickaxe", "x": 40, "y": 120 },
+        { "id": "n3", "kind": "leaf", "leaf": "card:steel_pickaxe", "x": 40, "y": 220 },
+        { "id": "n4", "kind": "group", "label": "", "x": 300, "y": 120 }
+      ],
+      "edges": [
+        { "source": "n1", "target": "n4" },
+        { "source": "n2", "target": "n4" },
+        { "source": "n3", "target": "n4" },
+        { "source": "n4", "target": "root" }
+      ]
+    }
+  }
+]
