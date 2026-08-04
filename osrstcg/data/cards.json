@@ -46365,7 +46365,8 @@
     "category": "monster",
     "notes": "A manifestation of vengeance.",
     "score": 170354,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 170353.5
   },
   {
     "id": "alchemical_hydra",
@@ -46383,7 +46384,8 @@
     "category": "monster",
     "notes": "A powerful frost nagua.",
     "score": 103754,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 103753.5
   },
   {
     "id": "artio",
@@ -46401,7 +46403,8 @@
     "category": "monster",
     "notes": "A big ol' monke.",
     "score": 193322,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 193321.5
   },
   {
     "id": "blood_moon",
@@ -46410,7 +46413,8 @@
     "category": "monster",
     "notes": "The terrifying embodiment of a blood moon.",
     "score": 162362,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 162361.5
   },
   {
     "id": "blue_moon",
@@ -46419,7 +46423,8 @@
     "category": "monster",
     "notes": "The icy embodiment of a blue moon.",
     "score": 162362,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 162361.5
   },
   {
     "id": "brutus",
@@ -46464,7 +46469,8 @@
     "category": "monster",
     "notes": "pUre A cHaOs of crEatuRe!",
     "score": 139538,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 139537.5
   },
   {
     "id": "chaos_fanatic",
@@ -46491,7 +46497,8 @@
     "category": "monster",
     "notes": "A vision of supernatural horror.",
     "score": 924338,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 924337.5
   },
   {
     "id": "crazy_archaeologist",
@@ -46509,7 +46516,8 @@
     "category": "monster",
     "notes": "A legendary dagannoth king, rumoured to fly on the North winds.",
     "score": 137714,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 137713.5
   },
   {
     "id": "dagannoth_rex",
@@ -46518,7 +46526,8 @@
     "category": "monster",
     "notes": "Firstborn of the legendary dagannoth kings.",
     "score": 137714,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 137713.5
   },
   {
     "id": "dagannoth_supreme",
@@ -46527,7 +46536,8 @@
     "category": "monster",
     "notes": "The dagannoth king responsible for the death of the Bukalla.",
     "score": 137714,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 137713.5
   },
   {
     "id": "deranged_archaeologist",
@@ -46545,7 +46555,8 @@
     "category": "monster",
     "notes": "A vengeful spirit corrupted by dark magic.",
     "score": 19838,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 19837.5
   },
   {
     "id": "doom_of_mokhaiotl",
@@ -46572,7 +46583,8 @@
     "category": "monster",
     "notes": "The blinding embodiment of an eclipse.",
     "score": 162362,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 162361.5
   },
   {
     "id": "elidinis_warden",
@@ -46581,7 +46593,8 @@
     "category": "monster",
     "notes": "An ancient automaton imbued with the power of Elidinis.",
     "score": 358682,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 358681.5
   },
   {
     "id": "gemstone_crab",
@@ -46617,7 +46630,8 @@
     "category": "monster",
     "notes": "A vengeful spirit corrupted by dark magic.",
     "score": 19838,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 19837.5
   },
   {
     "id": "hespori",
@@ -46644,7 +46658,8 @@
     "category": "monster",
     "notes": "I don't think insect repellent will work...",
     "score": 166334,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 166333.5
   },
   {
     "id": "karil_the_tainted",
@@ -46662,7 +46677,8 @@
     "category": "monster",
     "notes": "The cursed mother.",
     "score": 174422,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 174421.5
   },
   {
     "id": "king_black_dragon",
@@ -46680,7 +46696,8 @@
     "category": "monster",
     "notes": "Something big lurking beneath the water.",
     "score": 127022,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 127021.5
   },
   {
     "id": "kree_arra",
@@ -46698,7 +46715,8 @@
     "category": "monster",
     "notes": "Even the gods fear her.",
     "score": 1503002,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 1503001.5
   },
   {
     "id": "obor",
@@ -46716,7 +46734,8 @@
     "category": "monster",
     "notes": "Imagination gone wild.",
     "score": 823622,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 823621.5
   },
   {
     "id": "revenant_maledictus",
@@ -46725,7 +46744,8 @@
     "category": "monster",
     "notes": "One ghost to rule them all.",
     "score": 236414,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 236413.5
   },
   {
     "id": "sarachnis",
@@ -46752,7 +46772,8 @@
     "category": "monster",
     "notes": "A calamity to all tortugan-kind.",
     "score": 82838,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 82837.5
   },
   {
     "id": "skotizo",
@@ -46761,7 +46782,8 @@
     "category": "monster",
     "notes": "A darkly altared demon.",
     "score": 154562,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 154561.5
   },
   {
     "id": "sol_heredit",
@@ -46770,7 +46792,8 @@
     "category": "monster",
     "notes": "Its stompin' time!",
     "score": 3664454,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 3664453.5
   },
   {
     "id": "the_hueycoatl",
@@ -46815,7 +46838,8 @@
     "category": "monster",
     "notes": "Dare you face the shadows?",
     "score": 938522,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 938521.5
   },
   {
     "id": "thermonuclear_smoke_devil",
@@ -46824,7 +46848,8 @@
     "category": "monster",
     "notes": "Woah.",
     "score": 135902,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 135901.5
   },
   {
     "id": "torag_the_corrupted",
@@ -46833,7 +46858,8 @@
     "category": "monster",
     "notes": "A vengeful spirit corrupted by dark magic.",
     "score": 19838,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 19837.5
   },
   {
     "id": "tumeken_s_warden",
@@ -46842,7 +46868,8 @@
     "category": "monster",
     "notes": "An ancient automaton imbued with the power of Tumeken.",
     "score": 358682,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 358681.5
   },
   {
     "id": "tztok_jad",
@@ -46869,7 +46896,8 @@
     "category": "monster",
     "notes": "A vengeful spirit corrupted by dark magic.",
     "score": 19838,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 19837.5
   },
   {
     "id": "vorkath",
@@ -46887,7 +46915,8 @@
     "category": "monster",
     "notes": "A big gluttonous croc.",
     "score": 206462,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 206461.5
   },
   {
     "id": "zulrah",
@@ -46896,7 +46925,8 @@
     "category": "monster",
     "notes": "The green hooded serpent of the poison waste.",
     "score": 788438,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 788437.5
   },
   {
     "id": "a_doubt",
@@ -46914,7 +46944,8 @@
     "category": "monster",
     "notes": "Yep, it's revived alright.",
     "score": 15914,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 15913.5
   },
   {
     "id": "aberrant_spectre",
@@ -46932,7 +46963,8 @@
     "category": "monster",
     "notes": "I'd smell better after completing 3145 laps of an agility course dressed as a monkey.",
     "score": 96014,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 96013.5
   },
   {
     "id": "abomination",
@@ -46941,7 +46973,8 @@
     "category": "monster",
     "notes": "Some of its features are worryingly human.",
     "score": 33302,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 33301.5
   },
   {
     "id": "abyssal_antibody",
@@ -46968,7 +47001,8 @@
     "category": "monster",
     "notes": "It seems to have eyes in the back of its head...",
     "score": 5222,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 5221.5
   },
   {
     "id": "abyssal_leech",
@@ -46977,7 +47011,8 @@
     "category": "monster",
     "notes": "A blood-drinking denizen of the Abyss.",
     "score": 2522,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 2521.5
   },
   {
     "id": "abyssal_walker",
@@ -46986,7 +47021,8 @@
     "category": "monster",
     "notes": "Apparently walks the Abyss.",
     "score": 9842,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 9841.5
   },
   {
     "id": "acidic_araxyte",
@@ -47013,7 +47049,8 @@
     "category": "monster",
     "notes": "A helpful sort of person.",
     "score": 3602,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 3601.5
   },
   {
     "id": "adamant_dragon",
@@ -47040,7 +47077,8 @@
     "category": "monster",
     "notes": "A tiny annoying scarab.",
     "score": 4214,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 4213.5
   },
   {
     "id": "agile_warrior",
@@ -47085,7 +47123,8 @@
     "category": "monster",
     "notes": "At least he looks solid enough to fight.",
     "score": 254,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 253.5
   },
   {
     "id": "akkha_s_phantom",
@@ -47094,7 +47133,8 @@
     "category": "monster",
     "notes": "A phantom of Akkha.",
     "score": 170354,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 170353.5
   },
   {
     "id": "akkha_s_shadow",
@@ -47112,7 +47152,8 @@
     "category": "monster",
     "notes": "Part of Al Kharid's elite fighting force.",
     "score": 122,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 121.5
   },
   {
     "id": "albatross",
@@ -47148,7 +47189,8 @@
     "category": "monster",
     "notes": "A subject of Miscellania.",
     "score": 2,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 1.5
   },
   {
     "id": "ammonite_crab",
@@ -47157,7 +47199,8 @@
     "category": "monster",
     "notes": "An outcrop embedded with an ammonite fossil.",
     "score": 938,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 937.5
   },
   {
     "id": "ancient_custodian",
@@ -47166,7 +47209,8 @@
     "category": "monster",
     "notes": "Old as...",
     "score": 85682,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 85681.5
   },
   {
     "id": "ancient_guardian",
@@ -47175,7 +47219,8 @@
     "category": "monster",
     "notes": "The guardian of this ancient ruin.",
     "score": 938,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 937.5
   },
   {
     "id": "ancient_wizard",
@@ -47202,7 +47247,8 @@
     "category": "monster",
     "notes": "An old mushroom, rooted in the ground. It looks strong and stable.",
     "score": 17822,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 17821.5
   },
   {
     "id": "angry_barbarian_spirit",
@@ -47229,7 +47275,8 @@
     "category": "monster",
     "notes": "He looks a little on the cross side!",
     "score": 3038,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 3037.5
   },
   {
     "id": "angry_goblin",
@@ -47238,7 +47285,8 @@
     "category": "monster",
     "notes": "He looks a little on the cross side!",
     "score": 3038,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 3037.5
   },
   {
     "id": "angry_tortugan",
@@ -47247,7 +47295,8 @@
     "category": "monster",
     "notes": "Mad, and its tortally your fault.",
     "score": 9842,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 9841.5
   },
   {
     "id": "angry_unicorn",
@@ -47256,7 +47305,8 @@
     "category": "monster",
     "notes": "He looks a little on the cross side!",
     "score": 3038,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 3037.5
   },
   {
     "id": "animated_adamant_armour",
@@ -47265,7 +47315,8 @@
     "category": "monster",
     "notes": "Animated adamant armour.",
     "score": 19154,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 19153.5
   },
   {
     "id": "animated_black_armour",
@@ -47274,7 +47325,8 @@
     "category": "monster",
     "notes": "Animated black armour.",
     "score": 7142,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 7141.5
   },
   {
     "id": "animated_bronze_armour",
@@ -47283,7 +47335,8 @@
     "category": "monster",
     "notes": "Animated bronze armour.",
     "score": 182,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 181.5
   },
   {
     "id": "animated_iron_armour",
@@ -47292,7 +47345,8 @@
     "category": "monster",
     "notes": "Animated iron armour.",
     "score": 794,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 793.5
   },
   {
     "id": "animated_mithril_armour",
@@ -47337,7 +47391,8 @@
     "category": "monster",
     "notes": "Animated steel armour.",
     "score": 4214,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 4213.5
   },
   {
     "id": "anja",
@@ -47355,7 +47410,8 @@
     "category": "monster",
     "notes": "A boney ghost.",
     "score": 8438,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 8437.5
   },
   {
     "id": "apparition",
@@ -47364,7 +47420,8 @@
     "category": "monster",
     "notes": "Are they even real?",
     "score": 9842,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 9841.5
   },
   {
     "id": "aquanite",
@@ -47373,7 +47430,8 @@
     "category": "monster",
     "notes": "It has a light on its forehead. What a pretty light... So shiny!",
     "score": 31538,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 31537.5
   },
   {
     "id": "araxxor",
@@ -47400,7 +47458,8 @@
     "category": "monster",
     "notes": "One of Kephri's false children.",
     "score": 11882,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 11881.5
   },
   {
     "id": "archer_ardougne",
@@ -47409,7 +47468,8 @@
     "category": "monster",
     "notes": "Good with arrows.",
     "score": 2054,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 2053.5
   },
   {
     "id": "archer_burthorpe",
@@ -47436,7 +47496,8 @@
     "category": "monster",
     "notes": "A servant of Armadyl.",
     "score": 14114,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 14113.5
   },
   {
     "id": "armoured_kraken",
@@ -47472,7 +47533,8 @@
     "category": "monster",
     "notes": "This is a rotten one. This one sure looks grave. It hasn't quite got round to dying.",
     "score": 16538,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 16537.5
   },
   {
     "id": "arrav",
@@ -47481,7 +47543,8 @@
     "category": "monster",
     "notes": "He's seen better, happier days.",
     "score": 172382,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 172381.5
   },
   {
     "id": "arrg",
@@ -47490,7 +47553,8 @@
     "category": "monster",
     "notes": "A massive, scary-looking troll.",
     "score": 19154,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 19153.5
   },
   {
     "id": "arzinian_being_of_bordanzan",
@@ -47499,7 +47563,8 @@
     "category": "monster",
     "notes": "It's the Arzinian Being, whatever that is, that comes from Bordanzan, wherever that is.",
     "score": 914942,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 914941.5
   },
   {
     "id": "assassin",
@@ -47535,7 +47600,8 @@
     "category": "monster",
     "notes": "A being of unsurpassed vitality.",
     "score": 413438,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 413437.5
   },
   {
     "id": "avatar_of_destruction",
@@ -47544,7 +47610,8 @@
     "category": "monster",
     "notes": "The essence of ruination.",
     "score": 413438,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 413437.5
   },
   {
     "id": "aviansie",
@@ -47553,7 +47620,8 @@
     "category": "monster",
     "notes": "Graceful, bird-like creature.",
     "score": 7142,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 7141.5
   },
   {
     "id": "ba_ba_s_phantom",
@@ -47562,7 +47630,8 @@
     "category": "monster",
     "notes": "A phantom of Ba-Ba.",
     "score": 193322,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 193321.5
   },
   {
     "id": "baboon",
@@ -47571,7 +47640,8 @@
     "category": "monster",
     "notes": "An undead baboon.",
     "score": 8894,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 8893.5
   },
   {
     "id": "baboon_brawler",
@@ -47625,7 +47695,8 @@
     "category": "monster",
     "notes": "A mountain-dwelling bird. Cute, but vicious.",
     "score": 8438,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 8437.5
   },
   {
     "id": "baby_black_dragon",
@@ -47634,7 +47705,8 @@
     "category": "monster",
     "notes": "Young but still dangerous.",
     "score": 10334,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 10333.5
   },
   {
     "id": "baby_blue_dragon",
@@ -47670,7 +47742,8 @@
     "category": "monster",
     "notes": "An animated shrub.",
     "score": 3038,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 3037.5
   },
   {
     "id": "bakuna",
@@ -47697,7 +47770,8 @@
     "category": "monster",
     "notes": "Despoiler of Ullek.",
     "score": 34202,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 34201.5
   },
   {
     "id": "bandit_champion",
@@ -47724,7 +47798,8 @@
     "category": "monster",
     "notes": "A follower of Bandos.",
     "score": 23438,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 23437.5
   },
   {
     "id": "banshee",
@@ -47733,7 +47808,8 @@
     "category": "monster",
     "notes": "A tortured screaming soul.",
     "score": 794,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 793.5
   },
   {
     "id": "barb_tailed_kebbit",
@@ -47742,7 +47818,8 @@
     "category": "monster",
     "notes": "It uses its tail to hunt and skewer fish.",
     "score": 1634,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 1633.5
   },
   {
     "id": "barbarian_warlord",
@@ -47751,7 +47828,8 @@
     "category": "monster",
     "notes": "A fearsome fighter!",
     "score": 12422,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 12421.5
   },
   {
     "id": "barbarian",
@@ -47769,7 +47847,8 @@
     "category": "monster",
     "notes": "A branch bark coloured blamish snail, these types are said to spit acid.",
     "score": 338,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 337.5
   },
   {
     "id": "barrelchest",
@@ -47787,7 +47866,8 @@
     "category": "monster",
     "notes": "The eyes of evil.",
     "score": 5582,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 5581.5
   },
   {
     "id": "basilisk_knight",
@@ -47814,7 +47894,8 @@
     "category": "monster",
     "notes": "The young eyes of evil.",
     "score": 4874,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 4873.5
   },
   {
     "id": "bat",
@@ -47841,7 +47922,8 @@
     "category": "monster",
     "notes": "Cute. But deadly.",
     "score": 338,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 337.5
   },
   {
     "id": "bedabin_nomad_fighter",
@@ -47859,7 +47941,8 @@
     "category": "monster",
     "notes": "He's guarding the cells.",
     "score": 7562,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 7561.5
   },
   {
     "id": "berserk_barbarian_spirit",
@@ -47895,7 +47978,8 @@
     "category": "monster",
     "notes": "Must be the pack leader.",
     "score": 7994,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 7993.5
   },
   {
     "id": "big_frog",
@@ -47913,7 +47997,8 @@
     "category": "monster",
     "notes": "They'll eat anything!",
     "score": 1634,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 1633.5
   },
   {
     "id": "bird",
@@ -47922,7 +48007,8 @@
     "category": "monster",
     "notes": "It's a brightly coloured bird of the jungle. It flies very quickly.",
     "score": 38,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 37.5
   },
   {
     "id": "black_eye_bethel",
@@ -47931,7 +48017,8 @@
     "category": "monster",
     "notes": "Don't ask her how she got the black eye.",
     "score": 54722,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 54721.5
   },
   {
     "id": "black_guard_berserker",
@@ -47949,7 +48036,8 @@
     "category": "monster",
     "notes": "A member of the Black Guard, a special division of the dwarven army.",
     "score": 938,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 937.5
   },
   {
     "id": "black_heather",
@@ -47976,7 +48064,8 @@
     "category": "monster",
     "notes": "A dark-hearted knight.",
     "score": 1634,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 1633.5
   },
   {
     "id": "black_bear",
@@ -47985,7 +48074,8 @@
     "category": "monster",
     "notes": "Eek! A bear!",
     "score": 542,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 541.5
   },
   {
     "id": "black_chinchompa_hunter",
@@ -48012,7 +48102,8 @@
     "category": "monster",
     "notes": "A fierce dragon with black scales!",
     "score": 77294,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 77293.5
   },
   {
     "id": "black_golem",
@@ -48021,7 +48112,8 @@
     "category": "monster",
     "notes": "An animated clay statue.",
     "score": 8438,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 8437.5
   },
   {
     "id": "black_jaguar",
@@ -48030,7 +48122,8 @@
     "category": "monster",
     "notes": "The most intimidating cat in all of Varlamore.",
     "score": 6734,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 6733.5
   },
   {
     "id": "black_knight_port_sarim_jail",
@@ -48039,7 +48132,8 @@
     "category": "monster",
     "notes": "A dark-hearted knight.",
     "score": 1634,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 1633.5
   },
   {
     "id": "black_salamander_hunter",
@@ -48048,7 +48142,8 @@
     "category": "monster",
     "notes": "Slightly slimy and somewhat menacing.",
     "score": 6734,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 6733.5
   },
   {
     "id": "black_unicorn",
@@ -48057,7 +48152,8 @@
     "category": "monster",
     "notes": "A unicorn with a blackened heart.",
     "score": 1094,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 1093.5
   },
   {
     "id": "black_unicorn_foal",
@@ -48075,7 +48171,8 @@
     "category": "monster",
     "notes": "Some oversized vermin, blessed by Zamorak.",
     "score": 122,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 121.5
   },
   {
     "id": "blessed_spider",
@@ -48084,7 +48181,8 @@
     "category": "monster",
     "notes": "A nasty spider, blessed by Zamorak.",
     "score": 2282,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 2281.5
   },
   {
     "id": "blood_blamish_snail",
@@ -48120,7 +48218,8 @@
     "category": "monster",
     "notes": "The power of blood.",
     "score": 4538,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 4537.5
   },
   {
     "id": "bloodthirst_rockslug",
@@ -48165,7 +48264,8 @@
     "category": "monster",
     "notes": "A mother dragon.",
     "score": 18482,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 18481.5
   },
   {
     "id": "boar",
@@ -48174,7 +48274,8 @@
     "category": "monster",
     "notes": "That's one nasty looking piggy.",
     "score": 38,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 37.5
   },
   {
     "id": "boar31337killer",
@@ -48183,7 +48284,8 @@
     "category": "monster",
     "notes": "He hates boars so much.",
     "score": 1094,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 1093.5
   },
   {
     "id": "body_golem",
@@ -48219,7 +48321,8 @@
     "category": "monster",
     "notes": "Postie Pete's worst nightmare.",
     "score": 28154,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 28153.5
   },
   {
     "id": "branda_the_fire_queen",
@@ -48228,7 +48331,8 @@
     "category": "monster",
     "notes": "She lies defeated, drained and silent... but still faintly alive.",
     "score": 23438,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 23437.5
   },
   {
     "id": "brassican_mage",
@@ -48246,7 +48350,8 @@
     "category": "monster",
     "notes": "Mind your toes!",
     "score": 3902,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 3901.5
   },
   {
     "id": "bree",
@@ -48264,7 +48369,8 @@
     "category": "monster",
     "notes": "A citizen of Burthorpe.",
     "score": 38,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 37.5
   },
   {
     "id": "brine_rat",
@@ -48291,7 +48397,8 @@
     "category": "monster",
     "notes": "Its scales seem to be made of bronze.",
     "score": 25742,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 25741.5
   },
   {
     "id": "broodoo_victim",
@@ -48327,7 +48434,8 @@
     "category": "monster",
     "notes": "It appears intelligent and savage.",
     "score": 110162,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 110161.5
   },
   {
     "id": "brutal_green_dragon",
@@ -48336,7 +48444,8 @@
     "category": "monster",
     "notes": "It appears intelligent and savage.",
     "score": 77294,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 77293.5
   },
   {
     "id": "brutal_red_dragon",
@@ -48345,7 +48454,8 @@
     "category": "monster",
     "notes": "It appears intelligent and savage.",
     "score": 125282,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 125281.5
   },
   {
     "id": "buffalo",
@@ -48354,7 +48464,8 @@
     "category": "monster",
     "notes": "In a world of cows, be a buffalo.",
     "score": 122,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 121.5
   },
   {
     "id": "buinn",
@@ -48363,7 +48474,8 @@
     "category": "monster",
     "notes": "Engineer's assistant.",
     "score": 2,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 1.5
   },
   {
     "id": "bull_shark",
@@ -48372,7 +48484,8 @@
     "category": "monster",
     "notes": "It met a superior predator of the sea.",
     "score": 6338,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 6337.5
   },
   {
     "id": "bunny",
@@ -48390,7 +48503,8 @@
     "category": "monster",
     "notes": "A slithering serpent that likes to hide in the bush.",
     "score": 1838,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 1837.5
   },
   {
     "id": "butterfly_ray",
@@ -48426,7 +48540,8 @@
     "category": "monster",
     "notes": "One of the inhabitants of the camp.",
     "score": 938,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 937.5
   },
   {
     "id": "captain_cotus",
@@ -48435,7 +48550,8 @@
     "category": "monster",
     "notes": "A captain with a grudge against the crown.",
     "score": 12422,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 12421.5
   },
   {
     "id": "captain_darvald",
@@ -48444,7 +48560,8 @@
     "category": "monster",
     "notes": "A captain of the coldest seas.",
     "score": 28154,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 28153.5
   },
   {
     "id": "carnivorous_chinchompa",
@@ -48462,7 +48579,8 @@
     "category": "monster",
     "notes": "Big... Cow-like... But cows don't have serpent tails!",
     "score": 3602,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 3601.5
   },
   {
     "id": "cave_abomination",
@@ -48489,7 +48607,8 @@
     "category": "monster",
     "notes": "A spiky crawling critter.",
     "score": 794,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 793.5
   },
   {
     "id": "cave_goblin_monster",
@@ -48498,7 +48617,8 @@
     "category": "monster",
     "notes": "A goblin with big bulging eyes.",
     "score": 14,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 13.5
   },
   {
     "id": "cave_goblin_guard",
@@ -48516,7 +48636,8 @@
     "category": "monster",
     "notes": "This one is slacking off.",
     "score": 182,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 181.5
   },
   {
     "id": "cave_horror",
@@ -48534,7 +48655,8 @@
     "category": "monster",
     "notes": "Something's lurking beneath the water.",
     "score": 24194,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 24193.5
   },
   {
     "id": "cave_lizard",
@@ -48543,7 +48665,8 @@
     "category": "monster",
     "notes": "A cave dweller.",
     "score": 2054,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 2053.5
   },
   {
     "id": "cave_slime",
@@ -48552,7 +48675,8 @@
     "category": "monster",
     "notes": "A foul-smelling blob of protoplasm.",
     "score": 794,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 793.5
   },
   {
     "id": "ceolburg",
@@ -48570,7 +48694,8 @@
     "category": "monster",
     "notes": "A powerful scabarite warrior.",
     "score": 215462,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 215461.5
   },
   {
     "id": "chaos_golem",
@@ -48588,7 +48713,8 @@
     "category": "monster",
     "notes": "A crazy, evil druid.",
     "score": 254,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 253.5
   },
   {
     "id": "chaos_druid_warrior",
@@ -48597,7 +48723,8 @@
     "category": "monster",
     "notes": "A crazy evil druid.",
     "score": 2054,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 2053.5
   },
   {
     "id": "chaos_dwarf",
@@ -48615,7 +48742,8 @@
     "category": "monster",
     "notes": "A chaotic death spawn.",
     "score": 69338,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 69337.5
   },
   {
     "id": "chasm_crawler",
@@ -48633,7 +48761,8 @@
     "category": "monster",
     "notes": "Yep. Definitely a chicken.",
     "score": 2,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 1.5
   },
   {
     "id": "chilled_jelly",
@@ -48660,7 +48789,8 @@
     "category": "monster",
     "notes": "It looks fluffy and cute; it's probably deadly.",
     "score": 2,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 1.5
   },
   {
     "id": "choke_devil",
@@ -48705,7 +48835,8 @@
     "category": "monster",
     "notes": "Tries to keep the peace.",
     "score": 10334,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 10333.5
   },
   {
     "id": "clivet",
@@ -48714,7 +48845,8 @@
     "category": "monster",
     "notes": "A member of the Hazeel cult.",
     "score": 254,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 253.5
   },
   {
     "id": "cockathrice",
@@ -48723,7 +48855,8 @@
     "category": "monster",
     "notes": "Careful where he puts that beak!",
     "score": 11882,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 11881.5
   },
   {
     "id": "cockatrice",
@@ -48732,7 +48865,8 @@
     "category": "monster",
     "notes": "The winged reptile.",
     "score": 2054,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 2053.5
   },
   {
     "id": "colonel_radick",
@@ -48750,7 +48884,8 @@
     "category": "monster",
     "notes": "Don't forget to hydra-te.",
     "score": 143222,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 143221.5
   },
   {
     "id": "combat_test",
@@ -48777,7 +48912,8 @@
     "category": "monster",
     "notes": "What on Gielinor is that?!?",
     "score": 2774,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 2773.5
   },
   {
     "id": "cool_mom227",
@@ -48786,7 +48922,8 @@
     "category": "monster",
     "notes": "A player.",
     "score": 1094,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 1093.5
   },
   {
     "id": "corrupt_lizardman",
@@ -48858,7 +48995,8 @@
     "category": "monster",
     "notes": "Every miner's nightmare.",
     "score": 11882,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 11881.5
   },
   {
     "id": "corrupted_spider",
@@ -48894,7 +49032,8 @@
     "category": "monster",
     "notes": "A Corsair gone bad.",
     "score": 1838,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 1837.5
   },
   {
     "id": "count_draynor",
@@ -48930,7 +49069,8 @@
     "category": "monster",
     "notes": "He hates cows so much.",
     "score": 22694,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 22693.5
   },
   {
     "id": "cowardly_bandit",
@@ -48948,7 +49088,8 @@
     "category": "monster",
     "notes": "Nice claw!",
     "score": 662,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 661.5
   },
   {
     "id": "crawling_hand",
@@ -48957,7 +49098,8 @@
     "category": "monster",
     "notes": "Gimmie five. Actually, don't.",
     "score": 74,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 73.5
   },
   {
     "id": "crimson_sanguisphera",
@@ -48975,7 +49117,8 @@
     "category": "monster",
     "notes": "This bird obviously doesn't believe in subtlety.",
     "score": 2,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 1.5
   },
   {
     "id": "crocodile",
@@ -48984,7 +49127,8 @@
     "category": "monster",
     "notes": "Never smile at a...",
     "score": 5954,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 5953.5
   },
   {
     "id": "cruor",
@@ -48993,7 +49137,8 @@
     "category": "monster",
     "notes": "A mage who has mastered the art of blood magic.",
     "score": 121838,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 121837.5
   },
   {
     "id": "crushing_hand",
@@ -49002,7 +49147,8 @@
     "category": "monster",
     "notes": "That is quite some-thing.",
     "score": 3038,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 3037.5
   },
   {
     "id": "crypt_rat",
@@ -49011,7 +49157,8 @@
     "category": "monster",
     "notes": "A nasty little rodent.",
     "score": 2774,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 2773.5
   },
   {
     "id": "crypt_spider",
@@ -49029,7 +49176,8 @@
     "category": "monster",
     "notes": "They'll be gone when the morning comes.",
     "score": 1634,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 1633.5
   },
   {
     "id": "crystalline_bear",
@@ -49119,7 +49267,8 @@
     "category": "monster",
     "notes": "He looks a bit dodgy.",
     "score": 14,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 13.5
   },
   {
     "id": "culinaromancer",
@@ -49128,7 +49277,8 @@
     "category": "monster",
     "notes": "A demented evil wizard who specialises in food spells.",
     "score": 8438,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 8437.5
   },
   {
     "id": "cultist",
@@ -49146,7 +49296,8 @@
     "category": "monster",
     "notes": "An undead cursed baboon.",
     "score": 8894,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 8893.5
   },
   {
     "id": "cuthbert",
@@ -49173,7 +49324,8 @@
     "category": "monster",
     "notes": "A menace to all fish.",
     "score": 254,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 253.5
   },
   {
     "id": "dad",
@@ -49182,7 +49334,8 @@
     "category": "monster",
     "notes": "An unusually large troll.",
     "score": 15302,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 15301.5
   },
   {
     "id": "daddy_s_special_water",
@@ -49191,7 +49344,8 @@
     "category": "monster",
     "notes": "I can already feel my head hurting.",
     "score": 23438,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 23437.5
   },
   {
     "id": "dagannoth_fledgeling",
@@ -49245,7 +49399,8 @@
     "category": "monster",
     "notes": "The warrior of darkness.",
     "score": 15914,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 15913.5
   },
   {
     "id": "dark_ankou",
@@ -49254,7 +49409,8 @@
     "category": "monster",
     "notes": "A boney ghost.",
     "score": 13538,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 13537.5
   },
   {
     "id": "dark_beast",
@@ -49272,7 +49428,8 @@
     "category": "monster",
     "notes": "A small being of dark energy.",
     "score": 8438,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 8437.5
   },
   {
     "id": "dark_kebbit",
@@ -49281,7 +49438,8 @@
     "category": "monster",
     "notes": "Quieter than a ninja mouse with slippers on.",
     "score": 4874,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 4873.5
   },
   {
     "id": "dark_warrior",
@@ -49299,7 +49457,8 @@
     "category": "monster",
     "notes": "He works evil magic.",
     "score": 74,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 73.5
   },
   {
     "id": "dashing_kebbit",
@@ -49308,7 +49467,8 @@
     "category": "monster",
     "notes": "Now you see it; now you don't.",
     "score": 7142,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 7141.5
   },
   {
     "id": "dawn",
@@ -49344,7 +49504,8 @@
     "category": "monster",
     "notes": "A shadowy, barely visible flying entity from some evil place.",
     "score": 10334,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 10333.5
   },
   {
     "id": "defiler",
@@ -49353,7 +49514,8 @@
     "category": "monster",
     "notes": "Duck!",
     "score": 1634,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 1633.5
   },
   {
     "id": "delrith",
@@ -49362,7 +49524,8 @@
     "category": "monster",
     "notes": "The demon doesn't look so strong now.",
     "score": 2,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 1.5
   },
   {
     "id": "demon_construction",
@@ -49389,7 +49552,8 @@
     "category": "monster",
     "notes": "One of Glough's demonic creations.",
     "score": 113438,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 113437.5
   },
   {
     "id": "derwen",
@@ -49398,7 +49562,8 @@
     "category": "monster",
     "notes": "An ancient Guthixian Ent.",
     "score": 82838,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 82837.5
   },
   {
     "id": "desert_lizard",
@@ -49416,7 +49581,8 @@
     "category": "monster",
     "notes": "A vicious desert wolf.",
     "score": 1094,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 1093.5
   },
   {
     "id": "dessourt",
@@ -49425,7 +49591,8 @@
     "category": "monster",
     "notes": "Bad for your teeth...and the rest of your body too.",
     "score": 21962,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 21961.5
   },
   {
     "id": "dessous",
@@ -49434,7 +49601,8 @@
     "category": "monster",
     "notes": "A vampyre warrior of Zamorak.",
     "score": 28982,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 28981.5
   },
   {
     "id": "deviant_spectre",
@@ -49443,7 +49611,8 @@
     "category": "monster",
     "notes": "A very smelly ghost.",
     "score": 42842,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 42841.5
   },
   {
     "id": "dire_wolf_alpha",
@@ -49452,7 +49621,8 @@
     "category": "monster",
     "notes": "Now that's a big one!",
     "score": 19154,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 19153.5
   },
   {
     "id": "dire_wolf",
@@ -49470,7 +49640,8 @@
     "category": "monster",
     "notes": "A vicious predator, strong enough to hook and rip the shells off the largest tortugans.",
     "score": 65522,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 65521.5
   },
   {
     "id": "disciple_of_iban",
@@ -49479,7 +49650,8 @@
     "category": "monster",
     "notes": "A dark magic user.",
     "score": 254,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 253.5
   },
   {
     "id": "dolphin",
@@ -49497,7 +49669,8 @@
     "category": "monster",
     "notes": "A troll of Weiss.",
     "score": 39854,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 39853.5
   },
   {
     "id": "donny_the_lad",
@@ -49515,7 +49688,8 @@
     "category": "monster",
     "notes": "One of the guardians of Iban.",
     "score": 12422,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 12421.5
   },
   {
     "id": "double_agent",
@@ -49524,7 +49698,8 @@
     "category": "monster",
     "notes": "He's playing both sides!",
     "score": 6338,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 6337.5
   },
   {
     "id": "drake",
@@ -49542,7 +49717,8 @@
     "category": "monster",
     "notes": "A very large odd-looking spider.",
     "score": 118442,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 118441.5
   },
   {
     "id": "drink_troll",
@@ -49560,7 +49736,8 @@
     "category": "monster",
     "notes": "The drink troll society might feel simpler now.",
     "score": 70634,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 70633.5
   },
   {
     "id": "druid",
@@ -49569,7 +49746,8 @@
     "category": "monster",
     "notes": "Loves nature.",
     "score": 1634,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 1633.5
   },
   {
     "id": "drunken_man",
@@ -49578,7 +49756,8 @@
     "category": "monster",
     "notes": "One of Gielinor's many citizens, currently incapacitated by alcohol.",
     "score": 14,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 13.5
   },
   {
     "id": "duck",
@@ -49587,7 +49766,8 @@
     "category": "monster",
     "notes": "Quackers.",
     "score": 2,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 1.5
   },
   {
     "id": "duckling",
@@ -49596,7 +49776,8 @@
     "category": "monster",
     "notes": "Mini quackers.",
     "score": 2,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 1.5
   },
   {
     "id": "duke_monkey",
@@ -49605,7 +49786,8 @@
     "category": "monster",
     "notes": "A large ninja monkey wielding two scimitars.",
     "score": 33302,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 33301.5
   },
   {
     "id": "dungeon_rat",
@@ -49632,7 +49814,8 @@
     "category": "monster",
     "notes": "The vacuumed face of evil.",
     "score": 12974,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 12973.5
   },
   {
     "id": "dwarf_gang_member",
@@ -49686,7 +49869,8 @@
     "category": "monster",
     "notes": "An earth elemental.",
     "score": 1838,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 1837.5
   },
   {
     "id": "earth_warrior",
@@ -49695,7 +49879,8 @@
     "category": "monster",
     "notes": "A strange, inhuman, elemental warrior.",
     "score": 3902,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 3901.5
   },
   {
     "id": "earth_wizard",
@@ -49704,7 +49889,8 @@
     "category": "monster",
     "notes": "His hands are covered in mud. At least, I hope that's mud.",
     "score": 254,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 253.5
   },
   {
     "id": "earthen_nagua",
@@ -49731,7 +49917,8 @@
     "category": "monster",
     "notes": "A subject of Miscellania.",
     "score": 2,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 1.5
   },
   {
     "id": "elder_chaos_druid",
@@ -49740,7 +49927,8 @@
     "category": "monster",
     "notes": "An elder, more dangerous kind of druid.",
     "score": 24962,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 24961.5
   },
   {
     "id": "elder_hubber",
@@ -49749,7 +49937,8 @@
     "category": "monster",
     "notes": "A tortugan elder responsible for the eggs on the Little Pearl.",
     "score": 7562,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 7561.5
   },
   {
     "id": "elder_korel",
@@ -49767,7 +49956,8 @@
     "category": "monster",
     "notes": "A tortugan elder responsible for the eggs on the Little Pearl.",
     "score": 7562,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 7561.5
   },
   {
     "id": "elder_aquanite",
@@ -49776,7 +49966,8 @@
     "category": "monster",
     "notes": "Such an alluring light...",
     "score": 139538,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 139537.5
   },
   {
     "id": "elder_custodian_stalker",
@@ -49794,7 +49985,8 @@
     "category": "monster",
     "notes": "He lies defeated, drained and silent... but still faintly alive.",
     "score": 23438,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 23437.5
   },
   {
     "id": "elf_archer",
@@ -49821,7 +50013,8 @@
     "category": "monster",
     "notes": "A player.",
     "score": 11354,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 11353.5
   },
   {
     "id": "elite_black_knight",
@@ -49866,7 +50059,8 @@
     "category": "monster",
     "notes": "A well-trained Khazard warrior, on orders to guard this area.",
     "score": 13538,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 13537.5
   },
   {
     "id": "elvarg",
@@ -49875,7 +50069,8 @@
     "category": "monster",
     "notes": "Roar! A dragon!",
     "score": 10334,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 10333.5
   },
   {
     "id": "embertailed_jerboa",
@@ -49902,7 +50097,8 @@
     "category": "monster",
     "notes": "A fierce archer of the Twilight Emissaries.",
     "score": 7562,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 7561.5
   },
   {
     "id": "emissary_ascended",
@@ -49911,7 +50107,8 @@
     "category": "monster",
     "notes": "A highly experienced member of the Twilight Emissaries.",
     "score": 20534,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 20533.5
   },
   {
     "id": "emissary_brawler",
@@ -49938,7 +50135,8 @@
     "category": "monster",
     "notes": "A fierce mage of the Twilight Emissaries.",
     "score": 7562,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 7561.5
   },
   {
     "id": "emissary_enforcer",
@@ -49956,7 +50154,8 @@
     "category": "monster",
     "notes": "A leading member of the Twilight Emissaries.",
     "score": 25742,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 25741.5
   },
   {
     "id": "enclave_guard",
@@ -49965,7 +50164,8 @@
     "category": "monster",
     "notes": "Big and ugly looking.",
     "score": 10334,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 10333.5
   },
   {
     "id": "ennius_tullus",
@@ -50037,7 +50237,8 @@
     "category": "monster",
     "notes": "A fowl beast.",
     "score": 37922,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 37921.5
   },
   {
     "id": "evil_creature",
@@ -50046,7 +50247,8 @@
     "category": "monster",
     "notes": "What is that thing!",
     "score": 2,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 1.5
   },
   {
     "id": "evil_spirit",
@@ -50064,7 +50266,8 @@
     "category": "monster",
     "notes": "A very odd looking creature.",
     "score": 17822,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 17821.5
   },
   {
     "id": "experiment",
@@ -50073,7 +50276,8 @@
     "category": "monster",
     "notes": "It has a key hanging from its collar.",
     "score": 3902,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 3901.5
   },
   {
     "id": "fareed",
@@ -50082,7 +50286,8 @@
     "category": "monster",
     "notes": "Zamorak's warrior of fire.",
     "score": 41834,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 41833.5
   },
   {
     "id": "farmer",
@@ -50091,7 +50296,8 @@
     "category": "monster",
     "notes": "He grows the crops in this area.",
     "score": 74,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 73.5
   },
   {
     "id": "fear_reaper",
@@ -50109,7 +50315,8 @@
     "category": "monster",
     "notes": "A feral vampyre. It looks really hungry!",
     "score": 5582,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 5581.5
   },
   {
     "id": "ferocious_barbarian_spirit",
@@ -50127,7 +50334,8 @@
     "category": "monster",
     "notes": "Wild.",
     "score": 1094,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 1093.5
   },
   {
     "id": "fever_spider",
@@ -50136,7 +50344,8 @@
     "category": "monster",
     "notes": "A bunch of legs, eyes and teeth.",
     "score": 3602,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 3601.5
   },
   {
     "id": "fire_warrior_of_lesarkus",
@@ -50154,7 +50363,8 @@
     "category": "monster",
     "notes": "A fire elemental.",
     "score": 1838,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 1837.5
   },
   {
     "id": "fire_giant",
@@ -50172,7 +50382,8 @@
     "category": "monster",
     "notes": "Caution: HOT!",
     "score": 254,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 253.5
   },
   {
     "id": "fish_shoal",
@@ -50190,7 +50401,8 @@
     "category": "monster",
     "notes": "Yep, that arrow wound definitely looks like it hurts.",
     "score": 17174,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 17173.5
   },
   {
     "id": "fiyr_shade",
@@ -50208,7 +50420,8 @@
     "category": "monster",
     "notes": "Will give you a beating as well as indigestion.",
     "score": 33302,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 33301.5
   },
   {
     "id": "flaming_pyrelord",
@@ -50217,7 +50430,8 @@
     "category": "monster",
     "notes": "A large demonic being of fire.",
     "score": 14114,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 14113.5
   },
   {
     "id": "flawed_golem",
@@ -50226,7 +50440,8 @@
     "category": "monster",
     "notes": "How long has it dwelled down here?",
     "score": 254,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 253.5
   },
   {
     "id": "flesh_crawler",
@@ -50244,7 +50459,8 @@
     "category": "monster",
     "notes": "Graceful, bird-like creature.",
     "score": 37922,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 37921.5
   },
   {
     "id": "flockleader_geerin",
@@ -50253,7 +50469,8 @@
     "category": "monster",
     "notes": "Graceful, bird-like creature.",
     "score": 33302,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 33301.5
   },
   {
     "id": "foreman",
@@ -50262,7 +50479,8 @@
     "category": "monster",
     "notes": "The boss!",
     "score": 794,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 793.5
   },
   {
     "id": "forester_woodcutting_guild",
@@ -50271,7 +50489,8 @@
     "category": "monster",
     "notes": "They love the forests.",
     "score": 338,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 337.5
   },
   {
     "id": "forgotten_soul",
@@ -50298,7 +50517,8 @@
     "category": "monster",
     "notes": "Foxy.",
     "score": 542,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 541.5
   },
   {
     "id": "fragment_of_seren",
@@ -50334,7 +50554,8 @@
     "category": "monster",
     "notes": "A warrior from a faraway land, come to test their skills.",
     "score": 15914,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 15913.5
   },
   {
     "id": "fremennik_warband_seer",
@@ -50352,7 +50573,8 @@
     "category": "monster",
     "notes": "Warriors first, sailors second.",
     "score": 5582,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 5581.5
   },
   {
     "id": "frenzied_ice_troll_female",
@@ -50406,7 +50628,8 @@
     "category": "monster",
     "notes": "It eats flies.",
     "score": 38,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 37.5
   },
   {
     "id": "frogeel",
@@ -50415,7 +50638,8 @@
     "category": "monster",
     "notes": "Is it a frog, or is it an eel?",
     "score": 15914,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 15913.5
   },
   {
     "id": "frost_crab",
@@ -50424,7 +50648,8 @@
     "category": "monster",
     "notes": "No one likes crabs...",
     "score": 338,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 337.5
   },
   {
     "id": "frost_nagua",
@@ -50451,7 +50676,8 @@
     "category": "monster",
     "notes": "A mage who has mastered the art of smoke magic.",
     "score": 121838,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 121837.5
   },
   {
     "id": "gadderanks",
@@ -50460,7 +50686,8 @@
     "category": "monster",
     "notes": "A human working for the vampyres.",
     "score": 1838,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 1837.5
   },
   {
     "id": "galina",
@@ -50496,7 +50723,8 @@
     "category": "monster",
     "notes": "He's plotting something.",
     "score": 3038,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 3037.5
   },
   {
     "id": "gardener",
@@ -50505,7 +50733,8 @@
     "category": "monster",
     "notes": "An old gardener.",
     "score": 14,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 13.5
   },
   {
     "id": "gargoyle",
@@ -50514,7 +50743,8 @@
     "category": "monster",
     "notes": "Flies like a rock.",
     "score": 18482,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 18481.5
   },
   {
     "id": "gelatinnoth_mother",
@@ -50559,7 +50789,8 @@
     "category": "monster",
     "notes": "Eeek! A ghost!",
     "score": 542,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 541.5
   },
   {
     "id": "ghoul",
@@ -50577,7 +50808,8 @@
     "category": "monster",
     "notes": "Champion of the ghouls.",
     "score": 10838,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 10837.5
   },
   {
     "id": "giant_champion",
@@ -50604,7 +50836,8 @@
     "category": "monster",
     "notes": "Heavy rock!",
     "score": 28154,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 28153.5
   },
   {
     "id": "giant_scarab",
@@ -50613,7 +50846,8 @@
     "category": "monster",
     "notes": "A huge scarab.",
     "score": 54722,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 54721.5
   },
   {
     "id": "giant_sea_snake",
@@ -50622,7 +50856,8 @@
     "category": "monster",
     "notes": "A big snake that lives in the sea. How did it get in here?",
     "score": 33302,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 33301.5
   },
   {
     "id": "giant_ant",
@@ -50631,7 +50866,8 @@
     "category": "monster",
     "notes": "I shall call him Anthony.",
     "score": 662,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 661.5
   },
   {
     "id": "giant_bat",
@@ -50640,7 +50876,8 @@
     "category": "monster",
     "notes": "An annoying flappy thing.",
     "score": 1094,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 1093.5
   },
   {
     "id": "giant_crypt_rat",
@@ -50658,7 +50895,8 @@
     "category": "monster",
     "notes": "Not very incey wincey.",
     "score": 9362,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 9361.5
   },
   {
     "id": "giant_frog",
@@ -50667,7 +50905,8 @@
     "category": "monster",
     "notes": "It didn't get that big eating flies.",
     "score": 254,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 253.5
   },
   {
     "id": "giant_goblin",
@@ -50676,7 +50915,8 @@
     "category": "monster",
     "notes": "An ugly green creature.",
     "score": 180614,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 180613.5
   },
   {
     "id": "giant_lobster",
@@ -50685,7 +50925,8 @@
     "category": "monster",
     "notes": "Not very tasty.",
     "score": 3038,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 3037.5
   },
   {
     "id": "giant_mosquito",
@@ -50694,7 +50935,8 @@
     "category": "monster",
     "notes": "A flying blood sucker.",
     "score": 254,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 253.5
   },
   {
     "id": "giant_rat",
@@ -50703,7 +50945,8 @@
     "category": "monster",
     "notes": "Overgrown vermin.",
     "score": 14,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 13.5
   },
   {
     "id": "giant_rockslug",
@@ -50766,7 +51009,8 @@
     "category": "monster",
     "notes": "A mage who has mastered the art of ice magic.",
     "score": 121838,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 121837.5
   },
   {
     "id": "gladiator",
@@ -50793,7 +51037,8 @@
     "category": "monster",
     "notes": "A rough looking gnome.",
     "score": 278642,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 278641.5
   },
   {
     "id": "gnome_archer",
@@ -50802,7 +51047,8 @@
     "category": "monster",
     "notes": "A Gnome Arrow-chucker",
     "score": 38,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 37.5
   },
   {
     "id": "gnome_driver",
@@ -50811,7 +51057,8 @@
     "category": "monster",
     "notes": "Yee haa!",
     "score": 38,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 37.5
   },
   {
     "id": "gnome_mage",
@@ -50820,7 +51067,8 @@
     "category": "monster",
     "notes": "A battle mage of the gnomish variety.",
     "score": 38,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 37.5
   },
   {
     "id": "gnome_child",
@@ -50838,7 +51086,8 @@
     "category": "monster",
     "notes": "A tree gnome guard.",
     "score": 794,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 793.5
   },
   {
     "id": "gnome_troop",
@@ -50847,7 +51096,8 @@
     "category": "monster",
     "notes": "It's a tree gnome trooper.",
     "score": 2,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 1.5
   },
   {
     "id": "gnome_woman",
@@ -50856,7 +51106,8 @@
     "category": "monster",
     "notes": "A female gnome.",
     "score": 2,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 1.5
   },
   {
     "id": "gnome",
@@ -50865,7 +51116,8 @@
     "category": "monster",
     "notes": "Like a mini man!",
     "score": 2,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 1.5
   },
   {
     "id": "goat",
@@ -50874,7 +51126,8 @@
     "category": "monster",
     "notes": "They'll eat anything!",
     "score": 794,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 793.5
   },
   {
     "id": "goblin_champion",
@@ -50892,7 +51145,8 @@
     "category": "monster",
     "notes": "Sleeping like an ugly baby.",
     "score": 2,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 1.5
   },
   {
     "id": "goblin",
@@ -50910,7 +51164,8 @@
     "category": "monster",
     "notes": "Actually, golden screecher might be a more appropriate name.",
     "score": 38,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 37.5
   },
   {
     "id": "golem_zalcano",
@@ -50928,7 +51183,8 @@
     "category": "monster",
     "notes": "A creature made from clay.",
     "score": 4538,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 4537.5
   },
   {
     "id": "golem_guard",
@@ -50937,7 +51193,8 @@
     "category": "monster",
     "notes": "A rocky horror.",
     "score": 29822,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 29821.5
   },
   {
     "id": "gorad",
@@ -50955,7 +51212,8 @@
     "category": "monster",
     "notes": "Gorak by name, Gorak by nature.",
     "score": 31538,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 31537.5
   },
   {
     "id": "grave_scorpion",
@@ -50973,7 +51231,8 @@
     "category": "monster",
     "notes": "Ferocious. It's unnerving.",
     "score": 1631774,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 1631773.5
   },
   {
     "id": "great_white_shark",
@@ -50982,7 +51241,8 @@
     "category": "monster",
     "notes": "Someone didn't need a bigger boat.",
     "score": 45938,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 45937.5
   },
   {
     "id": "greater_nechryael",
@@ -51000,7 +51260,8 @@
     "category": "monster",
     "notes": "Can never possibly go hungry.",
     "score": 28982,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 28981.5
   },
   {
     "id": "greater_skeleton_hellhound_vet_ion",
@@ -51009,7 +51270,8 @@
     "category": "monster",
     "notes": "Can never possibly go hungry.",
     "score": 80042,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 80041.5
   },
   {
     "id": "greater_abyssal_demon",
@@ -51036,7 +51298,8 @@
     "category": "monster",
     "notes": "Must be related to Elvarg.",
     "score": 9362,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 9361.5
   },
   {
     "id": "grey_golem",
@@ -51045,7 +51308,8 @@
     "category": "monster",
     "notes": "An animated clay statue.",
     "score": 8438,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 8437.5
   },
   {
     "id": "grimy_lizard",
@@ -51072,7 +51336,8 @@
     "category": "monster",
     "notes": "Eek! A bear cub!",
     "score": 1634,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 1633.5
   },
   {
     "id": "grizzly_bear",
@@ -51081,7 +51346,8 @@
     "category": "monster",
     "notes": "Eek! A bear!",
     "score": 662,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 661.5
   },
   {
     "id": "growler",
@@ -51090,7 +51356,8 @@
     "category": "monster",
     "notes": "Defender of the faithful.",
     "score": 28982,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 28981.5
   },
   {
     "id": "growthling",
@@ -51099,7 +51366,8 @@
     "category": "monster",
     "notes": "Off-shoots of evil.",
     "score": 2054,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 2053.5
   },
   {
     "id": "gryphon",
@@ -51108,7 +51376,8 @@
     "category": "monster",
     "notes": "A vicious predatory bird-like monster.",
     "score": 13538,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 13537.5
   },
   {
     "id": "guard_bandit",
@@ -51135,7 +51404,8 @@
     "category": "monster",
     "notes": "He tries to keep order around here.",
     "score": 662,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 661.5
   },
   {
     "id": "guardian_drake",
@@ -51153,7 +51423,8 @@
     "category": "monster",
     "notes": "A warrior who has devoted their life to Armadyl.",
     "score": 3038,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 3037.5
   },
   {
     "id": "gunthor_the_brave",
@@ -51162,7 +51433,8 @@
     "category": "monster",
     "notes": "A mighty warrior!",
     "score": 1262,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 1261.5
   },
   {
     "id": "h_a_m_archer",
@@ -51198,7 +51470,8 @@
     "category": "monster",
     "notes": "Incredibly strange looking. No longer so dangerous.",
     "score": 12422,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 12421.5
   },
   {
     "id": "harpie_bug_swarm",
@@ -51216,7 +51489,8 @@
     "category": "monster",
     "notes": "A strange disturbance in the air.",
     "score": 1262,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 1261.5
   },
   {
     "id": "hazeel",
@@ -51297,7 +51571,8 @@
     "category": "monster",
     "notes": "Why so crabby?",
     "score": 542,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 541.5
   },
   {
     "id": "hero",
@@ -51306,7 +51581,8 @@
     "category": "monster",
     "notes": "Heroic!",
     "score": 7142,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 7141.5
   },
   {
     "id": "highwayman",
@@ -51315,7 +51591,8 @@
     "category": "monster",
     "notes": "He holds up passers by.",
     "score": 38,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 37.5
   },
   {
     "id": "hill_giant",
@@ -51360,7 +51637,8 @@
     "category": "monster",
     "notes": "One of the guardians of Iban.",
     "score": 12422,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 12421.5
   },
   {
     "id": "honour_guard",
@@ -51369,7 +51647,8 @@
     "category": "monster",
     "notes": "The Burgher's protectors.",
     "score": 19838,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 19837.5
   },
   {
     "id": "hoop_snake",
@@ -51378,7 +51657,8 @@
     "category": "monster",
     "notes": "Stunned to perfection.",
     "score": 542,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 541.5
   },
   {
     "id": "hopeless_creature",
@@ -51396,7 +51676,8 @@
     "category": "monster",
     "notes": "Get in a graahk's way and you're going to know about it... however briefly.",
     "score": 2522,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 2521.5
   },
   {
     "id": "huge_spider",
@@ -51405,7 +51686,8 @@
     "category": "monster",
     "notes": "No spider could grow that big! It's unrealistic!",
     "score": 9842,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 9841.5
   },
   {
     "id": "husk",
@@ -51441,7 +51723,8 @@
     "category": "monster",
     "notes": "Lives off of surge potions.",
     "score": 367538,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 367537.5
   },
   {
     "id": "ice_queen",
@@ -51450,7 +51733,8 @@
     "category": "monster",
     "notes": "A cold hearted lady.",
     "score": 18482,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 18481.5
   },
   {
     "id": "ice_troll_king",
@@ -51468,7 +51752,8 @@
     "category": "monster",
     "notes": "He's got icicles in his beard.",
     "score": 4214,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 4213.5
   },
   {
     "id": "ice_spider",
@@ -51477,7 +51762,8 @@
     "category": "monster",
     "notes": "I think this spider has been genetically modified.",
     "score": 5582,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 5581.5
   },
   {
     "id": "ice_troll_female",
@@ -51531,7 +51817,8 @@
     "category": "monster",
     "notes": "A cold-hearted elemental warrior.",
     "score": 4874,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 4873.5
   },
   {
     "id": "ice_wolf",
@@ -51549,7 +51836,8 @@
     "category": "monster",
     "notes": "A small ice demon. In the Chambers of Xeric: Servant of the Ice Demon.",
     "score": 254,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 253.5
   },
   {
     "id": "icelord",
@@ -51558,7 +51846,8 @@
     "category": "monster",
     "notes": "Sturdy cold being.",
     "score": 3902,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 3901.5
   },
   {
     "id": "idria",
@@ -51567,7 +51856,8 @@
     "category": "monster",
     "notes": "The wise leader of the Guardians of Armadyl.",
     "score": 19838,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 19837.5
   },
   {
     "id": "imp_champion",
@@ -51684,7 +51974,8 @@
     "category": "monster",
     "notes": "Its scales seem to be made of iron.",
     "score": 53582,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 53581.5
   },
   {
     "id": "irvig_senay",
@@ -51702,7 +51993,8 @@
     "category": "monster",
     "notes": "Navigator of the Corsairs.",
     "score": 1838,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 1837.5
   },
   {
     "id": "jackal",
@@ -51711,7 +52003,8 @@
     "category": "monster",
     "notes": "He has had his day.",
     "score": 662,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 661.5
   },
   {
     "id": "jaguar",
@@ -51720,7 +52013,8 @@
     "category": "monster",
     "notes": "The most powerful cat in all of Varlamore.",
     "score": 6734,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 6733.5
   },
   {
     "id": "jaguar_cub",
@@ -51729,7 +52023,8 @@
     "category": "monster",
     "notes": "The most ambitious cat in all of Varlamore.",
     "score": 1442,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 1441.5
   },
   {
     "id": "jaguar_warrior",
@@ -51756,7 +52051,8 @@
     "category": "monster",
     "notes": "Guards prisoners for the black knights.",
     "score": 3314,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 3313.5
   },
   {
     "id": "jake",
@@ -51765,7 +52061,8 @@
     "category": "monster",
     "notes": "A deadly pirate.",
     "score": 2054,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 2053.5
   },
   {
     "id": "jal_ak",
@@ -51774,7 +52071,8 @@
     "category": "monster",
     "notes": "Slow and powerful. It seems to use its attacks wisely.",
     "score": 40838,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 40837.5
   },
   {
     "id": "jal_akrek_ket",
@@ -51828,7 +52126,8 @@
     "category": "monster",
     "notes": "A dangerous flying creature.",
     "score": 10838,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 10837.5
   },
   {
     "id": "jal_nib",
@@ -51909,7 +52208,8 @@
     "category": "monster",
     "notes": "He's not what you'd call attractive.",
     "score": 361622,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 361621.5
   },
   {
     "id": "jim",
@@ -51918,7 +52218,8 @@
     "category": "monster",
     "notes": "Looks a little older than most imps.",
     "score": 2,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 1.5
   },
   {
     "id": "jogre_champion",
@@ -51927,7 +52228,8 @@
     "category": "monster",
     "notes": "Champion of the jogres.",
     "score": 17174,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 17173.5
   },
   {
     "id": "jogre",
@@ -51936,7 +52238,8 @@
     "category": "monster",
     "notes": "An aggressive humanoid.",
     "score": 4214,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 4213.5
   },
   {
     "id": "jonny_the_beard",
@@ -51963,7 +52266,8 @@
     "category": "monster",
     "notes": "A once boisterous bird, closer to being an ogre delicacy.",
     "score": 122,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 121.5
   },
   {
     "id": "jubster",
@@ -51972,7 +52276,8 @@
     "category": "monster",
     "notes": "A jubbly bird with claws.",
     "score": 11354,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 11353.5
   },
   {
     "id": "judge_of_yama",
@@ -51990,7 +52295,8 @@
     "category": "monster",
     "notes": "A Greater Jungle Demon. A magical aura emanates from its hide.",
     "score": 57038,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 57037.5
   },
   {
     "id": "jungle_wolf",
@@ -52035,7 +52341,8 @@
     "category": "monster",
     "notes": "Not fully grown.",
     "score": 12974,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 12973.5
   },
   {
     "id": "kalphite_guardian",
@@ -52044,7 +52351,8 @@
     "category": "monster",
     "notes": "I don't think insect repellent will work...",
     "score": 29822,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 29821.5
   },
   {
     "id": "kalphite_soldier",
@@ -52053,7 +52361,8 @@
     "category": "monster",
     "notes": "I don't think insect repellent will work...",
     "score": 10838,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 10837.5
   },
   {
     "id": "kalphite_worker",
@@ -52071,7 +52380,8 @@
     "category": "monster",
     "notes": "I don't think insect repellent will work...",
     "score": 10838,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 10837.5
   },
   {
     "id": "kalrag",
@@ -52080,7 +52390,8 @@
     "category": "monster",
     "notes": "A giant spider.",
     "score": 11882,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 11881.5
   },
   {
     "id": "kamil",
@@ -52116,7 +52427,8 @@
     "category": "monster",
     "notes": "A vengeful spirit corrupted by dark magic.",
     "score": 73262,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 73261.5
   },
   {
     "id": "kebbit_eagles_peak",
@@ -52125,7 +52437,8 @@
     "category": "monster",
     "notes": "A little bigger than usual...",
     "score": 254,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 253.5
   },
   {
     "id": "keef",
@@ -52143,7 +52456,8 @@
     "category": "monster",
     "notes": "A phantom of Kephri.",
     "score": 174422,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 174421.5
   },
   {
     "id": "ket_zek",
@@ -52170,7 +52484,8 @@
     "category": "monster",
     "notes": "One of General Khazard's guards.",
     "score": 794,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 793.5
   },
   {
     "id": "khazard_ogre",
@@ -52179,7 +52494,8 @@
     "category": "monster",
     "notes": "Khazard's strongest ogre warrior.",
     "score": 5954,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 5953.5
   },
   {
     "id": "khazard_scorpion",
@@ -52206,7 +52522,8 @@
     "category": "monster",
     "notes": "It's one of General Khazard's warriors.",
     "score": 542,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 541.5
   },
   {
     "id": "khazard_warlord",
@@ -52224,7 +52541,8 @@
     "category": "monster",
     "notes": "A ball of electrical energy.",
     "score": 4538,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 4537.5
   },
   {
     "id": "king_roald",
@@ -52233,7 +52551,8 @@
     "category": "monster",
     "notes": "Varrock's resident monarch.",
     "score": 3314,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 3313.5
   },
   {
     "id": "king_sand_crab",
@@ -52242,7 +52561,8 @@
     "category": "monster",
     "notes": "No one likes crabs...",
     "score": 17174,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 17173.5
   },
   {
     "id": "king_scorpion",
@@ -52260,7 +52580,8 @@
     "category": "monster",
     "notes": "Head honcho for the Kurask.",
     "score": 130538,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 130537.5
   },
   {
     "id": "knight_of_ardougne",
@@ -52278,7 +52599,8 @@
     "category": "monster",
     "notes": "A valiant knight.",
     "score": 15302,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 15301.5
   },
   {
     "id": "knight_of_varlamore",
@@ -52296,7 +52618,8 @@
     "category": "monster",
     "notes": "A high ranking troll.",
     "score": 51338,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 51337.5
   },
   {
     "id": "kovac",
@@ -52314,7 +52637,8 @@
     "category": "monster",
     "notes": "A nasty looking troll.",
     "score": 12422,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 12421.5
   },
   {
     "id": "kroy",
@@ -52323,7 +52647,8 @@
     "category": "monster",
     "notes": "He looks a little worse for wear.",
     "score": 26534,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 26533.5
   },
   {
     "id": "kruk",
@@ -52332,7 +52657,8 @@
     "category": "monster",
     "notes": "A large ninja monkey wielding two scimitars.",
     "score": 64274,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 64273.5
   },
   {
     "id": "ksenia",
@@ -52377,7 +52703,8 @@
     "category": "monster",
     "notes": "A flying bloodsucker.",
     "score": 254,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 253.5
   },
   {
     "id": "lava_strykewyrm",
@@ -52422,7 +52749,8 @@
     "category": "monster",
     "notes": "Champion of Champions!",
     "score": 29822,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 29821.5
   },
   {
     "id": "lesser_demon_champion",
@@ -52458,7 +52786,8 @@
     "category": "monster",
     "notes": "The other soldiers won't be messing around with her about.",
     "score": 12974,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 12973.5
   },
   {
     "id": "liliya",
@@ -52485,7 +52814,8 @@
     "category": "monster",
     "notes": "From a race created during the darker days of Kourend.",
     "score": 8438,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 8437.5
   },
   {
     "id": "lizardman_shaman",
@@ -52503,7 +52833,8 @@
     "category": "monster",
     "notes": "Normal: From a race created during the darker days of Kourend. Battlefront: Scaly.",
     "score": 4214,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 4213.5
   },
   {
     "id": "loar_shade",
@@ -52566,7 +52897,8 @@
     "category": "monster",
     "notes": "The ruler of Morytania and the lord of Vampyrium.",
     "score": 1288994,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 1288993.5
   },
   {
     "id": "lucien",
@@ -52593,7 +52925,8 @@
     "category": "monster",
     "notes": "Master of the lynx.",
     "score": 662,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 661.5
   },
   {
     "id": "lynx",
@@ -52602,7 +52935,8 @@
     "category": "monster",
     "notes": "Who's a good kitty?",
     "score": 662,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 661.5
   },
   {
     "id": "mac",
@@ -52629,7 +52963,8 @@
     "category": "monster",
     "notes": "He doesn't look too friendly.",
     "score": 327134,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 327133.5
   },
   {
     "id": "magic_axe",
@@ -52647,7 +52982,8 @@
     "category": "monster",
     "notes": "A rather hot foe.",
     "score": 93002,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 93001.5
   },
   {
     "id": "malevolent_mage",
@@ -52701,7 +53037,8 @@
     "category": "monster",
     "notes": "Might be feeling even more flat.",
     "score": 26534,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 26533.5
   },
   {
     "id": "manticore",
@@ -52719,7 +53056,8 @@
     "category": "monster",
     "notes": "Am I losing my marbles?",
     "score": 182702,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 182701.5
   },
   {
     "id": "market_guard",
@@ -52737,7 +53075,8 @@
     "category": "monster",
     "notes": "Grown just enough.",
     "score": 20534,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 20533.5
   },
   {
     "id": "me",
@@ -52746,7 +53085,8 @@
     "category": "monster",
     "notes": "It's like looking in the mirror.",
     "score": 9362,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 9361.5
   },
   {
     "id": "melzar_the_mad",
@@ -52755,7 +53095,8 @@
     "category": "monster",
     "notes": "He looks totally insane!",
     "score": 2774,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 2773.5
   },
   {
     "id": "menaphite_akh",
@@ -52764,7 +53105,8 @@
     "category": "monster",
     "notes": "A servant of the Devourer.",
     "score": 184802,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 184801.5
   },
   {
     "id": "menaphite_shadow",
@@ -52773,7 +53115,8 @@
     "category": "monster",
     "notes": "A strange shadow.",
     "score": 32414,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 32413.5
   },
   {
     "id": "menaphite_thug",
@@ -52782,7 +53125,8 @@
     "category": "monster",
     "notes": "Menaphite thug.",
     "score": 4538,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 4537.5
   },
   {
     "id": "mercenary_captain",
@@ -52791,7 +53135,8 @@
     "category": "monster",
     "notes": "He looks a bit aggressive.",
     "score": 3314,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 3313.5
   },
   {
     "id": "mercenary_axeman",
@@ -52800,7 +53145,8 @@
     "category": "monster",
     "notes": "An axe-wielding mercenary who works for the highest bidder.",
     "score": 25742,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 25741.5
   },
   {
     "id": "mercenary_mage",
@@ -52818,7 +53164,8 @@
     "category": "monster",
     "notes": "He looks a bit aggressive.",
     "score": 3038,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 3037.5
   },
   {
     "id": "metzli_teokan_of_ranul",
@@ -52890,7 +53237,8 @@
     "category": "monster",
     "notes": "A strange mole-like being. When on the wall: That white dot looks like an eye!",
     "score": 3902,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 3901.5
   },
   {
     "id": "monk_of_zamorak",
@@ -52899,7 +53247,8 @@
     "category": "monster",
     "notes": "An evil human cleric.",
     "score": 434,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 433.5
   },
   {
     "id": "monk",
@@ -52908,7 +53257,8 @@
     "category": "monster",
     "notes": "An Ardougne Monk.",
     "score": 14,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 13.5
   },
   {
     "id": "monkey_monster",
@@ -52917,7 +53267,8 @@
     "category": "monster",
     "notes": "Perhaps our oldest relatives?",
     "score": 14,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 13.5
   },
   {
     "id": "monkey_archer",
@@ -52935,7 +53286,8 @@
     "category": "monster",
     "notes": "A huge brutish gorilla armoured with dangerous looking vambraces.",
     "score": 41834,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 41833.5
   },
   {
     "id": "monkey_zombie",
@@ -52953,7 +53305,8 @@
     "category": "monster",
     "notes": "Let's hope I have some phoenix tears.",
     "score": 27338,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 27337.5
   },
   {
     "id": "monstrous_basilisk",
@@ -52962,7 +53315,8 @@
     "category": "monster",
     "notes": "Let's hope I have some phoenix tears.",
     "score": 27338,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 27337.5
   },
   {
     "id": "moonlight_cockatrice",
@@ -52971,7 +53325,8 @@
     "category": "monster",
     "notes": "The moonlit winged reptile.",
     "score": 3602,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 3601.5
   },
   {
     "id": "moonlight_antelope",
@@ -52980,7 +53335,8 @@
     "category": "monster",
     "notes": "A noble creature!",
     "score": 3314,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 3313.5
   },
   {
     "id": "mosquito_swarm",
@@ -52989,7 +53345,8 @@
     "category": "monster",
     "notes": "A swarm of three highly agile mosquitoes.",
     "score": 434,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 433.5
   },
   {
     "id": "moss_giant_iorwerth_dungeon",
@@ -53043,7 +53400,8 @@
     "category": "monster",
     "notes": "Small for a troll but mean and ugly.",
     "score": 7142,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 7141.5
   },
   {
     "id": "mounted_terrorbird_gnome",
@@ -53052,7 +53410,8 @@
     "category": "monster",
     "notes": "These gnomes know how to get around!",
     "score": 1442,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 1441.5
   },
   {
     "id": "mourner",
@@ -53061,7 +53420,8 @@
     "category": "monster",
     "notes": "A Mourner, or plague healer.",
     "score": 182,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 181.5
   },
   {
     "id": "mouse",
@@ -53070,7 +53430,8 @@
     "category": "monster",
     "notes": "A huge mouse. It looks hungry...",
     "score": 13538,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 13537.5
   },
   {
     "id": "mudskipper",
@@ -53106,7 +53467,8 @@
     "category": "monster",
     "notes": "A tightly-wrapped monster.",
     "score": 15914,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 15913.5
   },
   {
     "id": "mummy_klenter_s_pyramid",
@@ -53133,7 +53495,8 @@
     "category": "monster",
     "notes": "The twisted tongue of evil.",
     "score": 22694,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 22693.5
   },
   {
     "id": "mutated_terrorbird",
@@ -53151,7 +53514,8 @@
     "category": "monster",
     "notes": "Looks even nastier than the normal ones.",
     "score": 91514,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 91513.5
   },
   {
     "id": "myre_blamish_snail",
@@ -53160,7 +53524,8 @@
     "category": "monster",
     "notes": "A marsh coloured blamish snail, these types are said to spit acid.",
     "score": 122,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 121.5
   },
   {
     "id": "mysterious_figure",
@@ -53169,7 +53534,8 @@
     "category": "monster",
     "notes": "She looks dangerous.",
     "score": 110162,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 110161.5
   },
   {
     "id": "nail_beast",
@@ -53178,7 +53544,8 @@
     "category": "monster",
     "notes": "A huge nail beast. Its nails appear very sharp.",
     "score": 7142,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 7141.5
   },
   {
     "id": "narf",
@@ -53196,7 +53563,8 @@
     "category": "monster",
     "notes": "Currently floating in the ocean.",
     "score": 18482,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 18481.5
   },
   {
     "id": "nazastarool",
@@ -53205,7 +53573,8 @@
     "category": "monster",
     "notes": "A giant zombie of huge strength and devastating power.",
     "score": 12422,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 12421.5
   },
   {
     "id": "nechryael",
@@ -53214,7 +53583,8 @@
     "category": "monster",
     "notes": "An evil death demon.",
     "score": 19838,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 19837.5
   },
   {
     "id": "nechryarch",
@@ -53241,7 +53611,8 @@
     "category": "monster",
     "notes": "Since when did newts have beaks?",
     "score": 542,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 541.5
   },
   {
     "id": "nezikchened",
@@ -53250,7 +53621,8 @@
     "category": "monster",
     "notes": "A spirit of the underworld.",
     "score": 52454,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 52453.5
   },
   {
     "id": "night_beast",
@@ -53295,7 +53667,8 @@
     "category": "monster",
     "notes": "This strain of nylocas does not die easily.",
     "score": 17174,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 17173.5
   },
   {
     "id": "nylocas_hagios",
@@ -53349,7 +53722,8 @@
     "category": "monster",
     "notes": "One of Verzik's rather large pets.",
     "score": 135902,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 135901.5
   },
   {
     "id": "ocelot",
@@ -53358,7 +53732,8 @@
     "category": "monster",
     "notes": "Its intricate patterns make it the most beautiful cat in all of Varlamore.",
     "score": 1838,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 1837.5
   },
   {
     "id": "ocga",
@@ -53367,7 +53742,8 @@
     "category": "monster",
     "notes": "A citizen of Burthorpe.",
     "score": 38,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 37.5
   },
   {
     "id": "ochre_blamish_snail",
@@ -53385,7 +53761,8 @@
     "category": "monster",
     "notes": "Tough-looking.",
     "score": 9842,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 9841.5
   },
   {
     "id": "ogre_shaman",
@@ -53394,7 +53771,8 @@
     "category": "monster",
     "notes": "Seems intelligent... for an ogre.",
     "score": 19154,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 19153.5
   },
   {
     "id": "ogre",
@@ -53403,7 +53781,8 @@
     "category": "monster",
     "notes": "A large dim looking humanoid.",
     "score": 4214,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 4213.5
   },
   {
     "id": "ogress_shaman",
@@ -53430,7 +53809,8 @@
     "category": "monster",
     "notes": "A large ninja monkey wielding two scimitars.",
     "score": 33302,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 33301.5
   },
   {
     "id": "olbertus",
@@ -53457,7 +53837,8 @@
     "category": "monster",
     "notes": "Slightly slimy but kind of cute.",
     "score": 3314,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 3313.5
   },
   {
     "id": "orca",
@@ -53466,7 +53847,8 @@
     "category": "monster",
     "notes": "Won't be killing much now.",
     "score": 63038,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 63037.5
   },
   {
     "id": "ork",
@@ -53475,7 +53857,8 @@
     "category": "monster",
     "notes": "Ugly, fierce and with a bad attitude.",
     "score": 17174,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 17173.5
   },
   {
     "id": "oryx",
@@ -53484,7 +53867,8 @@
     "category": "monster",
     "notes": "A noble creature!",
     "score": 338,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 337.5
   },
   {
     "id": "osprey",
@@ -53493,7 +53877,8 @@
     "category": "monster",
     "notes": "A large and dead bird of prey floating around the oceans.",
     "score": 5954,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 5953.5
   },
   {
     "id": "othainian",
@@ -53502,7 +53887,8 @@
     "category": "monster",
     "notes": "One of the guardians of Iban.",
     "score": 12422,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 12421.5
   },
   {
     "id": "otherworldly_being",
@@ -53520,7 +53906,8 @@
     "category": "monster",
     "notes": "A large ninja monkey wielding two scimitars.",
     "score": 33302,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 33301.5
   },
   {
     "id": "outlaw",
@@ -53538,7 +53925,8 @@
     "category": "monster",
     "notes": "A master of the wilderness.",
     "score": 11354,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 11353.5
   },
   {
     "id": "padulah",
@@ -53547,7 +53935,8 @@
     "category": "monster",
     "notes": "A scimitar wielding ninja monkey. He looks like he is guarding something.",
     "score": 33302,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 33301.5
   },
   {
     "id": "paladin",
@@ -53565,7 +53954,8 @@
     "category": "monster",
     "notes": "Nice beard.",
     "score": 2054,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 2053.5
   },
   {
     "id": "parasite",
@@ -53574,7 +53964,8 @@
     "category": "monster",
     "notes": "A weakened parasite.",
     "score": 4874,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 4873.5
   },
   {
     "id": "passionate_supporter",
@@ -53583,7 +53974,8 @@
     "category": "monster",
     "notes": "He's a little too keen for my liking.",
     "score": 74,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 73.5
   },
   {
     "id": "pee_hat",
@@ -53592,7 +53984,8 @@
     "category": "monster",
     "notes": "A nasty looking troll.",
     "score": 12422,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 12421.5
   },
   {
     "id": "penance_fighter",
@@ -53610,7 +54003,8 @@
     "category": "monster",
     "notes": "Run away! Run away!",
     "score": 65522,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 65521.5
   },
   {
     "id": "penance_ranger",
@@ -53619,7 +54013,8 @@
     "category": "monster",
     "notes": "Shooty-shooty.",
     "score": 662,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 661.5
   },
   {
     "id": "penda",
@@ -53628,7 +54023,8 @@
     "category": "monster",
     "notes": "A citizen of Burthorpe.",
     "score": 38,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 37.5
   },
   {
     "id": "penguin_monster",
@@ -53664,7 +54060,8 @@
     "category": "monster",
     "notes": "An energetic female adventuress.",
     "score": 2,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 1.5
   },
   {
     "id": "phantom_hand",
@@ -53673,7 +54070,8 @@
     "category": "monster",
     "notes": "Need a hand?",
     "score": 3314,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 3313.5
   },
   {
     "id": "pheasant",
@@ -53682,7 +54080,8 @@
     "category": "monster",
     "notes": "A brightly coloured game bird.",
     "score": 14,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 13.5
   },
   {
     "id": "phosani_s_nightmare",
@@ -53709,7 +54108,8 @@
     "category": "monster",
     "notes": "A morally ambiguous guard.",
     "score": 542,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 541.5
   },
   {
     "id": "pirate_captain_feldip_gulf",
@@ -53718,7 +54118,8 @@
     "category": "monster",
     "notes": "You wouldn't steal a ship.",
     "score": 6734,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 6733.5
   },
   {
     "id": "pirate",
@@ -53727,7 +54128,8 @@
     "category": "monster",
     "notes": "Avast ye scurvy land lubbers!",
     "score": 794,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 793.5
   },
   {
     "id": "pit_scorpion",
@@ -53745,7 +54147,8 @@
     "category": "monster",
     "notes": "A very smelly frog.",
     "score": 182,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 181.5
   },
   {
     "id": "poison_scorpion",
@@ -53763,7 +54166,8 @@
     "category": "monster",
     "notes": "A nasty, poisonous arachnid.",
     "score": 1442,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 1441.5
   },
   {
     "id": "poltenip",
@@ -53772,7 +54176,8 @@
     "category": "monster",
     "notes": "The mayor's guard.",
     "score": 662,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 661.5
   },
   {
     "id": "pontak",
@@ -53790,7 +54195,8 @@
     "category": "monster",
     "notes": "A rage-filled Zamorakian Demon.",
     "score": 82838,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 82837.5
   },
   {
     "id": "porcupine",
@@ -53808,7 +54214,8 @@
     "category": "monster",
     "notes": "He has a dangerous glint in his eye.",
     "score": 12422,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 12421.5
   },
   {
     "id": "possessed_pickaxe",
@@ -53835,7 +54242,8 @@
     "category": "monster",
     "notes": "Heir to the throne of Varlamore.",
     "score": 41834,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 41833.5
   },
   {
     "id": "pygmy_kraken",
@@ -53844,7 +54252,8 @@
     "category": "monster",
     "notes": "With a small size comes a greater quantity, so watch out for more living ones.",
     "score": 12974,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 12973.5
   },
   {
     "id": "pyrefiend",
@@ -53853,7 +54262,8 @@
     "category": "monster",
     "notes": "A small fire demon.",
     "score": 2774,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 2773.5
   },
   {
     "id": "pyrelord",
@@ -53880,7 +54290,8 @@
     "category": "monster",
     "notes": "What's it looking at?",
     "score": 5954,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 5953.5
   },
   {
     "id": "r0ck_5masher",
@@ -53889,7 +54300,8 @@
     "category": "monster",
     "notes": "Seems like she is taking iron ore over to the forge.",
     "score": 14,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 13.5
   },
   {
     "id": "r2t2pnsh0ty",
@@ -53916,7 +54328,8 @@
     "category": "monster",
     "notes": "The mayor's guard.",
     "score": 662,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 661.5
   },
   {
     "id": "radiant_sanguisphera",
@@ -53961,7 +54374,8 @@
     "category": "monster",
     "notes": "She doesn't look too friendly.",
     "score": 335594,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 335593.5
   },
   {
     "id": "ranis_drakan",
@@ -53970,7 +54384,8 @@
     "category": "monster",
     "notes": "He looks haughty and arrogant.",
     "score": 81434,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 81433.5
   },
   {
     "id": "rannveig",
@@ -53988,7 +54403,8 @@
     "category": "monster",
     "notes": "A popular dwarven delicacy.",
     "score": 2,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 1.5
   },
   {
     "id": "ravager",
@@ -54006,7 +54422,8 @@
     "category": "monster",
     "notes": "Guard your ankles.",
     "score": 11354,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 11353.5
   },
   {
     "id": "rebel_archer",
@@ -54042,7 +54459,8 @@
     "category": "monster",
     "notes": "Slightly slimy but certainly striking.",
     "score": 5222,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 5221.5
   },
   {
     "id": "redeyes",
@@ -54051,7 +54469,8 @@
     "category": "monster",
     "notes": "A goblin high priest, back from the grave.",
     "score": 21962,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 21961.5
   },
   {
     "id": "reef_snake",
@@ -54060,7 +54479,8 @@
     "category": "monster",
     "notes": "A very big piece of angry spaghetti.",
     "score": 32414,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 32413.5
   },
   {
     "id": "regent",
@@ -54069,7 +54489,8 @@
     "category": "monster",
     "notes": "Looks like the crafter of the group.",
     "score": 338,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 337.5
   },
   {
     "id": "renegade_knight",
@@ -54078,7 +54499,8 @@
     "category": "monster",
     "notes": "He isn't very friendly.",
     "score": 2054,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 2053.5
   },
   {
     "id": "repugnant_spectre",
@@ -54087,7 +54509,8 @@
     "category": "monster",
     "notes": "I'd smell better after completing 3145 laps of an agility course dressed as a monkey.",
     "score": 168338,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 168337.5
   },
   {
     "id": "resistance_fighter",
@@ -54132,7 +54555,8 @@
     "category": "monster",
     "notes": "The ghost of a dragon slain long ago.",
     "score": 27338,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 27337.5
   },
   {
     "id": "revenant_goblin",
@@ -54141,7 +54565,8 @@
     "category": "monster",
     "notes": "The ghost of a goblin slain long ago.",
     "score": 338,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 337.5
   },
   {
     "id": "revenant_hellhound",
@@ -54168,7 +54593,8 @@
     "category": "monster",
     "notes": "The ghost of an imp slain long ago.",
     "score": 74,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 73.5
   },
   {
     "id": "revenant_knight",
@@ -54186,7 +54612,8 @@
     "category": "monster",
     "notes": "The ghost of an ork slain long ago.",
     "score": 16538,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 16537.5
   },
   {
     "id": "revenant_pyrefiend",
@@ -54240,7 +54667,8 @@
     "category": "monster",
     "notes": "The biggest and baddest troll.",
     "score": 18482,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 18481.5
   },
   {
     "id": "rock_crab",
@@ -54249,7 +54677,8 @@
     "category": "monster",
     "notes": "No one likes crabs...",
     "score": 254,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 253.5
   },
   {
     "id": "rock_golem_monster",
@@ -54258,7 +54687,8 @@
     "category": "monster",
     "notes": "Rock with attitude.",
     "score": 254,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 253.5
   },
   {
     "id": "rock_lobster",
@@ -54267,7 +54697,8 @@
     "category": "monster",
     "notes": "It wasn't a rock... it was a rock lobster!",
     "score": 24194,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 24193.5
   },
   {
     "id": "rockslug",
@@ -54276,7 +54707,8 @@
     "category": "monster",
     "notes": "The slime of evil.",
     "score": 1262,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 1261.5
   },
   {
     "id": "rocnar",
@@ -54285,7 +54717,8 @@
     "category": "monster",
     "notes": "It's full of pent-up aggression.",
     "score": 14114,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 14113.5
   },
   {
     "id": "rogue",
@@ -54294,7 +54727,8 @@
     "category": "monster",
     "notes": "Rogueish.",
     "score": 338,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 337.5
   },
   {
     "id": "rooster",
@@ -54312,7 +54746,8 @@
     "category": "monster",
     "notes": "He looks a bit aggressive and rowdy.",
     "score": 2774,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 2773.5
   },
   {
     "id": "rowdy_slave",
@@ -54339,7 +54774,8 @@
     "category": "monster",
     "notes": "A rocky outcrop.",
     "score": 40838,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 40837.5
   },
   {
     "id": "ruptura_araxyte",
@@ -54384,7 +54820,8 @@
     "category": "monster",
     "notes": "No one likes crabs...",
     "score": 338,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 337.5
   },
   {
     "id": "sand_snake",
@@ -54402,7 +54839,8 @@
     "category": "monster",
     "notes": "A holy man wearing ancient clothing.",
     "score": 19154,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 19153.5
   },
   {
     "id": "saradomin_wizard",
@@ -54465,7 +54903,8 @@
     "category": "monster",
     "notes": "The power of the Scar has changed them somehow.",
     "score": 13538,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 13537.5
   },
   {
     "id": "scarred_hellhound",
@@ -54474,7 +54913,8 @@
     "category": "monster",
     "notes": "Corrupted by the Abyss.",
     "score": 15302,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 15301.5
   },
   {
     "id": "scarred_imp",
@@ -54483,7 +54923,8 @@
     "category": "monster",
     "notes": "The Abyss has not been kind to them.",
     "score": 542,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 541.5
   },
   {
     "id": "scarred_lesser_demon",
@@ -54492,7 +54933,8 @@
     "category": "monster",
     "notes": "The power of the Scar has changed them somehow.",
     "score": 10838,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 10837.5
   },
   {
     "id": "scion",
@@ -54501,7 +54943,8 @@
     "category": "monster",
     "notes": "A mature spawn.",
     "score": 12974,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 12973.5
   },
   {
     "id": "scorpia",
@@ -54510,7 +54953,8 @@
     "category": "monster",
     "notes": "Queen of the Scorpions.",
     "score": 75938,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 75937.5
   },
   {
     "id": "scorpia_s_guardian",
@@ -54519,7 +54963,8 @@
     "category": "monster",
     "notes": "It lives to protect its queen.",
     "score": 3314,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 3313.5
   },
   {
     "id": "scorpion",
@@ -54528,7 +54973,8 @@
     "category": "monster",
     "notes": "Tiny, annoying, stinging thing.",
     "score": 2,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 1.5
   },
   {
     "id": "screaming_banshee",
@@ -54582,7 +55028,8 @@
     "category": "monster",
     "notes": "An aquatic troll.",
     "score": 6338,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 6337.5
   },
   {
     "id": "seagull",
@@ -54609,7 +55056,8 @@
     "category": "monster",
     "notes": "An ugly green creature... but don't say that to his face!",
     "score": 3902,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 3901.5
   },
   {
     "id": "sergeant_slimetoes",
@@ -54618,7 +55066,8 @@
     "category": "monster",
     "notes": "An ugly green creature... but don't say that to his face!",
     "score": 3902,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 3901.5
   },
   {
     "id": "sergeant_steelwill",
@@ -54636,7 +55085,8 @@
     "category": "monster",
     "notes": "A battle-honed goblin.",
     "score": 29822,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 29821.5
   },
   {
     "id": "serpent_shaman",
@@ -54645,7 +55095,8 @@
     "category": "monster",
     "notes": "He just loves snakes.",
     "score": 38882,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 38881.5
   },
   {
     "id": "servant_burthorpe",
@@ -54654,7 +55105,8 @@
     "category": "monster",
     "notes": "A servant for Prince Anlaf.",
     "score": 38,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 37.5
   },
   {
     "id": "shade",
@@ -54663,7 +55115,8 @@
     "category": "monster",
     "notes": "The angry dead.",
     "score": 37922,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 37921.5
   },
   {
     "id": "shadow_temple_of_light",
@@ -54672,7 +55125,8 @@
     "category": "monster",
     "notes": "A shadow.",
     "score": 7994,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 7993.5
   },
   {
     "id": "shadow_hound",
@@ -54681,7 +55135,8 @@
     "category": "monster",
     "notes": "Looks hungry!",
     "score": 5954,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 5953.5
   },
   {
     "id": "shadow_keeper",
@@ -54690,7 +55145,8 @@
     "category": "monster",
     "notes": "Protector of shadows.",
     "score": 25742,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 25741.5
   },
   {
     "id": "shadow_wyrm",
@@ -54699,7 +55155,8 @@
     "category": "monster",
     "notes": "Is it wyrm in here or is it just me?",
     "score": 100622,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 100621.5
   },
   {
     "id": "shadow_spider",
@@ -54753,7 +55210,8 @@
     "category": "monster",
     "notes": "Builds ships for a living.",
     "score": 182,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 181.5
   },
   {
     "id": "shockwave_colossus",
@@ -54762,7 +55220,8 @@
     "category": "monster",
     "notes": "If he had a theme song, it'd probably go with everything.",
     "score": 85682,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 85681.5
   },
   {
     "id": "sigmund",
@@ -54834,7 +55293,8 @@
     "category": "monster",
     "notes": "One of the Knights of the Round Table.",
     "score": 24194,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 24193.5
   },
   {
     "id": "sir_leye",
@@ -54861,7 +55321,8 @@
     "category": "monster",
     "notes": "Leader of the Renegade Knights.",
     "score": 2282,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 2281.5
   },
   {
     "id": "sir_palomedes",
@@ -54897,7 +55358,8 @@
     "category": "monster",
     "notes": "One of the Knights of the Round Table.",
     "score": 19838,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 19837.5
   },
   {
     "id": "skeletal_wyvern",
@@ -54933,7 +55395,8 @@
     "category": "monster",
     "notes": "A creature summoned by Vanstrom to kill the remaining Myreque.",
     "score": 14114,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 14113.5
   },
   {
     "id": "skeleton_mage",
@@ -55014,7 +55477,8 @@
     "category": "monster",
     "notes": "Could do with gaining a few pounds.",
     "score": 662,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 661.5
   },
   {
     "id": "skoblin",
@@ -55023,7 +55487,8 @@
     "category": "monster",
     "notes": "A skeletal goblin!",
     "score": 1262,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 1261.5
   },
   {
     "id": "skogre",
@@ -55068,7 +55533,8 @@
     "category": "monster",
     "notes": "A powerful looking Zogre.",
     "score": 18482,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 18481.5
   },
   {
     "id": "slug_prince",
@@ -55095,7 +55561,8 @@
     "category": "monster",
     "notes": "This dung beetle has mistaken you for its staple diet.",
     "score": 2522,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 2521.5
   },
   {
     "id": "smoke_devil",
@@ -55122,7 +55589,8 @@
     "category": "monster",
     "notes": "A slithering serpent.",
     "score": 38,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 37.5
   },
   {
     "id": "snakeling",
@@ -55140,7 +55608,8 @@
     "category": "monster",
     "notes": "Probably tastes like chicken.",
     "score": 2,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 1.5
   },
   {
     "id": "snothead",
@@ -55176,7 +55645,8 @@
     "category": "monster",
     "notes": "Not a very high rank.",
     "score": 662,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 661.5
   },
   {
     "id": "soldier_dragon_slayer_ii",
@@ -55194,7 +55664,8 @@
     "category": "monster",
     "notes": "Defending Kourend.",
     "score": 3038,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 3037.5
   },
   {
     "id": "soldier_shayzien",
@@ -55203,7 +55674,8 @@
     "category": "monster",
     "notes": "Ready to defend Kourend.",
     "score": 662,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 661.5
   },
   {
     "id": "soldier_yanille",
@@ -55221,7 +55693,8 @@
     "category": "monster",
     "notes": "The lowest rank.",
     "score": 2282,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 2281.5
   },
   {
     "id": "soldier_tier_2",
@@ -55257,7 +55730,8 @@
     "category": "monster",
     "notes": "The elite.",
     "score": 14702,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 14701.5
   },
   {
     "id": "soldier_scarab",
@@ -55266,7 +55740,8 @@
     "category": "monster",
     "notes": "One of Kephri's false children.",
     "score": 11882,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 11881.5
   },
   {
     "id": "sorebones",
@@ -55275,7 +55750,8 @@
     "category": "monster",
     "notes": "Bedside manner is a little lacking, I think.",
     "score": 4874,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 4873.5
   },
   {
     "id": "sotetseg",
@@ -55302,7 +55778,8 @@
     "category": "monster",
     "notes": "This piggy really did go to market.",
     "score": 2054,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 2053.5
   },
   {
     "id": "spawn",
@@ -55311,7 +55788,8 @@
     "category": "monster",
     "notes": "A juvenile spawn.",
     "score": 4538,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 4537.5
   },
   {
     "id": "spawn_of_sarachnis",
@@ -55338,7 +55816,8 @@
     "category": "monster",
     "notes": "Incey wincey.",
     "score": 2,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 1.5
   },
   {
     "id": "spidine",
@@ -55410,7 +55889,8 @@
     "category": "monster",
     "notes": "A deadly servant of Zamorak.",
     "score": 21962,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 21961.5
   },
   {
     "id": "spiritual_ranger",
@@ -55428,7 +55908,8 @@
     "category": "monster",
     "notes": "Warrior of Zamorak.",
     "score": 19838,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 19837.5
   },
   {
     "id": "spitting_scarab",
@@ -55437,7 +55918,8 @@
     "category": "monster",
     "notes": "One of Kephri's false children.",
     "score": 11882,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 11881.5
   },
   {
     "id": "spitting_wyvern",
@@ -55446,7 +55928,8 @@
     "category": "monster",
     "notes": "Has issues with odontophobia.",
     "score": 28982,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 28981.5
   },
   {
     "id": "splatter",
@@ -55464,7 +55947,8 @@
     "category": "monster",
     "notes": "A noble creature!",
     "score": 338,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 337.5
   },
   {
     "id": "starlight",
@@ -55473,7 +55957,8 @@
     "category": "monster",
     "notes": "Bane of darkness.",
     "score": 33302,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 33301.5
   },
   {
     "id": "steel_dragon",
@@ -55527,7 +56012,8 @@
     "category": "monster",
     "notes": "What is that?",
     "score": 12974,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 12973.5
   },
   {
     "id": "stranger",
@@ -55536,7 +56022,8 @@
     "category": "monster",
     "notes": "Very mysterious looking...",
     "score": 13538,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 13537.5
   },
   {
     "id": "strangled_bear",
@@ -55545,7 +56032,8 @@
     "category": "monster",
     "notes": "It doesn't look too healthy.",
     "score": 58214,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 58213.5
   },
   {
     "id": "strangled_boar",
@@ -55608,7 +56096,8 @@
     "category": "monster",
     "notes": "A dusty old suit of armour.",
     "score": 542,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 541.5
   },
   {
     "id": "sulphur_lizard",
@@ -55635,7 +56124,8 @@
     "category": "monster",
     "notes": "A tortured soul, summoned from the river to do the bidding of Cerberus.",
     "score": 9362,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 9361.5
   },
   {
     "id": "summoned_zombie",
@@ -55644,7 +56134,8 @@
     "category": "monster",
     "notes": "The living dead.",
     "score": 254,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 253.5
   },
   {
     "id": "sunlight_antelope",
@@ -55653,7 +56144,8 @@
     "category": "monster",
     "notes": "A noble creature!",
     "score": 3314,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 3313.5
   },
   {
     "id": "suqah",
@@ -55662,7 +56154,8 @@
     "category": "monster",
     "notes": "A strange creature unique to Lunar Isle.",
     "score": 18482,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 18481.5
   },
   {
     "id": "surok_magis",
@@ -55671,7 +56164,8 @@
     "category": "monster",
     "notes": "A powerful wizard.",
     "score": 105338,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 105337.5
   },
   {
     "id": "svetlana",
@@ -55689,7 +56183,8 @@
     "category": "monster",
     "notes": "No one likes crabs...",
     "score": 4538,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 4537.5
   },
   {
     "id": "swamp_frog",
@@ -55707,7 +56202,8 @@
     "category": "monster",
     "notes": "Very slimy and generally disgusting.",
     "score": 1262,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 1261.5
   },
   {
     "id": "swamp_snake",
@@ -55734,7 +56230,8 @@
     "category": "monster",
     "notes": "Spikey death with bad breath.",
     "score": 32414,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 32413.5
   },
   {
     "id": "tanglefoot",
@@ -55743,7 +56240,8 @@
     "category": "monster",
     "notes": "A walking thorn bush!",
     "score": 18482,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 18481.5
   },
   {
     "id": "tar_monster",
@@ -55761,7 +56259,8 @@
     "category": "monster",
     "notes": "Needs to be shot with a ranged weapon.",
     "score": 2,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 1.5
   },
   {
     "id": "tarn",
@@ -55770,7 +56269,8 @@
     "category": "monster",
     "notes": "A mad man.",
     "score": 7142,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 7141.5
   },
   {
     "id": "temple_guardian",
@@ -55788,7 +56288,8 @@
     "category": "monster",
     "notes": "Preys on unsuspecting adventurers.",
     "score": 8438,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 8437.5
   },
   {
     "id": "tentacle_temple_trekking",
@@ -55797,7 +56298,8 @@
     "category": "monster",
     "notes": "I'm glad I can't see the rest of it!",
     "score": 14702,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 14701.5
   },
   {
     "id": "tern",
@@ -55842,7 +56344,8 @@
     "category": "monster",
     "notes": "A fearful spirit of the drowned.",
     "score": 7142,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 7141.5
   },
   {
     "id": "the_everlasting",
@@ -55851,7 +56354,8 @@
     "category": "monster",
     "notes": "Can you endure long enough?",
     "score": 74594,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 74593.5
   },
   {
     "id": "the_forsaken_assassin",
@@ -55869,7 +56373,8 @@
     "category": "monster",
     "notes": "What if you don't know how to win?",
     "score": 2,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 1.5
   },
   {
     "id": "the_inadequacy",
@@ -55878,7 +56383,8 @@
     "category": "monster",
     "notes": "Are you good enough to fight?",
     "score": 176474,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 176473.5
   },
   {
     "id": "the_jormungand",
@@ -55887,7 +56393,8 @@
     "category": "monster",
     "notes": "The serpent king.",
     "score": 197654,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 197653.5
   },
   {
     "id": "the_kendal",
@@ -55905,7 +56412,8 @@
     "category": "monster",
     "notes": "Is that really it?",
     "score": 14,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 13.5
   },
   {
     "id": "the_maiden_of_sugadinti",
@@ -55923,7 +56431,8 @@
     "category": "monster",
     "notes": "A huge beast, resembling in some ways a lion, but mostly a twisted nightmare.",
     "score": 10334,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 10333.5
   },
   {
     "id": "the_untouchable",
@@ -55959,7 +56468,8 @@
     "category": "monster",
     "notes": "A reanimated mage wearing the garb of ancient times.",
     "score": 10334,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 10333.5
   },
   {
     "id": "third_age_ranger",
@@ -55977,7 +56487,8 @@
     "category": "monster",
     "notes": "A reanimated warrior wearing the garb of ancient times.",
     "score": 10334,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 10333.5
   },
   {
     "id": "thorhild",
@@ -55986,7 +56497,8 @@
     "category": "monster",
     "notes": "A subject of Miscellania.",
     "score": 2,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 1.5
   },
   {
     "id": "thrantax_the_mighty",
@@ -56004,7 +56516,8 @@
     "category": "monster",
     "notes": "Small for a troll but mean, ugly and throws rocks.",
     "score": 6734,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 6733.5
   },
   {
     "id": "thrower_troll_trollheim",
@@ -56031,7 +56544,8 @@
     "category": "monster",
     "notes": "A former practitioner of tiger style.",
     "score": 23438,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 23437.5
   },
   {
     "id": "tok_xil",
@@ -56058,7 +56572,8 @@
     "category": "monster",
     "notes": "Here to defend the crypt.",
     "score": 10838,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 10837.5
   },
   {
     "id": "tonali_warrior",
@@ -56067,7 +56582,8 @@
     "category": "monster",
     "notes": "Here to defend the crypt.",
     "score": 10838,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 10837.5
   },
   {
     "id": "torcher",
@@ -56076,7 +56592,8 @@
     "category": "monster",
     "notes": "Burn baby, burn!",
     "score": 1634,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 1633.5
   },
   {
     "id": "tormented_demon",
@@ -56112,7 +56629,8 @@
     "category": "monster",
     "notes": "A large tortoise.",
     "score": 9362,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 9361.5
   },
   {
     "id": "tortured_gorilla",
@@ -56121,7 +56639,8 @@
     "category": "monster",
     "notes": "One of Glough's tortured creations.",
     "score": 29822,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 29821.5
   },
   {
     "id": "tortured_soul",
@@ -56130,7 +56649,8 @@
     "category": "monster",
     "notes": "This poor soul cannot understand why it has not passed to the next world.",
     "score": 5222,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 5221.5
   },
   {
     "id": "tough_guy",
@@ -56139,7 +56659,8 @@
     "category": "monster",
     "notes": "Tough looking Menaphite.",
     "score": 8438,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 8437.5
   },
   {
     "id": "tower_archer",
@@ -56148,7 +56669,8 @@
     "category": "monster",
     "notes": "Defender of the north tower.",
     "score": 542,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 541.5
   },
   {
     "id": "tower_guard",
@@ -56184,7 +56706,8 @@
     "category": "monster",
     "notes": "Eeek! A ghost!",
     "score": 13538,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 13537.5
   },
   {
     "id": "tribesman",
@@ -56211,7 +56734,8 @@
     "category": "monster",
     "notes": "A pet Troll.",
     "score": 12422,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 12421.5
   },
   {
     "id": "troll_general",
@@ -56220,7 +56744,8 @@
     "category": "monster",
     "notes": "One of the troll generals.",
     "score": 19154,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 19153.5
   },
   {
     "id": "troll_spectator",
@@ -56229,7 +56754,8 @@
     "category": "monster",
     "notes": "He's watching the arena.",
     "score": 7562,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 7561.5
   },
   {
     "id": "tropical_wagtail",
@@ -56238,7 +56764,8 @@
     "category": "monster",
     "notes": "It blends in very well with its surroundings.",
     "score": 542,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 541.5
   },
   {
     "id": "tstanon_karlak",
@@ -56247,7 +56774,8 @@
     "category": "monster",
     "notes": "Destroyer of 1000 planes!",
     "score": 31538,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 31537.5
   },
   {
     "id": "turoth",
@@ -56256,7 +56784,8 @@
     "category": "monster",
     "notes": "It's one small leg short!",
     "score": 10334,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 10333.5
   },
   {
     "id": "twig",
@@ -56265,7 +56794,8 @@
     "category": "monster",
     "notes": "He's guarding the cells.",
     "score": 7562,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 7561.5
   },
   {
     "id": "twisted_banshee",
@@ -56274,7 +56804,8 @@
     "category": "monster",
     "notes": "A tortured screaming soul.",
     "score": 11882,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 11881.5
   },
   {
     "id": "typhor",
@@ -56301,7 +56832,8 @@
     "category": "monster",
     "notes": "Looks like living lava...",
     "score": 3038,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 3037.5
   },
   {
     "id": "tz_kih",
@@ -56328,7 +56860,8 @@
     "category": "monster",
     "notes": "Must be a guard or something.",
     "score": 33302,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 33301.5
   },
   {
     "id": "tzhaar_mej",
@@ -56337,7 +56870,8 @@
     "category": "monster",
     "notes": "Appears to be some kind of mystic.",
     "score": 15914,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 15913.5
   },
   {
     "id": "tzhaar_xil",
@@ -56346,7 +56880,8 @@
     "category": "monster",
     "notes": "Doesn't look very social.",
     "score": 26534,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 26533.5
   },
   {
     "id": "tzkal_zuk",
@@ -56391,7 +56926,8 @@
     "category": "monster",
     "notes": "A mage who has mastered the art of shadow magic.",
     "score": 121838,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 121837.5
   },
   {
     "id": "undead_druid",
@@ -56400,7 +56936,8 @@
     "category": "monster",
     "notes": "A fallen worshiper of a forgotten religion.",
     "score": 16538,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 16537.5
   },
   {
     "id": "undead_hero",
@@ -56409,7 +56946,8 @@
     "category": "monster",
     "notes": "Could do with gaining a few pounds.",
     "score": 33302,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 33301.5
   },
   {
     "id": "undead_lumberjack",
@@ -56436,7 +56974,8 @@
     "category": "monster",
     "notes": "Yep, definitely a chicken... an undead chicken.",
     "score": 2,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 1.5
   },
   {
     "id": "undead_cow",
@@ -56454,7 +56993,8 @@
     "category": "monster",
     "notes": "A minion of Rashiliyia.",
     "score": 5582,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 5581.5
   },
   {
     "id": "ungadulu",
@@ -56472,7 +57012,8 @@
     "category": "monster",
     "notes": "Horse with a horn.",
     "score": 338,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 337.5
   },
   {
     "id": "unicorn_foal",
@@ -56490,7 +57031,8 @@
     "category": "monster",
     "notes": "Half unicorn, half cow.",
     "score": 938,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 937.5
   },
   {
     "id": "uodai",
@@ -56499,7 +57041,8 @@
     "category": "monster",
     "notes": "A large ninja monkey wielding two scimitars.",
     "score": 33302,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 33301.5
   },
   {
     "id": "urium_shade",
@@ -56517,7 +57060,8 @@
     "category": "monster",
     "notes": "A large ninja monkey wielding two scimitars.",
     "score": 33302,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 33301.5
   },
   {
     "id": "valgerd",
@@ -56535,7 +57079,8 @@
     "category": "monster",
     "notes": "A juvenile vampyre. It looks really hungry! When bound by Retainer: A juvenile vampyre, held in a powerful spell.",
     "score": 3038,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 3037.5
   },
   {
     "id": "vampyre_juvinate",
@@ -56553,7 +57098,8 @@
     "category": "monster",
     "notes": "Well, that was just terrifying.",
     "score": 66782,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 66781.5
   },
   {
     "id": "vampyric_hound",
@@ -56562,7 +57108,8 @@
     "category": "monster",
     "notes": "And I shall call him Fang.",
     "score": 2,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 1.5
   },
   {
     "id": "vanescula_drakan",
@@ -56589,7 +57136,8 @@
     "category": "monster",
     "notes": "A curious fellow.",
     "score": 42842,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 42841.5
   },
   {
     "id": "veiled_kraken",
@@ -56652,7 +57200,8 @@
     "category": "monster",
     "notes": "I don't think you're ready for this jelly.",
     "score": 87122,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 87121.5
   },
   {
     "id": "vitreous_jelly",
@@ -56670,7 +57219,8 @@
     "category": "monster",
     "notes": "I don't think you're ready for this jelly.",
     "score": 87122,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 87121.5
   },
   {
     "id": "viyeldi",
@@ -56679,7 +57229,8 @@
     "category": "monster",
     "notes": "The spirit of a long-dead wizard.",
     "score": 9362,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 9361.5
   },
   {
     "id": "void_flare",
@@ -56715,7 +57266,8 @@
     "category": "monster",
     "notes": "If you see them circling: run.",
     "score": 1442,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 1441.5
   },
   {
     "id": "vyrewatch_sentinel",
@@ -56724,7 +57276,8 @@
     "category": "monster",
     "notes": "A deadly, bloodsucking vampyre.",
     "score": 34202,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 34201.5
   },
   {
     "id": "vyrewatch",
@@ -56733,7 +57286,8 @@
     "category": "monster",
     "notes": "An evil, bloodsucking vampyre.",
     "score": 11354,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 11353.5
   },
   {
     "id": "wall_beast",
@@ -56742,7 +57296,8 @@
     "category": "monster",
     "notes": "A big, scary hand!",
     "score": 3602,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 3601.5
   },
   {
     "id": "wallasalki",
@@ -56778,7 +57333,8 @@
     "category": "monster",
     "notes": "What a horrible looking thing.",
     "score": 21962,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 21961.5
   },
   {
     "id": "warrior_rellekka",
@@ -56805,7 +57361,8 @@
     "category": "monster",
     "notes": "An ancient warrior.",
     "score": 662,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 661.5
   },
   {
     "id": "watchman",
@@ -56814,7 +57371,8 @@
     "category": "monster",
     "notes": "Watches stuff. But who watches him?",
     "score": 1634,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 1633.5
   },
   {
     "id": "water_elemental",
@@ -56832,7 +57390,8 @@
     "category": "monster",
     "notes": "Hydro-power!",
     "score": 254,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 253.5
   },
   {
     "id": "waterfiend",
@@ -56841,7 +57400,8 @@
     "category": "monster",
     "notes": "A fiendish embodiment of water.",
     "score": 19838,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 19837.5
   },
   {
     "id": "weaponsmaster",
@@ -56850,7 +57410,8 @@
     "category": "monster",
     "notes": "Looks kind of obsessive...",
     "score": 794,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 793.5
   },
   {
     "id": "weast_side49",
@@ -56886,7 +57447,8 @@
     "category": "monster",
     "notes": "An animated clay statue.",
     "score": 8438,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 8437.5
   },
   {
     "id": "white_jaguar",
@@ -56895,7 +57457,8 @@
     "category": "monster",
     "notes": "The rarest cat in all of Varlamore.",
     "score": 6734,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 6733.5
   },
   {
     "id": "white_wolf",
@@ -56904,7 +57467,8 @@
     "category": "monster",
     "notes": "A vicious mountain wolf.",
     "score": 938,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 937.5
   },
   {
     "id": "wighted_leech",
@@ -56922,7 +57486,8 @@
     "category": "monster",
     "notes": "Looks like it's got Rabies!",
     "score": 5954,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 5953.5
   },
   {
     "id": "wild_kebbit",
@@ -56931,7 +57496,8 @@
     "category": "monster",
     "notes": "That's a mean looking set of claws.",
     "score": 794,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 793.5
   },
   {
     "id": "wilson",
@@ -56940,7 +57506,8 @@
     "category": "monster",
     "notes": "A pirate.",
     "score": 2054,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 2053.5
   },
   {
     "id": "wingman_skree",
@@ -56949,7 +57516,8 @@
     "category": "monster",
     "notes": "Graceful, bird-like creature.",
     "score": 30674,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 30673.5
   },
   {
     "id": "wise_old_man",
@@ -56967,7 +57535,8 @@
     "category": "monster",
     "notes": "Looks unnatural.",
     "score": 542,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 541.5
   },
   {
     "id": "wizard",
@@ -56976,7 +57545,8 @@
     "category": "monster",
     "notes": "Slightly magical.",
     "score": 122,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 121.5
   },
   {
     "id": "wolf",
@@ -56985,7 +57555,8 @@
     "category": "monster",
     "notes": "Not man's best friend.",
     "score": 182,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 181.5
   },
   {
     "id": "woman",
@@ -57012,7 +57583,8 @@
     "category": "monster",
     "notes": "Don't let it wyrm its way in.",
     "score": 14114,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 14113.5
   },
   {
     "id": "wyrmling",
@@ -57021,7 +57593,8 @@
     "category": "monster",
     "notes": "Don't let it wyrm its way in.",
     "score": 4538,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 4537.5
   },
   {
     "id": "xamphur",
@@ -57030,7 +57603,8 @@
     "category": "monster",
     "notes": "If evil had a look, this would be it.",
     "score": 85682,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 85681.5
   },
   {
     "id": "xarpus",
@@ -57039,7 +57613,8 @@
     "category": "monster",
     "notes": "King of the yarasa.",
     "score": 164342,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 164341.5
   },
   {
     "id": "yadviga",
@@ -57129,7 +57704,8 @@
     "category": "monster",
     "notes": "A Z.M.I. runecrafter.",
     "score": 542,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 541.5
   },
   {
     "id": "zamorak_mage",
@@ -57147,7 +57723,8 @@
     "category": "monster",
     "notes": "A ranger of Zamorak.",
     "score": 9842,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 9841.5
   },
   {
     "id": "zamorak_warrior",
@@ -57165,7 +57742,8 @@
     "category": "monster",
     "notes": "A servant of Zamorak.",
     "score": 6338,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 6337.5
   },
   {
     "id": "zanik",
@@ -57174,7 +57752,8 @@
     "category": "monster",
     "notes": "As a follower during Death to the Dorgeshuun: An eager cave goblin on her first trip to the surface. As a follower during Another Slice of H.A.M.: A heroic cave goblin joining you for another adventure! Land of the Goblins: Hero of the cave goblins! During cutscenes: The Chosen Commander?",
     "score": 2522,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 2521.5
   },
   {
     "id": "zebak_s_phantom",
@@ -57183,7 +57762,8 @@
     "category": "monster",
     "notes": "A phantom of Zebak.",
     "score": 206462,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 206461.5
   },
   {
     "id": "zemouregal_summon",
@@ -57192,7 +57772,8 @@
     "category": "monster",
     "notes": "A tightly-wrapped monster.",
     "score": 39854,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 39853.5
   },
   {
     "id": "zogre",
@@ -57228,7 +57809,8 @@
     "category": "monster",
     "notes": "Overgrown undead vermin.",
     "score": 14,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 13.5
   },
   {
     "id": "zombie_swab",
@@ -57237,7 +57819,8 @@
     "category": "monster",
     "notes": "He talks a good fight.",
     "score": 4538,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 4537.5
   },
   {
     "id": "zombie",
@@ -57246,7 +57829,8 @@
     "category": "monster",
     "notes": "Dead man walking.",
     "score": 254,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 253.5
   },
   {
     "id": "zombies_champion",
@@ -57255,7 +57839,8 @@
     "category": "monster",
     "notes": "Champion of the zombies.",
     "score": 3902,
-    "rarity": "common"
+    "rarity": "common",
+    "rawScore": 3901.5
   },
   {
     "id": "zombified_spawn",
