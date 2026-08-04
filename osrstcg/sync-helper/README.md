@@ -29,20 +29,24 @@ while they play.
 
 ## Running it
 
-**Easiest: `OSRS-TCG-Sync-Helper.exe`.** Download it from the webapp's
-Profile tab (Auto-Sync button) and double-click it — that's it, nothing to
-install. It's a self-contained Windows program built directly from
-`server.js` via Node's own "single executable application" packaging, so it
-doesn't need Node installed on your PC.
+**Recommended: `Run-in-Background.bat`.** Double-click it — it starts
+`OSRS-TCG-Sync-Helper.exe` completely hidden (no console window on your
+desktop) and shows a small icon in the Windows system tray (the "hidden
+icons" area near the clock) so you can tell it's running. Right-click that
+icon → **Exit** to stop it cleanly. Double-click it to open a status page in
+your browser.
 
-A console window opens and stays open while it's running — that's normal,
-leave it be. Close the window (or hit Ctrl+C) to stop it.
+**Simpler, but leaves a console window open: `OSRS-TCG-Sync-Helper.exe`
+directly.** Double-click it — nothing to install, it's a self-contained
+Windows program built from `server.js` via Node's own "single executable
+application" packaging, so it doesn't need Node installed on your PC. A
+console window stays open while it runs; close it (or Ctrl+C) to stop.
 
-Since it's unsigned (no paid code-signing certificate for a small indie
-tool), Windows SmartScreen will likely warn about an "unrecognized
-publisher" the first time you run it. That's expected — click **More info**
-→ **Run anyway** if you're comfortable, or see the source-only option below
-if you'd rather not run an unsigned .exe at all.
+Either way, since it's unsigned (no paid code-signing certificate for a
+small indie tool), Windows SmartScreen will likely warn about an
+"unrecognized publisher" the first time you run it. That's expected — click
+**More info** → **Run anyway** if you're comfortable, or see the
+source-only option below if you'd rather not run an unsigned .exe at all.
 
 **Prefer to run it from source instead?** It's a single plain, readable
 file with zero dependencies — read `server.js` yourself, then, with
@@ -85,7 +89,7 @@ which one to keep syncing.
 ## Auto-starting it
 
 The helper doesn't install itself as a background service — that's
-deliberate, so it's obvious when it is and isn't running. If you want it
-running automatically whenever you're at your PC, the simplest way on
-Windows is to put a shortcut to `OSRS-TCG-Sync-Helper.exe` (or `run.bat`) in
+deliberate, so it's obvious when it is and isn't running (that tray icon).
+If you want it running automatically whenever you're at your PC, the
+simplest way on Windows is to put a shortcut to `Run-in-Background.bat` in
 your Startup folder (`Win+R` → `shell:startup`).
