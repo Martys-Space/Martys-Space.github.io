@@ -1,0 +1,12 @@
+{
+  "name": "osrstcg-sync-helper",
+  "version": "1.0.0",
+  "description": "Optional local helper that gives the OSRS TCG Locked Tracker webapp background auto-sync with your RuneLite backups folder.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
