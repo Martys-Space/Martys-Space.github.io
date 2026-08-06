@@ -1,0 +1,312 @@
+[
+  {
+    "id": "wintertodt",
+    "name": "Wintertodt",
+    "type": "Boss",
+    "sections": [
+      {
+        "kind": "required",
+        "cardIds": ["bruma_root"],
+        "groups": [
+          {
+            "label": "Any axe",
+            "cardIds": ["bronze_axe", "iron_axe", "steel_axe", "black_axe", "mithril_axe", "adamant_axe", "rune_axe", "dragon_axe"]
+          }
+        ]
+      },
+      {
+        "kind": "useful",
+        "cardIds": ["knife", "hammer", "tinderbox"]
+      },
+      {
+        "kind": "unique",
+        "cardIds": [
+          "pyromancer_hood",
+          "pyromancer_garb",
+          "pyromancer_robe",
+          "pyromancer_boots",
+          "tome_of_fire",
+          "burnt_page",
+          "bruma_torch",
+          "warm_gloves",
+          "phoenix",
+          "dragon_axe"
+        ]
+      },
+      {
+        "kind": "drops",
+        "cardIds": [
+          "oak_logs",
+          "willow_logs",
+          "maple_logs",
+          "teak_logs",
+          "mahogany_logs",
+          "yew_logs",
+          "magic_logs",
+          "grimy_guam_leaf",
+          "grimy_marrentill",
+          "grimy_tarromin",
+          "grimy_harralander",
+          "grimy_ranarr_weed",
+          "grimy_toadflax",
+          "grimy_irit_leaf",
+          "grimy_avantoe",
+          "grimy_kwuarm",
+          "grimy_snapdragon",
+          "grimy_cadantine",
+          "grimy_lantadyme",
+          "grimy_dwarf_weed",
+          "grimy_torstol",
+          "acorn",
+          "willow_seed",
+          "maple_seed",
+          "yew_seed",
+          "magic_seed",
+          "spirit_seed",
+          "snape_grass",
+          "banana_tree_seed",
+          "teak_seed",
+          "mahogany_seed",
+          "watermelon_seed",
+          "tarromin_seed",
+          "harralander_seed",
+          "ranarr_seed",
+          "toadflax_seed",
+          "irit_seed",
+          "avantoe_seed",
+          "snapdragon_seed",
+          "cadantine_seed",
+          "dwarf_weed_seed",
+          "torstol_seed",
+          "limestone",
+          "iron_ore",
+          "silver_ore",
+          "coal",
+          "gold_ore",
+          "mithril_ore",
+          "adamantite_ore",
+          "runite_ore",
+          "uncut_sapphire",
+          "uncut_emerald",
+          "uncut_ruby",
+          "uncut_diamond",
+          "raw_anchovies",
+          "raw_trout",
+          "raw_salmon",
+          "raw_lobster",
+          "raw_tuna",
+          "raw_swordfish",
+          "raw_shark",
+          "coins",
+          "saltpetre",
+          "pure_essence",
+          "dynamite"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "tempoross",
+    "name": "Tempoross",
+    "type": "Boss",
+    "sections": [
+      {
+        "kind": "required",
+        "cardIds": ["raw_harpoonfish"],
+        "groups": [
+          {
+            "label": "Any harpoon",
+            "cardIds": ["harpoon", "barb_tail_harpoon"]
+          }
+        ]
+      },
+      {
+        "kind": "useful",
+        "cardIds": ["rope", "bucket", "hammer", "small_fishing_net", "big_fishing_net"]
+      },
+      {
+        "kind": "unique",
+        "cardIds": [
+          "spirit_flakes",
+          "soaked_page",
+          "fish_barrel",
+          "tackle_box",
+          "big_harpoonfish",
+          "tome_of_water",
+          "dragon_harpoon",
+          "tiny_tempor"
+        ]
+      },
+      {
+        "kind": "drops",
+        "cardIds": [
+          "casket",
+          "raw_herring",
+          "raw_mackerel",
+          "raw_pike",
+          "raw_salmon",
+          "raw_tuna",
+          "raw_lobster",
+          "raw_bass",
+          "raw_swordfish",
+          "raw_shark",
+          "raw_sea_turtle",
+          "raw_manta_ray",
+          "plank",
+          "oak_plank",
+          "seaweed",
+          "steel_nails",
+          "feather",
+          "fishing_bait"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "tzhaar_fight_cave",
+    "name": "TzHaar Fight Cave",
+    "type": "Boss",
+    "sections": [
+      {
+        "kind": "required",
+        "cardIds": ["tz_kih", "tz_kek", "tok_xil", "yt_mejkot", "ket_zek", "tztok_jad", "yt_hurkot", "fire_cape"]
+      },
+      {
+        "kind": "useful",
+        "cardIds": [
+          "prayer_potion",
+          "super_restore",
+          "ranging_potion",
+          "maple_shortbow",
+          "yew_shortbow",
+          "magic_shortbow",
+          "mithril_arrow",
+          "adamant_arrow",
+          "rune_arrow",
+          "dorgeshuun_crossbow",
+          "bone_bolts",
+          "mithril_crossbow",
+          "adamant_crossbow",
+          "runite_crossbow",
+          "mithril_bolts",
+          "adamant_bolts",
+          "runite_bolts"
+        ]
+      },
+      {
+        "kind": "unique",
+        "cardIds": ["fire_cape", "tokkul", "tzrek_jad"]
+      }
+    ]
+  },
+  {
+    "id": "pest_control",
+    "name": "Pest Control",
+    "type": "Minigame",
+    "sections": [
+      {
+        "kind": "required",
+        "groups": [
+          {
+            "label": "Any monster",
+            "cardIds": ["brawler", "defiler", "ravager", "shifter", "spinner", "splatter", "torcher"]
+          }
+        ]
+      },
+      {
+        "kind": "useful",
+        "cardIds": ["hammer", "coins", "logs"]
+      },
+      {
+        "kind": "unique",
+        "cardIds": [
+          "void_knight_mace",
+          "void_knight_top",
+          "void_knight_robe",
+          "void_knight_gloves",
+          "void_mage_helm",
+          "void_ranger_helm",
+          "void_melee_helm",
+          "void_seal",
+          "elite_void_top",
+          "elite_void_robe"
+        ]
+      },
+      {
+        "kind": "drops",
+        "groups": [
+          {
+            "label": "Herb pack",
+            "cardIds": ["grimy_harralander", "grimy_ranarr_weed", "grimy_toadflax", "grimy_irit_leaf", "grimy_avantoe", "grimy_kwuarm"]
+          },
+          {
+            "label": "Mineral pack",
+            "cardIds": ["coal", "iron_ore"]
+          },
+          {
+            "label": "Seed pack",
+            "cardIds": [
+              "spirit_seed", "magic_seed", "yew_seed", "maple_seed", "willow_seed", "acorn", "ranarr_seed",
+              "sweetcorn_seed", "strawberry_seed", "limpwurt_seed", "watermelon_seed", "tomato_seed", "cabbage_seed",
+              "onion_seed", "potato_seed", "snape_grass_seed", "celastrus_seed", "redwood_tree_seed"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "intelligence_gathering",
+    "name": "Intelligence Gathering",
+    "type": "Minigame",
+    "sections": [
+      {
+        "kind": "required",
+        "cardIds": ["intelligence", "training_manual"],
+        "groups": [
+          {
+            "label": "Any Gangster/Gang boss",
+            "cardIds": ["gangster", "gang_boss"]
+          }
+        ]
+      },
+      {
+        "kind": "drops",
+        "cardIds": [
+          "bones",
+          "cosmic_rune",
+          "grimy_cadantine",
+          "grimy_dwarf_weed",
+          "grimy_kwuarm",
+          "grimy_lantadyme",
+          "gold_bar",
+          "mahogany_plank",
+          "oak_plank",
+          "teak_plank",
+          "coins",
+          "compost",
+          "uncut_sapphire",
+          "uncut_emerald",
+          "uncut_ruby",
+          "uncut_diamond",
+          "chaos_talisman",
+          "nature_talisman",
+          "loop_half_of_key",
+          "tooth_half_of_key",
+          "shield_left_half",
+          "intelligence"
+        ],
+        "groups": [
+          {
+            "label": "Weapons",
+            "cardIds": ["rune_scimitar", "black_scimitar", "rune_spear", "dragon_spear", "rune_javelin"]
+          },
+          {
+            "label": "Armor",
+            "cardIds": ["black_chainbody", "black_med_helm", "black_plateskirt"]
+          }
+        ]
+      }
+    ]
+  }
+]
